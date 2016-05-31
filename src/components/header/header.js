@@ -3,6 +3,7 @@ var can = require('can'),
 
 require('can/view/stache/stache');
 require('components/user-menu/user-menu.js');
+require('bootstrap/js/dropdown');
 
 var template = require('./header.stache');
 

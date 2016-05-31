@@ -1,4 +1,4 @@
-# Publishing UI
+# SEO UI
 
 This project contains UI code for AOS Publishing Systems. The components within this project can be shared amongst all Publishing Systems applications.
 

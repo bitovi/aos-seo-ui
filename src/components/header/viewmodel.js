@@ -15,7 +15,7 @@ var ViewModel = can.Map.extend({
             value: 'logout',
             type: 'string'
         },
-        utilitiesUrl: {
+        importUrl: {
             value: 'utilities',
             type: 'string'
         },
