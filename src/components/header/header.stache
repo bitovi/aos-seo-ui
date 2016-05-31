@@ -1,0 +1,35 @@
+<header>
+    <nav class="navbar navbar-inverse global-top-nav" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand check-saved-state-js" href="{{link homeUrl}}"><span class="apple-logo"></span> SEO </a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+            <div class="navbar-right">
+                {{#state.user.isReadOnly}}
+                    <span class="label label-default read-only-label">Read Only</span>
+                {{/state.user.isReadOnly}}
+                <app-user-menu user-data="{userData}">
+                    <li><a class="check-saved-state-js" href="{{logoutUrl}}">Logout</a></li>
+                </app-user-menu>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-default global-secondary-nav" role="navigation" aria-label="Site Navigation">
+    <ul class="nav navbar-nav global-secondary-nav">
+        <li class="{{activeTab homeUrl}}">
+            <a class="check-saved-state-js" href="{{link homeUrl}}">URLs</a>
+        </li>
+            <li class="{{activeTab rulesUrl}}">
+                <a class="check-saved-state-js" href="{{link rulesUrl}}">Rules</a>
+            </li>
+        <li class="{{activeTab reportsUrl}}">
+            <a class="check-saved-state-js" href="{{link reportsUrl}}">Reports</a>
+        </li>
+            <li class="{{activeTab utilitiesUrl}}">
+                <a class="check-saved-state-js" href="{{link utilitiesUrl}}">Utilities</a>
+            </li>
+    </ul>
+</nav>
+</header>

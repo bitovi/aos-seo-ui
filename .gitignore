@@ -1,0 +1,25 @@
+# General
+target
+target-docs
+node_modules
+.DS_Store
+npm-debug.log
+coverage
+
+# Eclipse
+.classpath
+.project
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Generated documentation
+docs/pui
+
+# Linux Build
+/target-production
+/build/node_modules
+/build/nodejs
+/build/build.log

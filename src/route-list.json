@@ -1,0 +1,14 @@
+{
+    "": {
+        "template": "<app-home state=\"{.}\"></app-home>",
+        "params": {
+            "page": "home"
+        },
+        "layout": {
+            "hideFooter": false,
+            "hideHeader": false,
+            "hideSubHeader": false
+        },
+        "title": "seo-ui"
+    }
+}
