@@ -15,14 +15,14 @@ var can = require('can');
 
 module.exports = function() {
     return function (options, originalOptions, jqXhr) {
-        var nemoObj = window.nemo,
+        var seoObj = window.seo,
             csrfHeader,
             csrfToken;
 
         // Cross-Site Request Forgery protection
-        if (typeof nemoObj !== 'undefined' && typeof nemoObj.csrfHeader !== 'undefined' && typeof nemoObj.csrfToken !== 'undefined') {
-            csrfHeader = nemoObj.csrfHeader;
-            csrfToken = nemoObj.csrfToken;
+        if (typeof seoObj !== 'undefined' && typeof seoObj.csrfHeader !== 'undefined' && typeof seoObj.csrfToken !== 'undefined') {
+            csrfHeader = seoObj.csrfHeader;
+            csrfToken = seoObj.csrfToken;
         }
 
         if (options.type === 'post' || options.type === 'put' || options.type === 'delete') {

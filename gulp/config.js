@@ -127,7 +127,7 @@ var config = {
 		When you run gulp watch add --apiProxy <key> to the command to select whiuch proxy you want to use
 		*/
         apiProxies: {
-            'dev': 		'http://md03d-pubsys-cs-app-02.aoslab.apple.com:5387/sep',
+            'dev': 		'http://md03d-pubsys-cs-app-02.aoslab.apple.com:5387/seo',
 			'qa':  		'http://nc1d-p11-app-1001.corp.apple.com:5387/seo',
 			'uat': 		'http://md03d-pubsys-cs-app-07.aoslab.apple.com:5387/seo',
             'auth-dev': 'https://storedev-pubsys.corp.apple.com/seo',
@@ -230,13 +230,13 @@ var config = {
                 pattern: "**/*.{less,css,md,js}",
                 ignore: [
                     '{node_modules,target,test,coverage}/**/*',
-                    'docs/{nemo-ui,theme}/*',
+                    'docs/{seo-ui,theme}/*',
                     '**/{demo,fixture}/*',
                     '**/*.bundle.js'
                 ]
             },
-            dest: './docs/nemo-ui',
-            parent: 'nemo-ui',
+            dest: './docs/seo-ui',
+            parent: 'seo-ui',
             templates: './docs/theme/templates'
         },
         watchFiles: [

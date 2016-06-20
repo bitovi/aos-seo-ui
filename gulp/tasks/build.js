@@ -17,7 +17,7 @@ var tasks = ['jshint'];
 // The default will go to build:app
 gulp.task('build', ['build:app']);
 
-// This one runs on commit, and builds the main app consumed by Nemo
+// This one runs on commit, and builds the main app consumed by seo
 gulp.task('build:app', ['setProduction', 'clean:build', 'copy:app']);
 // This one runs on commit, and builds the demos. They are deployed to a special QA server
 gulp.task('build:demos', ['setProduction', 'clean:build', 'copy:demos']);

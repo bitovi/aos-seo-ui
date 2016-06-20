@@ -2,7 +2,7 @@
  * @page platform/gulp/tasks/less less
  * @parent platform/gulp/tasks
  *
- * Bundles and concatenates all LESS files into CSS files. One CSS files is created for every demo in nemo-ui and another for the `src` and `target` directories where the dev and production output files live respectibely.
+ * Bundles and concatenates all LESS files into CSS files. One CSS files is created for every demo in seo-ui and another for the `src` and `target` directories where the dev and production output files live respectibely.
  *
  * ## Autoprefix
  * The generated CSS is run through [autoprefixer](https://github.com/postcss/autoprefixer-core) that adds browser prefixes.

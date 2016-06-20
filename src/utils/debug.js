@@ -2,7 +2,7 @@
  * @module {function} utils/debug Debug
  * @parent utils
  *
- * Enables debugging utilities for Nemo
+ * Enables debugging utilities for seo
  *
  * @body
  *

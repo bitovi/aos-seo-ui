@@ -39,7 +39,7 @@ var generateDocs = function(){
 
 gulp.task('docs:copyDemos', ['copy:demos'], function(){
     gulp.src('./target/demos/**')
-        .pipe(gulp.dest('./docs/nemo-ui/demos'));
+        .pipe(gulp.dest('./docs/seo-ui/demos'));
 });
 
 gulp.task('docsAndDemos', ['clean:docs', 'docs:copyDemos'], function(){
@@ -54,6 +54,6 @@ gulp.task('docs:serve', ['docsAndDemos'], function(){
     gulp.watch(config.watchFiles, ['justDocs']);
 
     connect.server({
-        root: 'docs/nemo-ui'
+        root: 'docs/seo-ui'
     });
 });

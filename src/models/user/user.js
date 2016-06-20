@@ -8,8 +8,8 @@ var can = require("can");
  *
  */
 module.exports = can.Construct.extend({
-    init: function (nemo) {
-        can.extend(this, nemo);
+    init: function (seo) {
+        can.extend(this, seo);
     },
     _hasRole: function (roleList) {
         return this.roles.some(function (element) {
