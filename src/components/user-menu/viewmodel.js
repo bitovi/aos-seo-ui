@@ -1,7 +1,7 @@
 /**
- * @parent components.nemo-user-menu
+ * @parent components.seo-user-menu
  * @tag documentation
- * @module {constructor} Nemo-User-Menu/ViewModel Nemo-User-Menu
+ * @module {constructor} Seo-User-Menu/ViewModel Seo-User-Menu
  */
 var $ = require('jquery');
 var can = require('can');
@@ -24,4 +24,3 @@ var ViewModel = can.Map.extend({
 });
 
 module.exports = ViewModel;
-

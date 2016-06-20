@@ -1,19 +1,19 @@
 /**
  * @parent components
  * @tag documentation
- * @module {constructor} components/Nemo-User-Menu Nemo-User-Menu
+ * @module {constructor} components/Seo-User-Menu Seo-User-Menu
  *
  * Component creates User Menu from provided menu content.
  *
  * Upon initializing, the component will initialize the popover and assign
  * the content to the popover's trigger
  *
- * @signature `<nemo-user-menu>`
+ * @signature `<seo-user-menu>`
  *
  * ``` javascript
- * <nemo-user-menu userData="{user}">
+ * <seo-user-menu userData="{user}">
  *  <p><a href="#" class="link-logout">Logout</a></p>
- * </nemo-user-menu>
+ * </seo-user-menu>
  * ```
  *
  * @param {{}} user-data current user's data.
