@@ -10,7 +10,7 @@ MVN_ARTIFACT_NAME=node-modules-shff-linux-x64
 ZIP_FILE=$MVN_ARTIFACT_NAME.zip
 
 MVN_GROUP_ID=com.apple.store.content
-MVN_VERSION=0.3-SNAPSHOT
+MVN_VERSION=2.3-SNAPSHOT
 
 # This might be too aggressive, but is needed to make sure we have 100% correct modules
 

@@ -16,11 +16,13 @@ MD5_FILE=$BUILD_DIR/node_modules.md5
 
 NEXUS_REPO="http://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
 NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
-POM_VERSION=0.3-SNAPSHOT
+NODE_POM_VERSION=0.3-SNAPSHOT
+POM_VERSION=2.3-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
 MVN_VERSION=6.0-SNAPSHOT
+
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
