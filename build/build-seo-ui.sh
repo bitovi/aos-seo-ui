@@ -16,11 +16,13 @@ MD5_FILE=$BUILD_DIR/node_modules.md5
 
 NEXUS_REPO="http://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
 NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
-POM_VERSION=0.3-SNAPSHOT
+NODE_POM_VERSION=0.3-SNAPSHOT
+POM_VERSION=2.3-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
 MVN_VERSION=6.0-SNAPSHOT
+
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -42,8 +44,8 @@ fi
 # We don't trust the system to have nodejs in the correct version, we will download it
 cd $BUILD_DIR
 if [ ! -d nodejs ]; then
-    log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$POM_VERSION&p=zip"
-   curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$POM_VERSION&p=zip"
+  log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
+  curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip
    unzip nodejs.zip >> $LOG_FILE
 fi
 if [ -f nodejs.zip ]; then

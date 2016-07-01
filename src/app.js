@@ -1,7 +1,7 @@
 /* jshint camelcase: false */
 
 var can = require('can');
-var User = require('models/user/user');
+var User = require('models/user/user.js');
 var $ = can.$;
 
 require('components/header/header.js');
