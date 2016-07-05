@@ -25,9 +25,17 @@ require('bootstrap/js/dropdown');
 var template = require('./user-menu.stache');
 
 can.Component.extend({
-    tag: 'app-user-menu',
+    tag: 'seo-user-menu',
     template: template,
-    scope: ViewModel
+    viewModel: ViewModel,
+    events: {
+    init: function init() {
+        this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
+    },
+    '.dropdown-menu click': function($el, ev) {
+        ev.stopPropagation();
+    }
+}
 });
 
 module.exports = ViewModel;

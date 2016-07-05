@@ -1,12 +1,17 @@
 <ul class="nav navbar-nav">
-    <li class="dropdown">
-        <a href="#" class="clearfix user-menu" data-toggle="dropdown">
-            <span class="icon-user"></span>
-            <span class="user-initials">{{userInitials}}</span>
-            <span class="icon-chevron"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-label="User Options">
-            <content></content>
-        </ul>
+  <li {{#isLocalInstance}}class="dropdown"{{/isLocalInstance}}>
+      <a {{#isLocalInstance}} href="#"{{/isLocalInstance}} class="clearfix user-menu" {{#isLocalInstance}}data-toggle="dropdown"{{/isLocalInstance}}>
+          <span class="icon-user"></span>
+          <span class="user-initials">{{userData.initials}}</span>
+      </a>
+      {{#if isLocalInstance}}
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="#" can-click="toggleFixtures" class="link-logout">
+                          Fixtures:&nbsp;<span class="feature-item {{fixtures}}">{{fixtures}}</span>
+                    </a>
+                      </li>
+            </ul>
+      {{/if}}
     </li>
 </ul>

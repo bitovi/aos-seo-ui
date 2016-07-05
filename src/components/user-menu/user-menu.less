@@ -1,4 +1,7 @@
-seo-user-menu{
+seo-user-menu {
+  display: block;
+    float: left;
+
     &.navbar-right {
       margin-right: 0px;
     }
@@ -20,18 +23,25 @@ seo-user-menu{
       }
       .user-initials {
         font-size: 14px;
-        //font-weight: light;
 
       }
     }
-    .dropdown{
-      margin-right: 10px;
-    }
-    .dropdown.open{
-        .icon-user,
-        .user-initials,
-        .icon-chevron {
-          color: @whiteTip;
+    // Overwrites to the default dropdown-menu to make this menu sit flushed against the toggle control.
+    .dropdown-menu {
+        border-top: none;
+        li:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
         }
-    }
+        li span {
+            &.ON {
+                color: #0179b5;
+                font-weight: bold;
+            }
+            &.OFF {
+                color: #cc0024;
+                font-weight: bold;
+            }
+          }
+        }
 }
