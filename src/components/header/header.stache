@@ -9,9 +9,9 @@
                 {{#if state.user.isReadOnly}}
                     <span class="label label-default read-only-label">Read Only</span>
                 {{/if state.user.isReadOnly}}
-                <app-user-menu user-data="{userData}">
+                <seo-user-menu user-data="{user}">
                     <li><a class="check-saved-state-js" href="{{logoutUrl}}">Logout</a></li>
-                </app-user-menu>
+                </seo-user-menu>
             </div>
         </div>
     </nav>
