@@ -19,7 +19,7 @@
  * @param {{}} user-data current user's data.
  */
 var can = require('can');
-var ViewModel = require('./viewmodel.js');
+var ViewModel = require('./vm-user-menu.js');
 require('can/view/stache/stache');
 require('bootstrap/js/dropdown');
 var template = require('./user-menu.stache');
