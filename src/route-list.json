@@ -1,6 +1,6 @@
 {
     "": {
-        "template": "<app-home state=\"{.}\"></app-home>",
+        "template": "<seo-home state=\"{.}\"></seo-home>",
         "params": {
             "page": "home"
         },
@@ -9,6 +9,6 @@
             "hideHeader": false,
             "hideSubHeader": false
         },
-        "title": "seo-ui"
+        "title": "SEO"
     }
 }

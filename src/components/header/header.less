@@ -1,26 +1,16 @@
 .global-secondary-nav {
+  padding-left: 10px;
     .selected-tab,
     .selected-tab:hover,
     .selected-tab:focus {
-        background-color: @body-bg;
         height: 45px;
     }
-}
 
-.read-only-label{
-    position: absolute;
-    top: 30%;
-    margin-left: -75px;
-    color: #999;
-    background-color: @gray-base;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 12px;
-    text-align: center;
-    line-height: normal;
-    padding: 5px 7px;
+    .navbar-nav > li > a {
+    padding-top: 13.5px;
+    }
 }
-.dropdown.open{
+.dropdown.open {
     .utilities,
     .icon-chevron {
       color: @whiteTip;

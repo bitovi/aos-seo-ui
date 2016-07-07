@@ -7,7 +7,7 @@ var template = require('./home.stache'),
     ViewModel = require('./home.viewmodel.js');
 
 can.Component.extend({
-    tag: 'app-home',
+    tag: 'seo-home',
     template: template,
     scope: ViewModel,
     events: {

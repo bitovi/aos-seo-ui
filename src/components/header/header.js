@@ -8,9 +8,9 @@ require('bootstrap/js/dropdown');
 var template = require('./header.stache');
 
 module.exports = can.Component.extend({
-  tag: 'app-header',
+  tag: 'seo-header',
   template: template,
-  scope: ViewModel,
+  viewModel: ViewModel,
   events: {
     '.check-saved-state-js click': function ($el, ev) {
       var self = this;
