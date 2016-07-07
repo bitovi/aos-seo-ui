@@ -2,6 +2,7 @@ var can = require('can'),
     $ = require('jquery');
 
 require('can/view/stache/stache');
+require('components/export-urls/export-urls.js');
 
 var template = require('./home.stache'),
     ViewModel = require('./home.viewmodel.js');

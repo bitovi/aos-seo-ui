@@ -1,0 +1,11 @@
+<div class="urls-export">
+  <div class="vertical-separator pull-left"></div>
+  <div class="icon-download" data-toggle="dropdown">  <br/>
+    <span class="icon-triangle"></span></div>
+
+  <ul class="dropdown-menu" role="menu" aria-label="Export options">
+  <li class="menu-header"><div class="content">Export 3273 URLs in:</div></li>
+  <li><a  href="{{nemoReadyFile}}">Nemo Ready File</a></li>
+  <li><a  href="{{currentView}}">Current View(.CSV)</a></li>
+  </ul>
+</div>
