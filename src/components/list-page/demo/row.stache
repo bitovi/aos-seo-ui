@@ -1,0 +1,34 @@
+<tr
+    {{eleAttrs}}
+    {{data 'item'}}
+    class="item"
+    tabindex="0"
+>
+    {{#if expandableRows}}
+        <td>
+            <button
+                can-click="toggleExpandRow"
+                class="btn btn-link btn-xs expand-toggle"
+            >
+                <span class="sr-only">Expand row</span>
+                <span class="icon-arrow-double {{^expanded}}rotate-270{{/expanded}}"></span>
+            </button>
+        </td>
+    {{/if}}
+
+    <td>
+        {{name}}
+    </td>
+
+    <td>
+        {{lastEditor}}
+    </td>
+
+    <td>
+        {{dateFormat lastEdited}}
+    </td>
+</tr>
+
+{{#if expanded}}
+    {{expandableRow}}
+{{/if}}

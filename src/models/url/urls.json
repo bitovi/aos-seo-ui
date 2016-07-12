@@ -1,0 +1,70 @@
+{
+    "count": 567,
+    "data": [
+        {
+            "country": "United States of America",
+            "pageTitle": "MacBook - Apple",
+            "partNumber": "MACBOOK_MAIN",
+            "region": "AMR",
+            "segment": "All",
+            "url": "/macbook/"
+        },
+        {
+            "country": "United Kingdom",
+            "pageTitle": "MacBook Air - Apple",
+            "partNumber": "MACBOOKAIR_MAIN",
+            "region": "EMEA",
+            "segment": "Internal EPP",
+            "url": "/macbook-air/"
+        },
+        {
+            "country": "Hong Kong",
+            "pageTitle": "iPad WiFi - Apple",
+            "partNumber": "IPAD_WIFI",
+            "region": "APAC",
+            "segment": "Direct",
+            "url": "/ipad-wifi/"
+        },
+        {
+            "country": "Japan",
+            "pageTitle": "iPad 3G - Apple",
+            "partNumber": "IPAD_3G",
+            "region": "JAPAN",
+            "segment": "All",
+            "url": "/ipad-3g/"
+        },
+        {
+            "country": "Turkey",
+            "pageTitle": "iPad 2 WiFi - Apple",
+            "partNumber": "IPAD2_WIFI",
+            "region": "EMEA",
+            "segment": "Small Business",
+            "url": "/ipad-2-wifi/"
+        },
+        {
+            "country": "New Zealand",
+            "pageTitle": "iPad 2 3G - Apple",
+            "partNumber": "IPAD2_3G",
+            "region": "APAC",
+            "segment": "Apple",
+            "url": "/ipad-2-3g/"
+        },
+        {
+            "country": "Mexico",
+            "pageTitle": "iPod Nano - Apple",
+            "partNumber": "IPOD_NANO-105078",
+            "region": "AMR",
+            "segment": "Edu Individual",
+            "url": "/ipod-nano/"
+        },
+        {
+            "country": "Canada",
+            "pageTitle": "iPod Touch - Apple",
+            "partNumber": "IPOD-TOUCH-105098",
+            "region": "AMR",
+            "segment": "Direct",
+            "url": "/ipod-touch/"
+        }
+    ],
+    "hasMoreRecords": true
+}

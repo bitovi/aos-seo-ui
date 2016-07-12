@@ -1,5 +1,6 @@
 var can = require('can');
 var setPageTitle = require('utils/setPageTitle.js');
+
 require('can/view/stache/stache');
 require('can/route/pushstate/pushstate');
 
@@ -7,21 +8,22 @@ require('can/route/pushstate/pushstate');
 // name must be a string. So we have to manually require the modules we will use in our
 // routes: https://github.com/substack/node-browserify/issues/377
 require('pages/home/home.js');
+require('pages/url-list/url-list.js');
 
 var routes = require('./route-list.json');
 
 module.exports = function (appState, content) {
     window.appState = appState;
-	// This @ROUTE_ROOT is replaced by the build to whathever is on config.js file
-    can.route.bindings.pushstate.root = "{@ROUTE_ROOT}/";
+    // This @ROUTE_ROOT is replaced by the build to whatever is on config.js file
+    can.route.bindings.pushstate.root = '{@ROUTE_ROOT}/';
     can.each(routes, function (data, path) {
         can.route(path, data.params);
     });
 
     can.route.bind('route', function (ev, newRoute, oldRoute) {
-        var data = routes[newRoute || ''],
-            oldData = routes[oldRoute],
-            alertTimeout = 25000;
+        var alertTimeout = 25000;
+        var data = routes[newRoute || ''];
+        var oldData = routes[oldRoute];
 
         if (newRoute !== undefined && data && (!oldData || (oldData.template !== data.template))) {
             appState.attr('layoutState', data.layout);
@@ -33,7 +35,7 @@ module.exports = function (appState, content) {
 
             content.html(can.stache(data.template)(appState));
 
-            if(data.title){
+            if (data.title) {
                 setPageTitle(data.title, appState);
             }
         }

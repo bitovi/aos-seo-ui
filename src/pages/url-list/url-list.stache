@@ -1,0 +1,14 @@
+<seo-list-page
+    columns="{columns}"
+    current-page="{state.pageNumber}"
+    data-options="{dataOptions}"
+    details-key="url"
+    disable-advanced-search="true"
+    disable-new-item-button="true"
+    model="{model}"
+    page-title="{title}"
+    row-template="{rowTemplate}"
+    search-field="{searchField}"
+    state="{state}"
+    type="url"
+></seo-list-page>

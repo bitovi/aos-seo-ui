@@ -1,0 +1,96 @@
+<div class="page-header clearfix">
+    <h1 class="pull-left">{{pageTitle}}</h1>
+
+    {{! New Item Button }}
+    {{^if disableNewItemButton}}
+        {{^if user.isReadOnly}}
+            <pui-action-bar-menu action-scope="{.}">
+                <pui-action-bar-item
+                        action="enableNewItemModal"
+                        {{#if state.versionLocked}}disable="true"{{/if}}
+                        icon="new"
+                        tooltip-title="Create {{casing 'proper' type true}}"
+                ></pui-action-bar-item>
+            </pui-action-bar-menu>
+        {{/if}}
+    {{/if}}
+</div>
+
+<div class="list-tools">
+    <div class="row">
+        {{! Basic Search }}
+        <div class="col-md-5">
+            <pui-grid-search
+                can-click="enableBasicSearch"
+                data-options="{dataOptions}"
+                search-field="{searchField}"
+                search-query="{searchQuery}"
+                search-state-enabled="{searchStateEnabled}"
+                search-value="{searchValue}"
+            ></pui-grid-search>
+        </div>
+
+        {{! Advanced Search Button }}
+        <div class="col-md-2 text-center">
+            {{^if disableAdvancedSearch}}
+                <button
+                    aria-controls="multi-search"
+                    aria-expanded="{{#if multiSearchEnabled}}true{{/if}}{{^if multiSearchEnabled}}false{{/if}}"
+                    can-click="toggleAdvSearchTab"
+                    class="btn btn-link btn-adv-search {{#if multiSearchEnabled}}enabled{{/if}} {{#if multiSearchActive}}on{{/if}}"
+                    data-target="#multi-search"
+                    data-toggle="collapse"
+                >
+                    Advanced Search
+                </button>
+            {{/if}}
+        </div>
+
+        {{! Pagination }}
+        <div class="col-md-5">
+            <pui-pagination
+                class="pull-right"
+                count="{count}"
+                current-page="{currentPage}"
+                has-more-records="{hasMoreRecords}"
+                limit="{limit}"
+            ></pui-pagination>
+        </div>
+    </div>
+
+    {{! Advanced Search }}
+    <div class="row">
+        <pui-grid-multi-search
+            class="col-md-12 collapse"
+            column-grid-class="{columnGridClass}"
+            data-options="{dataOptions}"
+            id="multi-search"
+            multi-search-active="{multiSearchActive}"
+            multi-search-enabled="{multiSearchEnabled}"
+            search-filter="{searchFilter}"
+        ></pui-grid-multi-search>
+    </div>
+</div>
+
+{{! Grid List }}
+<pui-grid-list
+    columns="{columns}"
+    count="{count}"
+    current-page="{currentPage}"
+    expandable-rows="{expandableRows}"
+    expanded-template="{expandedTemplate}"
+    has-more-records="{hasMoreRecords}"
+    is-loading="{isLoading}"
+    items="{items}"
+    limit="{limit}"
+    model="{model}"
+    multi-search-enabled="{multiSearchEnabled}"
+    refresh-prop="{state.version}"
+    row-template="{rowTemplate}"
+    search-filter="{searchFilter}"
+    search-query="{searchQuery}"
+    search-state-enabled="{searchStateEnabled}"
+    sort-by="{state.sort}"
+    sort-order="{state.order}"
+    state="{state}"
+></pui-grid-list>
