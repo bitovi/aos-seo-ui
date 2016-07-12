@@ -10,10 +10,8 @@ var template = require('./url-list.stache');
 
 require('models/url/url.js');
 
-module.exports = can.Component.extend(
-    {
-        tag: 'seo-url-list',
-        template: template,
-        viewModel: ViewModel
-    }
-);
+module.exports = can.Component.extend({
+    tag: 'seo-url-list',
+    template: template,
+    viewModel: ViewModel
+});

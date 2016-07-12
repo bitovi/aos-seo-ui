@@ -6,10 +6,10 @@
         {{^if user.isReadOnly}}
             <pui-action-bar-menu action-scope="{.}">
                 <pui-action-bar-item
-                        action="enableNewItemModal"
-                        {{#if state.versionLocked}}disable="true"{{/if}}
-                        icon="new"
-                        tooltip-title="Create {{casing 'proper' type true}}"
+                    action="enableNewItemModal"
+                    {{#if state.versionLocked}}disable="true"{{/if}}
+                    icon="new"
+                    tooltip-title="Create {{casing 'proper' type true}}"
                 ></pui-action-bar-item>
             </pui-action-bar-menu>
         {{/if}}
