@@ -1,11 +1,12 @@
-var can = require('can'),
-  ViewModel = require('./header.viewmodel.js');
+var _ = require('lodash');
+var can = require('can');
 
 require('can/view/stache/stache');
 require('components/user-menu/user-menu.js');
 require('bootstrap/js/dropdown');
 
 var template = require('./header.stache');
+var ViewModel = require('./header.viewmodel.js');
 
 module.exports = can.Component.extend({
   tag: 'app-header',
