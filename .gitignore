@@ -5,6 +5,7 @@ node_modules
 .DS_Store
 npm-debug.log
 coverage
+mocha.json
 
 # Eclipse
 .classpath
