@@ -9,7 +9,7 @@ var template = require('./home.stache'),
 can.Component.extend({
     tag: 'seo-home',
     template: template,
-    scope: ViewModel,
+    viewModel: ViewModel,
     events: {
 		/* Add here your custom events for the home page !!! */
     }

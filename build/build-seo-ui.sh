@@ -14,7 +14,7 @@ SRC_DIR=$(dirname "$BUILD_DIR")
 LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 
-NEXUS_REPO="http://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
+NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
 NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
 NODE_POM_VERSION=0.3-SNAPSHOT
 POM_VERSION=2.3-SNAPSHOT
@@ -269,7 +269,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=false \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=http://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
 
 #

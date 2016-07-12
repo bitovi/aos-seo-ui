@@ -1,5 +1,5 @@
 var can = require('can'),
-  ViewModel = require('./viewmodel.js');
+  ViewModel = require('./header.viewmodel.js');
 
 require('can/view/stache/stache');
 require('components/user-menu/user-menu.js');
@@ -35,9 +35,9 @@ module.exports = can.Component.extend({
 
       url = url && url.isComputed ? url() : '';
 
-      // Adjustment for home route, which can be either '' or revisions
+      // Adjustment for home route, which can be either '' or URLs
       if (route !== '' && url === '') {
-        url = 'revisions';
+        url = 'URLs';
       }
 
       if (route && url) {
