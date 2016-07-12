@@ -153,16 +153,9 @@ module.exports = can.Component.extend(
                 }
             },
 
-            '{state} code': 'searchDidChange',
-            '{state} content': 'searchDidChange',
-            '{state} description': 'searchDidChange',
-            '{state} keyPath': 'searchDidChange',
-            '{state} modelName': 'searchDidChange',
-            '{state} modifyUser': 'searchDidChange',
-            '{state} name': 'searchDidChange',
-            '{state} nodePath': 'searchDidChange',
-            '{state} tags': 'searchDidChange',
-            '{state} targetPath': 'searchDidChange',
+            '{state} pageTitle': 'searchDidChange',
+            '{state} partNumber': 'searchDidChange',
+            '{state} url': 'searchDidChange',
 
             searchDidChange: _.debounce(function () {
                 var i;
