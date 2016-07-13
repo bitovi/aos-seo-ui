@@ -45,7 +45,7 @@ fi
 cd $BUILD_DIR
 if [ ! -d nodejs ]; then
   log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
-  curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip
+  curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
    unzip nodejs.zip >> $LOG_FILE
 fi
 if [ -f nodejs.zip ]; then
