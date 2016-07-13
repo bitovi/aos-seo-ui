@@ -7,7 +7,6 @@
             <pui-action-bar-menu action-scope="{.}">
                 <pui-action-bar-item
                     action="enableNewItemModal"
-                    {{#if state.versionLocked}}disable="true"{{/if}}
                     icon="new"
                     tooltip-title="Create {{casing 'proper' type true}}"
                 ></pui-action-bar-item>
@@ -85,7 +84,6 @@
     limit="{limit}"
     model="{model}"
     multi-search-enabled="{multiSearchEnabled}"
-    refresh-prop="{state.version}"
     row-template="{rowTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"

@@ -153,6 +153,7 @@ module.exports = can.Component.extend(
                 }
             },
 
+            '{state} description': 'searchDidChange',
             '{state} pageTitle': 'searchDidChange',
             '{state} partNumber': 'searchDidChange',
             '{state} url': 'searchDidChange',
@@ -206,13 +207,6 @@ module.exports = can.Component.extend(
                     }
                 }
             }),
-
-            /**
-             * @description Invoked when leaving the page.
-             */
-            'removed': function () {
-                this.scope.clearContextDetails();
-            },
 
             /**
              * @description Handles click event of an item in the Grid List.

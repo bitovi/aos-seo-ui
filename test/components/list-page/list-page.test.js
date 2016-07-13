@@ -14,7 +14,6 @@ var state;
 var stateObj = {
     page: '',
     targetPath: '',
-    versionLocked: true,
     storage: {
         delayedAlert: {
             message: 'Your changes have been saved.',
@@ -125,7 +124,6 @@ describe('List Page', function () {
 
                 state.bind('page', function (ev, newVal, oldVal) {
                     expect(newVal).toBeDefined();
-                    expect(stateObj.attr('versionLocked')).toEqual(true);
                 });
 
                 component.find('pui-grid-list .item:eq(0)').trigger('click');
