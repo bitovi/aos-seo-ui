@@ -1,14 +1,21 @@
 {
     "": {
-        "template": "<app-home state=\"{.}\"></app-home>",
         "params": {
             "page": "home"
         },
+        "template": "<seo-home state=\"{.}\"></seo-home>",
+        "title": "Home"
+    },
+    "urls": {
         "layout": {
             "hideFooter": false,
             "hideHeader": false,
             "hideSubHeader": false
         },
-        "title": "seo-ui"
+        "params": {
+            "page": "url-list"
+        },
+        "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
+        "title": "URLs"
     }
 }

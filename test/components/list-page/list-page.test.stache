@@ -1,0 +1,9 @@
+<seo-list-page
+    columns="{columns}"
+    data-options="{dataOptions}"
+    details-key="{detailsKey}"
+    model="{Model}"
+    row-template="{rowTemplate}"
+    search-field="{searchField}"
+    state="{state}"
+></seo-list-page>

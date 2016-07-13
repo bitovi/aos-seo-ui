@@ -1,0 +1,46 @@
+<tr
+    class="item"
+    tabindex="0"
+    {{data 'item'}}
+    {{eleAttrs}}
+>
+    {{#if expandableRows}}
+        <td>
+            <button
+                can-click="toggleExpandRow"
+                class="btn btn-link btn-xs expand-toggle"
+            >
+                <span class="sr-only">Expand row</span>
+                <span class="icon-arrow-double {{^expanded}}rotate-270{{/expanded}}"></span>
+            </button>
+        </td>
+    {{/if}}
+
+    <td>
+        {{partNumber}}
+    </td>
+
+    <td>
+        {{url}}
+    </td>
+
+    <td>
+        {{pageTitle}}
+    </td>
+
+    <td>
+        {{segment}}
+    </td>
+
+    <td>
+        {{region}}
+    </td>
+
+    <td>
+        {{country}}
+    </td>
+</tr>
+
+{{#if expanded}}
+    {{> expandableRow}}
+{{/if}}

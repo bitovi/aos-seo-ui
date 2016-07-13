@@ -1,3 +1,4 @@
 require('can/util/fixture/fixture');
 
-/* Add here more of your fixtures !!!! */
+// Model Fixtures
+require('./url/url.fixture.js');

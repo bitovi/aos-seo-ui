@@ -1,17 +1,15 @@
 var can = require('can');
 var User = require('models/user/user');
+
 require('can/map/define/define');
 
 var Layout = can.Map.extend({
     define: {
-        hasMarketingContext: {
-            type: 'boolean',
-            value: false
-        },
         hideFooter: {
             type: 'boolean',
             value: false
         },
+
         hideHeader: {
             type: 'boolean',
             value: false
@@ -19,55 +17,85 @@ var Layout = can.Map.extend({
     }
 });
 
-var AppState = can.Map.extend({
+module.exports = can.Map.extend({
     define: {
         page: {
             type: 'string'
         },
+
         layoutState: {
             // Since we already have our defaults defined,
             // our default 'value' can just be set to an empty
             // object. The `Type` will mean the default value of
             // layoutState is set to `new Layout({})`
-            value: function(){return {};},
+            value: function () {
+                return {};
+            },
+
             // Any time the entire layoutState property is replaced,
             // the new object will be passed to the Layout constructor
             // which preserves defaults
             Type: Layout,
             serialize: false
         },
+
         error: {
-            type: '*',
-            serialize: false
+            serialize: false,
+            type: '*'
         },
+
         isAlertVisible: {
-            value: false,
+            serialize: false,
             type: 'boolean',
-            serialize: false
+            value: false
         },
+
         alert: {
-            type: '*',
+            serialize: false,
             set: function (newVal) {
                 this.attr('isAlertVisible', !!newVal);
                 return newVal;
             },
-            serialize: false
+            type: '*'
         },
         user: {
             Type: User,
             serialize: false
         },
-        
+
         /**
          * Storage is used to maintain data between page transitions. If a page must pass data
          * to another page, it can be set in `appState.storage`. Remember to always remove the
          * temporary data on data retrieval.
          */
         storage: {
-            value: function(){return {};},
-            serialize: false
+            serialize: false,
+            value: function () {
+                return {};
+            }
         }
+    },
+
+    /**
+     * @function setRouteAttrs
+     * @description Reset the AppState to the value of routeParams but
+     * preserve properties that are required across different routes.
+     * @param {Object} routeParams The new route parameters.
+     */
+    setRouteAttrs: function (routeParams) {
+        // Preserves required props
+        var conflictsEnabled = this.attr('conflictsEnabled');
+        var storage = this.attr('storage');
+        var user = this.attr('user');
+
+        // Updates the state to the route params, removing all props that are not in `routeParams`
+        can.batch.start();
+        this.attr(routeParams, true);
+
+        // Adds required props back in
+        this.attr('user', user);
+        this.attr('storage', storage);
+        this.attr('conflictsEnabled', conflictsEnabled);
+        can.batch.stop();
     }
 });
-
-module.exports = AppState;
