@@ -1,11 +1,117 @@
 {
   "stats": {
-    "tests": 0,
-    "passes": 0,
+    "tests": 21,
+    "passes": 21,
     "failures": 0,
-    "duration": 0
+    "duration": 1916
   },
   "failures": [],
-  "passes": [],
+  "passes": [
+    {
+      "title": "List Page View model Has default scope value of title",
+      "fullTitle": "List Page",
+      "duration": 7
+    },
+    {
+      "title": "List Page Component Renders",
+      "fullTitle": "List Page",
+      "duration": 137
+    },
+    {
+      "title": "List Page Component Displays alert if storage delayedAlert set",
+      "fullTitle": "List Page",
+      "duration": 62
+    },
+    {
+      "title": "List Page Component Routing is done by selecting item in the list",
+      "fullTitle": "List Page",
+      "duration": 66
+    },
+    {
+      "title": "URL List Page View model Has default values",
+      "fullTitle": "URL List Page",
+      "duration": 68
+    },
+    {
+      "title": "URL List Page Component Renders URL list results",
+      "fullTitle": "URL List Page",
+      "duration": 74
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields URL Start of URL",
+      "fullTitle": "URL List Page",
+      "duration": 74
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields URL Within URL",
+      "fullTitle": "URL List Page",
+      "duration": 80
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields URL Full URL",
+      "fullTitle": "URL List Page",
+      "duration": 79
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Page Title Start of title",
+      "fullTitle": "URL List Page",
+      "duration": 80
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Page Title Within title",
+      "fullTitle": "URL List Page",
+      "duration": 86
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Page Title Full title",
+      "fullTitle": "URL List Page",
+      "duration": 63
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Part Number Start of part number",
+      "fullTitle": "URL List Page",
+      "duration": 67
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Part Number Within part number",
+      "fullTitle": "URL List Page",
+      "duration": 95
+    },
+    {
+      "title": "URL List Page Component Search is performed for fields Part Number Full part number",
+      "fullTitle": "URL List Page",
+      "duration": 62
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields country By clicking on sort button for country",
+      "fullTitle": "URL List Page",
+      "duration": 144
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields pageTitle By clicking on sort button for pageTitle",
+      "fullTitle": "URL List Page",
+      "duration": 119
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields partNumber By clicking on sort button for partNumber",
+      "fullTitle": "URL List Page",
+      "duration": 164
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields region By clicking on sort button for region",
+      "fullTitle": "URL List Page",
+      "duration": 112
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields segment By clicking on sort button for segment",
+      "fullTitle": "URL List Page",
+      "duration": 161
+    },
+    {
+      "title": "URL List Page Component Sorting is performed for fields url By clicking on sort button for url",
+      "fullTitle": "URL List Page",
+      "duration": 116
+    }
+  ],
   "skipped": []
 }

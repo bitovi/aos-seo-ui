@@ -27,7 +27,7 @@
         <li class="{{activeTab reportsUrl}}">
             <a class="check-saved-state-js" href="{{link reportsUrl}}">Reports</a>
         </li> -->
-          <li class="dropdown">
+          <li class="sec-nav dropdown">
             <a  class="btn btn-link dropdown-toggle" data-toggle="dropdown">
               <span class="utilities">Utilities</span>
               <span class="icon-chevron"></span>
