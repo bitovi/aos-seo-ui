@@ -17,7 +17,7 @@
     </nav>
 
     <nav class="navbar navbar-default global-secondary-nav" role="navigation" aria-label="Site Navigation">
-    <ul class="nav navbar-nav global-secondary-nav">
+    <ul class="nav navbar-nav">
         <li class="{{activeTab homeUrl}}">
             <a class="check-saved-state-js" href="{{link homeUrl}}">URLs</a>
         <!--  Commenting this for now because these are not part of prototype</li>
