@@ -20,13 +20,6 @@
     <ul class="nav navbar-nav">
         <li class="{{activeTab homeUrl}}">
             <a class="check-saved-state-js" href="{{link homeUrl}}">URLs</a>
-        <!--  Commenting this for now because these are not part of prototype</li>
-            <li class="{{activeTab rulesUrl}}">
-                <a class="check-saved-state-js" href="{{link rulesUrl}}">Rules</a>
-            </li>
-        <li class="{{activeTab reportsUrl}}">
-            <a class="check-saved-state-js" href="{{link reportsUrl}}">Reports</a>
-        </li> -->
           <li class="sec-nav dropdown">
             <a  class="btn btn-link dropdown-toggle" data-toggle="dropdown">
               <span class="utilities">Utilities</span>
