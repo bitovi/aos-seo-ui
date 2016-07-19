@@ -9,7 +9,7 @@ var template = require('./header.stache');
 var ViewModel = require('./header.viewmodel.js');
 
 module.exports = can.Component.extend({
-  tag: 'app-header',
+  tag: 'seo-header',
   template: template,
   viewModel: ViewModel,
   events: {

@@ -17,23 +17,16 @@
     </nav>
 
     <nav class="navbar navbar-default global-secondary-nav" role="navigation" aria-label="Site Navigation">
-    <ul class="nav navbar-nav global-secondary-nav">
+    <ul class="nav navbar-nav">
         <li class="{{activeTab homeUrl}}">
             <a class="check-saved-state-js" href="{{link homeUrl}}">URLs</a>
-        </li>
-            <li class="{{activeTab rulesUrl}}">
-                <a class="check-saved-state-js" href="{{link rulesUrl}}">Rules</a>
-            </li>
-        <li class="{{activeTab reportsUrl}}">
-            <a class="check-saved-state-js" href="{{link reportsUrl}}">Reports</a>
-        </li>
-          <li class="dropdown">
-            <a href="#" class="clearfix check-saved-state-js" data-toggle="dropdown">
+          <li class="sec-nav dropdown">
+            <a  class="btn btn-link dropdown-toggle" data-toggle="dropdown">
               <span class="utilities">Utilities</span>
               <span class="icon-chevron"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-label="User Options">
-            <li><a class="check-saved-state-js" href="{{importUrl}}">Import</a></li>
+            <li><a class="check-saved-state-js" href="{{link importUrl}}">Import</a></li>
             </ul>
           </li>
     </ul>

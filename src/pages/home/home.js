@@ -1,7 +1,6 @@
 var can = require('can');
 
 require('can/view/stache/stache');
-
 module.exports = can.Component.extend({
     tag: 'seo-home',
     events: {

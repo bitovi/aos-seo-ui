@@ -12,7 +12,7 @@
 {{/isAlertVisible}}
 
 {{^if layoutState.hideHeader}}
-<app-header state="{.}"></app-header>
+<seo-header state="{.}"></seo-header>
 {{/if}}
 
 <div class="container-fluid">

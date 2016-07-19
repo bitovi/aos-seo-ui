@@ -12,6 +12,7 @@
             "hideHeader": false,
             "hideSubHeader": false
         },
+        "title": "SEO",
         "params": {
             "page": "url-list"
         },
