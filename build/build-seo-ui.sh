@@ -14,7 +14,7 @@ SRC_DIR=$(dirname "$BUILD_DIR")
 LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 
-NEXUS_REPO="http://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
+NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
 NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
 NODE_POM_VERSION=0.3-SNAPSHOT
 POM_VERSION=2.3-SNAPSHOT
@@ -45,7 +45,7 @@ fi
 cd $BUILD_DIR
 if [ ! -d nodejs ]; then
   log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
-  curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip
+  curl -L -o nodejs.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
    unzip nodejs.zip >> $LOG_FILE
 fi
 if [ -f nodejs.zip ]; then
@@ -86,7 +86,7 @@ cd $BUILD_DIR
 
 if [ ! -d node_modules ]; then
     log "Downloading node_modules from $NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
-   curl -L -o node-modules-linux-x64.zip "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
+   curl -L -o node-modules-linux-x64.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
    unzip node-modules-linux-x64.zip >> $LOG_FILE
 fi
 if [ -f node-modules-linux-x64.zip ]; then
@@ -167,7 +167,7 @@ log "Updating PUI from NEXUS"
 TAR_NAME=publishing-ui-.tar.gz
 
 cd $BUILD_DIR
-curl -L "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
+curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
 
 if [ -d $SRC_DIR/node_modules/pui ]; then
     rm -rf $SRC_DIR/node_modules/pui/dist
@@ -269,7 +269,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=false \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=http://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
 
 #

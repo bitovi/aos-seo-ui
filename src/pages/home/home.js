@@ -1,19 +1,12 @@
-var can = require('can'),
-    $ = require('jquery');
+var can = require('can');
 
 require('can/view/stache/stache');
-require('components/export-urls/export-urls.js');
-
-var template = require('./home.stache'),
-    ViewModel = require('./home.viewmodel.js');
-
-can.Component.extend({
-    tag: 'app-home',
-    template: template,
-    scope: ViewModel,
+module.exports = can.Component.extend({
+    tag: 'seo-home',
     events: {
-		/* Add here your custom events for the home page !!! */
+        'inserted': function () {
+            // Redirects to URL list
+            this.viewModel.state.attr('page', 'url-list');
+        }
     }
 });
-
-module.exports = ViewModel;

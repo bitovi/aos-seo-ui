@@ -40,5 +40,4 @@ $(function () {
   $('#app').html(indexView(appState));
 
   setupRoutes(appState, $('#content'));
-
 });

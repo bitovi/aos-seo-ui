@@ -1,0 +1,4 @@
+<seo-list-page
+    row-template="{rowTemplate}"
+    title="{title}"
+></seo-list-page>
