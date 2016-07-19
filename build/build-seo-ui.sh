@@ -45,7 +45,7 @@ fi
 cd $BUILD_DIR
 if [ ! -d nodejs ]; then
   log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
-  curl -L -o nodejs.zip "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
+  curl -L -o nodejs.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
    unzip nodejs.zip >> $LOG_FILE
 fi
 if [ -f nodejs.zip ]; then
@@ -86,7 +86,7 @@ cd $BUILD_DIR
 
 if [ ! -d node_modules ]; then
     log "Downloading node_modules from $NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
-   curl -L -o node-modules-linux-x64.zip "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
+   curl -L -o node-modules-linux-x64.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
    unzip node-modules-linux-x64.zip >> $LOG_FILE
 fi
 if [ -f node-modules-linux-x64.zip ]; then
@@ -167,7 +167,7 @@ log "Updating PUI from NEXUS"
 TAR_NAME=publishing-ui-.tar.gz
 
 cd $BUILD_DIR
-curl -L "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
+curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
 
 if [ -d $SRC_DIR/node_modules/pui ]; then
     rm -rf $SRC_DIR/node_modules/pui/dist
