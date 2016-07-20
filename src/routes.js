@@ -1,5 +1,5 @@
 var can = require('can');
-var setPageTitle = require('utils/setPageTitle.js');
+var setPageTitle = require('seo-ui/utils/setPageTitle');
 
 require('can/view/stache/stache');
 require('can/route/pushstate/pushstate');
@@ -7,8 +7,8 @@ require('can/route/pushstate/pushstate');
 // Browserify can only use `require`s that can be statically analyzed meaning the module
 // name must be a string. So we have to manually require the modules we will use in our
 // routes: https://github.com/substack/node-browserify/issues/377
-require('pages/home/home.js');
-require('pages/url-list/url-list.js');
+require('seo-ui/pages/home/home.js');
+require('seo-ui/pages/url-list/url-list.js');
 
 var routes = require('./route-list.json');
 

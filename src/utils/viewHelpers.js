@@ -1,5 +1,5 @@
 var can = require('can'),
-    formatDate = require('pui/src/utils/formatDate.js');
+    formatDate = require('pui/utils/formatDate');
 
 //Register helper to calculate colspan for expanded detail stache
 can.stache.registerHelper('calculateColspan', function (options) {

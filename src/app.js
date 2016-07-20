@@ -1,21 +1,22 @@
 /* jshint camelcase: false */
 
 var can = require('can');
-var User = require('models/user/user.js');
-var ServerVars = require('models/server-vars/server-vars.js');
+var ServerVars = require('seo-ui/models/server-vars/');
+var User = require('seo-ui/models/user/');
 var $ = can.$;
 
-require('components/header/header.js');
+require('seo-ui/components/header/');
 
-var AppState = require('models/appstate/appstate.js');
-var indexView = require('./index.stache');
-var setupRoutes = require('./routes.js');
-var csrfPrefilter = require('./utils/csrfPrefilter.js');
-require('utils/viewHelpers.js');
+var AppState = require('seo-ui/models/appstate/');
+var indexView = require('seo-ui/index.stache!');
+var setupRoutes = require('seo-ui/routes.js');
+var csrfPrefilter = require('seo-ui/utils/csrfPrefilter');
+var envVars = require('seo-ui/utils/environmentVars');
+require('seo-ui/utils/viewHelpers');
 
 $(function () {
   var user, appState, serverVars, fixturesOn;
-  var isDeployed = ('{@IS_DEPLOYED_BUILD}' === 'true');
+  var isDeployed = (envVars.isDeployedBuild() === 'true');
   window.seo.user.roles = window.seo.roles;
   user = new User(window.seo.user);
   can.fixture.on = !isDeployed;

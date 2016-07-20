@@ -1,5 +1,5 @@
 var can = require('can');
-var User = require('models/user/user');
+var User = require('seo-ui/models/user/user');
 
 require('can/map/define/define');
 

@@ -1,73 +1,91 @@
-/**
- * @page platform/gulp/tasks/test test
- * @parent platform/gulp/tasks
- *
- * Uses the [Karma](http://karma-runner.github.io/0.12/index.html) test runner to run this project's tests.
- *
- * ### Frameworks
- * This test setup use the karma-bro, jasmine-jquery and jasmine frameworks
- *
- * @signature `gulp test`
- * Runs all tests using PhantomJS
- *
- * @signature `gulp test:manual`
- * Starts a Karma server at `localhost:9876` that you can visit with any browser to make the tests run. To debug tests go to `localhost:9876/debug.html` where the normal Jasmine UI will be displayed.
- *
- * @signature `gulp test:coverage`
- * Runs tests in PhantomJS and generates a coverage report.
- *
- * @signature `gulp test:full`
- * Runs tests in the locally installed versions of Chrome, Firefox and Safari.
-*/
-
 var gulp = require('gulp');
-var path = require('path');
-var karma = require('karma').server;
-var xtend = require('xtend');
-var config = require('../config.js').karma;
+var testee = require('testee');
+var bambooReporter = require('mocha-bamboo-reporter');
+var buildTests = require('../build-tests.js');
+var runSequence = require('run-sequence');
+var phantom = 'phantom';
+var chrome = 'chrome';
+var config = require('../config').testee;
 
+// --> BEGIN: This is currently not being used. Once the issues with hanging tests are resolved
+// then the dynamic test building can be restored
+// TODO: Fix 'test/pages/**/*test.js'
+var buildFiles = [
+    {
+        files: ['test/utils/**/*.test.js', 'test/models/**/*.test.js', 'test/components/**/*.test.js'],
+        output: 'test/tests.js'
+    }
+];
 
-// Quick tests via PhantomJS
-gulp.task('test', ['jshint', 'less:app', 'bootstrapify'], function(done) {
-    var options = xtend(config.options, {
-        browsers: ['PhantomJS'],
-        reporters: ['mocha', 'bamboo'],
-        singleRun: true
+// DYNAMIC BUILDERS
+
+gulp.task('build-tests', function () {
+
+    // Get a collection of all the test files
+    // For each collection, call ten tests at a time
+
+    return buildFiles.map(function (fileConfig) {
+        buildTests({
+            files: fileConfig.files,
+            output: fileConfig.output
+        });
     });
 
-    karma.start(options, function(){ done() });
 });
 
-gulp.task('test:manual', ['jshint', 'less:app', 'bootstrapify'], function(done) {
-    var options = xtend(config.options, {
-        browsers: [],
-        autoWatch: true
-    });
+// END <--
 
-    karma.start(options, function(){ done() });
+
+// DEFAULT TASK
+
+gulp.task('test', ['test:local']);
+
+// LOCAL
+
+gulp.task('local-test', function () {
+    return testee.test(config.other.files, phantom, {
+        reporter: 'Spec'
+    });
 });
 
-gulp.task('test:coverage', ['jshint', 'less:app', 'bootstrapify'], function(done) {
 
-    var options = xtend(config.options, {
-        browsers: ['PhantomJS'],
-        reporters: ['dots', 'coverage'],
-        coverageReporter: config.coverage.coverageReporter,
-        singleRun: true
+// BAMBOO
+
+gulp.task('bamboo-test', function () {
+    return testee.test(config.other.files, phantom, {
+        reporter: bambooReporter,
+        port: 3997
     });
-
-    options.browserify.transform.push('browserify-istanbul');
-
-    karma.start(options, function(){ done() });
 });
 
-gulp.task('test:full', ['jshint', 'less:app', 'bootstrapify'], function(done) {
 
-    var options = xtend(config.options, {
-        browsers: ['Chrome', 'Safari', 'Firefox'],
-        reporters: ['dots'],
-        singleRun: true
+// WEB
+
+gulp.task('web-test', function () {
+    return testee.test(config.other.files, chrome, {});
+});
+
+// SEQUENCED TESTS - When dynamic tests are restored, just add the 'build-tests' task after 'xo'
+
+gulp.task('test:local', function (cb) {
+    runSequence('xo', 'build-tests', 'local-test', cb);
+});
+
+gulp.task('test:bamboo', function (cb) {
+    runSequence('xo', 'build-tests', 'bamboo-test', cb);
+});
+
+gulp.task('test:web', function (cb) {
+    runSequence('xo', 'build-tests', 'web-test', cb);
+});
+
+gulp.task('test:coverage', ['xo', 'build-tests'], function () {
+    return testee.test(config.other.files, phantom, {
+        reporter: 'Spec',
+        coverage: {
+            dir: 'docs/coverage',
+            reporters: ['text', 'html'],
+            ignore: ['node_modules/*', 'test/*', 'gulp/*', 'fixture.js']
+        }
     });
-
-    karma.start(options, function(){ done() });
 });

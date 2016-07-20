@@ -19,10 +19,10 @@
  * @param {{}} user-data current user's data.
  */
 var can = require('can');
-var ViewModel = require('./user-menu.viewmodel.js');
+var ViewModel = require('./user-menu.viewmodel');
 require('can/view/stache/stache');
 require('bootstrap/js/dropdown');
-var template = require('./user-menu.stache');
+var template = require('./user-menu.stache!');
 
 can.Component.extend({
     tag: 'seo-user-menu',

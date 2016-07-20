@@ -29,8 +29,8 @@ var $ = require('jquery');
 var _ = require('lodash');
 var can = require('can');
 
-var template = require('./list-page.stache');
-var ViewModel = require('./list-page.viewmodel.js');
+var template = require('./list-page.stache!');
+var ViewModel = require('./list-page.viewmodel');
 
 require('pui/components/action-bar-menu/action-bar-menu');
 

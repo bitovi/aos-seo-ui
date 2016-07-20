@@ -1,6 +1,6 @@
 var can = require('can');
 
-var Model = require('models/url/url.js');
+var Model = require('seo-ui/models/url/url');
 var rowTemplate = require('./row.stache');
 
 module.exports = can.Map.extend({

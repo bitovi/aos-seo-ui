@@ -1,13 +1,13 @@
 var $ = require('jquery');
 var can = require('can');
 
-var Model = require('models/url/url.js');
-var rowTemplate = require('./row.stache');
-var template = require('./demo.stache');
-var ViewModel = require('components/list-page/list-page.viewmodel.js');
+var Model = require('seo-ui/models/url/url');
+var rowTemplate = require('./row.stache!');
+var template = require('./demo.stache!');
+var ViewModel = require('seo-uicomponents/list-page/list-page.viewmodel');
 
 require('can/view/stache/stache');
-require('models/url/url.fixture.js');
+require('seo-ui/models/url/url.fixture');
 
 var map = new ViewModel({
     model: Model,

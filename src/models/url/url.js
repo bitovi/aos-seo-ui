@@ -1,11 +1,11 @@
 var can = require('can');
 
 require('can/map/define/define');
-
+var envVars = require('seo-ui/utils/environmentVars');
 module.exports = can.Model.extend(
     {
-        findAll: 'GET {@API_URL}/urls.json',
-        findOne: 'GET {@API_URL}/urls/{url}.json',
+        findAll: 'GET'+ envVars.apiUrl() +'/urls.json',
+        findOne: 'GET'+ envVars.apiUrl() +'/urls/{url}.json',
     },
     {
         define: {

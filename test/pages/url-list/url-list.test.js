@@ -1,7 +1,7 @@
 var $ = require('jquery');
 var can = require('can');
 
-var AppState = require('models/appstate/appstate.js');
+var AppState = require('seo-ui/models/appstate/appstate.js');
 var component;
 var jasmineConfig = require('test/jasmine-configure.js');
 var jasmineConfigClean;
@@ -12,13 +12,13 @@ var stateObj = {
     urlPath: ''
 };
 var testTemplate = require('./url-list.test.stache');
-var urlListPage = require('pages/url-list/url-list.js');
-var urlModel = require('models/url/url.js');
-var ViewModel = require('pages/url-list/url-list.viewmodel.js');
+var urlListPage = require('seo-ui/pages/url-list/url-list');
+var urlModel = require('seo-ui/models/url/url');
+var ViewModel = require('seo-ui/pages/url-list/url-list.viewmodel');
 var vm;
 
 
-require('models/url/url.fixture.js');
+require('seo-ui/models/url/url.fixture.js');
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
