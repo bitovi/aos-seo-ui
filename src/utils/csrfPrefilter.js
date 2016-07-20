@@ -11,7 +11,6 @@
  *
  * Pass the results of this function to $.ajaxPrefilter.
  */
-var can = require('can');
 
 module.exports = function() {
     return function (options, originalOptions, jqXhr) {

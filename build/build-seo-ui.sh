@@ -20,7 +20,7 @@ POM_VERSION=2016.7-july-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=6.0-SNAPSHOT
+MVN_VERSION=1.0-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -131,7 +131,7 @@ curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=pub
 
 if [ -d $SRC_DIR/node_modules/pui ]; then
     rm -rf $SRC_DIR/node_modules/pui/dist
-    rm -rf $SRC_DIR/node_modules/pui/src
+    rm -rf $SRC_DIR/node_modules/
     rm $SRC_DIR/node_modules/pui/package.json
 fi
 

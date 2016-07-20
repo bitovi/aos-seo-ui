@@ -1,12 +1,12 @@
 var $ = require('jquery');
 var can = require('can');
 
-require('seo-ui/models/url/url.fixture.js');
-require('seo-ui/utils/viewHelpers.js');
+require('seo-ui/models/url/url.fixture');
+require('seo-ui/utils/viewHelpers');
 
-var AppState = require('seo-ui/models/appstate/appstate.js');
+var AppState = require('seo-ui/models/appstate/appstate');
 var component;
-var jasmineConfig = require('test/jasmine-configure.js');
+var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var Model = require('seo-ui/models/url/url');
 var rowTemplate = require('seo-ui/pages/url-list/row.stache');
@@ -24,7 +24,7 @@ var stateObj = {
     }
 };
 var testTemplate = require('./list-page.test.stache');
-var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel.js');
+var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 var vm;
 
 // Renders the component
