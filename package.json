@@ -48,6 +48,7 @@
     "esprima": "~2.2.0",
     "exorcist": "~0.4.0",
     "glob": "~5.0.3",
+    "glob-all": "^3.0.3",
     "gulp": "~3.8.11",
     "gulp-autoprefixer": "~2.1.0",
     "gulp-concat": "~2.5.2",
