@@ -27,7 +27,7 @@ function log {
     echo $1 1>&2
 }
 
-log "=-=-=-=-=-=Starting seo-UI Build=-=-=-=-=-="
+log "=-=-=-=-=-=Starting Seo-UI Build=-=-=-=-=-="
 log "BUILD_DIR: $BUILD_DIR"
 log "SRC_DIR: $SRC_DIR"
 
@@ -35,7 +35,7 @@ log "SRC_DIR: $SRC_DIR"
 PLATFORM=$(uname)
 if [[ "$PLATFORM" == 'Darwin' ]]; then
   echo This script is meant to be used on the Linux boxes, and does not work on Mac
-  exit 1
+#  exit 1
 fi
 
 cd $SRC_DIR
@@ -56,6 +56,7 @@ if [ ! -d node_modules ]; then
      echo "Could not download node-modules-linux-x64.zip"
      exit 1
    fi
+   echo "Unzipping node-modules for the seo build"
    unzip node-modules-linux-x64.zip >> $LOG_FILE
 fi
 if [ -f node-modules-linux-x64.zip ]; then
@@ -63,7 +64,7 @@ if [ -f node-modules-linux-x64.zip ]; then
 fi
 
 # Set up the paths
-NODE_PATH="/opt/local/bin"
+NODE_PATH="${BUILD_DIR}/nodejs/bin"
 MODULES_PATH=$BUILD_DIR/node_modules
 
 NPM_BIN="$NODE_PATH/npm"
@@ -73,6 +74,10 @@ GULP_BIN="$MODULES_PATH/.bin/gulp"
 #
 # Environment setup - Node
 #
+
+chmod a+x ${NODE_PATH}/*
+PATH=${NODE_PATH}:${PATH}
+export PATH
 
 log "--Node Environment Variables--"
 log "NODE_PATH: $NODE_PATH"
@@ -131,7 +136,7 @@ curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=pub
 
 if [ -d $SRC_DIR/node_modules/pui ]; then
     rm -rf $SRC_DIR/node_modules/pui/dist
-    rm -rf $SRC_DIR/node_modules/
+    rm -rf $SRC_DIR/node_modules/pui/src
     rm $SRC_DIR/node_modules/pui/package.json
 fi
 
@@ -168,25 +173,13 @@ fi
 
 log "Verifying target files"
 
-if [ ! -f $SRC_DIR/target/app.js ]; then
+if [ ! -f $SRC_DIR/target/seo-ui/app.js ]; then
    log "app.js was not generated in the target folder. Exiting now."
    exit 11
 fi
-if [ ! -f $SRC_DIR/target/app.css ]; then
+if [ ! -f $SRC_DIR/target/seo-ui/app.css ]; then
    log "app.css was not generated in the target folder. Exiting now."
    exit 12
-fi
-if [ ! -f $SRC_DIR/target/app.min.js ]; then
-   log "app.min.js was not generated in the target folder. Exiting now."
-   exit 13
-fi
-if [ ! -f $SRC_DIR/target/app.min.css ]; then
-   log "app.min.css was not generated in the target folder. Exiting now."
-   exit 14
-fi
-if [ ! -f $SRC_DIR/target/index.html ]; then
-   log "index.html was not generated in the target folder. Exiting now."
-   exit 15
 fi
 if [ ! -f $SRC_DIR/target/index.production.html ]; then
    log "index.html.production was not generated in the target folder. Exiting now."
@@ -205,14 +198,15 @@ UI_BUILD_DST=$SRC_DIR/target
 JAR_SRC=$SRC_DIR/target-production
 
 mkdir -p $JAR_SRC
-cp $UI_BUILD_DST/index.html $JAR_SRC/index.html
-cp $UI_BUILD_DST/index.production.html $JAR_SRC/index.production.html
-cp $UI_BUILD_DST/app.css $JAR_SRC/app.css
-cp $UI_BUILD_DST/app.min.css $JAR_SRC/app.min.css
-cp $UI_BUILD_DST/app.js $JAR_SRC/app.js
-cp $UI_BUILD_DST/app.min.js $JAR_SRC/app.min.js
-cp $UI_BUILD_DST/bootstrap-theme.html $JAR_SRC/bootstrap-theme.html
-cp $UI_BUILD_DST/route-list.json $JAR_SRC/route-list.json
+
+cp $UI_BUILD_DST/seo-ui/index.html $JAR_SRC/index.html
+cp $UI_BUILD_DST/seo-ui/index.production.html $JAR_SRC/index.production.html
+cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.css
+cp $UI_BUILD_DST/seo-ui/app.min.css $JAR_SRC/app.min.css
+cp $UI_BUILD_DST/seo-ui/app.js $JAR_SRC/app.js
+cp $UI_BUILD_DST/seo-ui/app.min.js $JAR_SRC/app.min.js
+cp $UI_BUILD_DST/seo-ui/bootstrap-theme.html $JAR_SRC/bootstrap-theme.html
+cp $UI_BUILD_DST/seo-ui/route-list.json $JAR_SRC/route-list.json
 
 #
 # Create the jar file that will be finally deployed
@@ -239,6 +233,6 @@ mvn $MVN_TASK -Dfile=$JAR_NAME \
 rm $JAR_NAME
 rm -rf $JAR_SRC
 
-log "=-=-=-=-=-=End seo-UI Build=-=-=-=-=-="
+log "=-=-=-=-=-=End Seo-UI Build=-=-=-=-=-="
 
 exit 0
