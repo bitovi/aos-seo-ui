@@ -10,7 +10,16 @@ var envVars = require('seo-ui/utils/environmentVars');
 can.fixture('GET' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
     var results = urls;
-    var searchField = data.url ? 'url' : data.pageTitle ? 'pageTitle' : data.partNumber ? 'partNumber' : '';
+    var searchField;
+    if (data.url) {
+        searchField = 'url';
+    } else if (data.pageTitle) {
+        searchField = 'pageTitle';
+    } else if (data.partNumber) {
+        searchField = 'partNumber';
+    } else {
+        searchField = '';
+    }
     var sort = data.sort;
     var sortArray;
     var sortField;
@@ -53,9 +62,8 @@ can.fixture('GET' + envVars.apiUrl() + '/urls/{url}.json', function (request, re
     } else {
         response(
             404,
-            'error',
-            {
-                message: "URL " + request.data.url + " not found."
+            'error', {
+                message: 'URL ' + request.data.url + ' not found.'
             }
         );
     }
