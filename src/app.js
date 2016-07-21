@@ -16,25 +16,25 @@ var envVars = require('seo-ui/utils/environmentVars');
 var fixtureLoader = require('seo-ui/models/fixtures');
 var logger = require('seo-ui/utils/log');
 var localDebug = require('seo-ui/utils/local-debug');
-require('seo-ui/utils/viewHelpers');
 
+require('seo-ui/utils/viewHelpers');
 
 if (envVars.isDeployedBuild() === 'false') {
     window._environment = {
         'environment': 'Local Gulp'
     };
     window.seo = {
-        "debug": true,
-        "user": {
-            "firstName": "seo",
-            "lastName": "user",
-            "email": "seo_user@apple.com",
-            "initials": "SU"
+        'debug': true,
+        'user': {
+            'firstName': 'seo',
+            'lastName': 'user',
+            'email': 'seo_user@apple.com',
+            'initials': 'SU'
         },
-        "roles": ["ROLE_USER", "ROLE_ADMIN"],
-        "csrfToken": "n3m0-r0ck5",
-        "csrfHeader" : "X-AOS-CSRF",
-        "csrfParameter" : "_aos_csrf"
+        'roles': ['ROLE_USER', 'ROLE_ADMIN'],
+        'csrfToken': 'n3m0-r0ck5',
+        'csrfHeader': 'X-AOS-CSRF',
+        'csrfParameter': '_aos_csrf'
     };
 }
 /**
@@ -43,7 +43,7 @@ if (envVars.isDeployedBuild() === 'false') {
  * @param fixturesOn
  */
 function initApp(isDeployed, fixturesOn) {
-    var user, appState;
+    var user, serverVars, appState, environment;
 
     window.seo = new can.Map(window.seo);
     window._environment = new can.Map(window._environment);
@@ -53,7 +53,7 @@ function initApp(isDeployed, fixturesOn) {
     user = new User(window.seo.user);
 
     serverVars = new ServerVars({
-        user: new User(window.seo.user),
+        user: user,
         fixtures: fixturesOn,
         environment: environment
     });
@@ -79,16 +79,14 @@ function initApp(isDeployed, fixturesOn) {
 }
 
 $(function () {
-  var user;
-  var isDeployed = (envVars.isDeployedBuild() === 'true');
-  window.seo.user.roles = window.seo.roles;
-  user = new User(window.seo.user);
-  if (!isDeployed) {
-      System.import('seo-ui/models/fixtures').then(function () {
-          var fixturesOn = sessionStorage.getItem('seoFixtures') === 'true';
-          fixtureLoader(isDeployed, fixturesOn, initApp);
-      });
-  } else {
-      initApp(isDeployed, false);
-  }
+    var isDeployed = (envVars.isDeployedBuild() === 'true');
+    window.seo.user.roles = window.seo.roles;
+    if (!isDeployed) {
+        System.import('seo-ui/models/fixtures').then(function () {
+            var fixturesOn = sessionStorage.getItem('seoFixtures') === 'true';
+            fixtureLoader(isDeployed, fixturesOn, initApp);
+        });
+    } else {
+        initApp(isDeployed, false);
+    }
 });

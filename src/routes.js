@@ -28,7 +28,7 @@ module.exports = function (appState, content) {
         if (newRoute !== undefined && data && (!oldData || (oldData.template !== data.template))) {
             appState.attr('layoutState', data.layout);
 
-            //Make sure we hide the error when we navigate
+            // Make sure we hide the error when we navigate
             setTimeout(function () {
                 appState.attr('alert', false);
             }, alertTimeout);
