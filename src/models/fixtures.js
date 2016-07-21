@@ -3,7 +3,6 @@ require('can/util/fixture/fixture');
 // Model Fixtures
 require('seo-ui/url/url.fixture.js');
 
-
 /* eslint global-require: 0 */
 
 var can = require('can');

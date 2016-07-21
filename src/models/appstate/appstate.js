@@ -53,7 +53,7 @@ module.exports = can.Map.extend({
         alert: {
             serialize: false,
             set: function (newVal) {
-                this.attr('isAlertVisible', !!newVal);
+                this.attr('isAlertVisible', Boolean(newVal));
                 return newVal;
             },
             type: '*'

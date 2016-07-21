@@ -29,13 +29,13 @@ can.Component.extend({
     template: template,
     viewModel: ViewModel,
     events: {
-    init: function init() {
-        this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
-    },
-    '.dropdown-menu click': function($el, ev) {
-        ev.stopPropagation();
+        init: function init() {
+            this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
+        },
+        '.dropdown-menu click': function ($el, ev) {
+            ev.stopPropagation();
+        }
     }
-}
 });
 
 module.exports = ViewModel;

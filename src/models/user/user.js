@@ -1,4 +1,4 @@
-var can = require("can");
+var can = require('can');
 
 /**
  * @module {function} models/user User

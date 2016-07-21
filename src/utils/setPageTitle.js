@@ -20,19 +20,19 @@
    */
 
   module.exports = function setPageTitle(titleTemplate, appState) {
-    var keyExpression = /:([a-zA-Z]*)/gi,
-      match,
-      parsedTitle = '',
-      pathElementValue,
-      newRoute = appState.attr('route');
+      var keyExpression = /:([a-zA-Z]*)/gi,
+          match,
+          parsedTitle = '',
+          pathElementValue,
+          newRoute = appState.attr('route');
 
-    if (newRoute.indexOf(':') > -1) {
-      pathElementValue = {};
-      while ((match = keyExpression.exec(newRoute)) !== null) {
-        pathElementValue[match[1]] = appState.attr(match[1]);
+      if (newRoute.indexOf(':') > -1) {
+          pathElementValue = {};
+          while ((match = keyExpression.exec(newRoute)) !== null) {
+              pathElementValue[match[1]] = appState.attr(match[1]);
+          }
+          parsedTitle = can.sub(titleTemplate, pathElementValue);
       }
-      parsedTitle = can.sub(titleTemplate, pathElementValue);
-    }
 
-    document.title = (parsedTitle ? parsedTitle : titleTemplate);
+      document.title = (parsedTitle ? parsedTitle : titleTemplate);
   };
