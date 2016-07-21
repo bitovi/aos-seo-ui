@@ -13,34 +13,8 @@
     "debug": "steal-tools --watch",
     "start": "http-server"
   },
-  "aliasify": {
-    "verbose": false,
-    "aliases": {
-      "components": "./src/components",
-      "models": "./src/models",
-      "utils": "./src/utils",
-      "pages": "./src/pages",
-      "test": "./test",
-      "canjs": "can",
-      "canjs/stache.js": "can/view/stache/stache",
-      "canjs/map/define.js": "can/map/define/define",
-      "canjs/fixture.js": "can/util/fixture/fixture",
-      "canjs/construct/proxy.js": "can/construct/proxy/proxy",
-      "canjs/construct/super.js": "can/construct/proxy/super"
-    }
-  },
-  "browserify": {
-    "transform": [
-      "aliasify",
-      "browserify-shim"
-    ]
-  },
   "devDependencies": {
-    "aliasify": "~1.7.2",
     "browser-sync": "~2.3.1",
-    "browserify": "~9.0.3",
-    "browserify-istanbul": "~0.2.1",
-    "browserify-shim": "~3.8.3",
     "can-compilify": "~0.1.1",
     "codemirror": "~5.0.0",
     "del": "~1.1.1",
@@ -94,8 +68,7 @@
     "meld": "^1.3.2",
     "moment": "~2.9.0",
     "moment-duration-format": "^1.3.0",
-    "moment-timezone": "~0.3.1",
-    "pui": "git+https://storegit.apple.com/scm/cs/publishing-ui.git#develop"
+    "moment-timezone": "~0.3.1"
   },
   "xo": {
     "envs": [
@@ -120,42 +93,42 @@
     }
   },
   "system": {
-  "npmAlgorithm": "flat",
-  "npmIgnore": [
-    "browser-sync",
-    "del",
-    "documentjs",
-    "glob",
-    "gulp",
-    "gulp-autoprefixer",
-    "gulp-less",
-    "gulp-minify-css",
-    "gulp-notify",
-    "gulp-rename",
-    "gulp-replace",
-    "gulp-sourcemaps",
-    "gulp-util",
-    "gulp-jshint",
-    "through2",
-    "merge2",
-    "pretty-hrtime",
-    "require-dir",
-    "run-sequence",
-    "stream-from-promise",
-    "testee"
-  ],
-  "bundlesPath": "./target",
-  "main": "app",
-  "directories": {
-    "lib": "src"
-  },
-  "meta": {
-    "jasmine-jquery/lib/jasmine-jquery": {
-      "deps": [
-        "jquery",
-        "steal-jasmine"
-      ]
+    "npmAlgorithm": "flat",
+    "npmIgnore": [
+      "browser-sync",
+      "del",
+      "documentjs",
+      "glob",
+      "gulp",
+      "gulp-autoprefixer",
+      "gulp-less",
+      "gulp-minify-css",
+      "gulp-notify",
+      "gulp-rename",
+      "gulp-replace",
+      "gulp-sourcemaps",
+      "gulp-util",
+      "gulp-jshint",
+      "through2",
+      "merge2",
+      "pretty-hrtime",
+      "require-dir",
+      "run-sequence",
+      "stream-from-promise",
+      "testee"
+    ],
+    "bundlesPath": "./target",
+    "main": "app",
+    "directories": {
+      "lib": "src"
+    },
+    "meta": {
+      "jasmine-jquery/lib/jasmine-jquery": {
+        "deps": [
+          "jquery",
+          "steal-jasmine"
+        ]
+      }
     }
   }
-}
 }
