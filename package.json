@@ -21,6 +21,7 @@
     "documentjs": "0.2.1",
     "esprima": "~2.2.0",
     "exorcist": "~0.4.0",
+    "es5-shim": "^4.5.9",
     "glob": "~5.0.3",
     "glob-all": "^3.0.3",
     "gulp": "~3.8.11",
