@@ -4,6 +4,7 @@ var can = require('can');
 var ServerVars = require('seo-ui/models/server-vars/');
 var User = require('seo-ui/models/user/');
 var $ = can.$;
+require('seo-ui/app.less');
 
 require('seo-ui/components/header/');
 

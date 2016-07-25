@@ -1,4 +1,5 @@
 var can = require('can');
+var envVars = require('seo-ui/utils/environmentVars');
 require('can/map/define/define');
 
 var ViewModel = can.Map.extend({
@@ -32,7 +33,7 @@ var ViewModel = can.Map.extend({
      */
     link: function (url) {
         url = url && url.isComputed ? url() : '';
-        return '{@ROUTE_ROOT}/' + url;
+        return envVars.rootApp() + '/' + url;
     }
 
 });

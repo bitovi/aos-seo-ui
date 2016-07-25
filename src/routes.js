@@ -1,5 +1,6 @@
 var can = require('can');
 var setPageTitle = require('seo-ui/utils/setPageTitle');
+var envVars = require('seo-ui/utils/environmentVars');
 
 require('can/view/stache/stache');
 require('can/route/pushstate/pushstate');
@@ -15,7 +16,7 @@ var routes = require('./route-list.json');
 module.exports = function (appState, content) {
     window.appState = appState;
     // This @ROUTE_ROOT is replaced by the build to whatever is on config.js file
-    can.route.bindings.pushstate.root = '{@ROUTE_ROOT}/';
+    can.route.bindings.pushstate.root = envVars.rootApp() + '/';
     can.each(routes, function (data, path) {
         can.route(path, data.params);
     });
