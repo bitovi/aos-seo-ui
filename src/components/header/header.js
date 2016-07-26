@@ -23,35 +23,5 @@ module.exports = can.Component.extend({
         });
       }
     }
-  },
-  helpers: {
-    /**
-     * @function header.viewModel.activeTab activeTab
-     * @description Sets the class for the current active tab.
-     * @return {String} The active tab class
-     */
-    activeTab: function (url) {
-      var route = can.route.attr('route');
-      var activeTabClass;
-
-      url = url && url.isComputed ? url() : '';
-
-      // Adjustment for home route, which can be either '' or URLs
-      if (route !== '' && url === '') {
-        url = 'URLs';
-      }
-
-      if (route && url) {
-        route = route.indexOf('/') ? _.first(route.split('/')) : route;
-      }
-
-      if (route === '') {
-        activeTabClass = route === url ? 'selected-tab' : '';
-      } else {
-        activeTabClass = url.indexOf(route) > -1 ? 'selected-tab' : '';
-      }
-
-      return activeTabClass;
-    }
   }
 });
