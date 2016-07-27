@@ -16,40 +16,26 @@ MD5_FILE=$BUILD_DIR/node_modules.md5
 
 NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
 NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
-NODE_POM_VERSION=0.3-SNAPSHOT
-POM_VERSION=2.3-SNAPSHOT
+POM_VERSION=2016.7-july-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=6.0-SNAPSHOT
-
+MVN_VERSION=1.0-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
     echo $1 1>&2
 }
 
-log "=-=-=-=-=-=Starting SEO-UI Build=-=-=-=-=-="
+log "=-=-=-=-=-=Starting Seo-UI Build=-=-=-=-=-="
 log "BUILD_DIR: $BUILD_DIR"
 log "SRC_DIR: $SRC_DIR"
 
 # Detect the platform
 PLATFORM=$(uname)
 if [[ "$PLATFORM" == 'Darwin' ]]; then
-   PLATFORM=darwin
-elif [[ "$PLATFORM" == 'Linux' ]]; then
-   PLATFORM=linux
-fi
-
-# We don't trust the system to have nodejs in the correct version, we will download it
-cd $BUILD_DIR
-if [ ! -d nodejs ]; then
-  log "Downloading node.js v0.10.35 from $NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
-  curl -L -o nodejs.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=node-v0.10.35-$PLATFORM-x64&v=$NODE_POM_VERSION&p=zip"
-   unzip nodejs.zip >> $LOG_FILE
-fi
-if [ -f nodejs.zip ]; then
-   rm nodejs.zip
+  echo This script is meant to be used on the Linux boxes, and does not work on Mac
+#  exit 1
 fi
 
 cd $SRC_DIR
@@ -57,36 +43,20 @@ cd $SRC_DIR
 # If the file exists but the check fails, remove the node_modules folder
 # If the file does not exist, remove the node_modules folder
 # If the check passes, do nothing. If node_modules exists, it will be used in this build
-log "--Checking node_modules checksum--"
-if [ -d node_modules ]; then
-    if [ -f "$MD5_FILE" ]; then
-
-        NEW_MODULE_MD5=$(find node_modules -type f -name "package.json" -exec md5sum {} + | awk '{print $1}' | sort | md5sum)
-        OLD_MODULE_MD5=$(cat $MD5_FILE)
-
-        if [ "$NEW_MODULE_MD5" = "$OLD_MODULE_MD5" ]; then
-            log "checksum matches, using existing node_modules folder"
-        else
-            log "checksum does not match, removing node_modules folder"
-            rm -rf $BUILD_DIR/node_modules
-            rm -rf $SRC_DIR/node_modules
-        fi
-    else
-        log "checksum file missing, removing node_modules folder"
-        rm -rf $BUILD_DIR/node_modules
-        rm -rf $SRC_DIR/node_modules
-    fi
-else
-    log "node_modules folder is missing"
-fi
-
+log "Removing node_modules folder"
+rm -rf $BUILD_DIR/node_modules
+rm -rf $SRC_DIR/node_modules
 
 # Download node_modules if it does not exist
 cd $BUILD_DIR
-
 if [ ! -d node_modules ]; then
     log "Downloading node_modules from $NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
    curl -L -o node-modules-linux-x64.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
+   if [ ! -f node-modules-linux-x64.zip ]; then
+     echo "Could not download node-modules-linux-x64.zip"
+     exit 1
+   fi
+   echo "Unzipping node-modules for the seo build"
    unzip node-modules-linux-x64.zip >> $LOG_FILE
 fi
 if [ -f node-modules-linux-x64.zip ]; then
@@ -94,7 +64,7 @@ if [ -f node-modules-linux-x64.zip ]; then
 fi
 
 # Set up the paths
-NODE_PATH="$BUILD_DIR/nodejs/bin"
+NODE_PATH="${BUILD_DIR}/nodejs/bin"
 MODULES_PATH=$BUILD_DIR/node_modules
 
 NPM_BIN="$NODE_PATH/npm"
@@ -105,8 +75,8 @@ GULP_BIN="$MODULES_PATH/.bin/gulp"
 # Environment setup - Node
 #
 
-chmod a+x $NODE_PATH/*
-PATH=$NODE_PATH:$PATH
+chmod a+x ${NODE_PATH}/*
+PATH=${NODE_PATH}:${PATH}
 export PATH
 
 log "--Node Environment Variables--"
@@ -130,13 +100,8 @@ fi
 
 cd $SRC_DIR
 if [ ! -d $SRC_DIR/node_modules ]; then
-   if [[ "$PLATFORM" == 'darwin' ]]; then
-      log "Calling npm install, node_modules is missing"
-      $NPM_BIN --loglevel info install
-   else
-      log "Copying node_modules"
-      cp -R $BUILD_DIR/node_modules $SRC_DIR/node_modules
-   fi
+  log "Copying node_modules"
+  cp -R $BUILD_DIR/node_modules $SRC_DIR/node_modules
 else
    log "node_modules was found. Leaving it alone."
 fi
@@ -186,20 +151,21 @@ cp $BUILD_DIR/package/package.json $SRC_DIR/node_modules/pui/package.json
 # Disable notifications from gulp since we are headless
 export DISABLE_NOTIFIER=true
 
-# Check for the task
-if [ -z $GULP_TASK ]; then
-    GULP_TASK=build:full:skip-tests
-fi
-
-# Run Gulp
-
-#run tests separately because the production flag makes fixtures not work //TODO
+# Run tests separately because the production flag makes fixtures not work //TODO
 log "Executing gulp test"
 $GULP_BIN test
+RETVAL=$?
+if [ "$RETVAL" != "0" ]; then
+  echo Gulp returned error. Cancelling the process now
+fi
 
 log "Executing gulp build, production"
 export NODE_ENV='production'
-$GULP_BIN $GULP_TASK
+$GULP_BIN build:full:skip-tests
+RETVAL=$?
+if [ "$RETVAL" != "0" ]; then
+  echo Gulp returned error. Cancelling the process now
+fi
 
 #
 # Do some validations. All the target files we need
@@ -207,25 +173,13 @@ $GULP_BIN $GULP_TASK
 
 log "Verifying target files"
 
-if [ ! -f $SRC_DIR/target/app.js ]; then
+if [ ! -f $SRC_DIR/target/seo-ui/app.js ]; then
    log "app.js was not generated in the target folder. Exiting now."
    exit 11
 fi
-if [ ! -f $SRC_DIR/target/app.css ]; then
+if [ ! -f $SRC_DIR/target/seo-ui/app.css ]; then
    log "app.css was not generated in the target folder. Exiting now."
    exit 12
-fi
-if [ ! -f $SRC_DIR/target/app.min.js ]; then
-   log "app.min.js was not generated in the target folder. Exiting now."
-   exit 13
-fi
-if [ ! -f $SRC_DIR/target/app.min.css ]; then
-   log "app.min.css was not generated in the target folder. Exiting now."
-   exit 14
-fi
-if [ ! -f $SRC_DIR/target/index.html ]; then
-   log "index.html was not generated in the target folder. Exiting now."
-   exit 15
 fi
 if [ ! -f $SRC_DIR/target/index.production.html ]; then
    log "index.html.production was not generated in the target folder. Exiting now."
@@ -244,15 +198,13 @@ UI_BUILD_DST=$SRC_DIR/target
 JAR_SRC=$SRC_DIR/target-production
 
 mkdir -p $JAR_SRC
-cp $UI_BUILD_DST/index.html $JAR_SRC/index.html
-cp $UI_BUILD_DST/index.production.html $JAR_SRC/index.production.html
-cp $UI_BUILD_DST/app.css $JAR_SRC/app.css
-cp $UI_BUILD_DST/app.min.css $JAR_SRC/app.min.css
-cp $UI_BUILD_DST/app.js $JAR_SRC/app.js
-cp $UI_BUILD_DST/app.min.js $JAR_SRC/app.min.js
-cp $UI_BUILD_DST/bootstrap-theme.html $JAR_SRC/bootstrap-theme.html
-cp $UI_BUILD_DST/route-list.json $JAR_SRC/route-list.json
 
+cp $UI_BUILD_DST/seo-ui/index.production.html $JAR_SRC/index.production.html
+cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.css
+cp $UI_BUILD_DST/seo-ui/app.min.css $JAR_SRC/app.min.css
+cp $UI_BUILD_DST/seo-ui/app.js $JAR_SRC/app.js
+cp $UI_BUILD_DST/seo-ui/app.min.js $JAR_SRC/app.min.js
+cp $UI_BUILD_DST/seo-ui/route-list.json $JAR_SRC/route-list.json
 
 #
 # Create the jar file that will be finally deployed
@@ -267,7 +219,7 @@ if [ -z $MVN_TASK ]; then
 fi
 
 mvn $MVN_TASK -Dfile=$JAR_NAME \
-  -DgeneratePom=false \
+  -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
   -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
@@ -279,7 +231,6 @@ mvn $MVN_TASK -Dfile=$JAR_NAME \
 rm $JAR_NAME
 rm -rf $JAR_SRC
 
-log "=-=-=-=-=-=End SEO-UI Build=-=-=-=-=-="
-
+log "=-=-=-=-=-=End Seo-UI Build=-=-=-=-=-="
 
 exit 0

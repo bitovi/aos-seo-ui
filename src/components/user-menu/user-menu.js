@@ -19,23 +19,23 @@
  * @param {{}} user-data current user's data.
  */
 var can = require('can');
-var ViewModel = require('./user-menu.viewmodel.js');
+var ViewModel = require('./user-menu.viewmodel');
 require('can/view/stache/stache');
 require('bootstrap/js/dropdown');
-var template = require('./user-menu.stache');
+var template = require('./user-menu.stache!');
 
 can.Component.extend({
     tag: 'seo-user-menu',
     template: template,
     viewModel: ViewModel,
     events: {
-    init: function init() {
-        this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
-    },
-    '.dropdown-menu click': function($el, ev) {
-        ev.stopPropagation();
+        init: function init() {
+            this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
+        },
+        '.dropdown-menu click': function ($el, ev) {
+            ev.stopPropagation();
+        }
     }
-}
 });
 
 module.exports = ViewModel;

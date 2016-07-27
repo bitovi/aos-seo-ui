@@ -4,12 +4,22 @@ var can = require('can');
 require('can/util/fixture/fixture');
 
 var urls = require('./urls.json').data;
+var envVars = require('seo-ui/utils/environmentVars');
 
 // Find All
-can.fixture('GET {@API_URL}/urls.json', function (request, response) {
+can.fixture('GET' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
     var results = urls;
-    var searchField = data.url ? 'url' : data.pageTitle ? 'pageTitle' : data.partNumber ? 'partNumber' : '';
+    var searchField;
+    if (data.url) {
+        searchField = 'url';
+    } else if (data.pageTitle) {
+        searchField = 'pageTitle';
+    } else if (data.partNumber) {
+        searchField = 'partNumber';
+    } else {
+        searchField = '';
+    }
     var sort = data.sort;
     var sortArray;
     var sortField;
@@ -42,7 +52,7 @@ can.fixture('GET {@API_URL}/urls.json', function (request, response) {
 });
 
 // Find One
-can.fixture('GET {@API_URL}/urls/{url}.json', function (request, response) {
+can.fixture('GET' + envVars.apiUrl() + '/urls/{url}.json', function (request, response) {
     var urlIndex = _.findIndex(urls.data, {
         url: request.data.url
     });
@@ -52,9 +62,8 @@ can.fixture('GET {@API_URL}/urls/{url}.json', function (request, response) {
     } else {
         response(
             404,
-            'error',
-            {
-                message: "URL " + request.data.url + " not found."
+            'error', {
+                message: 'URL ' + request.data.url + ' not found.'
             }
         );
     }

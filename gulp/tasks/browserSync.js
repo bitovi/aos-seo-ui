@@ -29,11 +29,11 @@
  * Runs the [platform/gulp/tasks/copy:demos copy:demos] task before creating a static server at `localhost:3000` with the
  * appropriate API proxy based on `<proxyENV>`.
 
-*/
+ */
 
 var browserSync = require('browser-sync');
 var gulp = require('gulp');
-var historyApiMiddleware = require('pui/src/gulp/util/historyApiMiddleware');
+var historyApiMiddleware = require('pui/src/gulp/util/historyApiMiddleware')({index: '/index.html'});
 var productionMiddleware = require('pui/src/gulp/util/productionMiddleware');
 var url = require('url');
 var _ = require('lodash');
@@ -49,20 +49,13 @@ function createTask(env, proxyOptions) {
         taskConfig.server.middleware.push(proxy(proxyOptions));
     }
 
-    gulp.task('browserSync' + envName, ['copy'], function() {
+    gulp.task('browserSync' + envName, function() {
         browserSync(taskConfig);
     });
 
-    gulp.task('browserSync:app' + envName, ['copy:app'], function() {
-        browserSync(taskConfig);
-    });
-
-    gulp.task('browserSync:demos' + envName, ['copy:demos'], function() {
-        browserSync(taskConfig);
-    });
 }
 
-//Create a task for each API environment
+// Create a task for each API environment
 for(var env in config.apiProxies) {
     var proxyOptions = url.parse(config.apiProxies[env]);
     proxyOptions.route = '/apiProxy';

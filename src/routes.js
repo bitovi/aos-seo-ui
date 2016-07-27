@@ -1,5 +1,6 @@
 var can = require('can');
-var setPageTitle = require('utils/setPageTitle.js');
+var setPageTitle = require('seo-ui/utils/setPageTitle');
+var envVars = require('seo-ui/utils/environmentVars');
 
 require('can/view/stache/stache');
 require('can/route/pushstate/pushstate');
@@ -7,15 +8,15 @@ require('can/route/pushstate/pushstate');
 // Browserify can only use `require`s that can be statically analyzed meaning the module
 // name must be a string. So we have to manually require the modules we will use in our
 // routes: https://github.com/substack/node-browserify/issues/377
-require('pages/home/home.js');
-require('pages/url-list/url-list.js');
+require('seo-ui/pages/home/home.js');
+require('seo-ui/pages/url-list/url-list.js');
 
 var routes = require('./route-list.json');
 
 module.exports = function (appState, content) {
     window.appState = appState;
     // This @ROUTE_ROOT is replaced by the build to whatever is on config.js file
-    can.route.bindings.pushstate.root = '{@ROUTE_ROOT}/';
+    can.route.bindings.pushstate.root = envVars.rootApp() + '/';
     can.each(routes, function (data, path) {
         can.route(path, data.params);
     });
@@ -28,7 +29,7 @@ module.exports = function (appState, content) {
         if (newRoute !== undefined && data && (!oldData || (oldData.template !== data.template))) {
             appState.attr('layoutState', data.layout);
 
-            //Make sure we hide the error when we navigate
+            // Make sure we hide the error when we navigate
             setTimeout(function () {
                 appState.attr('alert', false);
             }, alertTimeout);

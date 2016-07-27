@@ -1,6 +1,8 @@
 var $ = require('jquery');
 var _ = require('lodash');
 var can = require('can');
+require('steal-jasmine');
+require('jasmine-jquery/lib/jasmine-jquery');
 
 require('can/util/fixture/fixture');
 

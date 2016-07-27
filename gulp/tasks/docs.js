@@ -24,7 +24,7 @@ var documentjs = require('documentjs/lib/configured/configured');
 var connect = require('gulp-connect');
 var config = require('../config').documentjs;
 
-var generateDocs = function(){
+gulp.task('docs', ['clean:docs'], function(callback){
     return documentjs.generateProject({
         docConfig: {
             sites: {
@@ -35,25 +35,12 @@ var generateDocs = function(){
     }, undefined, {
         // debug: true
     });
-}
-
-gulp.task('docs:copyDemos', ['copy:demos'], function(){
-    gulp.src('./target/demos/**')
-        .pipe(gulp.dest('./docs/seo-ui/demos'));
 });
 
-gulp.task('docsAndDemos', ['clean:docs', 'docs:copyDemos'], function(){
-    return generateDocs();
-});
-
-gulp.task('justDocs', ['clean:docs'], function(){
-    return generateDocs();
-});
-
-gulp.task('docs:serve', ['docsAndDemos'], function(){
-    gulp.watch(config.watchFiles, ['justDocs']);
+gulp.task('docs:serve', ['docs'], function(){
+    gulp.watch(config.watchFiles, ['docs']);
 
     connect.server({
-        root: 'docs/seo-ui'
+        root: 'docs/nemo-ui'
     });
 });
