@@ -74,6 +74,26 @@ module.exports = can.Map.extend({
                 return Model;
             }
         },
+        /**
+         * @property {Array} url-list.viewModel.actionBar actionBar
+         * @description Function wrappers for the action bar component.
+         */
+        actionBar: {
+            get: function () {
+                var viewModel = this;
+                var actionBar = [];
+                actionBar.push({
+                    type: 'download',
+                    title: 'Export',
+                    dropDowns: [{
+                        label: 'Export Nemo Ready File'
+                    },{
+                      label: 'Export current view(.CSV)'
+                    }]
+                });
+                return actionBar;
+            }
+        },
 
         /**
          * @property {function} rowTemplate
