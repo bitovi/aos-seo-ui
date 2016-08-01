@@ -83,14 +83,16 @@ var config = {
         */
         apiProxies: {
 			       // This is Seo 2.0
-            'dev': 'http://nc1d-dc1-pubdev-1003.corp.apple.com:7510/seo',
-            'qa': 'http://nc1d-dc1-pubqa-1003.corp.apple.com:28510/seo',
+            'dev': 'http://nc1d-dc1-pubdev-1002.corp.apple.com:9510/seo',
+            'qa': 'http://nc1d-dc1-pubqa-1003.corp.apple.com:9510/seo',
+
+            // Commenting out these machines since we don't have any URLs shared
             // This is Seo 1.0
-            'dev-1.0': 'http://md03d-pubsys-dev1-1015.aoslab.apple.com:5397/seo',
-            'qa-1.0': 'http://nc1d-dc1-pubqa-1007.corp.apple.com:8510/seo',
-            // This is Seo 2.0 that requires authentication
-            'auth-dev-2.0': 'https://storedev-pubsys.corp.apple.com/seo',
-            'auth-qa-2.0': 'https://storeqa-pubsys.corp.apple.com/seo'
+            // 'dev-1.0': 'http://md03d-pubsys-dev1-1015.aoslab.apple.com:5397/seo',
+            // 'qa-1.0': 'http://nc1d-dc1-pubqa-1007.corp.apple.com:8510/seo',
+            // // This is Seo 2.0 that requires authentication
+            // 'auth-dev-2.0': 'https://storedev-pubsys.corp.apple.com/seo',
+            // 'auth-qa-2.0': 'https://storeqa-pubsys.corp.apple.com/seo'
         }
     },
 
