@@ -12,7 +12,7 @@ var config = require('../config').testee;
 // TODO: Fix 'test/pages/**/*test.js'
 var buildFiles = [
     {
-        files: ['test/utils/**/*.test.js', 'test/models/**/*.test.js', 'test/components/**/*.test.js'],
+        files: ['test/utils/**/*.test.js', 'test/models/**/*.test.js', 'test/components/**/*.test.js', 'test/pages/**/*.test.js'],
         output: 'test/tests.js'
     }
 ];
