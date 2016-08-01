@@ -7,6 +7,7 @@ var template = require('./demo.stache!');
 var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 
 require('can/view/stache/stache');
+require('../list-page');
 require('seo-ui/models/url/url.fixture');
 require('./demo.less!');
 
