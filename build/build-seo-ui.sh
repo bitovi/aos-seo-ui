@@ -64,7 +64,7 @@ if [ -f node-modules-linux-x64.zip ]; then
 fi
 
 # Set up the paths
-NODE_PATH="${BUILD_DIR}/nodejs/bin"
+NODE_PATH="/opt/local/bin"
 MODULES_PATH=$BUILD_DIR/node_modules
 
 NPM_BIN="$NODE_PATH/npm"
