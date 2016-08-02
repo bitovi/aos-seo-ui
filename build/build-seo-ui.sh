@@ -15,8 +15,8 @@ LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 
 NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
-NODE_MODULES_ARCHIVE=node-modules-shff-linux-x64
-POM_VERSION=2016.7-july-SNAPSHOT
+NODE_MODULES_ARCHIVE=node-modules-seo-linux-x64
+POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
