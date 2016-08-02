@@ -54,5 +54,5 @@ fi
 mvn $MVN_TASK -Dfile=$ZIP_FILE \
   -DgeneratePom=true \
   -DgroupId=$MVN_GROUP_ID -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=zip \
-  -Durl=http://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
