@@ -82,7 +82,7 @@ var config = {
         When you run gulp watch add --apiProxy <key> to the command to select which proxy you want to use
         */
         apiProxies: {
-            // This is Seo 2.0
+            // This is Seo 1.0
             'dev': 'http://nc1d-dc1-pubdev-1002.corp.apple.com:9510/seo',
             'qa': 'http://nc1d-dc1-pubqa-1003.corp.apple.com:9510/seo'
         }
