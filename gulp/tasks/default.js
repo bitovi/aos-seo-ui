@@ -10,4 +10,4 @@
 
 var gulp = require('gulp');
 
-gulp.task('default', ['xo', 'watch:app']);
+gulp.task('default', ['xo', 'watch']);

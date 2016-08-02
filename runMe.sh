@@ -17,5 +17,5 @@ if [ -z $GULP ]; then
 	exit 2
 fi
 
-echo "Runing gulp watch:app now"
-$GULP watch:app
+echo "Runing gulp watch now"
+$GULP watch

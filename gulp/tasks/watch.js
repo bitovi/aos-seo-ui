@@ -6,7 +6,7 @@
  *
  * @signature `gulp watch`
  *
- * Runs the `watch:app` and `watch:demos` tasks.
+ * Runs the `watch` and `browserSync` tasks, which run and watch for changes to the application and demos.
  * @param {String} [--apiProxy="dev"] API proxy configuration to use
  * @param {String} [--filter] filters the demo bundles to be built
  *
