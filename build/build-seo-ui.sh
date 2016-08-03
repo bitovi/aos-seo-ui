@@ -38,51 +38,12 @@ if [[ "$PLATFORM" == 'Darwin' ]]; then
 #  exit 1
 fi
 
-cd $SRC_DIR
-# Check thenode_modules checksum.
-# If the file exists but the check fails, remove the node_modules folder
-# If the file does not exist, remove the node_modules folder
-# If the check passes, do nothing. If node_modules exists, it will be used in this build
-log "Removing node_modules folder"
-rm -rf $BUILD_DIR/node_modules
-rm -rf $SRC_DIR/node_modules
-
-# Download node_modules if it does not exist
-cd $BUILD_DIR
-if [ ! -d node_modules ]; then
-    log "Downloading node_modules from $NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
-   curl -L -o node-modules-linux-x64.zip -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=$NODE_MODULES_ARCHIVE&v=$POM_VERSION&p=zip"
-   if [ ! -f node-modules-linux-x64.zip ]; then
-     echo "Could not download node-modules-linux-x64.zip"
-     exit 1
-   fi
-   echo "Unzipping node-modules for the seo build"
-   unzip node-modules-linux-x64.zip >> $LOG_FILE
-fi
-if [ -f node-modules-linux-x64.zip ]; then
-   rm node-modules-linux-x64.zip
-fi
-
 # Set up the paths
-NODE_PATH="/opt/local/bin"
-MODULES_PATH=$BUILD_DIR/node_modules
-
-NPM_BIN="$NODE_PATH/npm"
-NODE_BIN="$NODE_PATH/node"
-GULP_BIN="$MODULES_PATH/.bin/gulp"
-
-#
-# Environment setup - Node
-#
-
-chmod a+x ${NODE_PATH}/*
-PATH=${NODE_PATH}:${PATH}
-export PATH
+export NODE_PATH="/nc1_storeci2_workspace/Bamboo/Resources/seo-ui/node_modules"
+GULP_BIN="$NODE_PATH/.bin/gulp"
 
 log "--Node Environment Variables--"
 log "NODE_PATH: $NODE_PATH"
-log "MODULES_PATH: $MODULES_PATH"
-log "NODE_BIN: $NODE_BIN"
 log "GULP_BIN: $GULP_BIN"
 log "PATH: $PATH"
 
@@ -94,35 +55,6 @@ if [ -f "$LOG_FILE" ]; then
    rm $LOG_FILE
 fi
 
-##
-# Copying the cached modules. Note: A symlink does not work
-##
-
-cd $SRC_DIR
-if [ ! -d $SRC_DIR/node_modules ]; then
-  log "Copying node_modules"
-  cp -R $BUILD_DIR/node_modules $SRC_DIR/node_modules
-else
-   log "node_modules was found. Leaving it alone."
-fi
-
-#
-# Environment setup - Gulp. Recreate the symlinks
-#
-
-rm -f $MODULES_PATH/.bin/browserify
-rm -f $MODULES_PATH/.bin/browser-sync
-rm -f $MODULES_PATH/.bin/documentjs
-rm -f $MODULES_PATH/.bin/gulp
-rm -f $MODULES_PATH/.bin/watchify
-
-ln -s -f $MODULES_PATH/browserify/bin/cmd.js $MODULES_PATH/.bin/browserify
-ln -s -f $MODULES_PATH/browser-sync/index.js $MODULES_PATH/.bin/browser-sync
-ln -s -f $MODULES_PATH/documentjs/bin/documentjs $MODULES_PATH/.bin/documentjs
-ln -s -f $MODULES_PATH/gulp/bin/gulp.js $MODULES_PATH/.bin/gulp
-ln -s -f $MODULES_PATH/watchify/bin/cmd.js $MODULES_PATH/.bin/watchify
-
-chmod a+x $MODULES_PATH/.bin/*
 
 #
 # We need to copy the latest pui into node_modules
@@ -134,15 +66,24 @@ TAR_NAME=publishing-ui-.tar.gz
 cd $BUILD_DIR
 curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
 
-if [ -d $SRC_DIR/node_modules/pui ]; then
-    rm -rf $SRC_DIR/node_modules/pui/dist
-    rm -rf $SRC_DIR/node_modules/pui/src
-    rm $SRC_DIR/node_modules/pui/package.json
+
+if [ -d $NODE_PATH/pui ]; then
+    rm -rf $NODE_PATH/pui/dist
+    rm -rf $NODE_PATH/pui/src
+    rm $NODE_PATH/pui/package.json
 fi
 
-cp -R $BUILD_DIR/package/dist $SRC_DIR/node_modules/pui/dist
-cp -R $BUILD_DIR/package/src $SRC_DIR/node_modules/pui/src
-cp $BUILD_DIR/package/package.json $SRC_DIR/node_modules/pui/package.json
+cp -R $BUILD_DIR/package/dist ${NODE_PATH}/pui/dist
+cp -R $BUILD_DIR/package/src ${NODE_PATH}/pui/src
+cp $BUILD_DIR/package/package.json ${NODE_PATH}/pui/package.json
+
+#
+# Copy modules inline
+#
+
+echo Copying node_modules inside the nemo-ui build
+echo cp -R $NODE_PATH/ $SRC_DIR/node_modules
+cp -R $NODE_PATH/ $SRC_DIR/node_modules
 
 ##
 # Regular build process
@@ -157,7 +98,9 @@ $GULP_BIN test
 RETVAL=$?
 if [ "$RETVAL" != "0" ]; then
   echo Gulp returned error. Cancelling the process now
+  exit 2
 fi
+
 
 log "Executing gulp build, production"
 export NODE_ENV='production'
@@ -165,6 +108,7 @@ $GULP_BIN build:full:skip-tests
 RETVAL=$?
 if [ "$RETVAL" != "0" ]; then
   echo Gulp returned error. Cancelling the process now
+  exit 2
 fi
 
 #
