@@ -203,9 +203,9 @@ cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.css
 cp $UI_BUILD_DST/seo-ui/app.min.css $JAR_SRC/app.min.css
 cp $UI_BUILD_DST/seo-ui/app.js $JAR_SRC/app.js
 cp $UI_BUILD_DST/seo-ui/app.min.js $JAR_SRC/app.min.js
-cp $UI_BUILD_DST/seo-ui/route-list.json $JAR_SRC/route-list.json
-cp $UI_BUILD_DST/seo-ui/index.production.html $JAR_SRC/index.html
 cp $UI_BUILD_DST/seo-ui/index.production.html $JAR_SRC/index.production.html
+cp $UI_BUILD_DST/seo-ui/index.production.html $JAR_SRC/index.html
+cp $UI_BUILD_DST/seo-ui/route-list.json $JAR_SRC/route-list.json
 
 #
 # Create the jar file that will be finally deployed
