@@ -36,23 +36,4 @@ echo "npm install on the module"
 npm install --python=/usr/bin/python26
 npm ls
 
-#
-# Build the zip file, and fly that to nexus
-#
-
-zip -r $ZIP_FILE node_modules/
-
-#
-# Fly the artifact to Nexus
-#
-
-# Check for the task. Used deploy:deploy-file for real deployment (setup in bamboo), else it will just do install
-if [ -z $MVN_TASK ]; then
-	MVN_TASK=deploy:deploy-file
-fi
-
-mvn $MVN_TASK -Dfile=$ZIP_FILE \
-  -DgeneratePom=true \
-  -DgroupId=$MVN_GROUP_ID -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=zip \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
-  -DrepositoryId=snapshots
+rsync -azv --delete node_modules/ worun@nc1q-cibuild-1010.corp.apple.com:/nc1_storeci2_workspace/Bamboo/Resources/seo-ui/node_modules

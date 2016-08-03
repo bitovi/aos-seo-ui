@@ -16,7 +16,7 @@ curl -L -o $TAR_NAME -u aos-readonly:KWcdKwLN8k9 "https://store-nexusrepo.apple.
 if [ ! -f $TAR_NAME ]; then
     echo "ERROR: Cannot find $TAR_NAME, aborting PUI update"
 else
-    npm install file:publishing-ui.tar.gz
+    npm install publishing-ui.tar.gz
 fi
 
 echo ">> Installing pui from tarball"

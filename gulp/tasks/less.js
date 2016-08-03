@@ -29,7 +29,7 @@ var prefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
 var config = require('../config').less;
-var merge2 = require('merge2');
+var mergeStream = require('merge-stream');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
 var errorHandler = require('pui/src/gulp/util/handleErrors')({
@@ -69,7 +69,7 @@ gulp.task('less:app', function() {
     var appMin = lessApp(true);
     var app = lessApp(false);
 
-    return merge2(appMin, app);
+    return mergeStream(appMin, app);
 
 });
 
