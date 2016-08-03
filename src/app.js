@@ -14,9 +14,9 @@ var setupRoutes = require('seo-ui/routes');
 var csrfPrefilter = require('seo-ui/utils/csrfPrefilter');
 var Environment = require('seo-ui/models/environment/');
 var envVars = require('seo-ui/utils/environmentVars');
-var fixtureLoader = require('seo-ui/models/fixtures');
 var logger = require('seo-ui/utils/log');
 var localDebug = require('seo-ui/utils/local-debug');
+var fixtureLoader = require('seo-ui/models/fixtures');
 
 require('seo-ui/utils/viewHelpers');
 
@@ -80,6 +80,7 @@ function initApp(isDeployed, fixturesOn) {
 }
 
 $(function () {
+    var envVars = require('seo-ui/utils/environmentVars');
     var isDeployed = (envVars.isDeployedBuild() === 'true');
     window.seo.user.roles = window.seo.roles;
     if (!isDeployed) {
