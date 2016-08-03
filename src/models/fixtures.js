@@ -1,5 +1,3 @@
-require('can/util/fixture/fixture');
-
 /* eslint global-require: 0 */
 
 var can = require('can');

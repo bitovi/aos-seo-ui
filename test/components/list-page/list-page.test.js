@@ -9,7 +9,6 @@ var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var Model = require('seo-ui/models/url/url');
-var rowTemplate = require('seo-ui/pages/url-list/row.stache');
 var state;
 var stateObj = {
     page: '',
@@ -35,9 +34,6 @@ var renderPage = function (newState) {
     $('#sandbox').html(testTemplate({
         model: Model,
         state: state,
-        rowTemplate: function () {
-            return rowTemplate;
-        },
         dataOptions: [
             {
                 key: 'targetPath',

@@ -88,43 +88,47 @@ module.exports = can.Component.extend(
                 var searchFields = vm.attr('searchFields');
                 var searchFilter = new can.Map();
                 var searchQuery = vm.attr('searchQuery');
-                var stateObject = vm.attr('state').attr();
+                var stateObject = vm.attr('state');
 
-                // Determine whether the user is performing an advanced search
-                for (key in stateObject) {
-                    if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                        count += 1;
-                    }
-                }
+                if (stateObject && stateObject.attr) {
+                    stateObject = stateObject.attr();
 
-                multiSearchEnabled = count > 1;
-                vm.attr('multiSearchActive', multiSearchEnabled);
-                vm.attr('multiSearchEnabled', multiSearchEnabled);
-                vm.attr('searchStateEnabled', !multiSearchEnabled);
-
-                // Set up search query from state
-                if (multiSearchEnabled) {
-                    // Advanced search
+                    // Determine whether the user is performing an advanced search
                     for (key in stateObject) {
                         if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                            searchFilter.attr(key, stateObject[key]);
+                            count += 1;
                         }
                     }
 
-                    vm.attr('searchFilter', searchFilter.attr());
-                } else {
-                    // Simple search
-                    for (key in stateObject) {
-                        if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                            searchQuery.attr({
-                                field: key,
-                                value: stateObject[key]
-                            });
+                    multiSearchEnabled = count > 1;
+                    vm.attr('multiSearchActive', multiSearchEnabled);
+                    vm.attr('multiSearchEnabled', multiSearchEnabled);
+                    vm.attr('searchStateEnabled', !multiSearchEnabled);
 
-                            vm.attr('searchField', key);
-                            vm.attr('searchValue', stateObject[key]);
+                    // Set up search query from state
+                    if (multiSearchEnabled) {
+                        // Advanced search
+                        for (key in stateObject) {
+                            if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
+                                searchFilter.attr(key, stateObject[key]);
+                            }
+                        }
 
-                            break;
+                        vm.attr('searchFilter', searchFilter.attr());
+                    } else {
+                        // Simple search
+                        for (key in stateObject) {
+                            if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
+                                searchQuery.attr({
+                                    field: key,
+                                    value: stateObject[key]
+                                });
+
+                                vm.attr('searchField', key);
+                                vm.attr('searchValue', stateObject[key]);
+
+                                break;
+                            }
                         }
                     }
                 }
