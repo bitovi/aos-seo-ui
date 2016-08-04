@@ -1,6 +1,7 @@
 <pui-action-bar action-bar-items="{actionBar}" class="pull-right"></pui-action-bar>
 <seo-list-page
     columns="{columns}"
+    count="{count}"
     current-page="{state.pageNumber}"
     data-options="{dataOptions}"
     details-key="url"
