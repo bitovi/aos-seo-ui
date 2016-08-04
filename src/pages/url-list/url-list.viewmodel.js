@@ -6,56 +6,99 @@ var rowTemplate = require('./row.stache');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Array{Object}} columns
+         * @property {Array<can.Map>} url-list.viewModel.actionBar actionBar
+         * @description Function wrappers for the action bar component.
+         */
+        actionBar: {
+            Value: Array,
+            get: function () {
+                var actionBar = [];
+
+                actionBar.push({
+                    dropDowns: [
+                        {
+                            label: 'Export Nemo-Ready File'
+                        },
+                        {
+                            label: 'Export Current View (.CSV)'
+                        }
+                    ],
+                    title: 'Export',
+                    type: 'download'
+                });
+
+                return actionBar;
+            }
+        },
+
+        /**
+         * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
-            value: [{
-                cssClass: 'col-md-2',
-                key: 'partNumber',
-                label: 'Part Number'
-            }, {
-                cssClass: 'col-md-4',
-                key: 'url',
-                label: 'URL'
-            }, {
-                cssClass: 'col-md-3',
-                key: 'pageTitle',
-                label: 'Page Title'
-            }, {
-                cssClass: 'col-md-1',
-                key: 'segment',
-                label: 'Segment'
-            }, {
-                cssClass: 'col-md-1',
-                key: 'region',
-                label: 'Region'
-            }, {
-                cssClass: 'col-md-1',
-                key: 'country',
-                label: 'Country'
-            }]
+            value: [
+                {
+                    cssClass: 'col-md-2',
+                    key: 'partNumber',
+                    label: 'Part Number'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'url',
+                    label: 'URL'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'pageTitle',
+                    label: 'Page Title'
+                },
+                {
+                    cssClass: 'col-md-3',
+                    key: 'description',
+                    label: 'Description',
+                    isHidden: true
+                },
+                {
+                    cssClass: 'col-md-1',
+                    key: 'segment',
+                    label: 'Segment'
+                },
+                {
+                    cssClass: 'col-md-1',
+                    key: 'region',
+                    label: 'Region'
+                },
+                {
+                    cssClass: 'col-md-1',
+                    key: 'country',
+                    label: 'Country'
+                }
+            ]
         },
 
         /**
-         * @property {Array{Object}} dataOptions
+         * @property {Array<can.Map>} url-list.viewModel.dataOptions dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
-            value: [{
-                key: 'url',
-                label: 'URL'
-            }, {
-                key: 'pageTitle',
-                label: 'Page Title'
-            }, {
-                key: 'partNumber',
-                label: 'Part Number'
-            }]
+            value: [
+                {
+                    key: 'url',
+                    label: 'URL'
+                },
+                {
+                    key: 'pageTitle',
+                    label: 'Page Title'
+                },
+                {
+                    key: 'partNumber',
+                    label: 'Part Number'
+                }
+            ]
         },
 
         /**
-         * @property {can.Model} model
+         * @property {can.Model} url-list.viewModel.model model
          * @description The model used by the view.
          */
         model: {
@@ -63,28 +106,18 @@ module.exports = can.Map.extend({
                 return Model;
             }
         },
+
         /**
-         * @property {Array} url-list.viewModel.actionBar actionBar
-         * @description Function wrappers for the action bar component.
+         * @property {String} url-list.viewModel.pageTitle pageTitle
+         * @description The page's main header/title.
          */
-        actionBar: {
-            get: function () {
-                var actionBar = [];
-                actionBar.push({
-                    type: 'download',
-                    title: 'Export',
-                    dropDowns: [{
-                        label: 'Export Nemo Ready File'
-                    }, {
-                        label: 'Export current view(.CSV)'
-                    }]
-                });
-                return actionBar;
-            }
+        pageTitle: {
+            type: 'string',
+            value: 'URLs'
         },
 
         /**
-         * @property {function} rowTemplate
+         * @property {function} url-list.viewModel.rowTemplate rowTemplate
          * @description Stores the template renderer function reference.
          */
         rowTemplate: {
@@ -96,21 +129,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} searchField
+         * @property {String} url-list.viewModel.searchField searchField
          * @description The initial search key.
          */
         searchField: {
             type: 'string',
             value: 'url'
-        },
-
-        /**
-         * @property {String} title
-         * @description The page's main header/title.
-         */
-        title: {
-            type: 'string',
-            value: 'URLs'
         }
     }
 });

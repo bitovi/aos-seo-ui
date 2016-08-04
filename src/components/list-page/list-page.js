@@ -1,7 +1,7 @@
 /**
  * @module {can.Component} api.components.list-page List Page
  * @parent api.components
- * @group api.copmonents.detail-page.components 0 Components
+ * @group api.components.list-page.components 0 Components
  * @author Jan Jorgensen
  *
  * @param {String} page-title The Title of the page
@@ -25,6 +25,9 @@
  * ```
  */
 
+require('pui/components/action-bar-menu/action-bar-menu');
+require('pui/components/grid-column-toggle/grid-column-toggle');
+
 var $ = require('jquery');
 var _ = require('lodash');
 var can = require('can');
@@ -32,15 +35,12 @@ var can = require('can');
 var template = require('./list-page.stache!');
 var ViewModel = require('./list-page.viewmodel');
 
-require('pui/components/action-bar-menu/action-bar-menu');
-
 module.exports = can.Component.extend(
     {
         tag: 'seo-list-page',
         template: template,
         viewModel: ViewModel,
         helpers: {
-            // TODO Move helper to global helper
             /**
             * @description Converts a string (which can also be a hyphenated string)
             * into a chosen cased string (like proper case). It only converts to proper

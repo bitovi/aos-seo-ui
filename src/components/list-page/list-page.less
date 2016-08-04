@@ -1,33 +1,19 @@
-@content-width: 60rem;
-
 seo-list-page {
     .list-tools {
         margin-bottom: @line-height-computed;
     }
 
-    // Advanced Search Toggle Button
-    .btn-adv-search {
-        border-radius: @border-radius-base @border-radius-base 0 0;
-        font-size: 13px;
-        padding-bottom: 15px;
-        position: relative;
-        z-index: 1;
+    pui-grid-column-toggle {
+        margin-top: .4rem;
 
-        &:hover,
-        &:focus {
-            text-decoration: underline;
+        &:before {
+            color: @thunderCloud;
+            content: '\00a0|\00a0';
+            font-size: @font-size-small;
         }
 
-        &.enabled {
-            border-color: @pacific @pacific @body-bg;
-        }
-
-        &.on {
-            color: @coral;
-
-            &:after {
-                content: ': ON'
-            }
+        .dropdown {
+            padding: 0;
         }
     }
 }

@@ -1,16 +1,21 @@
+require('can/util/fixture/fixture');
+
 var _ = require('lodash');
 var can = require('can');
 
-require('can/util/fixture/fixture');
-
-var urls = require('./urls.json').data;
 var envVars = require('seo-ui/utils/environmentVars');
+var urls = require('./urls.json').data;
 
 // Find All
 can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
     var results = urls;
     var searchField;
+    var sort = data.sort;
+    var sortArray;
+    var sortField;
+    var sortOrder;
+
     if (data.url) {
         searchField = 'url';
     } else if (data.pageTitle) {
@@ -20,10 +25,6 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, respons
     } else {
         searchField = '';
     }
-    var sort = data.sort;
-    var sortArray;
-    var sortField;
-    var sortOrder;
 
     // Search
     if (searchField) {
@@ -60,11 +61,8 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, r
     if (urlIndex !== -1) {
         response(urls.data[urlIndex]);
     } else {
-        response(
-            404,
-            'error', {
-                message: 'URL ' + request.data.url + ' not found.'
-            }
-        );
+        response(404, 'error', {
+            message: 'URL ' + request.data.url + ' not found.'
+        });
     }
 });

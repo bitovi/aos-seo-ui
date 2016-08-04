@@ -1,6 +1,20 @@
 {
-    "count": 8,
+    "count": 9,
     "data": [
+        {
+            "country": "United States of America",
+            "description": "Bacon ipsum dolor amet spare ribs duis strip steak ut. Spare ribs irure duis shank ad lorem filet mignon ipsum non chicken corned beef.",
+            "descriptionKeyPath": "pub.description.something",
+            "descriptionUrl": "http://nemo/text-assets/pub.description.something?version=some-version",
+            "pageTitle": "iPod Classic",
+            "pageTitleKeyPath": "pub.title",
+            "pageTitleUrl": "http://nemo/text-assets/pub.title?version=some-version",
+            "partNumber": "IPOD_CLASSIC",
+            "region": "AMR",
+            "segment": "All",
+            "url": "/ipod-classic/",
+            "urlAspenLink": "http://apsen/ipod-classic/"
+        },
         {
             "country": "United States of America",
             "pageTitle": "MacBook - Apple",
@@ -11,6 +25,7 @@
         },
         {
             "country": "United Kingdom",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "pageTitle": "MacBook Air - Apple",
             "partNumber": "MACBOOKAIR_MAIN",
             "region": "EMEA",
