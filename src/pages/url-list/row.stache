@@ -3,21 +3,19 @@
         {{^if isHidden}}
             <td class="{{key}}">
                 {{#if itemValue}}
-                    <p class="grid-item-value">
-                        {{itemValue}}
-                    </p>
-
-                    {{#is key 'pageTitle'}}
-                        {{#if pageTitleKeyPath}}
-                            <span class="keypath label label-alt label-default">
-                                <span class="icon-key"></span>
-
-                                <a href="{{pageTitleUrl}}">
-                                    {{pageTitleKeyPath}}
+                    <div class="grid-item-value">
+                        {{#is key 'url'}}
+                            {{#if urlAspenLink}}
+                                <a href="{{urlAspenLink}}">
+                                    {{itemValue}}
                                 </a>
-                            </span>
-                        {{/if}}
-                    {{/is}}
+                            {{else}}
+                                {{itemValue}}
+                            {{/if}}
+                        {{else}}
+                            {{itemValue}}
+                        {{/is}}
+                    </div>
 
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
@@ -26,6 +24,18 @@
 
                                 <a href="{{descriptionUrl}}">
                                     {{descriptionKeyPath}}
+                                </a>
+                            </span>
+                        {{/if}}
+                    {{/is}}
+
+                    {{#is key 'pageTitle'}}
+                        {{#if pageTitleKeyPath}}
+                            <span class="keypath label label-alt label-default">
+                                <span class="icon-key"></span>
+
+                                <a href="{{pageTitleUrl}}">
+                                    {{pageTitleKeyPath}}
                                 </a>
                             </span>
                         {{/if}}
