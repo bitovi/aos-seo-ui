@@ -39,7 +39,6 @@ var items = {
 var Model = can.Model.extend({
     findAll: '/items'
 });
-var rowTemplate = require('./row.stache!');
 var template = require('./demo.stache!');
 var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 
@@ -50,8 +49,7 @@ can.fixture('GET /items', function () {
 
 var map = new ViewModel({
     model: Model,
-    title: 'Items',
-    rowTemplate: rowTemplate,
+    pageTitle: 'Items',
     dataOptions: [
         {
             key: 'name',

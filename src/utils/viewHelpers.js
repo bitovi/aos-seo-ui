@@ -1,11 +1,5 @@
-var can = require('can'),
-    formatDate = require('pui/utils/formatDate');
-
-// Register helper to calculate colspan for expanded detail stache
-can.stache.registerHelper('calculateColspan', function (options) {
-    // plus 1 takes into account the arrow column
-    return options.scope.attr('columns').length + 1;
-});
+var can = require('can');
+var formatDate = require('pui/utils/formatDate');
 
 // Register helper to show tags as delimited string
 can.stache.registerHelper('showTagAsString', function(options) {

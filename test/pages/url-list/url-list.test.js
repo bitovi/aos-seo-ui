@@ -1,3 +1,5 @@
+require('seo-ui/models/url/url.fixture');
+
 var $ = require('jquery');
 var can = require('can');
 
@@ -17,9 +19,6 @@ var urlModel = require('seo-ui/models/url/url');
 var ViewModel = require('seo-ui/pages/url-list/url-list.viewmodel');
 var vm;
 
-
-require('seo-ui/models/url/url.fixture');
-
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
 var renderPage = function (newState) {
@@ -37,17 +36,20 @@ var renderPage = function (newState) {
 };
 
 var testSort = function (name) {
-    describe(name, function () {
+    describe(name + ' field', function () {
         beforeEach(function () {
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
         });
 
-        it('By clicking on sort button for ' + name, function () {
+        it('by clicking on the ' + name + ' sort button', function () {
             var ascVal  = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
+
             var descVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+
             expect(ascVal.attr()).not.toEqual(descVal.attr());
         });
     });
@@ -74,12 +76,16 @@ describe('URL List Page', function () {
         jasmineConfigClean();
     });
 
-    describe('View model', function () {
+    describe('view model', function () {
         beforeEach(function () {
             vm = new ViewModel();
         });
 
-        it('Has default values', function () {
+        it('has an actionBar attribute', function () {
+            expect(vm.attr('actionBar')).toExist();
+        });
+
+        it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
                     cssClass: 'col-md-2',
@@ -87,14 +93,20 @@ describe('URL List Page', function () {
                     label: 'Part Number'
                 },
                 {
-                    cssClass: 'col-md-4',
+                    cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
                 },
                 {
-                    cssClass: 'col-md-3',
+                    cssClass: 'col-md-2',
                     key: 'pageTitle',
                     label: 'Page Title'
+                },
+                {
+                    cssClass: 'col-md-3',
+                    key: 'description',
+                    label: 'Description',
+                    isHidden: true
                 },
                 {
                     cssClass: 'col-md-1',
@@ -112,7 +124,9 @@ describe('URL List Page', function () {
                     label: 'Country'
                 }
             ]);
+        });
 
+        it('has an initial dataOptions value', function () {
             expect(vm.attr('dataOptions').attr()).toEqual([
                 {
                     key: 'url',
@@ -127,21 +141,32 @@ describe('URL List Page', function () {
                     label: 'Part Number'
                 }
             ]);
+        });
 
+        it('has a model attribute', function () {
             expect(vm.attr('model')).toExist();
+        });
+
+        it('has an initial pageTitle value', function () {
+            expect(vm.attr('pageTitle')).toEqual('URLs');
+        });
+
+        it('has a rowTemplate attribute', function () {
             expect(vm.attr('rowTemplate')).toExist();
+        });
+
+        it('has an initial searchField value', function () {
             expect(vm.attr('searchField')).toEqual('url');
-            expect(vm.attr('title')).toEqual('URLs');
         });
     });
 
-    describe('Component', function () {
-        it('Renders URL list results', function () {
+    describe('component', function () {
+        it('renders URL list results', function () {
             expect(component.find('pui-grid-list tbody > tr').length).toBeGreaterThan(0);
         });
 
-        describe('Search is performed for fields', function () {
-            describe('URL', function () {
+        describe('searches on the', function () {
+            describe('URL field', function () {
                 beforeEach(function () {
                     var searchValue = component.find('pui-grid-search .search-text').val();
 
@@ -153,7 +178,7 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('Start of URL', function () {
+                it('from the start of a value', function () {
                     updateSearchTerm({
                         value: '/ipad'
                     });
@@ -163,7 +188,7 @@ describe('URL List Page', function () {
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(4);
                 });
 
-                it('Within URL', function () {
+                it('within a value', function () {
                     updateSearchTerm({
                         value: 'wifi'
                     });
@@ -173,7 +198,7 @@ describe('URL List Page', function () {
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('Full URL', function () {
+                it('for a full value', function () {
                     updateSearchTerm({
                         value: '/ipod-nano/'
                     });
@@ -184,7 +209,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('Page Title', function () {
+            describe('Page Title field', function () {
                 beforeEach(function () {
                     var searchValue = component.find('pui-grid-search .search-text').val();
 
@@ -196,17 +221,17 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('Start of title', function () {
+                it('from the start of a value', function () {
                     updateSearchTerm({
                         value: 'iP'
                     });
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
                 });
 
-                it('Within title', function () {
+                it('within a value', function () {
                     updateSearchTerm({
                         value: '3g'
                     });
@@ -216,7 +241,7 @@ describe('URL List Page', function () {
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('Full title', function () {
+                it('for a full value', function () {
                     updateSearchTerm({
                         value: 'MacBook Air - Apple'
                     });
@@ -227,7 +252,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('Part Number', function () {
+            describe('Part Number field', function () {
                 beforeEach(function () {
                     var searchValue = component.find('pui-grid-search .search-text').val();
 
@@ -239,17 +264,17 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('Start of part number', function () {
+                it('from the start of a value', function () {
                     updateSearchTerm({
                         value: 'ipod'
                     });
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(3);
                 });
 
-                it('Within part number', function () {
+                it('within a value', function () {
                     updateSearchTerm({
                         value: '1050'
                     });
@@ -259,7 +284,7 @@ describe('URL List Page', function () {
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('Full part number', function () {
+                it('for a full value', function () {
                     updateSearchTerm({
                         value: 'IPAD2_WIFI'
                     });
@@ -271,7 +296,7 @@ describe('URL List Page', function () {
             });
         });
 
-        describe('Sorting is performed for fields', function () {
+        describe('sorts by the', function () {
             testSort('country');
             testSort('pageTitle');
             testSort('partNumber');

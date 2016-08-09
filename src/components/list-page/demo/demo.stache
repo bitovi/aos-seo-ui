@@ -1,4 +1,3 @@
 <seo-list-page
-    row-template="{rowTemplate}"
-    title="{title}"
+    page-title="{pageTitle}"
 ></seo-list-page>
