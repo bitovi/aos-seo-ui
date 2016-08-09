@@ -19,7 +19,7 @@ var templateRenderer = function (newTemplate) {
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Array{Object}} columns
+         * @property {Array<Object>} columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -36,7 +36,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array{Object}} dataOptions
+         * @property {Array<Object>} dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
@@ -70,12 +70,15 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array{Object}} items
+         * @property {Array<Object>} items
          * @description Array of item objects to display in the Grid List.
          */
         items: {},
 
-        // TODO: Is there a better way to pass a Constructor function without it being invoked?
+        /**
+         * @property {can.Model} model
+         * @description The model to be used on the list page.
+         */
         model: {
             type: '*'
         },
@@ -96,6 +99,15 @@ module.exports = can.Map.extend({
         multiSearchEnabled: {
             type: 'boolean',
             value: false
+        },
+
+        /**
+         * @property {String} pageTitle
+         * @description The title/header of the list page.
+         */
+        pageTitle: {
+            type: 'string',
+            value: 'List Page'
         },
 
         /**
@@ -197,15 +209,6 @@ module.exports = can.Map.extend({
         showNewItemModal: {
             type: 'boolean',
             value: false
-        },
-
-        /**
-         * @property {String} title
-         * @description The title/header of the list page.
-         */
-        title: {
-            type: 'string',
-            value: 'List Page'
         }
     },
 

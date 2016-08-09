@@ -1,4 +1,8 @@
-<pui-action-bar action-bar-items="{actionBar}" class="pull-right"></pui-action-bar>
+<pui-action-bar
+    action-bar-items="{actionBar}"
+    class="pull-right"
+></pui-action-bar>
+
 <seo-list-page
     columns="{columns}"
     count="{count}"
@@ -8,7 +12,7 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     model="{model}"
-    page-title="{title}"
+    page-title="{pageTitle}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
     state="{state}"

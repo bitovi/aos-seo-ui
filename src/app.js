@@ -1,24 +1,23 @@
 /* jshint camelcase: false */
 
-var can = require('can');
-var ServerVars = require('seo-ui/models/server-vars/');
-var User = require('seo-ui/models/user/');
-var $ = can.$;
 require('seo-ui/app.less');
-
 require('seo-ui/components/header/');
+require('seo-ui/utils/viewHelpers');
+
+var $ = require('jquery');
+var can = require('can');
 
 var AppState = require('seo-ui/models/appstate/');
-var indexView = require('seo-ui/index.stache!');
-var setupRoutes = require('seo-ui/routes');
 var csrfPrefilter = require('seo-ui/utils/csrfPrefilter');
 var Environment = require('seo-ui/models/environment/');
 var envVars = require('seo-ui/utils/environmentVars');
-var logger = require('seo-ui/utils/log');
-var localDebug = require('seo-ui/utils/local-debug');
 var fixtureLoader = require('seo-ui/models/fixtures');
-
-require('seo-ui/utils/viewHelpers');
+var indexView = require('seo-ui/index.stache!');
+var localDebug = require('seo-ui/utils/local-debug');
+var logger = require('seo-ui/utils/log');
+var ServerVars = require('seo-ui/models/server-vars/');
+var setupRoutes = require('seo-ui/routes');
+var User = require('seo-ui/models/user/');
 
 if (envVars.isDeployedBuild() === 'false') {
     window._environment = {
@@ -38,6 +37,7 @@ if (envVars.isDeployedBuild() === 'false') {
         'csrfParameter': '_aos_csrf'
     };
 }
+
 /**
  * @description Initalizes the application.
  * @param isDeployed
@@ -80,7 +80,6 @@ function initApp(isDeployed, fixturesOn) {
 }
 
 $(function () {
-    var envVars = require('seo-ui/utils/environmentVars');
     var isDeployed = (envVars.isDeployedBuild() === 'true');
     window.seo.user.roles = window.seo.roles;
     if (!isDeployed) {

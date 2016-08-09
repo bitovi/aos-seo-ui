@@ -45,8 +45,15 @@
             {{/if}}
         </div>
 
-        {{! Pagination }}
         <div class="col-md-5">
+            {{! Column Toggle }}
+            <pui-grid-column-toggle
+                class="pull-right"
+                {(columns)}="columns"
+                menu-align="right"
+            ></pui-grid-column-toggle>
+
+            {{! Pagination }}
             <pui-pagination
                 class="pull-right"
                 count="{count}"
@@ -73,7 +80,7 @@
 
 {{! Grid List }}
 <pui-grid-list
-    columns="{columns}"
+    {(columns)}="columns"
     count="{count}"
     current-page="{currentPage}"
     expandable-rows="{expandableRows}"

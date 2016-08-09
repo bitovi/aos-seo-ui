@@ -1,34 +1,62 @@
-var can = require('can');
-
 require('can/map/define/define');
+
+var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
-module.exports = can.Model.extend({
-    findAll: 'GET ' + envVars.apiUrl() + '/urls.json',
-    findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json'
-}, {
-    define: {
-        country: {
-            type: 'string'
-        },
 
-        partNumber: {
-            type: 'string'
-        },
+module.exports = can.Model.extend(
+    {
+        findAll: 'GET ' + envVars.apiUrl() + '/urls.json',
+        findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json'
+    },
+    {
+        define: {
+            country: {
+                type: 'string'
+            },
 
-        pageTitle: {
-            type: 'string'
-        },
+            description: {
+                type: 'string'
+            },
 
-        region: {
-            type: 'string'
-        },
+            descriptionKeyPath: {
+                type: 'string'
+            },
 
-        segment: {
-            type: 'string'
-        },
+            descriptionUrl: {
+                type: 'string'
+            },
 
-        url: {
-            type: 'string'
+            pageTitle: {
+                type: 'string'
+            },
+
+            pageTitleKeyPath: {
+                type: 'string'
+            },
+
+            pageTitleUrl: {
+                type: 'string'
+            },
+
+            partNumber: {
+                type: 'string'
+            },
+
+            region: {
+                type: 'string'
+            },
+
+            segment: {
+                type: 'string'
+            },
+
+            url: {
+                type: 'string'
+            },
+
+            urlAspenLink: {
+                type: 'string'
+            }
         }
     }
-});
+);

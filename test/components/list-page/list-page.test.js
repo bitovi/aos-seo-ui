@@ -93,7 +93,7 @@ describe('List Page', function () {
 
         describe('Has default scope value of', function () {
             it('title', function () {
-                var title = vm.attr('title');
+                var title = vm.attr('pageTitle');
                 expect(title).toEqual('List Page');
             });
         });

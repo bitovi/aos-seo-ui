@@ -1,46 +1,47 @@
-<tr
-    class="item"
-    tabindex="0"
-    {{data 'item'}}
-    {{eleAttrs}}
->
-    {{#if expandableRows}}
-        <td>
-            <button
-                can-click="toggleExpandRow"
-                class="btn btn-link btn-xs expand-toggle"
-            >
-                <span class="sr-only">Expand row</span>
-                <span class="icon-arrow-double {{^expanded}}rotate-270{{/expanded}}"></span>
-            </button>
-        </td>
-    {{/if}}
+<tr {{eleAttrs}} {{data 'item'}} class="item">
+    {{#columns}}
+        {{^if isHidden}}
+            <td class="{{key}}">
+                {{#if itemValue}}
+                    <div class="grid-item-value">
+                        {{#is key 'url'}}
+                            {{#if urlAspenLink}}
+                                <a href="{{urlAspenLink}}">
+                                    {{itemValue}}
+                                </a>
+                            {{else}}
+                                {{itemValue}}
+                            {{/if}}
+                        {{else}}
+                            {{itemValue}}
+                        {{/is}}
+                    </div>
 
-    <td>
-        {{partNumber}}
-    </td>
+                    {{#is key 'description'}}
+                        {{#if descriptionKeyPath}}
+                            <span class="keypath label label-alt label-default">
+                                <span class="icon-key"></span>
 
-    <td>
-        {{url}}
-    </td>
+                                <a href="{{descriptionUrl}}">
+                                    {{descriptionKeyPath}}
+                                </a>
+                            </span>
+                        {{/if}}
+                    {{/is}}
 
-    <td>
-        {{pageTitle}}
-    </td>
+                    {{#is key 'pageTitle'}}
+                        {{#if pageTitleKeyPath}}
+                            <span class="keypath label label-alt label-default">
+                                <span class="icon-key"></span>
 
-    <td>
-        {{segment}}
-    </td>
-
-    <td>
-        {{region}}
-    </td>
-
-    <td>
-        {{country}}
-    </td>
+                                <a href="{{pageTitleUrl}}">
+                                    {{pageTitleKeyPath}}
+                                </a>
+                            </span>
+                        {{/if}}
+                    {{/is}}
+                {{/if}}
+            </td>
+        {{/if}}
+    {{/columns}}
 </tr>
-
-{{#if expanded}}
-    {{> expandableRow}}
-{{/if}}
