@@ -4,7 +4,7 @@ var template = require('./url-list.stache!');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('pui/components/action-bar/action-bar');
+require('pui/components/action-bar-menu/action-bar-menu');
 require('seo-ui/components/list-page/list-page');
 require('seo-ui/models/url/url');
 

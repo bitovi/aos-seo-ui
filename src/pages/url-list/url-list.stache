@@ -1,7 +1,15 @@
-<pui-action-bar
+<!-- <pui-action-bar
     action-bar-items="{actionBar}"
     class="pull-right"
-></pui-action-bar>
+></pui-action-bar> -->
+
+<pui-action-bar-menu action-scope="{.}">
+  <pui-action-bar-dropdown icon="download" tooltip-title="Export">
+  <pui-action-bar-item menu-heading="{{menuHeading}}">{{menuHeading}}</pui-action-bar-item>
+  <pui-action-bar-item action="">Export Nemo-Ready File</pui-action-bar-item>
+  <pui-action-bar-item action="">Export Current View (.CSV)</pui-action-bar-item>
+</pui-action-bar-dropdown>
+</pui-action-bar-menu>
 
 <seo-list-page
     columns="{columns}"

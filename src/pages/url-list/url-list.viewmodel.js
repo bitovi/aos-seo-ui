@@ -33,6 +33,18 @@ module.exports = can.Map.extend({
                 return actionBar;
             }
         },
+        /**
+         * @property {Array<can.Map>} url-list.viewModel.menuHeading menuHeading
+         * @description export dropdown menu bar heading.
+         */
+        menuHeading : {
+          get : function() {
+            if (this.attr('count')) {
+            return 'Export '+ this.attr('count') +' URLs in:'
+            }
+          },
+          type: 'string'
+        },
 
         /**
          * @property {Array<can.Map>} url-list.viewModel.columns columns
