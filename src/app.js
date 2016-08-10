@@ -59,8 +59,7 @@ function initApp(isDeployed, fixturesOn) {
         environment: environment
     });
     appState = new AppState({
-        user: user,
-        environment: environment
+        user: user
     });
 
     if (!isDeployed) {
