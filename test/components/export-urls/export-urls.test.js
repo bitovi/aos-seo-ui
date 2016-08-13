@@ -11,7 +11,6 @@ var ViewModel = require('seo-ui/components/export-urls/export-urls.viewmodel');
 var vm;
 
 // Renders the component
-// Default state can be augmented by passing a parameter with the required changes
 var renderPage = function () {
 
     $('#sandbox').html(testTemplate({
@@ -41,13 +40,6 @@ describe('Export Urls', function () {
             component = $('#sandbox seo-export-urls');
             vm = component.data('scope');
         });
-
-        // Not sure why this is failing,but will fix as part of different PR.This will unblock the build
-        // it('Displays alert if storage delayedAlert set', function () {
-        //     var vm = new ViewModel();
-        //     var alert = vm.attr('state.alert.type');
-        //     expect(alert).toEqual('success');
-        // });
 
         it('Renders', function () {
             expect(component.length).toBeGreaterThan(0);
