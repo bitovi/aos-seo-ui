@@ -6,89 +6,40 @@ var rowTemplate = require('./row.stache');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Array<can.Map>} url-list.viewModel.actionBar actionBar
-         * @description Function wrappers for the action bar component.
-         */
-        actionBar: {
-            Value: Array,
-            get: function () {
-                var actionBar = [];
-
-                actionBar.push({
-                    dropDowns: [
-                        {
-                          menuHeading: 'Export '+this.attr('count')+' URLs in:'
-                        },
-                        {
-                            label: 'Export Nemo-Ready File'
-                        },
-                        {
-                            label: 'Export Current View (.CSV)'
-                        }
-                    ],
-                    title: 'Export',
-                    type: 'download'
-                });
-
-                return actionBar;
-            }
-        },
-        /**
-         * @property {Array<can.Map>} url-list.viewModel.menuHeading menuHeading
-         * @description export dropdown menu bar heading.
-         */
-        menuHeading : {
-          get : function() {
-            if (this.attr('count')) {
-            return 'Export '+ this.attr('count') +' URLs in:'
-            }
-          },
-          type: 'string'
-        },
-
-        /**
          * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
-            value: [
-                {
-                    cssClass: 'col-md-2',
-                    key: 'partNumber',
-                    label: 'Part Number'
-                },
-                {
-                    cssClass: 'col-md-2',
-                    key: 'url',
-                    label: 'URL'
-                },
-                {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
-                    label: 'Page Title'
-                },
-                {
-                    cssClass: 'col-md-3',
-                    key: 'description',
-                    label: 'Description',
-                    isHidden: true
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'segment',
-                    label: 'Segment'
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'region',
-                    label: 'Region'
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'country',
-                    label: 'Country'
-                }
-            ]
+            value: [{
+                cssClass: 'col-md-2',
+                key: 'partNumber',
+                label: 'Part Number'
+            }, {
+                cssClass: 'col-md-2',
+                key: 'url',
+                label: 'URL'
+            }, {
+                cssClass: 'col-md-2',
+                key: 'pageTitle',
+                label: 'Page Title'
+            }, {
+                cssClass: 'col-md-3',
+                key: 'description',
+                label: 'Description',
+                isHidden: true
+            }, {
+                cssClass: 'col-md-1',
+                key: 'segment',
+                label: 'Segment'
+            }, {
+                cssClass: 'col-md-1',
+                key: 'region',
+                label: 'Region'
+            }, {
+                cssClass: 'col-md-1',
+                key: 'country',
+                label: 'Country'
+            }]
         },
 
         /**
@@ -96,20 +47,16 @@ module.exports = can.Map.extend({
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
-            value: [
-                {
-                    key: 'url',
-                    label: 'URL'
-                },
-                {
-                    key: 'pageTitle',
-                    label: 'Page Title'
-                },
-                {
-                    key: 'partNumber',
-                    label: 'Part Number'
-                }
-            ]
+            value: [{
+                key: 'url',
+                label: 'URL'
+            }, {
+                key: 'pageTitle',
+                label: 'Page Title'
+            }, {
+                key: 'partNumber',
+                label: 'Part Number'
+            }]
         },
 
         /**

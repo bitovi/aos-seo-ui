@@ -1,28 +1,16 @@
-<!-- <pui-action-bar
-    action-bar-items="{actionBar}"
-    class="pull-right"
-></pui-action-bar> -->
-
-<pui-action-bar-menu action-scope="{.}">
-  <pui-action-bar-dropdown icon="download" tooltip-title="Export">
-  <pui-action-bar-item menu-heading="{{menuHeading}}">{{menuHeading}}</pui-action-bar-item>
-  <pui-action-bar-item action="">Export Nemo-Ready File</pui-action-bar-item>
-  <pui-action-bar-item action="">Export Current View (.CSV)</pui-action-bar-item>
-</pui-action-bar-dropdown>
-</pui-action-bar-menu>
-
+<seo-export-urls
+                    count="{{count}}">
+</seo-export-urls>
 <seo-list-page
-    columns="{columns}"
-    count="{count}"
-    current-page="{state.pageNumber}"
-    data-options="{dataOptions}"
-    details-key="url"
-    disable-advanced-search="true"
-    disable-new-item-button="true"
-    model="{model}"
-    page-title="{pageTitle}"
-    row-template="{rowTemplate}"
-    search-field="{searchField}"
-    state="{state}"
-    type="url"
-></seo-list-page>
+                  columns="{columns}"
+                  count="{count}"
+                  current-page="{state.pageNumber}"
+                  data-options="{dataOptions}"
+                  details-key="url"
+                  disable-advanced-search="true"
+                  disable-new-item-button="true"
+                  model="{model}" page-title="{pageTitle}"
+                  row-template="{rowTemplate}"
+                  search-field="{searchField}"
+                  state="{state}" type="url">
+</seo-list-page>

@@ -81,10 +81,6 @@ describe('URL List Page', function () {
             vm = new ViewModel();
         });
 
-        it('has an actionBar attribute', function () {
-            expect(vm.attr('actionBar')).toExist();
-        });
-
         it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
