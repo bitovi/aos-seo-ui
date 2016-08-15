@@ -6,7 +6,7 @@
                     <div class="grid-item-value">
                         {{#is key 'url'}}
                             {{#if urlAspenLink}}
-                                <a href="{{urlAspenLink}}">
+                                <a href="{{urlAspenLink}}" target="aspen-url">
                                     {{itemValue}}
                                 </a>
                             {{else}}
