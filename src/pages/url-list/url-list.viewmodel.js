@@ -70,6 +70,15 @@ module.exports = can.Map.extend({
         },
 
         /**
+        * @property {Number} url-list.viewmodel.count count
+        * @description The number of records being returned.
+        */
+        count: {
+            value: 0,
+            type: 'number'
+        },
+
+        /**
          * @property {String} url-list.viewModel.pageTitle pageTitle
          * @description The page's main header/title.
          */
