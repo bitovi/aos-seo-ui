@@ -6,7 +6,7 @@
                     <div class="grid-item-value">
                         {{#is key 'url'}}
                             {{#if urlAspenLink}}
-                                <a href="{{urlAspenLink}}">
+                                <a href="{{urlAspenLink}}" target="_blank">
                                     {{itemValue}}
                                 </a>
                             {{else}}
@@ -22,7 +22,7 @@
                             <span class="keypath label label-alt label-default">
                                 <span class="icon-key"></span>
 
-                                <a href="{{descriptionUrl}}">
+                                <a href="{{descriptionUrl}}" target="_blank">
                                     {{descriptionKeyPath}}
                                 </a>
                             </span>
@@ -34,7 +34,7 @@
                             <span class="keypath label label-alt label-default">
                                 <span class="icon-key"></span>
 
-                                <a href="{{pageTitleUrl}}">
+                                <a href="{{pageTitleUrl}}" target="_blank">
                                     {{pageTitleKeyPath}}
                                 </a>
                             </span>

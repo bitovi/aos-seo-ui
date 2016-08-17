@@ -30,8 +30,8 @@
         </div>
 
         {{! Advanced Search Button }}
-        <div class="col-md-2 text-center">
-            {{^if disableAdvancedSearch}}
+        {{^if disableAdvancedSearch}}
+            <div class="col-md-2 text-center">
                 <button
                     aria-controls="multi-search"
                     aria-expanded="{{#if multiSearchEnabled}}true{{/if}}{{^if multiSearchEnabled}}false{{/if}}"
@@ -42,10 +42,10 @@
                 >
                     Advanced Search
                 </button>
-            {{/if}}
-        </div>
+            </div>
+        {{/if}}
 
-        <div class="col-md-5">
+        <div class="col-md-{{#if disableAdvancedSearch}}7{{else}}5{{/if}}">
             {{! Column Toggle }}
             <pui-grid-column-toggle
                 class="pull-right"
@@ -87,6 +87,7 @@
     expanded-template="{expandedTemplate}"
     has-more-records="{hasMoreRecords}"
     is-loading="{isLoading}"
+    item-link-enabled="{itemLinkEnabled}"
     items="{items}"
     limit="{limit}"
     model="{model}"
