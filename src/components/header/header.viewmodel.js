@@ -34,6 +34,11 @@ var ViewModel = can.Map.extend({
     link: function (url) {
         url = url && url.isComputed ? url() : '';
         return envVars.rootApp() + '/' + url;
+    },
+
+    doesNotHaveAction: function doesNotHaveAction(user, action, options) {
+        user = can.isFunction(user) ? user() : user;
+        return !(user.hasAction(action)) ? options.fn(this) : options.inverse(this);
     }
 
 });
