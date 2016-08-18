@@ -10,44 +10,45 @@ module.exports = can.Map.extend({
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
-            value: [
-                {
-                    cssClass: 'col-md-2',
-                    key: 'partNumber',
-                    label: 'Part Number'
-                },
-                {
-                    cssClass: 'col-md-2',
-                    key: 'url',
-                    label: 'URL'
-                },
-                {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
-                    label: 'Page Title'
-                },
-                {
-                    cssClass: 'col-md-3',
-                    key: 'description',
-                    label: 'Description',
-                    isHidden: true
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'segment',
-                    label: 'Segment'
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'region',
-                    label: 'Region'
-                },
-                {
-                    cssClass: 'col-md-1',
-                    key: 'country',
-                    label: 'Country'
-                }
-            ]
+            value: [{
+                cssClass: 'col-md-2',
+                key: 'partNumber',
+                label: 'Part Number'
+            }, {
+                cssClass: 'col-md-2',
+                key: 'url',
+                label: 'URL'
+            }, {
+                cssClass: 'col-md-2',
+                key: 'pageTitle',
+                label: 'Page Title'
+            }, {
+                cssClass: 'col-md-3',
+                key: 'description',
+                label: 'Description',
+                isHidden: true
+            }, {
+                cssClass: 'col-md-1',
+                key: 'segment',
+                label: 'Segment'
+            }, {
+                cssClass: 'col-md-1',
+                key: 'region',
+                label: 'Region'
+            }, {
+                cssClass: 'col-md-1',
+                key: 'country',
+                label: 'Country'
+            }]
+        },
+
+        /**
+         * @property {Number} url-list.viewmodel.count count
+         * @description The number of records being returned.
+         */
+        count: {
+            value: 0,
+            type: 'number'
         },
 
         /**
@@ -55,20 +56,16 @@ module.exports = can.Map.extend({
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
-            value: [
-                {
-                    key: 'url',
-                    label: 'URL'
-                },
-                {
-                    key: 'pageTitle',
-                    label: 'Page Title'
-                },
-                {
-                    key: 'partNumber',
-                    label: 'Part Number'
-                }
-            ]
+            value: [{
+                key: 'url',
+                label: 'URL'
+            }, {
+                key: 'pageTitle',
+                label: 'Page Title'
+            }, {
+                key: 'partNumber',
+                label: 'Part Number'
+            }]
         },
 
         /**
@@ -79,14 +76,6 @@ module.exports = can.Map.extend({
             get: function () {
                 return Model;
             }
-        },
-        /**
-        * @property {Number} url-list.viewmodel.count count
-        * @description The number of records being returned.
-        */
-        count: {
-            value: 0,
-            type: 'number'
         },
 
         /**
