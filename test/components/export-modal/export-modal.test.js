@@ -18,7 +18,7 @@ var renderPage = function () {
     }));
 
     jasmine.clock().tick(can.fixture.delay);
-    component = $('#sandbox seo-export-urls');
+    component = $('#sandbox seo-export-modal');
     vm = component.data('scope');
 };
 
