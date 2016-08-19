@@ -143,7 +143,7 @@ JAR_SRC=$SRC_DIR/target-production
 
 mkdir -p $JAR_SRC
 
-cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.css
+# cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.css
 cp $UI_BUILD_DST/seo-ui/app.css $JAR_SRC/app.min.css
 cp $UI_BUILD_DST/seo-ui/app.js $JAR_SRC/app.js
 cp $UI_BUILD_DST/seo-ui/app.js $JAR_SRC/app.min.js
