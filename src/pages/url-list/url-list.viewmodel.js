@@ -9,7 +9,7 @@ module.exports = can.Map.extend({
          * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
-         columns: {
+        columns: {
             value: [
                 {
                     cssClass: 'col-md-2',
