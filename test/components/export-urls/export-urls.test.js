@@ -44,5 +44,11 @@ describe('Export Urls', function () {
         it('Renders', function () {
             expect(component.length).toBeGreaterThan(0);
         });
+
+        it('Display count in header', function(){
+          var exportIcon = component.find('.icon-download');
+          exportIcon.click();
+          expect(exportIcon.closest('.dropdown').find('.dropdown-menu li.dropdown-header')).toContain(vm.attr('count'));
+        });
     });
 });
