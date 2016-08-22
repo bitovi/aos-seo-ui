@@ -6,7 +6,7 @@
     is-modal="true"
     size="md">
     <div class="col-xs-14">
-        <p> Your export is not complete</p>
+        <p>Your export is not complete</p>
         <p><strong>Are you sure you want to cancel it?</strong></p>
     </div>
 </pui-dialog>
