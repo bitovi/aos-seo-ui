@@ -81,7 +81,7 @@ describe('URL List Page', function () {
             vm = new ViewModel();
         });
 
-        it('has an actionBar attribute', function () {
+        it('has an actionBar property', function () {
             expect(vm.attr('actionBar')).toExist();
         });
 
@@ -138,20 +138,29 @@ describe('URL List Page', function () {
                 },
                 {
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part Number',
+                    autocomplete: {
+                        'character-delay': 2,
+                        'key-name': 'partNumber',
+                        'model': 'partNumberModel'
+                    }
                 }
             ]);
         });
 
-        it('has a model attribute', function () {
-            expect(vm.attr('model')).toExist();
+        it('has a URL model property', function () {
+            expect(vm.attr('urlModel')).toExist();
         });
 
         it('has an initial pageTitle value', function () {
             expect(vm.attr('pageTitle')).toEqual('URLs');
         });
 
-        it('has a rowTemplate attribute', function () {
+        it('has a part number model property', function () {
+            expect(vm.attr('partNumberModel')).toExist();
+        });
+
+        it('has a rowTemplate property', function () {
             expect(vm.attr('rowTemplate')).toExist();
         });
 
@@ -266,17 +275,7 @@ describe('URL List Page', function () {
 
                 it('from the start of a value', function () {
                     updateSearchTerm({
-                        value: 'ipod'
-                    });
-
-                    jasmine.clock().tick(can.fixture.delay);
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(3);
-                });
-
-                it('within a value', function () {
-                    updateSearchTerm({
-                        value: '1050'
+                        value: 'h17'
                     });
 
                     jasmine.clock().tick(can.fixture.delay);
@@ -284,9 +283,19 @@ describe('URL List Page', function () {
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
+                it('within a value', function () {
+                    updateSearchTerm({
+                        value: 'ZM'
+                    });
+
+                    jasmine.clock().tick(can.fixture.delay);
+
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                });
+
                 it('for a full value', function () {
                     updateSearchTerm({
-                        value: 'IPAD2_WIFI'
+                        value: 'Z0S9'
                     });
 
                     jasmine.clock().tick(can.fixture.delay);
