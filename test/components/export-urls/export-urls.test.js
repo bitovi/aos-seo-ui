@@ -45,7 +45,7 @@ describe('Export Urls', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
-        it('Display count in header', function () {
+        it('Checks if count exists in menu header', function () {
             expect(component.find('.dropdown-header').html()).toContain(vm.attr('count'));
         });
     });
