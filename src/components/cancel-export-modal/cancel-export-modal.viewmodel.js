@@ -13,11 +13,11 @@ module.exports = can.Map.extend({
             value: function () {
                 return [{
                     classes: 'continue-export',
-                    style: 'default',
+                    style: 'secondary',
                     text: 'Continue Export',
                     closeModal: false
                 }, {
-                    style: 'secondary',
+                    style: 'default',
                     text: 'Cancel Export',
                     closeModal: true
                 }];
@@ -25,19 +25,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Boolean} closeDialog
-         * @description used to hide or show the modal/overlay
-         */
-        closeDialog: {
-            value: false
-        },
-
-        /**
          * @property {String} dialogName
          * @description The ID used for the modal/overlay.
          */
         dialogName: {
-            value: 'exportUrlsModal'
+            type: 'string',
+            value: 'export-urls-modal'
         }
     }
 

@@ -6,8 +6,8 @@ require('seo-ui/utils/viewHelpers');
 var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
-var testTemplate = require('./export-modal.test.stache');
-var ViewModel = require('seo-ui/components/export-modal/export-modal.viewmodel');
+var testTemplate = require('./cancel-export-modal.test.stache');
+var ViewModel = require('seo-ui/components/cancel-export-modal/cancel-export-modal.viewmodel');
 var vm;
 
 // Renders the component
@@ -18,7 +18,7 @@ var renderPage = function () {
     }));
 
     jasmine.clock().tick(can.fixture.delay);
-    component = $('#sandbox seo-export-modal');
+    component = $('#sandbox seo-cancel-export-modal');
     vm = component.data('scope');
 };
 
@@ -37,7 +37,7 @@ describe('Export Modal', function () {
     describe('Component', function () {
         beforeEach(function () {
             renderPage();
-            component = $('#sandbox seo-export-modal');
+            component = $('#sandbox seo-cancel-export-modal');
             vm = component.data('scope');
         });
 
