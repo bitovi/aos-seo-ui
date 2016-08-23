@@ -1,0 +1,151 @@
+{
+    "filters": [
+        {
+            "parameter": "segments",
+            "options": [
+                {
+                    "label": "All",
+                    "value": "all"
+                },
+                {
+                    "label": "Consumer",
+                    "value": "consumer"
+                },
+                {
+                    "label": "Education",
+                    "value": "edu"
+                },
+                {
+                    "label": "Small Business",
+                    "value": "smb"
+                }
+            ]
+        },
+        {
+            "parameter": "regions",
+            "options": [
+                {
+                    "label": "All",
+                    "value": "all"
+                },
+                {
+                    "label": "AMR",
+                    "value": "amr",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "us",
+                        "br",
+                        "ca",
+                        "fr-ca",
+                        "mx",
+                        "la"
+                    ]
+                },
+                {
+                    "label": "APAC",
+                    "value": "apac",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "au",
+                        "hk",
+                        "kr",
+                        "sg",
+                        "th",
+                        "nz"
+                    ]
+                },
+                {
+                    "label": "JAPAN",
+                    "value": "japan",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "japan"
+                    ]
+                },
+                {
+                    "label": "EMEA",
+                    "value": "emea",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "tr",
+                        "at",
+                        "be",
+                        "ch"
+                    ]
+                }
+            ]
+        },
+        {
+            "parameter": "countries",
+            "options": [
+                {
+                    "label": "United States of America",
+                    "value": "us"
+                },
+                {
+                    "label": "Brazil",
+                    "value": "br"
+                },
+                {
+                    "label": "Canada",
+                    "value": "ca"
+                },
+                {
+                    "label": "Mexico",
+                    "value": "mx"
+                }
+            ]
+        },
+        {
+            "parameter": "pageTypes",
+            "options": [
+                {
+                    "label": "Product",
+                    "value": "product"
+                }
+            ]
+        },
+        {
+            "parameter": "statuses",
+            "options": [
+                {
+                    "label": "All",
+                    "value": "all"
+                },
+                {
+                    "label": "Added",
+                    "value": "added"
+                },
+                {
+                    "label": "Modified",
+                    "value": "modified"
+                },
+                {
+                    "label": "End of Life",
+                    "value": "end-of-life"
+                }
+            ]
+        },
+        {
+            "parameter": "dateRange",
+            "options": [
+                {
+                    "label": "All",
+                    "value": "all"
+                },
+                {
+                    "label": "Last 24 Hours",
+                    "value": "last-24-hours"
+                },
+                {
+                    "label": "Last 2 Weeks",
+                    "value": "last-2-weeks"
+                },
+                {
+                    "label": "Last Month",
+                    "value": "last-month"
+                }
+            ]
+        }
+    ]
+}

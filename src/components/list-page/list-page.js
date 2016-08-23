@@ -27,6 +27,7 @@
 
 require('pui/components/action-bar-menu/action-bar-menu');
 require('pui/components/grid-column-toggle/grid-column-toggle');
+require('pui/components/filter-menu/filter-menu');
 
 var $ = require('jquery');
 var _ = require('lodash');

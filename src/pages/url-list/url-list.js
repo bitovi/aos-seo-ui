@@ -5,8 +5,10 @@ var template = require('./url-list.stache!');
 require('can/map/define/define');
 require('can/view/stache/stache');
 require('pui/components/action-bar/action-bar');
+require('pui/components/filter-menu/filter-menu');
 require('seo-ui/components/list-page/list-page');
 require('seo-ui/models/url/url');
+require('seo-ui/models/url-filter/url-filter');
 
 module.exports = can.Component.extend({
     tag: 'seo-url-list',
