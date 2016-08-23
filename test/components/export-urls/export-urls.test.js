@@ -45,8 +45,8 @@ describe('Export Urls', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
-        it('Display count in header', function(){
-          expect(component.find('.dropdown-header').html()).toContain(vm.attr('count'));
+        it('Display count in header', function () {
+            expect(component.find('.dropdown-header').html()).toContain(vm.attr('count'));
         });
     });
 });
