@@ -11,16 +11,19 @@ module.exports = can.Map.extend({
          */
         buttons: {
             value: function () {
-                return [{
-                    classes: 'continue-export',
-                    style: 'secondary',
-                    text: 'Continue Export',
-                    closeModal: false
-                }, {
-                    style: 'default',
-                    text: 'Cancel Export',
-                    closeModal: true
-                }];
+                return [
+                    {
+                        classes: 'continue-export',
+                        style: 'secondary',
+                        text: 'Continue Export',
+                        closeModal: false
+                    },
+                    {
+                        style: 'default',
+                        text: 'Cancel Export',
+                        closeModal: true
+                    }
+                ];
             }
         },
 
