@@ -9,11 +9,7 @@ var User =  require('seo-ui/models/user/user');
 var user = new User({
   'firstName': 'seo',
   'lastName': 'user',
-  'email': 'seo_user@apple.com',
-  'initials': 'SU',
-   canEdit : function() {
-     return true;
-   }
+  'initials': 'SU'
 });
 
 require('../header');
