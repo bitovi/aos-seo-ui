@@ -44,6 +44,15 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Boolean} disableAdvancedSearch
+         * @description Determines if the Advanced Search fields should be shown.
+         */
+        disableAdvancedSearch: {
+            type: 'boolean',
+            value: false
+        },
+
+        /**
          * @property {Boolean} disableNewItemButton
          * @description Determines if the new item create button (+) should be shown.
          */
