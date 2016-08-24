@@ -24,4 +24,3 @@ module.exports = can.Component.extend({
     template: template,
     viewModel: ViewModel
 });
-

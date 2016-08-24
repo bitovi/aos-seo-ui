@@ -35,4 +35,3 @@ module.exports = can.Map.extend({
     }
 
 });
-
