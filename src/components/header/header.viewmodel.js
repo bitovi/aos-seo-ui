@@ -36,6 +36,14 @@ var ViewModel = can.Map.extend({
         return envVars.rootApp() + '/' + url;
     },
 
+    /**
+     * @function header.viewModel.doesNotHaveAction doesNotHaveAction
+     * @description Checks  the user permissions
+     * @param {Object} user instance of an user
+     * @param {String} action action that we are passing to check users permissions
+     * @param {Object} options current context
+     * @return {Boolean} user permission to access the app
+     */
     doesNotHaveAction: function doesNotHaveAction(user, action, options) {
         user = can.isFunction(user) ? user() : user;
         return !(user.hasAction(action)) ? options.fn(this) : options.inverse(this);

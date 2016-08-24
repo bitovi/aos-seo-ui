@@ -1,54 +1,45 @@
-var $ = require('jquery'),
-    can = require('can'),
-    ViewModel = require('seo-ui/components/header/header.viewmodel'),
-    testTemplate = require('./header.test.stache'),
-    User = require('seo-ui/models/user/user');
+var $ = require('jquery');
+var can = require('can');
 
-require('seo-ui/components/header/header');
-require('can/view/stache/');
-require('can/map/define/');
-require('can/util/fixture/');
-
-var jasmineConfig = require('test/jasmineConfigure');
-var jasmineConfigClean;
-
-var vm;
 var component;
 var scope;
+var jasmineConfig = require('test/jasmine-configure');
+var jasmineConfigClean;
+var testTemplate = require('./header.test.stache');
+var User = require('seo-ui/models/user/user');
+var ViewModel = require('seo-ui/components/header/header.viewmodel');
+var vm;
 
-describe('header', function(){
-
+describe('Header', function () {
     beforeEach(function () {
-        jasmineConfigClean = jasmineConfig();
+        jasmineConfigClean = jasmineConfig({
+            persistentSandbox: true
+        });
     });
 
     afterEach(function () {
-        jasmineConfigClean();
+        jasmineConfigClean(true);
     });
 
-    describe('Component', function() {
+    describe('Component', function () {
 
-        var component;
-
-        beforeEach(function(){
+        beforeEach(function () {
 
             setFixtures(sandbox());
             var frag = testTemplate({
                 user: new User({
-                  "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
+                    "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
                 })
             });
             var sandBox = $('#sandbox');
-            sandBox.html( frag );
+            sandBox.html(frag);
 
             component = sandBox.find('seo-header');
 
         });
 
-        it('initial render', function(){
+        it('initial render', function () {
             expect(component).toExist();
-            expect( $('.global-top-nav', component) ).toExist();
-            expect( $('.global-secondary-nav', component) ).toExist();
         });
     });
 });
