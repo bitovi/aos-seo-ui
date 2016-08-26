@@ -1,7 +1,8 @@
 var can = require('can');
 
-var Model = require('seo-ui/models/url/url');
+var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
+var UrlModel = require('seo-ui/models/url/url');
 
 module.exports = can.Map.extend({
     define: {
@@ -75,18 +76,23 @@ module.exports = can.Map.extend({
                 },
                 {
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part Number',
+                    autocomplete: {
+                        'character-delay': 2,
+                        'key-name': 'partNumber',
+                        'model': 'partNumberModel'
+                    }
                 }
             ]
         },
 
         /**
-         * @property {can.Model} url-list.viewModel.model model
-         * @description The model used by the view.
+         * @property {can.Model} url-list.viewModel.urlModel urlModel
+         * @description The model used to retrieve and display a list of URLs.
          */
-        model: {
+        urlModel: {
             get: function () {
-                return Model;
+                return UrlModel;
             }
         },
 
@@ -97,6 +103,16 @@ module.exports = can.Map.extend({
         pageTitle: {
             type: 'string',
             value: 'URLs'
+        },
+
+        /**
+         * @property {can.Model} url-list.viewModel.partNumberModel partNumberModel
+         * @description A model used for search auto-complete.
+         */
+        partNumberModel: {
+            get: function () {
+                return PartNumberModel;
+            }
         },
 
         /**

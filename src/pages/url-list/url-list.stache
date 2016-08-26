@@ -8,7 +8,7 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     item-link-enabled="false"
-    model="{model}"
+    model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
