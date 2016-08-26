@@ -21,7 +21,15 @@
  * # Use
  *
  * ```
- * <seo-list-page page-title="{pageTitle}" model="{model}" row-template="{rowTemplate}" data-options="{dataOptions}" columns="{columns}" search-field="{searchField}" disable-advanced-search="true"></seo-list-page>
+ * <seo-list-page
+ *     columns="{columns}"
+ *     data-options="{dataOptions}"
+ *     disable-advanced-search="true"
+ *     model="{model}"
+ *     page-title="{pageTitle}"
+ *     row-template="{rowTemplate}"
+ *     search-field="{searchField}"
+ * ></seo-list-page>
  * ```
  */
 
@@ -222,7 +230,7 @@ module.exports = can.Component.extend(
                 var itemData = $row.data('item');
 
                 if (itemData && !expandBtnClicked) {
-                    this.scope.navigateToDetails(itemData);
+                    this.viewModel.navigateToDetails(itemData);
                 }
             }
         }
