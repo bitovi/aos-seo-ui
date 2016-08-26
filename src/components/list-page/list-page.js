@@ -26,8 +26,12 @@
  */
 
 require('pui/components/action-bar-menu/action-bar-menu');
-require('pui/components/grid-column-toggle/grid-column-toggle');
 require('pui/components/filter-menu/filter-menu');
+require('pui/components/grid-column-toggle/grid-column-toggle');
+require('pui/components/grid-list/grid-list');
+require('pui/components/grid-multi-search/grid-multi-search');
+require('pui/components/grid-search/grid-search');
+require('pui/components/pagination/pagination');
 
 var $ = require('jquery');
 var _ = require('lodash');
@@ -82,54 +86,39 @@ module.exports = can.Component.extend(
              * @description Invoked when the component is initialized.
              */
             'init': function () {
-                var count = 0;
-                var key;
-                var multiSearchEnabled;
                 var vm = this.viewModel;
+                var appState = vm.attr('state');
+                var filterFields = vm.attr('filterFields');
+                var filterOptions = new can.Map();
+                var key;
                 var searchFields = vm.attr('searchFields');
-                var searchFilter = new can.Map();
                 var searchQuery = vm.attr('searchQuery');
-                var stateObject = vm.attr('state');
 
-                if (stateObject && stateObject.attr) {
-                    stateObject = stateObject.attr();
+                if (appState && appState.attr) {
+                    // Set up search query from state
+                    appState = appState.attr();
 
-                    // Determine whether the user is performing an advanced search
-                    for (key in stateObject) {
-                        if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                            count += 1;
+                    // Advanced Search
+                    for (key in appState) {
+                        if (appState.hasOwnProperty(key) && appState[key] && filterFields.indexOf(key) > -1) {
+                            filterOptions.attr(key, appState[key]);
                         }
                     }
 
-                    multiSearchEnabled = count > 1;
-                    vm.attr('multiSearchActive', multiSearchEnabled);
-                    vm.attr('multiSearchEnabled', multiSearchEnabled);
-                    vm.attr('searchStateEnabled', !multiSearchEnabled);
+                    vm.attr('searchFilter', filterOptions.attr());
 
-                    // Set up search query from state
-                    if (multiSearchEnabled) {
-                        // Advanced search
-                        for (key in stateObject) {
-                            if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                                searchFilter.attr(key, stateObject[key]);
-                            }
-                        }
+                    // Simple search
+                    for (key in appState) {
+                        if (appState.hasOwnProperty(key) && appState[key] && searchFields.indexOf(key) > -1) {
+                            searchQuery.attr({
+                                field: key,
+                                value: appState[key]
+                            });
 
-                        vm.attr('searchFilter', searchFilter.attr());
-                    } else {
-                        // Simple search
-                        for (key in stateObject) {
-                            if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                                searchQuery.attr({
-                                    field: key,
-                                    value: stateObject[key]
-                                });
+                            vm.attr('searchField', key);
+                            vm.attr('searchValue', appState[key]);
 
-                                vm.attr('searchField', key);
-                                vm.attr('searchValue', stateObject[key]);
-
-                                break;
-                            }
+                            break;
                         }
                     }
                 }
@@ -153,62 +142,62 @@ module.exports = can.Component.extend(
                     vm.removeAttr('state.storage.delayedAlert');
                 }
 
-                if (vm.attr('multiSearchEnabled')) {
-                    $('#multi-search', this.element).collapse('show');
-                }
+                vm.getFilterData();
             },
 
+            '{state} dateRanges': 'searchDidChange',
             '{state} description': 'searchDidChange',
             '{state} pageTitle': 'searchDidChange',
             '{state} partNumber': 'searchDidChange',
+            '{state} regions': 'searchDidChange',
+            '{state} segments': 'searchDidChange',
+            '{state} statuses': 'searchDidChange',
             '{state} url': 'searchDidChange',
 
             searchDidChange: _.debounce(function () {
+                var vm = this.viewModel;
+                var appState = vm.attr('state');
+                var filterFields = vm.attr('filterFields');
                 var i;
                 var key;
-                var vm = this.viewModel;
-                var searchFields = vm.attr('searchFields');
                 var searchFilter = vm.attr('searchFilter');
                 var searchFilterValue;
                 var searchQuery = vm.attr('searchQuery');
                 var searchQueryValue;
-                var state = vm.attr('state');
                 var stateValue;
                 var updatedSearch;
 
-                if (vm.attr('multiSearchEnabled')) {
-                    // Advanced search
-                    for (i = 0; i < searchFields.length; i += 1) {
-                        key = searchFields[i];
-                        searchFilterValue = searchFilter.attr(key) || '';
-                        stateValue = state.attr(key) || '';
+                // Advanced search
+                for (i = 0; i < filterFields.length; i += 1) {
+                    key = filterFields[i];
+                    searchFilterValue = searchFilter.attr(key) || '';
+                    stateValue = appState.attr(key) || '';
 
-                        if (searchFilterValue !== stateValue) {
-                            if (!updatedSearch) {
-                                updatedSearch = {};
-                            }
-
-                            updatedSearch[key] = stateValue;
+                    if (searchFilterValue !== stateValue) {
+                        if (!updatedSearch) {
+                            updatedSearch = {};
                         }
+
+                        updatedSearch[key] = stateValue;
                     }
+                }
 
-                    if (updatedSearch) {
-                        vm.attr('searchFilter', updatedSearch);
-                    }
-                } else {
-                    // Simple search
-                    key = searchQuery.attr('field');
+                if (updatedSearch) {
+                    vm.attr('searchFilter', updatedSearch);
+                }
+                
+                // Simple search
+                key = searchQuery.attr('field');
 
-                    if (key) {
-                        searchQueryValue = searchQuery.attr('value') || '';
-                        stateValue = state.attr(key) || '';
+                if (key) {
+                    searchQueryValue = searchQuery.attr('value') || '';
+                    stateValue = appState.attr(key) || '';
 
-                        if (searchQueryValue !== stateValue) {
-                            vm.attr('searchQuery', {
-                                field: key,
-                                value: stateValue
-                            });
-                        }
+                    if (searchQueryValue !== stateValue) {
+                        vm.attr('searchQuery', {
+                            field: key,
+                            value: stateValue
+                        });
                     }
                 }
             }),
@@ -225,6 +214,33 @@ module.exports = can.Component.extend(
                 if (itemData && !expandBtnClicked) {
                     this.scope.navigateToDetails(itemData);
                 }
+            },
+
+            'pui-filter-menu .btn-default click': function ($el) {
+                var vm = this.viewModel;
+                var filterVm = can.viewModel($el.closest('pui-filter-menu'));
+                var newFilter = {};
+                var searchFilter = vm.attr('searchFilter');
+
+                newFilter[filterVm.attr('parameter')] = filterVm.attr('selectedFilters').toString();
+
+                vm.attr('searchFilter', can.extend(searchFilter.attr(), newFilter));
+
+                // Close Filter Menu
+                filterVm.attr('isMenuOpen', false);
+            },
+
+            'pui-filter-menu .dropdown click': function ($el) {
+                var $filterMenus = $('pui-filter-menu');
+                var clickedFilterVm = can.viewModel($el.closest('pui-filter-menu'));
+
+                can.each($filterMenus, function (filterMenu) {
+                    var filterVm = can.viewModel(filterMenu);
+
+                    if (filterVm !== clickedFilterVm) {
+                        filterVm.attr('isMenuOpen', false);
+                    }
+                });
             }
         }
     }

@@ -127,7 +127,7 @@
             ]
         },
         {
-            "parameter": "dateRange",
+            "parameter": "dateRanges",
             "options": [
                 {
                     "label": "All",

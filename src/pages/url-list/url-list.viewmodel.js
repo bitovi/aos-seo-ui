@@ -1,9 +1,7 @@
 var can = require('can');
 
-require('pui/components/filter-menu/filter-menu');
-
-var Model = require('seo-ui/models/url/url');
 var FilterModel = require('seo-ui/models/url-filter/url-filter');
+var Model = require('seo-ui/models/url/url');
 var rowTemplate = require('./row.stache');
 
 module.exports = can.Map.extend({
@@ -101,13 +99,29 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} url-list.viewModel.model model
-         * @description The model used by the view.
+         * @property {Array<Object>} filterConfig filterConfig
+         * @description Configuration of filters to use.
          */
-        model: {
-            get: function () {
-                return Model;
-            }
+        filterConfig: {
+            value: [
+                {
+                    btnLabel: 'All Segments',
+                    parameter: 'segments'
+                },
+                {
+                    btnLabel: 'All Regions',
+                    parameter: 'regions',
+                    secondaryParameter: 'countries'
+                },
+                {
+                    btnLabel: 'All Statuses',
+                    parameter: 'statuses'
+                },
+                {
+                    btnLabel: 'All Dates',
+                    parameter: 'dateRanges'
+                }
+            ]
         },
 
         /**
@@ -121,39 +135,15 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Object|can.Map} filterData filterData
-         * @description The URL filter data.
+         * @property {can.Model} url-list.viewModel.model model
+         * @description The model used by the view.
          */
-        filterData: {
+        model: {
             get: function () {
-                return this.getFilterData();
+                return Model;
             }
         },
 
-        filterOptions: {
-            Type: can.List
-        },
-
-        /**
-         * @property getFilterOptions
-         * @description gets the filter options matching the paramName
-         */
-        getFilterOptions: {
-            get: function (paramName) {
-                var filterData = this.attr('filterData');
-                var match;
-console.log('filterData:', filterData);
-console.log('paramName:', paramName);
-                if(filterData && paramName) {
-                    match = _.find(filterData.filters, {
-                        'parameter': paramName
-                    });
-                    // The function should always return an array
-                    return new CheckboxList(match ? match.options : []);
-                }
-            }
-        },
-        
         /**
          * @property {String} url-list.viewModel.pageTitle pageTitle
          * @description The page's main header/title.
@@ -183,13 +173,5 @@ console.log('paramName:', paramName);
             type: 'string',
             value: 'url'
         }
-    },
-
-    /**
-     * @function getFilterData
-     * @description retrieves the Filter data from the API via the FilterModel
-     */
-    getFilterData: function () {
-        return this.attr('filterModel').getFilters();
     }
 });

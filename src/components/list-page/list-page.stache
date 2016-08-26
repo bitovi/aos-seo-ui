@@ -16,30 +16,20 @@
 </div>
 
 <div class="list-tools">
-
     {{! Filter Menus }}
     <div class="row filters">
         <div class="col-md-12">
-            <pui-filter-menu
-                button-label="All Segments"
-                {(filter-options)}="getFilterOptions('segments')"
-                placement="bottom"
-            ></pui-filter-menu>
-            <pui-filter-menu
-                button-label="All Regions"
-                {(filter-options)}="getFilterOptions('regions')"
-                placement="bottom"
-            ></pui-filter-menu>
-            <pui-filter-menu
-                button-label="All Statuses"
-                {(filter-options)}="getFilterOptions('statuses')"
-                placement="bottom"
-            ></pui-filter-menu>
-            <pui-filter-menu
-                button-label="All"
-                {(filter-options)}="getFilterOptions('dateRanges')"
-                placement="bottom"
-            ></pui-filter-menu>
+            {{#each filterConfig}}
+                <pui-filter-menu
+                    button-label="{{btnLabel}}"
+                    {(filter-options)}="getFilterOptions('{{parameter}}')"
+                    parameter="{{parameter}}"
+                    placement="bottom"
+                    popover-title="{{menuHeader}}"
+                    {(secondary-filter-options)}="getSecondaryFilterOptions('{{secondaryParameter}}')"
+                    secondary-parameter="{{secondaryParameter}}"
+                ></pui-filter-menu>
+            {{/each}}
         </div>
     </div>
 

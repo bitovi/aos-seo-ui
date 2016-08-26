@@ -1,14 +1,12 @@
-var $ = require('jquery');
-var can = require('can');
-
 require('bootstrap/js/collapse');
 require('can/map/define/define');
 require('can/view/stache/stache');
 
-require('pui/components/grid-list/grid-list');
-require('pui/components/grid-multi-search/grid-multi-search');
-require('pui/components/grid-search/grid-search');
-require('pui/components/pagination/pagination');
+var $ = require('jquery');
+var lodash = require('lodash');
+var can = require('can');
+
+var CheckboxList = require('pui/components/filter-menu/checkbox-list.js');
 
 var templateRenderer = function (newTemplate) {
     return function () {
@@ -44,15 +42,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Boolean} disableAdvancedSearch
-         * @description Determines if the Advanced Search fields should be shown.
-         */
-        disableAdvancedSearch: {
-            type: 'boolean',
-            value: false
-        },
-
-        /**
          * @property {Boolean} disableNewItemButton
          * @description Determines if the new item create button (+) should be shown.
          */
@@ -76,6 +65,22 @@ module.exports = can.Map.extend({
          */
         expandedTemplate: {
             type: templateRenderer
+        },
+
+        /**
+         * @property {Object} filterFields
+         * @description The filter fields.
+         */
+        filterFields: {
+            get: function () {
+                var filterConfig = this.attr('filterConfig');
+
+                if (filterConfig) {
+                    return filterConfig.attr().map(function (filter) {
+                        return filter.parameter;
+                    });
+                }
+            }
         },
 
         /**
@@ -136,29 +141,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Object} searchFilter
-         * @description The current Advanced Search fields and terms.
-         */
-        searchFilter: {
-            Value: can.Map,
-            set: function (searchFilter) {
-                // Update AppState/route
-                var searchFields = this.attr('searchFields');
-                var state = this.attr('state');
-
-                if (state) {
-                    searchFields.forEach(function (searchField) {
-                        state.removeAttr(searchField);
-                    });
-
-                    state.attr(searchFilter.attr());
-                }
-
-                return searchFilter;
-            }
-        },
-
-        /**
          * @property {Object} searchFields
          * @description The search-able fields.
          */
@@ -166,11 +148,35 @@ module.exports = can.Map.extend({
             get: function () {
                 var dataOptions = this.attr('dataOptions');
 
+                // Grid Search fields
                 if (dataOptions) {
                     return dataOptions.attr().map(function (dataOption) {
                         return dataOption.key;
                     });
                 }
+            }
+        },
+
+        /**
+         * @property {Object} searchFilter
+         * @description The current Advanced Search fields and terms.
+         */
+        searchFilter: {
+            Value: can.Map,
+            set: function (searchFilter) {
+                // Update AppState/route
+                var filterFields = this.attr('filterFields');
+                var state = this.attr('state');
+
+                if (state && state.attr) {
+                    filterFields.forEach(function (searchField) {
+                        state.removeAttr(searchField);
+                    });
+
+                    state.attr(searchFilter.attr());
+                }
+
+                return searchFilter;
             }
         },
 
@@ -183,7 +189,10 @@ module.exports = can.Map.extend({
             set: function (searchQuery) {
                 // Update AppState/route
                 var searchField = this.attr('searchField');
+                var searchFilter = this.attr('searchFilter');
                 var state = this.attr('state');
+
+                searchFilter.attr(searchField, searchQuery.attr('value'));
 
                 if (state) {
                     state.attr(searchField, searchQuery.attr('value'));
@@ -222,25 +231,73 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function enableBasicSearch
-     * @description Enables Basic Search and disables, deactivates, and hides Advanced Search.
-     */
-    enableBasicSearch: function () {
-        if (!this.attr('searchStateEnabled')) {
-            this.attr('searchStateEnabled', true);
-            this.attr('multiSearchEnabled', false);
-            this.attr('multiSearchActive', false);
-
-            $('#multi-search').collapse('hide');
-        }
-    },
-
-    /**
      * @function enableNewItemModal
      * @description Shows the new item modal
      */
     enableNewItemModal: function () {
         this.attr('showNewItemModal', true);
+    },
+
+    /**
+     * @function getFilterData
+     * @description retrieves the Filter data from the API via the FilterModel
+     */
+    getFilterData: function () {
+        var filterModel = this.attr('filterModel');
+        var self = this;
+
+        if (filterModel && filterModel.getFilters) {
+            this.attr('filterModel').getFilters()
+                .then(function (filters) {
+                    self.attr('filterData', filters);
+                });
+        }
+    },
+
+    /**
+     * @property getFilterOptions
+     * @description gets the filter options matching the paramName
+     */
+    getFilterOptions: function (paramName) {
+        var filterData = this.attr('filterData');
+        var match;
+
+        if(filterData && paramName) {
+            match = _.find(filterData.filters, function (filter) {
+                if (filter.parameter == paramName) {
+                    _.remove(filter.options, function(option){
+                        return option.value == "all";
+                    });
+                    return filter;
+                }
+            });
+
+            // The function should always return an array
+            return new CheckboxList(match ? match.options.attr() : []);
+        }
+    },
+
+    /**
+     * @property getSecondaryFilterOptions
+     * @description gets the secondary filter options matching the secondary paramName
+     */
+    getSecondaryFilterOptions: function (paramName) {
+        var filterData = this.attr('filterData');
+        var match;
+
+        if(filterData && paramName) {
+            match = _.find(filterData.filters, function (filter) {
+                if (filter.parameter == paramName) {
+                    _.remove(filter.options, function(option){
+                        return option.value == "all";
+                    });
+                    return filter;
+                }
+            });
+
+            // The function should always return an array
+            return new CheckboxList(match ? match.options.attr() : []);
+        }
     },
 
     /**
@@ -261,21 +318,6 @@ module.exports = can.Map.extend({
 
             // Updates the app state and changes the route
             appState.setRouteAttrs(routeData);
-        }
-    },
-
-    /**
-     * @function toggleAdvSearchTab
-     * @description Toggles the enabled states of the Basic and Advanced Search.
-     */
-    toggleAdvSearchTab: function () {
-        var multiSearchEnabled = this.attr('multiSearchEnabled');
-        var searchEnabled = this.attr('searchStateEnabled');
-
-        this.attr('multiSearchEnabled', !multiSearchEnabled);
-
-        if (!this.attr('multiSearchActive')) {
-            this.attr('searchStateEnabled', !searchEnabled);
         }
     }
 });
