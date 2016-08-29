@@ -21,7 +21,15 @@
  * # Use
  *
  * ```
- * <seo-list-page page-title="{pageTitle}" model="{model}" row-template="{rowTemplate}" data-options="{dataOptions}" columns="{columns}" search-field="{searchField}" disable-advanced-search="true"></seo-list-page>
+ * <seo-list-page
+ *     columns="{columns}"
+ *     data-options="{dataOptions}"
+ *     disable-advanced-search="true"
+ *     model="{model}"
+ *     page-title="{pageTitle}"
+ *     row-template="{rowTemplate}"
+ *     search-field="{searchField}"
+ * ></seo-list-page>
  * ```
  */
 
@@ -212,17 +220,25 @@ module.exports = can.Component.extend(
                 var itemData = $row.data('item');
 
                 if (itemData && !expandBtnClicked) {
-                    this.scope.navigateToDetails(itemData);
+                    this.viewModel.navigateToDetails(itemData);
                 }
             },
 
+            /**
+             * @description Event listener executes Filtering
+             * @param {jQuery object} $el the clicked element
+             */
             'pui-filter-menu .btn-default click': function ($el) {
                 var vm = this.viewModel;
                 var filterVm = can.viewModel($el.closest('pui-filter-menu'));
                 var newFilter = {};
                 var searchFilter = vm.attr('searchFilter');
+                var searchParam = (filterVm.attr('parameter') !== "dateRanges") ? filterVm.attr('parameter') : "Date Ranges";
 
-                newFilter[filterVm.attr('parameter')] = filterVm.attr('selectedFilters').toString();
+                newFilter[searchParam] = filterVm.attr('selectedFilters').toString() || "all";
+
+                // Update Button Label with filter values
+                filterVm.attr('buttonLabel', filterVm.attr('selectedFilterLabels').toString() || "All " + searchParam);
 
                 vm.attr('searchFilter', can.extend(searchFilter.attr(), newFilter));
 
@@ -230,6 +246,10 @@ module.exports = can.Component.extend(
                 filterVm.attr('isMenuOpen', false);
             },
 
+            /**
+             * @description Event listener that opens the Filter-menu popover
+             * @param {jQuery object} $el the clicked element
+             */
             'pui-filter-menu .dropdown click': function ($el) {
                 var $filterMenus = $('pui-filter-menu');
                 var clickedFilterVm = can.viewModel($el.closest('pui-filter-menu'));

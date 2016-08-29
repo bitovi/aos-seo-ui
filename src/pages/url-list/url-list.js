@@ -6,6 +6,7 @@ var template = require('./url-list.stache!');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
+require('seo-ui/components/export-urls/export-urls');
 require('seo-ui/components/list-page/list-page');
 
 module.exports = can.Component.extend({

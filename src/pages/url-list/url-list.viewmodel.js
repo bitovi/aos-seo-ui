@@ -2,36 +2,12 @@ var can = require('can');
 
 var FilterModel = require('seo-ui/models/url-filter/url-filter');
 var Model = require('seo-ui/models/url/url');
+var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
+var UrlModel = require('seo-ui/models/url/url');
 
 module.exports = can.Map.extend({
     define: {
-        /**
-         * @property {Array<can.Map>} url-list.viewModel.actionBar actionBar
-         * @description Function wrappers for the action bar component.
-         */
-        actionBar: {
-            Value: Array,
-            get: function () {
-                var actionBar = [];
-
-                actionBar.push({
-                    dropDowns: [
-                        {
-                            label: 'Export Nemo-Ready File'
-                        },
-                        {
-                            label: 'Export Current View (.CSV)'
-                        }
-                    ],
-                    title: 'Export',
-                    type: 'download'
-                });
-
-                return actionBar;
-            }
-        },
-
         /**
          * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
@@ -78,6 +54,15 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Number} url-list.viewmodel.count count
+         * @description The number of records being returned.
+         */
+        count: {
+            value: 0,
+            type: 'number'
+        },
+
+        /**
          * @property {Array<can.Map>} url-list.viewModel.dataOptions dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
@@ -93,7 +78,12 @@ module.exports = can.Map.extend({
                 },
                 {
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part Number',
+                    autocomplete: {
+                        'character-delay': 2,
+                        'key-name': 'partNumber',
+                        'model': 'partNumberModel'
+                    }
                 }
             ]
         },
@@ -118,7 +108,7 @@ module.exports = can.Map.extend({
                     parameter: 'statuses'
                 },
                 {
-                    btnLabel: 'All Dates',
+                    btnLabel: 'All Date Ranges',
                     parameter: 'dateRanges'
                 }
             ]
@@ -135,12 +125,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} url-list.viewModel.model model
-         * @description The model used by the view.
+         * @property {can.Model} url-list.viewModel.urlModel urlModel
+         * @description The model used to retrieve and display a list of URLs.
          */
-        model: {
+        urlModel: {
             get: function () {
-                return Model;
+                return UrlModel;
             }
         },
 
@@ -151,6 +141,16 @@ module.exports = can.Map.extend({
         pageTitle: {
             type: 'string',
             value: 'URLs'
+        },
+
+        /**
+         * @property {can.Model} url-list.viewModel.partNumberModel partNumberModel
+         * @description A model used for search auto-complete.
+         */
+        partNumberModel: {
+            get: function () {
+                return PartNumberModel;
+            }
         },
 
         /**

@@ -37,7 +37,7 @@
         {{! Basic Search }}
         <div class="col-md-5">
             <pui-grid-search
-                can-click="enableBasicSearch"
+                ($click)="enableBasicSearch"
                 data-options="{dataOptions}"
                 search-field="{searchField}"
                 search-query="{searchQuery}"
@@ -52,8 +52,8 @@
                 <button
                     aria-controls="multi-search"
                     aria-expanded="{{#if multiSearchEnabled}}true{{/if}}{{^if multiSearchEnabled}}false{{/if}}"
-                    can-click="toggleAdvSearchTab"
                     class="btn btn-link btn-adv-search {{#if multiSearchEnabled}}enabled{{/if}} {{#if multiSearchActive}}on{{/if}}"
+                    ($click)="toggleAdvSearchTab"
                     data-target="#multi-search"
                     data-toggle="collapse"
                 >

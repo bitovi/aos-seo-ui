@@ -1,8 +1,4 @@
 seo-url-list {
-    pui-action-bar {
-        margin-top: 2rem;
-    }
-
     .label.keypath {
         display: inline-block;
         font-size: @font-size-small;
@@ -29,12 +25,10 @@ seo-url-list {
     pui-filter-menu {
         display: inline-block;
 
-        .popover:nth-child(2) {
-            .popover-content {
-                width: 500px;
-            }
+        .filter-trigger-button-label {
+            text-transform: capitalize;
         }
-        
+
         // Green label
         .added-label {
             .label;
@@ -54,6 +48,18 @@ seo-url-list {
             .label;
             .label-alt;
             .label-danger;
+        }
+    }
+
+    pui-filter-menu:nth-child(2) {
+        .popover-content {
+            width: 400px;
+
+            .secondaryFilterOptions {
+                height: 560px;
+                overflow: scroll;
+                margin: 0 0 25px 35px;
+            }
         }
     }
 }
