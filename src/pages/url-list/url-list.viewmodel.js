@@ -7,32 +7,6 @@ var UrlModel = require('seo-ui/models/url/url');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Array<can.Map>} url-list.viewModel.actionBar actionBar
-         * @description Function wrappers for the action bar component.
-         */
-        actionBar: {
-            Value: Array,
-            get: function () {
-                var actionBar = [];
-
-                actionBar.push({
-                    dropDowns: [
-                        {
-                            label: 'Export Nemo-Ready File'
-                        },
-                        {
-                            label: 'Export Current View (.CSV)'
-                        }
-                    ],
-                    title: 'Export',
-                    type: 'download'
-                });
-
-                return actionBar;
-            }
-        },
-
-        /**
          * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
@@ -75,6 +49,15 @@ module.exports = can.Map.extend({
                     label: 'Country'
                 }
             ]
+        },
+
+        /**
+         * @property {Number} url-list.viewmodel.count count
+         * @description The number of records being returned.
+         */
+        count: {
+            value: 0,
+            type: 'number'
         },
 
         /**

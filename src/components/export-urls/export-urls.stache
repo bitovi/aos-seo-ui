@@ -1,0 +1,7 @@
+<pui-action-bar-menu action-scope="{.}">
+    <pui-action-bar-dropdown icon="download" tooltip-title="Export">
+        <pui-action-bar-item menu-heading="Export {{count}} URLs in:"></pui-action-bar-item>
+        <pui-action-bar-item action="exportNemoReadyFile">Nemo Ready File</pui-action-bar-item>
+        <pui-action-bar-item action="exportCsv">Current View (.csv)</pui-action-bar-item>
+    </pui-action-bar-dropdown>
+</pui-action-bar-menu>
