@@ -57,8 +57,6 @@ describe('Header', function () {
             $('#sandbox').html(frag);
 
             component = $('#sandbox seo-header');
-            debugger;
-            scope = component.data('scope');
             expect(component.find('.read-only-label')).toExist();
         });
     });
