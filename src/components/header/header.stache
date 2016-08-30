@@ -6,9 +6,9 @@
 
         <div class="navbar-collapse collapse navbar-inverse-collapse">
             <div class="navbar-right">
-                {{#doesNotHaveAction user 'edit'}}
+                {{^userHasAction 'edit'}}
                     <span class="read-only-label">Read Only</span>
-                {{/doesNotHaveAction}}
+                {{/userHasAction}}
                 <seo-user-menu user-data="{user}">
                     <li><a class="check-saved-state-js" href="{{logoutUrl}}">Logout</a></li>
                 </seo-user-menu>
