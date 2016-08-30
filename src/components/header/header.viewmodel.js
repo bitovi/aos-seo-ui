@@ -47,7 +47,7 @@ var ViewModel = can.Map.extend({
     userHasAction: function (action, options) {
         var user = this.attr('state.user');
         user = can.isFunction(user) ? user() : user;
-        return (user.hasAction(action)) ? options.fn(this) : options.inverse(this);
+        return user.hasAction(action) ? options.fn(this) : options.inverse(this);
     }
 
 });
