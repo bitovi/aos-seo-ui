@@ -39,7 +39,6 @@ var ViewModel = can.Map.extend({
     /**
      * @function header.viewModel.userHasAction userHasAction
      * @description Checks  the user permissions
-     * @param {Object} user instance of an user
      * @param {String} action action that we are passing to check users permissions
      * @param {Object} options current context
      * @return {Boolean} user permission to access the app
