@@ -18,20 +18,18 @@
 <div class="list-tools">
     {{! Filter Menus }}
     <div class="row filters">
-        <div class="col-md-12">
-            {{#each filterConfig}}
-                <pui-filter-menu
-                    button-label="{{btnLabel}}"
-                    {(filter-options)}="getFilterOptions('{{parameter}}', '{{inputType}}')"
-                    parameter="{{parameter}}"
-                    input-type="{{inputType}}"
-                    placement="bottom"
-                    popover-title="{{menuHeader}}"
-                    {(secondary-filter-options)}="getSecondaryFilterOptions('{{secondaryParameter}}')"
-                    secondary-parameter="{{secondaryParameter}}"
-                ></pui-filter-menu>
-            {{/each}}
-        </div>
+        {{#each filterConfig}}
+            <pui-filter-menu
+                button-label="{{btnLabel}}"
+                {(filter-options)}="getFilterOptions('{{parameter}}', '{{inputType}}')"
+                parameter="{{parameter}}"
+                input-type="{{inputType}}"
+                placement="bottom"
+                popover-title="{{menuHeader}}"
+                {(secondary-filter-options)}="getSecondaryFilterOptions('{{secondaryParameter}}')"
+                secondary-parameter="{{secondaryParameter}}"
+            ></pui-filter-menu>
+        {{/each}}
     </div>
 
     <div class="row">

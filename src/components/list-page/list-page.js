@@ -237,9 +237,6 @@ module.exports = can.Component.extend(
 
                 newFilter[searchParam] = filterVm.attr('selectedFilters').toString() || 'all';
 
-                // Update Button Label with filter values
-                filterVm.attr('buttonLabel', filterVm.attr('selectedFilterLabels').toString() || "All " + searchParam);
-
                 vm.attr('searchFilter', can.extend(searchFilter.attr(), newFilter));
 
                 // Close Filter Menu

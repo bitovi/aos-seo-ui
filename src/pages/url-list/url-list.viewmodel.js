@@ -96,21 +96,25 @@ module.exports = can.Map.extend({
             value: [
                 {
                     btnLabel: 'All Segments',
-                    parameter: 'segments'
+                    parameter: 'segments',
+                    menuHeader: 'Segment:'
                 },
                 {
                     btnLabel: 'All Regions',
                     parameter: 'regions',
-                    secondaryParameter: 'countries'
+                    secondaryParameter: 'countries',
+                    menuHeader: 'Region:'
                 },
                 {
                     btnLabel: 'All Statuses',
-                    parameter: 'statuses'
+                    parameter: 'statuses',
+                    menuHeader: 'Status:'
                 },
                 {
                     btnLabel: 'All Date Ranges',
                     parameter: 'dateRanges',
-                    inputType: 'radio'
+                    inputType: 'radio',
+                    menuHeader: 'Date Range:'
                 }
             ]
         },

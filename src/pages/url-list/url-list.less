@@ -26,45 +26,32 @@ seo-url-list {
         }
     }
 
-    pui-filter-menu {
-        display: inline-block;
+    // Green label
+    .added-label {
+        .label;
+        .label-alt;
+        .label-success;
+    }
+    
+    // Blue label
+    .modified-label {
+        .label;
+        .label-alt;
+        .label-primary;
+    }
 
-        .filter-trigger-button-label {
-            text-transform: capitalize;
-        }
-
-        .icon-chevron {
-            position: relative;
-            bottom: 5px;
-        }
-
-        // Green label
-        .added-label {
-            .label;
-            .label-alt;
-            .label-success;
-        }
-        
-        // Blue label
-        .modified-label {
-            .label;
-            .label-alt;
-            .label-primary;
-        }
-
-        // Red label
-        .end-of-life-label {
-            .label;
-            .label-alt;
-            .label-danger;
-        }
+    // Red label
+    .end-of-life-label {
+        .label;
+        .label-alt;
+        .label-danger;
     }
 
     .regions-popover {
         .popover-content {
             width: 400px;
 
-            .secondaryFilterOptions {
+            .secondary-filter-options {
                 height: 560px;
                 overflow-y: scroll;
                 margin: 0 0 25px 35px;
