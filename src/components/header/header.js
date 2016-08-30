@@ -25,7 +25,7 @@ module.exports = can.Component.extend({
     },
     helpers: {
         /**
-         * @function header.viewModel.userHasAction userHasAction
+         * @function header.userHasAction userHasAction
          * @description Checks  the user permissions
          * @param {String} action action that we are passing to check users permissions
          * @param {Object} options current context
