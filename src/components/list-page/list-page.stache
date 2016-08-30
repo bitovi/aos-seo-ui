@@ -22,8 +22,9 @@
             {{#each filterConfig}}
                 <pui-filter-menu
                     button-label="{{btnLabel}}"
-                    {(filter-options)}="getFilterOptions('{{parameter}}')"
+                    {(filter-options)}="getFilterOptions('{{parameter}}', '{{inputType}}')"
                     parameter="{{parameter}}"
+                    input-type="{{inputType}}"
                     placement="bottom"
                     popover-title="{{menuHeader}}"
                     {(secondary-filter-options)}="getSecondaryFilterOptions('{{secondaryParameter}}')"

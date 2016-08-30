@@ -233,9 +233,9 @@ module.exports = can.Component.extend(
                 var filterVm = can.viewModel($el.closest('pui-filter-menu'));
                 var newFilter = {};
                 var searchFilter = vm.attr('searchFilter');
-                var searchParam = (filterVm.attr('parameter') !== "dateRanges") ? filterVm.attr('parameter') : "Date Ranges";
+                var searchParam = (filterVm.attr('parameter') !== 'dateRanges') ? filterVm.attr('parameter') : 'Date Ranges';
 
-                newFilter[searchParam] = filterVm.attr('selectedFilters').toString() || "all";
+                newFilter[searchParam] = filterVm.attr('selectedFilters').toString() || 'all';
 
                 // Update Button Label with filter values
                 filterVm.attr('buttonLabel', filterVm.attr('selectedFilterLabels').toString() || "All " + searchParam);

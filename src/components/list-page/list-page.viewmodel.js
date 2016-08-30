@@ -7,6 +7,7 @@ var lodash = require('lodash');
 var can = require('can');
 
 var CheckboxList = require('pui/components/filter-menu/checkbox-list.js');
+var RadioButtonList = require('pui/components/filter-menu/radiobutton-list.js');
 
 var templateRenderer = function (newTemplate) {
     return function () {
@@ -258,7 +259,7 @@ module.exports = can.Map.extend({
      * @property getFilterOptions
      * @description gets the filter options matching the paramName
      */
-    getFilterOptions: function (paramName) {
+    getFilterOptions: function (paramName, inputType) {
         var filterData = this.attr('filterData');
         var match;
 
@@ -273,7 +274,11 @@ module.exports = can.Map.extend({
             });
 
             // The function should always return an array
-            return new CheckboxList(match ? match.options.attr() : []);
+            if (inputType === 'radio') {
+                return new RadioButtonList(match ? match.options.attr() : []);
+            } else {
+                return new CheckboxList(match ? match.options.attr() : []);
+            }
         }
     },
 

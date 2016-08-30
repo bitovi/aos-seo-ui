@@ -109,7 +109,8 @@ module.exports = can.Map.extend({
                 },
                 {
                     btnLabel: 'All Date Ranges',
-                    parameter: 'dateRanges'
+                    parameter: 'dateRanges',
+                    inputType: 'radio'
                 }
             ]
         },
