@@ -31,9 +31,11 @@ describe('Header', function () {
 
             setFixtures(sandbox());
             var frag = testTemplate({
-                user: new User({
-                    "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
-                })
+                state: {
+                    user: new User({
+                        "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
+                    })
+                }
             });
             var sandBox = $('#sandbox');
             sandBox.html(frag);
@@ -50,9 +52,11 @@ describe('Header', function () {
 
         it('Renders users Readonly mode', function () {
             var frag = testTemplate({
-                user: new User({
-                    "roles": ["ROLE_USER_READONLY"]
-                })
+                state: {
+                    user: new User({
+                        "roles": ["ROLE_USER_READONLY"]
+                    })
+                }
             });
             $('#sandbox').html(frag);
 
