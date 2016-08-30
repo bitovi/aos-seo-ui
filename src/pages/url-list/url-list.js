@@ -1,5 +1,4 @@
 var can = require('can');
-var $ = require('jquery');
 
 var ViewModel = require('./url-list.viewmodel');
 var template = require('./url-list.stache!');

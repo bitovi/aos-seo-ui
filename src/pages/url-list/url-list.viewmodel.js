@@ -1,7 +1,6 @@
 var can = require('can');
 
 var FilterModel = require('seo-ui/models/url-filter/url-filter');
-var Model = require('seo-ui/models/url/url');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');

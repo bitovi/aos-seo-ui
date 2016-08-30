@@ -21,7 +21,7 @@
         {{#each filterConfig}}
             <pui-filter-menu
                 button-label="{{btnLabel}}"
-                {(filter-options)}="getFilterOptions('{{parameter}}', '{{inputType}}')"
+                {(filter-options)}="getFilterOptions('{{parameter}}')"
                 parameter="{{parameter}}"
                 input-type="{{inputType}}"
                 placement="bottom"
