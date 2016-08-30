@@ -31,7 +31,7 @@ if (envVars.isDeployedBuild() === 'false') {
             'email': 'seo_user@apple.com',
             'initials': 'SU'
         },
-        'roles': ['ROLE_USER', 'ROLE_ADMIN'],
+        'roles': ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_USER_READONLY'],
         'csrfToken': 'n3m0-r0ck5',
         'csrfHeader': 'X-AOS-CSRF',
         'csrfParameter': '_aos_csrf'
