@@ -34,19 +34,6 @@ var ViewModel = can.Map.extend({
     link: function (url) {
         url = url && url.isComputed ? url() : '';
         return envVars.rootApp() + '/' + url;
-    },
-
-    /**
-     * @function header.viewModel.userHasAction userHasAction
-     * @description Checks  the user permissions
-     * @param {String} action action that we are passing to check users permissions
-     * @param {Object} options current context
-     * @return {String} user permission to access the app
-     */
-    userHasAction: function (action, options) {
-        var user = this.attr('state.user');
-        user = can.isFunction(user) ? user() : user;
-        return user.hasAction(action) ? options.fn(this) : options.inverse(this);
     }
 
 });
