@@ -193,7 +193,7 @@ module.exports = can.Component.extend(
                 if (updatedSearch) {
                     vm.attr('searchFilter', updatedSearch);
                 }
-                
+
                 // Simple search
                 key = searchQuery.attr('field');
 

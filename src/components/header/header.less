@@ -1,25 +1,22 @@
 seo-header {
-  .global-secondary-nav {
-    padding-left: 10px;
-    .selected-tab,
-    .selected-tab:hover,
-    .selected-tab:focus {
-      height: 45px;
+    .global-secondary-nav {
+        padding-left: 10px;
+
+        .navbar-nav > li > a {
+            padding-top: 13.5px;
+        }
     }
-    .navbar-nav > li > a {
-      padding-top: 13.5px;
+
+    .read-only-label {
+        display: block;
+        float: left;
+        margin-right: @padding-xs-horizontal;
+        margin-top: 18px;
+        border-radius: @border-radius-large;
+        color: @pacific;
+        background-color: @orca;
+        font-size: @font-size-small;
+        text-align: center;
+        padding: 5px 8px;
     }
-    .navbar-nav > li > .dropdown {
-      height: 100px;
-    }
-  }
-  .sec-nav {
-    height: 45px;
-    .dropdown.open {
-      .utilities,
-      .icon-chevron {
-        color: @whiteTip;
-      }
-    }
-  }
 }

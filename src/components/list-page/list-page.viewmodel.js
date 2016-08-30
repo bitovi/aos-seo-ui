@@ -2,8 +2,7 @@ require('bootstrap/js/collapse');
 require('can/map/define/define');
 require('can/view/stache/stache');
 
-var $ = require('jquery');
-var lodash = require('lodash');
+var _ = require('lodash');
 var can = require('can');
 
 var CheckboxList = require('pui/components/filter-menu/checkbox-list.js');
@@ -263,11 +262,11 @@ module.exports = can.Map.extend({
         var filterData = this.attr('filterData');
         var match;
 
-        if(filterData && paramName) {
+        if (filterData && paramName) {
             match = _.find(filterData.filters, function (filter) {
-                if (filter.parameter == paramName) {
-                    _.remove(filter.options, function(option){
-                        return option.value == "all";
+                if (filter.parameter === paramName) {
+                    _.remove(filter.options, function(option) {
+                        return option.value === 'all';
                     });
                     return filter;
                 }
@@ -290,11 +289,11 @@ module.exports = can.Map.extend({
         var filterData = this.attr('filterData');
         var match;
 
-        if(filterData && paramName) {
+        if (filterData && paramName) {
             match = _.find(filterData.filters, function (filter) {
-                if (filter.parameter == paramName) {
-                    _.remove(filter.options, function(option){
-                        return option.value == "all";
+                if (filter.parameter === paramName) {
+                    _.remove(filter.options, function(option) {
+                        return option.value === 'all';
                     });
                     return filter;
                 }
