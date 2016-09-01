@@ -96,17 +96,20 @@ module.exports = can.Map.extend({
                 {
                     btnLabel: 'All Segments',
                     parameter: 'segments',
+                    inputType: 'checkbox',
                     menuHeader: 'Segment:'
                 },
                 {
                     btnLabel: 'All Regions',
                     parameter: 'regions',
                     secondaryParameter: 'countries',
+                    inputType: 'checkbox',
                     menuHeader: 'Region:'
                 },
                 {
                     btnLabel: 'All Statuses',
                     parameter: 'statuses',
+                    inputType: 'checkbox',
                     menuHeader: 'Status:'
                 },
                 {
