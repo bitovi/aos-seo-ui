@@ -26,7 +26,6 @@
                 input-type="{{inputType}}"
                 placement="bottom"
                 popover-title="{{menuHeader}}"
-                {(secondary-filter-options)}="getSecondaryFilterOptions('{{secondaryParameter}}')"
                 secondary-parameter="{{secondaryParameter}}"
             ></pui-filter-menu>
         {{/each}}

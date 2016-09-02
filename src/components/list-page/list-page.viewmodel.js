@@ -73,7 +73,6 @@ module.exports = can.Map.extend({
         filterFields: {
             get: function () {
                 var filterConfig = this.attr('filterConfig');
-
                 if (filterConfig) {
                     return filterConfig.attr().map(function (filter) {
                         return filter.parameter;
@@ -264,31 +263,6 @@ module.exports = can.Map.extend({
         if (filterData && paramName) {
             match = _.find(filterData.filters, function (filter) {
                 if (filter.parameter === paramName) {
-                    _.remove(filter.options, function(option) {
-                        return option.value === 'all';
-                    });
-                    return filter;
-                }
-            });
-
-            return new CheckboxList(match ? match.options.attr() : []);
-        }
-    },
-
-    /**
-     * @property getSecondaryFilterOptions
-     * @description gets the secondary filter options matching the secondary paramName
-     */
-    getSecondaryFilterOptions: function (paramName) {
-        var filterData = this.attr('filterData');
-        var match;
-
-        if (filterData && paramName) {
-            match = _.find(filterData.filters, function (filter) {
-                if (filter.parameter === paramName) {
-                    _.remove(filter.options, function(option) {
-                        return option.value === 'all';
-                    });
                     return filter;
                 }
             });
