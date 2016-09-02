@@ -18,7 +18,6 @@ module.exports = can.Component.extend({
 
             if (state) {
                 state.attr({
-                    order: 'asc',
                     sort: 'partNumber'
                 });
             }
