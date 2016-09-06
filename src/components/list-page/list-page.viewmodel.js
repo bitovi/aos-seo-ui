@@ -165,7 +165,7 @@ module.exports = can.Map.extend({
         searchFields: {
             get: function () {
                 var dataOptions = this.attr('dataOptions');
-
+                console.log(JSON.stringify(dataOptions)+"==dataOptions");
                 if (dataOptions) {
                     return dataOptions.attr().map(function (dataOption) {
                         return dataOption.key;

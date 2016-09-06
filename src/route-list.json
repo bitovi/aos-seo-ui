@@ -14,11 +14,14 @@
         },
         "title": "SEO",
         "params": {
-            "page": "url-list",
             "limit": 25,
             "order": "asc",
+            "page": "url-list",
             "pageNumber": 1,
-            "sort": "partNumber"
+            "pageTitle": "",
+            "partNumber": "",
+            "sort": "partNumber",
+            "url": ""
         },
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "URLs"
