@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var can = require('can');
 
 require('bootstrap/js/collapse');
@@ -6,7 +5,6 @@ require('can/map/define/define');
 require('can/view/stache/stache');
 
 require('pui/components/grid-list/grid-list');
-require('pui/components/grid-multi-search/grid-multi-search');
 require('pui/components/grid-search/grid-search');
 require('pui/components/pagination/pagination');
 
@@ -90,24 +88,6 @@ module.exports = can.Map.extend({
          */
         model: {
             type: '*'
-        },
-
-        /**
-         * @property {Boolean} multiSearchActive
-         * @description Determines if an Advanced Search is being applied.
-         */
-        multiSearchActive: {
-            type: 'boolean',
-            value: false
-        },
-
-        /**
-         * @property {Boolean} multiSearchEnabled
-         * @description Determines if the Advanced Search is open.
-         */
-        multiSearchEnabled: {
-            type: 'boolean',
-            value: false
         },
 
         /**
@@ -228,10 +208,6 @@ module.exports = can.Map.extend({
     enableBasicSearch: function () {
         if (!this.attr('searchStateEnabled')) {
             this.attr('searchStateEnabled', true);
-            this.attr('multiSearchEnabled', false);
-            this.attr('multiSearchActive', false);
-
-            $('#multi-search').collapse('hide');
         }
     },
 
@@ -262,20 +238,6 @@ module.exports = can.Map.extend({
             // Updates the app state and changes the route
             appState.setRouteAttrs(routeData);
         }
-    },
-
-    /**
-     * @function toggleAdvSearchTab
-     * @description Toggles the enabled states of the Basic and Advanced Search.
-     */
-    toggleAdvSearchTab: function () {
-        var multiSearchEnabled = this.attr('multiSearchEnabled');
-        var searchEnabled = this.attr('searchStateEnabled');
-
-        this.attr('multiSearchEnabled', !multiSearchEnabled);
-
-        if (!this.attr('multiSearchActive')) {
-            this.attr('searchStateEnabled', !searchEnabled);
-        }
     }
+
 });
