@@ -31,8 +31,7 @@ module.exports = can.Map.extend({
                 {
                     cssClass: 'col-md-3',
                     key: 'description',
-                    label: 'Description',
-                    isHidden: true
+                    label: 'Description'
                 },
                 {
                     cssClass: 'col-md-1',

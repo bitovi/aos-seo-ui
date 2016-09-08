@@ -11,17 +11,5 @@ require('seo-ui/components/list-page/list-page');
 module.exports = can.Component.extend({
     tag: 'seo-url-list',
     template: template,
-    viewModel: ViewModel,
-    events: {
-        'inserted': function () {
-            var state = this.viewModel.attr('state');
-
-            if (state) {
-                state.attr({
-                    order: 'asc',
-                    sort: 'partNumber'
-                });
-            }
-        }
-    }
+    viewModel: ViewModel
 });

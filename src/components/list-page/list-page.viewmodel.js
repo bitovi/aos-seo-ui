@@ -96,24 +96,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Boolean} multiSearchActive
-         * @description Determines if an Advanced Search is being applied.
-         */
-        multiSearchActive: {
-            type: 'boolean',
-            value: false
-        },
-
-        /**
-         * @property {Boolean} multiSearchEnabled
-         * @description Determines if the Advanced Search is open.
-         */
-        multiSearchEnabled: {
-            type: 'boolean',
-            value: false
-        },
-
-        /**
          * @property {String} pageTitle
          * @description The title/header of the list page.
          */
@@ -252,6 +234,12 @@ module.exports = can.Map.extend({
         }
     },
 
+    enableBasicSearch: function () {
+        if (!this.attr('searchStateEnabled')) {
+            this.attr('searchStateEnabled', true);
+        }
+    },
+
     /**
      * @property getFilterOptions
      * @description gets the filter options matching the paramName
@@ -292,4 +280,5 @@ module.exports = can.Map.extend({
             appState.setRouteAttrs(routeData);
         }
     }
+
 });
