@@ -4,6 +4,7 @@ require('can/view/stache/stache');
 
 var _ = require('lodash');
 var can = require('can');
+var moment = require('moment');
 
 var CheckboxList = require('pui/components/filter-menu/checkbox-list.js');
 
@@ -207,7 +208,126 @@ module.exports = can.Map.extend({
         showNewItemModal: {
             type: 'boolean',
             value: false
+        },
+
+        /** DATE PROPERTIES */
+        /**
+         * @property {String} api.components.filter-menu.viewmodel.params params
+         * @description Parmateres to use to store Custom Date Range form input.
+         */
+        params: {
+            value: {}
+        },
+
+        /**
+         * @property {String} api.components.filter-menu.viewmodel.dateMask dateMask
+         * @description Date mask to use on user visible dates.
+         * @option {String} Default is MM/DD/YYYY.
+         */
+        dateMask: {
+            value: 'MM/DD/YYYY',
+            type: 'string'
+        },
+
+        /**
+         * @property {String} api.components.filter-menu.viewmodel.startDate startDate
+         * @description The value of the start date from the date range section.
+         * @option {String} Default is empty string.
+         */
+        startDate: {
+            set: function(val) {
+                var start = moment(val);
+                var end = moment(this.attr('endDate'));
+
+                if (!start.isValid()) {
+                    this.attr('dateError', 'Please enter a valid start date.');
+                    return val;
+                }
+
+                if (end.isValid() && !start.isSame(end) && !start.isBefore(end)) {
+                    this.attr('dateError', 'The end date needs to occur after the start date.');
+                    return val;
+                }
+
+                this.attr('dateError', '');
+                this.attr('params').attr('from', moment.utc(val).valueOf());
+            },
+            get: function() {
+                var params = this.attr('params');
+                var startDate = params.attr('from') ? params.attr('from') : '';
+
+                return (startDate === '') ? startDate : moment.utc(startDate).format(this.attr('dateMask'));
+            },
+            validate: {
+                mustValidate: true,
+                date: true
+            }
+        },
+
+        /**
+         * @property {String} api.components.filter-menu.viewmodel.endDate endDate
+         * @description The value of the end date from the date range section.
+         * @option {String} Default is empty string.
+         */
+        endDate: {
+            set: function(val) {
+                var end = moment(val);
+                var start = moment(this.attr('startDate'));
+
+                if (!end.isValid()) {
+                    this.attr('dateError', 'Please enter a valid end date.');
+                    return val;
+                }
+                if (start.isValid() && !start.isSame(end) && !start.isBefore(end)) {
+                    this.attr('dateError', 'The end date needs to occur after the start date.');
+                    return val;
+                }
+                this.attr('dateError', '');
+                this.attr('params').attr('to', moment.utc(val).valueOf());
+            },
+            get: function() {
+                var params = this.attr('params');
+                var endDate = params.attr('to') ? params.attr('to') : '';
+
+                return (endDate === '') ? endDate : moment.utc(endDate).format(this.attr('dateMask'));
+            },
+            validate: {
+                mustValidate: true,
+                date: true
+            }
+        },
+
+        /**
+         * @property {String} api.components.filter-menu.viewmodel.dateError dateError
+         * @description Stores data parse error.
+         * @option {String} Default is '' (empty string).
+         */
+        dateError: {
+            value: '',
+            type: 'string'
+        },
+
+        /**
+         * @property {boolean} api.components.filter-menu.viewmodel.datesOpen datesOpen
+         * @description Maintains state of date visibility.
+         * @option {boolean} Default is `false`.
+         */
+        datesOpen: {
+            value: false,
+            type: 'boolean'
+        },
+
+        /**
+         * @function api.components.filter-menu.viewmodel.dateInfo dateInfo
+         * @description Processes date ranges into strings.
+         * @return {String} Returns the date range as a string.
+         */
+        dateInfo: {
+            get: function() {
+                return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm:ss[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm:ss[Z]');
+            }
         }
+        /** END DATE PROPERTIES */
     },
 
     /**

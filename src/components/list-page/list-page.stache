@@ -27,7 +27,42 @@
                 placement="bottom"
                 popover-title="{{menuHeader}}"
                 secondary-parameter="{{secondaryParameter}}"
-            ></pui-filter-menu>
+            >
+                <div class="custom-range-selector hide">
+                    <div class="form-group">
+                        <label for="start-date">From:</label>
+                        <pui-date-picker
+                            date-string="{startDate}"
+                            max-date="{endDate}"
+                            placement="bottom"
+                        >
+                            <input
+                                class="form-control"
+                                id="start-date"
+                                type="text"
+                                name="start-date"
+                                can-value="{startDate}"
+                            >
+                        </pui-date-picker>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">To:</label>
+                        <pui-date-picker
+                            date-string="{endDate}"
+                            min-date="{startDate}"
+                            placement="bottom"
+                        >
+                            <input
+                                class="form-control"
+                                id="end-date"
+                                type="text"
+                                name="end-date"
+                                can-value="{endDate}"
+                            >
+                        </pui-date-picker>
+                    </div>
+                </div>
+            </pui-filter-menu>
         {{/each}}
     </div>
 
