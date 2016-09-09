@@ -25,7 +25,7 @@
                 search-field="{searchField}"
                 search-query="{searchQuery}"
                 search-state-enabled="{searchStateEnabled}"
-                search-value="{searchValue}"
+                search-value="{state.urlListSearchValue}"
             ></pui-grid-search>
         </div>
 

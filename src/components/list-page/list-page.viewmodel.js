@@ -183,15 +183,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} searchValue
-         * @description The current Basic Search term.
-         */
-        searchValue: {
-            type: 'string',
-            value: ''
-        },
-
-        /**
          * @property {Boolean} showNewItemModal
          * @description Determines if the New Item Modal is displayed.
          */

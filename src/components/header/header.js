@@ -14,6 +14,7 @@ module.exports = can.Component.extend({
     events: {
         '.check-saved-state-js click': function ($el, ev) {
             var self = this;
+            this.viewModel.attr('state.urlListSearchValue', '');
             var isUnsaved = this.viewModel.attr('state.unsaved');
             if (isUnsaved) {
                 saveChangesModal($el, ev, function go() {

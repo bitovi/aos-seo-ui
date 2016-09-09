@@ -19,8 +19,24 @@ var Layout = can.Map.extend({
 
 module.exports = can.Map.extend({
     define: {
-        page: {
-            type: 'string'
+        alert: {
+            serialize: false,
+            set: function (newVal) {
+                this.attr('isAlertVisible', Boolean(newVal));
+                return newVal;
+            },
+            type: '*'
+        },
+
+        error: {
+            serialize: false,
+            type: '*'
+        },
+
+        isAlertVisible: {
+            serialize: false,
+            type: 'boolean',
+            value: false
         },
 
         layoutState: {
@@ -38,29 +54,8 @@ module.exports = can.Map.extend({
             Type: Layout,
             serialize: false
         },
-
-        error: {
-            serialize: false,
-            type: '*'
-        },
-
-        isAlertVisible: {
-            serialize: false,
-            type: 'boolean',
-            value: false
-        },
-
-        alert: {
-            serialize: false,
-            set: function (newVal) {
-                this.attr('isAlertVisible', Boolean(newVal));
-                return newVal;
-            },
-            type: '*'
-        },
-        user: {
-            Type: User,
-            serialize: false
+        page: {
+            type: 'string'
         },
 
         /**
@@ -73,7 +68,23 @@ module.exports = can.Map.extend({
             value: function () {
                 return {};
             }
+        },
+
+        /**
+         * @property {object} app-state.urlListSearchValue urlListSearchValue
+         * @description Contains the value  that needs to be searched in the Url list
+         */
+        urlListSearchValue: {
+            type: 'string',
+            serialize: false,
+            value: ''
+        },
+
+        user: {
+            Type: User,
+            serialize: false
         }
+
     },
 
     /**
