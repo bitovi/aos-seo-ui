@@ -232,9 +232,15 @@ module.exports = can.Component.extend({
             var filterVm = can.viewModel($el.closest('pui-filter-menu'));
             var newFilter = {};
             var searchFilter = vm.attr('searchFilter');
-            var searchParam = (filterVm.attr('parameter') !== 'dateRanges') ? filterVm.attr('parameter') : 'Date Ranges';
+            var searchParam = (filterVm.attr('parameter') !== 'dateRanges') ? filterVm.attr('parameter') : 'dateRanges';
 
-            newFilter[searchParam] = filterVm.attr('selectedFilters').toString() || 'all';
+            if (filterVm.attr('selectedFilters').toString() === 'custom-range') {
+                newFilter[searchParam] = vm.attr('dateInfo');
+            } else if (filterVm.attr('selectedFilters')) {
+                newFilter[searchParam] = filterVm.attr('selectedFilters').toString();
+            } else {
+                newFilter[searchParam] = 'all';
+            }
 
             vm.attr('searchFilter', can.extend(searchFilter.attr(), newFilter));
 
