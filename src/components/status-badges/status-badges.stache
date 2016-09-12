@@ -1,0 +1,5 @@
+{{#status}}
+<span class="label status {{statusColorClass status}}">
+    {{status}}
+</span>
+{{/status}}

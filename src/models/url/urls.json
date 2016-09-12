@@ -12,6 +12,7 @@
             "partNumber": "D6106ZM/A",
             "region": "AMR",
             "segment": "All",
+            "status": "modified",
             "url": "/ipod-classic/",
             "urlAspenLink": "http://apsen/ipod-classic/"
         },
@@ -21,6 +22,7 @@
             "partNumber": "MG482LL/A",
             "region": "AMR",
             "segment": "All",
+            "status": "added",
             "url": "/macbook/"
         },
         {
@@ -30,6 +32,7 @@
             "partNumber": "D6377ZM/A",
             "region": "EMEA",
             "segment": "Internal EPP",
+            "status": "end-of-life",
             "url": "/macbook-air/"
         },
         {
@@ -38,6 +41,7 @@
             "partNumber": "H1783ZM/A",
             "region": "APAC",
             "segment": "Direct",
+            "status": "added",
             "url": "/ipad-wifi/"
         },
         {
@@ -46,6 +50,7 @@
             "partNumber": "H1786ZM/A",
             "region": "JAPAN",
             "segment": "All",
+            "status": "modified",
             "url": "/ipad-3g/"
         },
         {
@@ -54,6 +59,7 @@
             "partNumber": "H3443ZM/A",
             "region": "EMEA",
             "segment": "Small Business",
+            "status": "added",
             "url": "/ipad-2-wifi/"
         },
         {
@@ -62,6 +68,7 @@
             "partNumber": "H4825ZM/B",
             "region": "APAC",
             "segment": "Apple",
+            "status": "added",
             "url": "/ipad-2-3g/"
         },
         {
@@ -70,6 +77,7 @@
             "partNumber": "S4728Z/A",
             "region": "AMR",
             "segment": "Edu Individual",
+            "status": "modified",
             "url": "/ipod-nano/"
         },
         {
@@ -78,6 +86,7 @@
             "partNumber": "Z0S9",
             "region": "AMR",
             "segment": "Direct",
+            "status": "end-of-life",
             "url": "/ipod-touch/"
         }
     ],

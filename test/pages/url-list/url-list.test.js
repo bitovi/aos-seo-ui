@@ -84,7 +84,7 @@ describe('URL List Page', function () {
         it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
                     label: 'Part Number'
                 },
@@ -117,6 +117,11 @@ describe('URL List Page', function () {
                     cssClass: 'col-md-1',
                     key: 'country',
                     label: 'Country'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'status',
+                    label: 'Status'
                 }
             ]);
         });
