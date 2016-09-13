@@ -7,6 +7,6 @@ var template = require('./demo.stache!');
 
 require('../status-badges');
 var data = new can.Map({
-    operation: 'Added'
+    status: 'added'
 });
 $('#demo').append(template(data));
