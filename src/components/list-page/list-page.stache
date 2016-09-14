@@ -20,7 +20,7 @@
         {{! Basic Search }}
         <div class="col-md-5">
             <pui-grid-search
-                can-click="enableBasicSearch"
+                ($click)="enableBasicSearch"
                 data-options="{dataOptions}"
                 search-field="{searchField}"
                 search-query="{searchQuery}"
@@ -29,23 +29,8 @@
             ></pui-grid-search>
         </div>
 
-        {{! Advanced Search Button }}
-        {{^if disableAdvancedSearch}}
-            <div class="col-md-2 text-center">
-                <button
-                    aria-controls="multi-search"
-                    aria-expanded="{{#if multiSearchEnabled}}true{{/if}}{{^if multiSearchEnabled}}false{{/if}}"
-                    can-click="toggleAdvSearchTab"
-                    class="btn btn-link btn-adv-search {{#if multiSearchEnabled}}enabled{{/if}} {{#if multiSearchActive}}on{{/if}}"
-                    data-target="#multi-search"
-                    data-toggle="collapse"
-                >
-                    Advanced Search
-                </button>
-            </div>
-        {{/if}}
 
-        <div class="col-md-{{#if disableAdvancedSearch}}7{{else}}5{{/if}}">
+        <div class="col-md-7">
             {{! Column Toggle }}
             <pui-grid-column-toggle
                 class="pull-right"
@@ -64,18 +49,6 @@
         </div>
     </div>
 
-    {{! Advanced Search }}
-    <div class="row">
-        <pui-grid-multi-search
-            class="col-md-12 collapse"
-            column-grid-class="{columnGridClass}"
-            data-options="{dataOptions}"
-            id="multi-search"
-            multi-search-active="{multiSearchActive}"
-            multi-search-enabled="{multiSearchEnabled}"
-            search-filter="{searchFilter}"
-        ></pui-grid-multi-search>
-    </div>
 </div>
 
 {{! Grid List }}
@@ -91,7 +64,6 @@
     items="{items}"
     limit="{limit}"
     model="{model}"
-    multi-search-enabled="{multiSearchEnabled}"
     row-template="{rowTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"

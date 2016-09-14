@@ -1,8 +1,6 @@
-<pui-action-bar
-    action-bar-items="{actionBar}"
-    class="pull-right"
-></pui-action-bar>
-
+<seo-export-urls
+    count="{count}"
+></seo-export-urls>
 <seo-list-page
     columns="{columns}"
     current-page="{state.pageNumber}"
@@ -10,7 +8,7 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     item-link-enabled="false"
-    model="{model}"
+    model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
