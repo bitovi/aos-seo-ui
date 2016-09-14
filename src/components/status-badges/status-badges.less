@@ -2,35 +2,8 @@ seo-status-badges {
     span {
         min-width: 81px;
 
-
         &.label {
-            border: 1px solid @dolphin;
-            background-color: @gray-lighter;
             display: inline-block;
-        }
-        &.status {
-            text-transform: uppercase;
-            font-size: @font-size-small;
-            font-weight: bold;
-            color: @gray-darker;
-
-            // Styles the color bar for each operation
-            &.added {
-                background-color: fade(@eelGrass,15%);
-                border-color: @eelGrass;
-            }
-            &.modified {
-                background-color: fade(@brand-info,15%);
-                border-color: @brand-info;
-            }
-            &.endOfLife {
-                background-color: fade(@lobster,15%);
-                border-color: @lobster;
-            }
-            &.others {
-                background-color: fade(@seahorse,15%);
-                border-color: @seahorse;
-            }
         }
     }
 }

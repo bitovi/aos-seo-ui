@@ -40,16 +40,16 @@ module.exports = can.Component.extend({
             if (status) {
                 switch (status.toUpperCase()) {
                     case 'ADDED':
-                        statusClass = 'added';
+                        statusClass = 'label-success';
                         break;
                     case 'MODIFIED':
-                        statusClass = 'modified';
+                        statusClass = 'label-primary';
                         break;
                     case 'END-OF-LIFE':
-                        statusClass = 'endOfLife';
+                        statusClass = 'label-danger';
                         break;
                     default:
-                        statusClass = 'others';
+                        statusClass = 'label-warning';
                         break;
                 }
             }
