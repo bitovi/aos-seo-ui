@@ -97,8 +97,8 @@ module.exports = can.Map.extend({
                     placement: 'bottom',
                     filterGroups: [
                         {
-                            groupTitle: "Segment:",
-                            parameter: "segments"
+                            groupTitle: 'Segment:',
+                            parameter: 'segments'
                         }
                     ]
                 },
@@ -107,12 +107,12 @@ module.exports = can.Map.extend({
                     placement: 'bottom',
                     filterGroups: [
                         {
-                            groupTitle: "Region:",
-                            parameter: "regions"
+                            groupTitle: 'Region:',
+                            parameter: 'regions'
                         },
                         {
-                            groupTitle: "Country:",
-                            parameter: "countries"
+                            groupTitle: 'Country:',
+                            parameter: 'countries'
                         }
                     ]
                 },
@@ -121,8 +121,8 @@ module.exports = can.Map.extend({
                     placement: 'bottom',
                     filterGroups: [
                         {
-                            groupTitle: "Status:",
-                            parameter: "statuses"
+                            groupTitle: 'Status:',
+                            parameter: 'statuses'
                         }
                     ]
                 },
@@ -131,9 +131,9 @@ module.exports = can.Map.extend({
                     placement: 'bottom',
                     filterGroups: [
                         {
-                            groupTitle: "Date Range:",
+                            groupTitle: 'Date Range:',
                             inputType: 'radio',
-                            parameter: "dateRanges"
+                            parameter: 'dateRanges'
                         }
                     ]
                 }

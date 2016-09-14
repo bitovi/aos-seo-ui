@@ -75,7 +75,7 @@ module.exports = can.Map.extend({
                 var result = [];
 
                 if (filterConfig) {
-                     can.each(filterConfig.attr(), function(filter) {
+                    can.each(filterConfig.attr(), function(filter) {
                         can.each(filter.filterGroups, function(filterGroupItem) {
                             result.push(filterGroupItem.parameter);
                         });
