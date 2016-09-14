@@ -19,6 +19,7 @@ var config = {
             config: "package.json!npm"
         },
         buildOptions: {
+            bundleSteal: true,
             sourceMaps: true,
             // Include the original source contents in the generated source maps
             sourceMapsContent: true,
