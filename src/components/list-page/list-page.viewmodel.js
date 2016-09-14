@@ -6,8 +6,6 @@ var _ = require('lodash');
 var can = require('can');
 var moment = require('moment');
 
-var CheckboxList = require('pui/components/filter-menu/checkbox-list.js');
-
 var templateRenderer = function (newTemplate) {
     return function () {
         return newTemplate;
@@ -74,10 +72,16 @@ module.exports = can.Map.extend({
         filterFields: {
             get: function () {
                 var filterConfig = this.attr('filterConfig');
+                var result = [];
+
                 if (filterConfig) {
-                    return filterConfig.attr().map(function (filter) {
-                        return filter.parameter;
+                     can.each(filterConfig.attr(), function(filter) {
+                        can.each(filter.filterGroups, function(filterGroupItem) {
+                            result.push(filterGroupItem.parameter);
+                        });
                     });
+
+                    return result;
                 }
             }
         },
@@ -364,19 +368,20 @@ module.exports = can.Map.extend({
      * @property getFilterOptions
      * @description gets the filter options matching the paramName
      */
-    getFilterOptions: function (paramName) {
+    getFilterOptions: function (filterGroups) {
         var filterData = this.attr('filterData');
         var match;
 
-        if (filterData && paramName) {
-            match = _.find(filterData.filters, function (filter) {
-                if (filter.parameter === paramName) {
-                    return filter;
-                }
+        if (filterData && filterGroups) {
+            filterGroups.forEach(function (group) {
+                match = _.find(filterData.filters, {
+                    'parameter': group.attr('parameter')
+                });
+
+                group.attr('filterOptions', match.attr('options'));
             });
 
-            // The function should always return an array
-            return new CheckboxList(match ? match.options.attr() : []);
+            return filterGroups;
         }
     },
 

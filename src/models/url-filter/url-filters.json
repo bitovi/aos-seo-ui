@@ -4,10 +4,6 @@
             "parameter": "segments",
             "options": [
                 {
-                    "label": "All",
-                    "value": "all"
-                },
-                {
                     "label": "Consumer",
                     "value": "consumer"
                 },
@@ -24,10 +20,6 @@
         {
             "parameter": "regions",
             "options": [
-                {
-                    "label": "All",
-                    "value": "all"
-                },
                 {
                     "label": "AMR",
                     "value": "amr",
@@ -109,10 +101,6 @@
             "parameter": "statuses",
             "options": [
                 {
-                    "label": "All",
-                    "value": "all"
-                },
-                {
                     "label": "Added",
                     "value": "added"
                 },
@@ -144,6 +132,10 @@
                 {
                     "label": "Last Month",
                     "value": "last-month"
+                },
+                {
+                    "label": "Custom Range",
+                    "value": "custom-range"
                 }
             ]
         }

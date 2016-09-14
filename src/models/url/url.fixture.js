@@ -9,6 +9,7 @@ var urls = require('./urls.json').data;
 // Find All
 can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
+
     var results = urls;
     var searchField;
     var sort = data.sort;

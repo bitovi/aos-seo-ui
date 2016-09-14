@@ -20,13 +20,9 @@
     <div class="row filters">
         {{#each filterConfig}}
             <pui-filter-menu
-                button-label="{{btnLabel}}"
-                {(filter-options)}="getFilterOptions('{{parameter}}')"
-                parameter="{{parameter}}"
-                input-type="{{inputType}}"
-                placement="bottom"
-                popover-title="{{menuHeader}}"
-                secondary-parameter="{{secondaryParameter}}"
+                {button-label}="btnLabel"
+                {filter-groups}="getFilterOptions({filterGroups})"
+                placement="{placement}"
             >
                 <div class="custom-range-selector hide">
                     <div class="form-group">

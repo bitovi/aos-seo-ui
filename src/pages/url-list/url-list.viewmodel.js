@@ -94,28 +94,48 @@ module.exports = can.Map.extend({
             value: [
                 {
                     btnLabel: 'All Segments',
-                    parameter: 'segments',
-                    inputType: 'checkbox',
-                    menuHeader: 'Segment:'
+                    placement: 'bottom',
+                    filterGroups: [
+                        {
+                            groupTitle: "Segment:",
+                            parameter: "segments"
+                        }
+                    ]
                 },
                 {
                     btnLabel: 'All Regions',
-                    parameter: 'regions',
-                    secondaryParameter: 'countries',
-                    inputType: 'checkbox',
-                    menuHeader: 'Region:'
+                    placement: 'bottom',
+                    filterGroups: [
+                        {
+                            groupTitle: "Region:",
+                            parameter: "regions"
+                        },
+                        {
+                            groupTitle: "Country:",
+                            parameter: "countries"
+                        }
+                    ]
                 },
                 {
                     btnLabel: 'All Statuses',
-                    parameter: 'statuses',
-                    inputType: 'checkbox',
-                    menuHeader: 'Status:'
+                    placement: 'bottom',
+                    filterGroups: [
+                        {
+                            groupTitle: "Status:",
+                            parameter: "statuses"
+                        }
+                    ]
                 },
                 {
                     btnLabel: 'All Date Ranges',
-                    parameter: 'dateRanges',
-                    inputType: 'radio',
-                    menuHeader: 'Date Range:'
+                    placement: 'bottom',
+                    filterGroups: [
+                        {
+                            groupTitle: "Date Range:",
+                            inputType: 'radio',
+                            parameter: "dateRanges"
+                        }
+                    ]
                 }
             ]
         },

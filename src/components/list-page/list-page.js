@@ -34,6 +34,7 @@
  */
 
 require('pui/components/action-bar-menu/action-bar-menu');
+require('pui/components/date-picker/date-picker');
 require('pui/components/filter-menu/filter-menu');
 require('pui/components/grid-column-toggle/grid-column-toggle');
 require('pui/components/grid-list/grid-list');
@@ -268,7 +269,7 @@ module.exports = can.Component.extend({
          * @description Event listener to add datepicker when Custom Range is clicked
          * @param {jQuery object} $el the clicked element
          */
-        'pui-filter-menu .dateRanges-popover label click': function ($el) {
+        'pui-filter-menu .dateRanges-filter-group label click': function ($el) {
             if ($el[0].innerText === 'Custom Range') {
                 $('.custom-range-selector').removeClass('hide');
             } else {
