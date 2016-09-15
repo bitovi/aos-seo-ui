@@ -20,14 +20,14 @@ var config = {
         },
         buildOptions: {
             bundleSteal: true,
-            sourceMaps: true,
-            // Include the original source contents in the generated source maps
-            sourceMapsContent: true,
+            // sourceMaps: true,
+            // // Include the original source contents in the generated source maps
+            // sourceMapsContent: true,
             quiet: false,
             // Sets whether the source code is minified prior to writing
             minify: false,
             // Turns on debug messages.
-            debug: true,
+            // debug: true,
             // Remove any development code from the bundle specified using //!steal-remove-start, and //!steal-remove-end
             removeDevelopmentCode: true
         }
