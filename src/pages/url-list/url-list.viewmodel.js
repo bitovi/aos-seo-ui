@@ -1,6 +1,5 @@
 var can = require('can');
 
-var FilterModel = require('seo-ui/models/url-filter/url-filter');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
@@ -127,7 +126,7 @@ module.exports = can.Map.extend({
                     ]
                 },
                 {
-                    btnLabel: 'All Date Ranges',
+                    btnLabel: 'All Dates',
                     placement: 'bottom',
                     filterGroups: [
                         {
@@ -138,16 +137,6 @@ module.exports = can.Map.extend({
                     ]
                 }
             ]
-        },
-
-        /**
-         * @property {Object|can.Map} filterModel filterModel
-         * @description The filter model.
-         */
-        filterModel: {
-            get: function () {
-                return FilterModel;
-            }
         },
 
         /**

@@ -98,7 +98,6 @@ module.exports = can.Component.extend({
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
             var filterOptions = new can.Map();
-            var key;
             var searchFields = vm.attr('searchFields');
             var searchQuery = vm.attr('searchQuery');
 
@@ -106,29 +105,24 @@ module.exports = can.Component.extend({
                 // Set up search query from state
                 appState = appState.attr();
 
-                // Advanced Search
-                for (key in appState) {
-                    if (appState.hasOwnProperty(key) && appState[key] && filterFields.indexOf(key) > -1) {
-                        filterOptions.attr(key, appState[key]);
-                    }
-                }
+                can.each(appState, function (val, key) {
+                    var stateValue = appState[key];
 
-                vm.attr('searchFilter', filterOptions.attr());
-
-                // Simple search
-                for (key in appState) {
-                    if (appState.hasOwnProperty(key) && appState[key] && searchFields.indexOf(key) > -1) {
+                    if (filterFields && stateValue && filterFields.indexOf(key) > -1) {
+                        // Advanced search
+                        filterOptions.attr(key, stateValue);
+                        vm.attr('searchFilter', filterOptions.attr());
+                    } else if (searchFields && stateValue && searchFields.indexOf(key) > -1) {
+                        // Basic search
                         searchQuery.attr({
                             field: key,
-                            value: appState[key]
+                            value: stateValue
                         });
 
                         vm.attr('searchField', key);
                         vm.attr('searchValue', appState[key]);
-
-                        break;
                     }
-                }
+                });
             }
         },
 
@@ -151,8 +145,11 @@ module.exports = can.Component.extend({
             }
 
             vm.getFilterData();
+
+            vm.attr('filterMenus', this.element.find('pui-filter-menu'));
         },
 
+        '{state} countries': 'searchDidChange',
         '{state} dateRanges': 'searchDidChange',
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
@@ -166,33 +163,22 @@ module.exports = can.Component.extend({
             var vm = this.viewModel;
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
-            var i;
             var key;
-            var searchFilter = vm.attr('searchFilter');
-            var searchFilterValue;
             var searchQuery = vm.attr('searchQuery');
             var searchQueryValue;
             var stateValue;
-            var updatedSearch;
+            var updatedSearch = {};
 
             // Advanced search
-            for (i = 0; i < filterFields.length; i += 1) {
-                key = filterFields[i];
-                searchFilterValue = searchFilter.attr(key) || '';
-                stateValue = appState.attr(key) || '';
+            filterFields.forEach(function (field) {
+                stateValue = appState.attr(field);
 
-                if (searchFilterValue !== stateValue) {
-                    if (!updatedSearch) {
-                        updatedSearch = {};
-                    }
-
-                    updatedSearch[key] = stateValue;
+                if (stateValue) {
+                    updatedSearch[field] = stateValue;
                 }
-            }
+            });
 
-            if (updatedSearch) {
-                vm.attr('searchFilter', updatedSearch);
-            }
+            vm.attr('searchFilter', updatedSearch);
 
             // Simple search
             key = searchQuery.attr('field');

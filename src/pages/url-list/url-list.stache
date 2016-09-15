@@ -1,6 +1,7 @@
 <seo-export-urls
     count="{count}"
 ></seo-export-urls>
+
 <seo-list-page
     columns="{columns}"
     current-page="{state.pageNumber}"
@@ -9,7 +10,6 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     filter-config="{filterConfig}"
-    filter-model="{filterModel}"
     multi-search-active="true"
     multi-search-enabled="true"
     item-link-enabled="false"

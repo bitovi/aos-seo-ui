@@ -66,24 +66,53 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Function} filterData
+         * @description Property to help update the filter menus with filter data when filtering.
+         */
+        filterData: {
+            set: function () {
+                var self = this;
+
+                setTimeout(function () {
+                    self.updateFilterMenus();
+                });
+            }
+        },
+
+        /**
          * @property {Object} filterFields
          * @description The filter fields.
          */
         filterFields: {
             get: function () {
+                var fields = [];
                 var filterConfig = this.attr('filterConfig');
-                var result = [];
+                var fieldGroups;
 
                 if (filterConfig) {
-                    can.each(filterConfig.attr(), function(filter) {
-                        can.each(filter.filterGroups, function(filterGroupItem) {
-                            result.push(filterGroupItem.parameter);
-                        });
+                    filterConfig.forEach(function (filter) {
+                        fieldGroups = filter.attr('filterGroups');
+
+                        if (fieldGroups) {
+                            fieldGroups.forEach(function (group) {
+                                fields.push(group.attr('parameter'));
+                            });
+                        }
                     });
 
-                    return result;
+                    return fields;
                 }
             }
+        },
+
+        /**
+         * @property {Boolean} filtersEnabled
+         * @description Determines search filters are enabled.
+         * @option Default `true`
+         */
+        filtersEnabled: {
+            type: 'boolean',
+            value: true
         },
 
         /**
@@ -147,22 +176,7 @@ module.exports = can.Map.extend({
          * @description The current Advanced Search fields and terms.
          */
         searchFilter: {
-            Value: can.Map,
-            set: function (searchFilter) {
-                // Update AppState/route
-                var filterFields = this.attr('filterFields');
-                var state = this.attr('state');
-
-                if (state && state.attr) {
-                    filterFields.forEach(function (searchField) {
-                        state.removeAttr(searchField);
-                    });
-
-                    state.attr(searchFilter.attr());
-                }
-
-                return searchFilter;
-            }
+            Value: can.Map
         },
 
         /**
@@ -185,15 +199,6 @@ module.exports = can.Map.extend({
 
                 return searchQuery;
             }
-        },
-
-        /**
-         * @property {Boolean} searchStateEnabled
-         * @description Determines if the Basic Search is enabled.
-         */
-        searchStateEnabled: {
-            type: 'boolean',
-            value: true
         },
 
         /**
@@ -344,23 +349,17 @@ module.exports = can.Map.extend({
 
     /**
      * @function getFilterData
-     * @description retrieves the Filter data from the API via the FilterModel
+     * @description retrieves the Filter data from the API via the Model
      */
     getFilterData: function () {
-        var filterModel = this.attr('filterModel');
+        var model = this.attr('model');
         var self = this;
 
-        if (filterModel && filterModel.getFilters) {
-            this.attr('filterModel').getFilters()
+        if (model && model.getFilters) {
+            model.getFilters()
                 .then(function (filters) {
                     self.attr('filterData', filters);
                 });
-        }
-    },
-
-    enableBasicSearch: function () {
-        if (!this.attr('searchStateEnabled')) {
-            this.attr('searchStateEnabled', true);
         }
     },
 
@@ -403,6 +402,64 @@ module.exports = can.Map.extend({
 
             // Updates the app state and changes the route
             appState.setRouteAttrs(routeData);
+        }
+    },
+
+    /**
+     * @function updateFilterUrl
+     * @description updates the filter Url
+     * @param {can.Map} menuVm The current filter menu's viewmodel.
+     */
+    updateFilterUrl: function (menuVm) {
+        var appState = this.attr('state');
+
+        if (menuVm && appState) {
+            menuVm.attr('filterGroups').forEach(function (group) {
+                var filterValues = group.attr('selectedFilterValues');
+                var param = group.attr('parameter');
+
+                if (filterValues.length && param) {
+                    appState.attr(param, filterValues.attr().toString());
+                } else {
+                    appState.removeAttr(param);
+                }
+            });
+        }
+    },
+
+    /**
+     * @function updateFilterMenus
+     * @description updates the filter menus
+     */
+    updateFilterMenus: function () {
+        var filterMenus = this.attr('filterMenus');
+        var searchFilter = this.attr('searchFilter');
+
+        if (filterMenus.length && searchFilter) {
+            this.attr('filterConfig').forEach(function (filter, filterIndex) {
+                var filterGroups = filter.attr('filterGroups');
+
+                if (filterGroups) {
+                    filterGroups.forEach(function (group, groupIndex) {
+                        var filterVm;
+                        var paramVal = searchFilter[group.attr('parameter')];
+                        var selectedGroup;
+
+                        if (paramVal) {
+                            filterVm = can.viewModel(filterMenus[filterIndex]);
+                            selectedGroup = filterVm.attr('filterGroups')[groupIndex];
+
+                            selectedGroup.attr('filterOptions').forEach(function (option) {
+                                if (paramVal.match(option.attr('value'))) {
+                                    option.attr('selected', true);
+                                }
+                            });
+
+                            filterVm.applyFilters();
+                        }
+                    });
+                }
+            });
         }
     }
 
