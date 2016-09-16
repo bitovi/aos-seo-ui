@@ -26,7 +26,8 @@ var renderPage = function (newState) {
 
     $('#sandbox').html(testTemplate({
         model: urlModel,
-        state: state
+        state: state,
+        status: 'Added'
     }));
 
     jasmine.clock().tick(can.fixture.delay);
@@ -43,7 +44,7 @@ var testSort = function (name) {
         });
 
         it('by clicking on the ' + name + ' sort button', function () {
-            var ascVal  = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+            var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
 
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
@@ -312,6 +313,15 @@ describe('URL List Page', function () {
             testSort('region');
             testSort('segment');
             testSort('url');
+            testSort('status');
         });
+    });
+
+
+    describe('Status badge', function () {
+        it('Checks if the label is of correct color', function () {
+            expect(component.find('.added-label').css('background-color')).toEqual('rgba(40, 163, 63, 0.148438)');
+        });
+
     });
 });

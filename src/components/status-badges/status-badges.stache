@@ -1,5 +1,0 @@
-{{#status}}
-<span class="label label-alt {{statusColorClass status}}">
-    {{status}}
-</span>
-{{/status}}

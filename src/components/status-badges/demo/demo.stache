@@ -1,9 +1,0 @@
-<h1>status-badges</h1>
-
-<select can-value="status">
-	<option>added</option>
-	<option>modified</option>
-	<option>end-of-life</option>
-	<option>Others</option>
-</select>
-<seo-status-badges status="{status}"></seo-status-badges>

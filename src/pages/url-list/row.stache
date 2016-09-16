@@ -14,7 +14,7 @@
                             {{/if}}
                         {{else}}
                            {{#is key 'status'}}
-                               <seo-status-badges status="{{status}}"></seo-status-badges>
+                               <span class="{{status}}-label">{{status}}</span>
                         {{else}}
                             {{itemValue}}
                         {{/is}}
