@@ -26,8 +26,7 @@ var renderPage = function (newState) {
 
     $('#sandbox').html(testTemplate({
         model: urlModel,
-        state: state,
-        status: 'Added'
+        state: state
     }));
 
     jasmine.clock().tick(can.fixture.delay);
@@ -319,8 +318,11 @@ describe('URL List Page', function () {
 
 
     describe('Status badge', function () {
-        it('Checks if the label is of correct color', function () {
-            expect(component.find('.added-label').css('background-color')).toEqual('rgba(40, 163, 63, 0.148438)');
+
+        it('Checks if the status badge has correct class name', function () {
+            var status = component.find('pui-grid-list tbody > tr > td:last span').text();
+            var statusClassName =  status + '-label';
+            expect(component.find("pui-grid-list tbody > tr > td:last span").hasClass(statusClassName)).toBe(true);
         });
 
     });

@@ -13,8 +13,8 @@
                                 {{itemValue}}
                             {{/if}}
                         {{else}}
-                           {{#is key 'status'}}
-                               <span class="{{status}}-label">{{status}}</span>
+                        {{#is key 'status'}}
+                            <span class="{{status}}-label">{{status}}</span>
                         {{else}}
                             {{itemValue}}
                         {{/is}}
