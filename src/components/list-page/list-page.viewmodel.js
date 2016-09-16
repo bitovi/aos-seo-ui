@@ -333,7 +333,7 @@ module.exports = can.Map.extend({
          */
         dateInfo: {
             get: function() {
-                return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm:ss[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm:ss[Z]');
+                return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm[Z]');
             }
         }
         /** END DATE PROPERTIES */
@@ -412,14 +412,16 @@ module.exports = can.Map.extend({
      */
     updateFilterUrl: function (menuVm) {
         var appState = this.attr('state');
+        var self = this;
 
         if (menuVm && appState) {
             menuVm.attr('filterGroups').forEach(function (group) {
-                var filterValues = group.attr('selectedFilterValues');
+                // Change Filter param to actual dates when filtering custom date ranges
+                var filterValues = (group.attr('selectedFilterValues').attr().toString() === 'custom-range') ? self.attr('dateInfo') : group.attr('selectedFilterValues').attr().toString();
                 var param = group.attr('parameter');
 
                 if (filterValues.length && param) {
-                    appState.attr(param, filterValues.attr().toString());
+                    appState.attr(param, filterValues);
                 } else {
                     appState.removeAttr(param);
                 }
