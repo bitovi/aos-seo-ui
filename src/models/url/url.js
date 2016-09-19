@@ -50,6 +50,10 @@ module.exports = can.Model.extend(
                 type: 'string'
             },
 
+            status: {
+                type: 'string'
+            },
+
             url: {
                 type: 'string'
             },

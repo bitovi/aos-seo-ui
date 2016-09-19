@@ -46,6 +46,11 @@ module.exports = can.Map.extend({
                     cssClass: 'col-md-1',
                     key: 'country',
                     label: 'Country'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'status',
+                    label: 'Status'
                 }
             ]
         },
