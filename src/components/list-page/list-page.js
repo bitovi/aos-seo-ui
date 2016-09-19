@@ -166,6 +166,7 @@ module.exports = can.Component.extend({
                         value: stateValue
                     });
                 }
+                vm.attr('searchValue', stateValue);
             }
         }),
 
