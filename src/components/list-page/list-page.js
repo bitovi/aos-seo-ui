@@ -114,7 +114,7 @@ module.exports = can.Component.extend({
                         });
 
                         vm.attr('searchField', key);
-                        vm.attr('state.urlListSearchValue', stateObject[key]);
+                        vm.attr('searchValue', stateObject[key]);
 
                         break;
                     }
@@ -166,6 +166,7 @@ module.exports = can.Component.extend({
                         value: stateValue
                     });
                 }
+                vm.attr('searchValue', stateValue);
             }
         }),
 

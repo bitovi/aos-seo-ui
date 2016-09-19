@@ -70,16 +70,6 @@ module.exports = can.Map.extend({
             }
         },
 
-        /**
-         * @property {object} app-state.urlListSearchValue urlListSearchValue
-         * @description Contains the value  that needs to be searched in the Url list
-         */
-        urlListSearchValue: {
-            type: 'string',
-            serialize: false,
-            value: ''
-        },
-
         user: {
             Type: User,
             serialize: false
