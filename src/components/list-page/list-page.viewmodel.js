@@ -182,7 +182,8 @@ module.exports = can.Map.extend({
             value: true
         },
 
-        /** @property {String} searchValue
+        /**
+         * @property {String} searchValue
          * @description The current Basic Search term.
          */
         searchValue: {
