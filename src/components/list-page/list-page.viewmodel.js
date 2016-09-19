@@ -181,6 +181,7 @@ module.exports = can.Map.extend({
             type: 'boolean',
             value: true
         },
+
         /** @property {String} searchValue
          * @description The current Basic Search term.
          */
