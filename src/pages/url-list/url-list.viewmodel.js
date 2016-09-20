@@ -46,6 +46,11 @@ module.exports = can.Map.extend({
                     cssClass: 'col-md-1',
                     key: 'country',
                     label: 'Country'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'status',
+                    label: 'Status'
                 }
             ]
         },
@@ -93,7 +98,6 @@ module.exports = can.Map.extend({
             value: [
                 {
                     btnLabel: 'All Segments',
-                    placement: 'bottom',
                     filterGroups: [
                         {
                             groupTitle: 'Segment:',
@@ -103,7 +107,6 @@ module.exports = can.Map.extend({
                 },
                 {
                     btnLabel: 'All Regions',
-                    placement: 'bottom',
                     filterGroups: [
                         {
                             groupTitle: 'Region:',
@@ -117,7 +120,6 @@ module.exports = can.Map.extend({
                 },
                 {
                     btnLabel: 'All Statuses',
-                    placement: 'bottom',
                     filterGroups: [
                         {
                             groupTitle: 'Status:',
@@ -127,7 +129,6 @@ module.exports = can.Map.extend({
                 },
                 {
                     btnLabel: 'All Dates',
-                    placement: 'bottom',
                     filterGroups: [
                         {
                             groupTitle: 'Date Range:',
@@ -137,16 +138,6 @@ module.exports = can.Map.extend({
                     ]
                 }
             ]
-        },
-
-        /**
-         * @property {can.Model} url-list.viewModel.urlModel urlModel
-         * @description The model used to retrieve and display a list of URLs.
-         */
-        urlModel: {
-            get: function () {
-                return UrlModel;
-            }
         },
 
         /**
@@ -187,6 +178,16 @@ module.exports = can.Map.extend({
         searchField: {
             type: 'string',
             value: 'url'
+        },
+
+        /**
+         * @property {can.Model} url-list.viewModel.urlModel urlModel
+         * @description The model used to retrieve and display a list of URLs.
+         */
+        urlModel: {
+            get: function () {
+                return UrlModel;
+            }
         }
     }
 });

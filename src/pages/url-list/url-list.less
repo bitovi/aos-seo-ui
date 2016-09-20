@@ -1,9 +1,4 @@
 seo-url-list {
-
-    .page-header {
-        margin-bottom: 6px;
-    }
-
     .label.keypath {
         display: inline-block;
         font-size: @font-size-small;
@@ -16,31 +11,39 @@ seo-url-list {
         }
     }
 
-    // Container holding Filter-Menus
+    // Filters
     .filters {
-        border-bottom: .1rem solid #D6D6D6;
-        margin: 0 0 2.1rem 0;
-        padding-bottom: 1rem;
+        border-bottom: .1rem solid @page-header-border-color;
+        margin: -@line-height-computed 0 @form-group-margin-bottom;
+        padding: @padding-small-vertical 0;
     }
 
-    // Green label
-    .added-label {
+    .country-group .list-group-item {
+        font-size: @font-size-small;
+        padding-bottom: @padding-base-vertical;
+        padding-top: @padding-base-vertical;
+    }
+
+    .status-badge {
         .label;
         .label-alt;
+        display: inline-block;
+        min-width: 9.1rem;
+
+    }
+
+    .added-label {
+        .status-badge;
         .label-success;
     }
-    
-    // Blue label
-    .modified-label {
-        .label;
-        .label-alt;
-        .label-primary;
+
+    .end-of-life-label {
+        .status-badge;
+        .label-danger;
     }
 
-    // Red label
-    .end-of-life-label {
-        .label;
-        .label-alt;
-        .label-danger;
+    .modified-label {
+        .status-badge;
+        .label-info;
     }
 }

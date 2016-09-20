@@ -17,13 +17,12 @@
 
 <div class="list-tools">
     {{! Filter Menus }}
-    <div class="row filters">
+    <div class="filters">
         {{#each filterConfig}}
             <pui-filter-menu
                 {button-label}="btnLabel"
-                (filters-applied)="updateFilterUrl(%viewModel)"
+                (applied-filter-btn-label)="updateFilterUrl(%viewModel)"
                 {filter-groups}="getFilterOptions({filterGroups})"
-                placement="{placement}"
             >
                 {{#is btnLabel 'All Dates'}}
                     <div class="custom-range-selector hide">
@@ -78,6 +77,7 @@
             ></pui-grid-search>
         </div>
 
+
         <div class="col-md-7">
             {{! Column Toggle }}
             <pui-grid-column-toggle
@@ -116,7 +116,6 @@
     row-template="{rowTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
-    search-state-enabled="{searchStateEnabled}"
     sort-by="{state.sort}"
     sort-order="{state.order}"
     state="{state}"

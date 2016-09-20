@@ -1,6 +1,4 @@
-require('bootstrap/js/collapse');
 require('can/map/define/define');
-require('can/view/stache/stache');
 
 var _ = require('lodash');
 var can = require('can');
@@ -87,11 +85,10 @@ module.exports = can.Map.extend({
             get: function () {
                 var fields = [];
                 var filterConfig = this.attr('filterConfig');
-                var fieldGroups;
 
                 if (filterConfig) {
                     filterConfig.forEach(function (filter) {
-                        fieldGroups = filter.attr('filterGroups');
+                        var fieldGroups = filter.attr('filterGroups');
 
                         if (fieldGroups) {
                             fieldGroups.forEach(function (group) {
@@ -221,15 +218,15 @@ module.exports = can.Map.extend({
 
         /** DATE PROPERTIES */
         /**
-         * @property {String} api.components.filter-menu.viewmodel.params params
-         * @description Parmateres to use to store Custom Date Range form input.
+         * @property {String} params
+         * @description Parameters to use to store Custom Date Range form input.
          */
         params: {
             value: {}
         },
 
         /**
-         * @property {String} api.components.filter-menu.viewmodel.dateMask dateMask
+         * @property {String} dateMask
          * @description Date mask to use on user visible dates.
          * @option {String} Default is MM/DD/YYYY.
          */
@@ -239,12 +236,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} api.components.filter-menu.viewmodel.startDate startDate
+         * @property {String} startDate
          * @description The value of the start date from the date range section.
          * @option {String} Default is empty string.
          */
         startDate: {
-            set: function(val) {
+            set: function (val) {
                 var start = moment(val);
                 var end = moment(this.attr('endDate'));
 
@@ -261,7 +258,7 @@ module.exports = can.Map.extend({
                 this.attr('dateError', '');
                 this.attr('params').attr('from', moment.utc(val).valueOf());
             },
-            get: function() {
+            get: function () {
                 var params = this.attr('params');
                 var startDate = params.attr('from') ? params.attr('from') : '';
 
@@ -274,12 +271,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} api.components.filter-menu.viewmodel.endDate endDate
+         * @property {String} endDate
          * @description The value of the end date from the date range section.
          * @option {String} Default is empty string.
          */
         endDate: {
-            set: function(val) {
+            set: function (val) {
                 var end = moment(val);
                 var start = moment(this.attr('startDate'));
 
@@ -294,7 +291,7 @@ module.exports = can.Map.extend({
                 this.attr('dateError', '');
                 this.attr('params').attr('to', moment.utc(val).valueOf());
             },
-            get: function() {
+            get: function () {
                 var params = this.attr('params');
                 var endDate = params.attr('to') ? params.attr('to') : '';
 
@@ -307,7 +304,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} api.components.filter-menu.viewmodel.dateError dateError
+         * @property {String} dateError
          * @description Stores data parse error.
          * @option {String} Default is '' (empty string).
          */
@@ -317,7 +314,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {boolean} api.components.filter-menu.viewmodel.datesOpen datesOpen
+         * @property {boolean} datesOpen
          * @description Maintains state of date visibility.
          * @option {boolean} Default is `false`.
          */
@@ -327,12 +324,12 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @function api.components.filter-menu.viewmodel.dateInfo dateInfo
+         * @function dateInfo
          * @description Processes date ranges into strings.
          * @return {String} Returns the date range as a string.
          */
         dateInfo: {
-            get: function() {
+            get: function () {
                 return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm[Z]');
             }
         }
@@ -406,32 +403,8 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function updateFilterUrl
-     * @description updates the filter Url
-     * @param {can.Map} menuVm The current filter menu's viewmodel.
-     */
-    updateFilterUrl: function (menuVm) {
-        var appState = this.attr('state');
-        var self = this;
-
-        if (menuVm && appState) {
-            menuVm.attr('filterGroups').forEach(function (group) {
-                // Change Filter param to actual dates when filtering custom date ranges
-                var filterValues = (group.attr('selectedFilterValues').attr().toString() === 'custom-range') ? self.attr('dateInfo') : group.attr('selectedFilterValues').attr().toString();
-                var param = group.attr('parameter');
-
-                if (filterValues.length && param) {
-                    appState.attr(param, filterValues);
-                } else {
-                    appState.removeAttr(param);
-                }
-            });
-        }
-    },
-
-    /**
      * @function updateFilterMenus
-     * @description updates the filter menus
+     * @description Updates the filter menu components, based on the searchFilter property.
      */
     updateFilterMenus: function () {
         var filterMenus = this.attr('filterMenus');
@@ -463,6 +436,28 @@ module.exports = can.Map.extend({
                 }
             });
         }
-    }
+    },
 
+    /**
+     * @function updateFilterUrl
+     * @description Updates the application state when filters are applied.
+     * @param {can.Map} menuVm The current filter menu's view model.
+     */
+    updateFilterUrl: function (menuVm) {
+        var appState = this.attr('state');
+        var dateInfo = this.attr('dateInfo').match('Invalid date') ? '' : this.attr('dateInfo');
+
+        if (menuVm && appState) {
+            menuVm.attr('filterGroups').forEach(function (group) {
+                var filterValues = group.attr('appliedFilterValues').attr().toString();
+                var param = group.attr('parameter');
+
+                if (filterValues && param) {
+                    appState.attr(param, (filterValues === 'custom-range') && dateInfo ? dateInfo : filterValues);
+                } else {
+                    appState.removeAttr(param);
+                }
+            });
+        }
+    }
 });

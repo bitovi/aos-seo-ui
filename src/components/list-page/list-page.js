@@ -33,12 +33,12 @@
  * ```
  */
 
+require('bootstrap/js/collapse');
 require('pui/components/action-bar-menu/action-bar-menu');
 require('pui/components/date-picker/date-picker');
 require('pui/components/filter-menu/filter-menu');
 require('pui/components/grid-column-toggle/grid-column-toggle');
 require('pui/components/grid-list/grid-list');
-require('pui/components/grid-multi-search/grid-multi-search');
 require('pui/components/grid-search/grid-search');
 require('pui/components/pagination/pagination');
 
@@ -106,21 +106,19 @@ module.exports = can.Component.extend({
                 appState = appState.attr();
 
                 can.each(appState, function (val, key) {
-                    var stateValue = appState[key];
-
-                    if (filterFields && stateValue && filterFields.indexOf(key) > -1) {
+                    if (filterFields && val && filterFields.indexOf(key) > -1) {
                         // Advanced search
-                        filterOptions.attr(key, stateValue);
+                        filterOptions.attr(key, val);
                         vm.attr('searchFilter', filterOptions.attr());
-                    } else if (searchFields && stateValue && searchFields.indexOf(key) > -1) {
+                    } else if (searchFields && val && searchFields.indexOf(key) > -1) {
                         // Basic search
                         searchQuery.attr({
                             field: key,
-                            value: stateValue
+                            value: val
                         });
 
                         vm.attr('searchField', key);
-                        vm.attr('searchValue', appState[key]);
+                        vm.attr('searchValue', val);
                     }
                 });
             }
@@ -192,6 +190,8 @@ module.exports = can.Component.extend({
                         field: key,
                         value: stateValue
                     });
+
+                    vm.attr('searchValue', stateValue);
                 }
             }
         }),
@@ -211,56 +211,16 @@ module.exports = can.Component.extend({
         },
 
         /**
-         * @description Event listener executes Filtering
-         * @param {jQuery object} $el the clicked element
+         * @description Handles change event of the Date Range filter group menu.
+         * @param {jQuery object} $el The changed element.
+         * @param {jQuery event} evnt The change event.
          */
-        'pui-filter-menu .btn-default click': function ($el) {
-            var vm = this.viewModel;
-            var filterVm = can.viewModel($el.closest('pui-filter-menu'));
-            var newFilter = {};
-            var searchFilter = vm.attr('searchFilter');
+        '.date-range-group change': function ($el, evnt) {
+            var $datePicker = this.element.find('.custom-range-selector');
+            var customRangeSelected = $(evnt.target).is('.custom-range-toggle');
 
-            if (filterVm.attr('selectedFilters').toString() === 'custom-range') {
-                newFilter[filterVm.attr('parameter')] = vm.attr('dateInfo');
-            } else if (filterVm.attr('selectedFilters')) {
-                newFilter[filterVm.attr('parameter')] = filterVm.attr('selectedFilters').toString();
-            } else {
-                newFilter[filterVm.attr('parameter')] = 'all';
-            }
-
-            vm.attr('searchFilter', can.extend(searchFilter.attr(), newFilter));
-
-            // Close Filter Menu
-            filterVm.attr('isMenuOpen', false);
-        },
-
-        /**
-         * @description Event listener that opens the Filter-menu popover
-         * @param {jQuery object} $el the clicked element
-         */
-        'pui-filter-menu .dropdown click': function ($el) {
-            var $filterMenus = $('pui-filter-menu');
-            var clickedFilterVm = can.viewModel($el.closest('pui-filter-menu'));
-
-            can.each($filterMenus, function (filterMenu) {
-                var filterVm = can.viewModel(filterMenu);
-
-                if (filterVm !== clickedFilterVm) {
-                    filterVm.attr('isMenuOpen', false);
-                }
-            });
-        },
-
-        /**
-         * @description Event listener to add datepicker when Custom Range is clicked
-         * @param {jQuery object} $el the clicked element
-         */
-        'pui-filter-menu .dateRanges-filter-group label click': function ($el) {
-            if ($el[0].innerText === 'Custom Range') {
-                $('.custom-range-selector').removeClass('hide');
-            } else {
-                $('.custom-range-selector').addClass('hide');
-            }
+            // Shows date picker if the custom-range option is selected
+            $datePicker.toggleClass('hide', !customRangeSelected);
         }
     }
 });

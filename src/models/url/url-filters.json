@@ -1,215 +1,344 @@
 {
-  "filters" : [ {
-    "parameter" : "segments",
-    "options" : [ {
-      "label" : "Consumer",
-      "value" : "consumer"
-    }, {
-      "label" : "Education",
-      "value" : "edu"
-    }, {
-      "label" : "Small Business",
-      "value" : "smb"
-    } ]
-  }, {
-    "parameter" : "regions",
-    "options" : [ {
-      "label" : "AMR",
-      "value" : "amr",
-      "secondaryParameter" : "countries",
-      "secondaryValues" : [ "BR", "CA", "CA", "MX", "US" ]
-    }, {
-      "label" : "APAC",
-      "value" : "apac",
-      "secondaryParameter" : "countries",
-      "secondaryValues" : [ "AU", "CN", "HK", "HK", "IN", "ID", "JP", "MY", "NZ", "PH", "SG", "KR", "TW", "TH", "TH", "VN" ]
-    }, {
-      "label" : "JAPAN",
-      "value" : "japan",
-      "secondaryParameter" : "countries",
-      "secondaryValues" : [ "JP" ]
-    }, {
-      "label" : "EMEA",
-      "value" : "emea",
-      "secondaryParameter" : "countries",
-      "secondaryValues" : [ "AT", "BE", "BE", "CZ", "DK", "FI", "FR", "DE", "IE", "IL", "IT", "LU", "NL", "NO", "PT", "RU", "SA", "ES", "SE", "CH", "CH", "TR", "AE", "UK" ]
-    } ]
-  }, {
-    "parameter" : "countries",
-    "options" : [ {
-      "label" : "Brazil",
-      "value" : "br"
-    }, {
-      "label" : "Canada",
-      "value" : "ca"
-    }, {
-      "label" : "French Canada",
-      "value" : "ca"
-    }, {
-      "label" : "Mexico",
-      "value" : "mx"
-    }, {
-      "label" : "United States",
-      "value" : "us"
-    }, {
-      "label" : "Australia",
-      "value" : "au"
-    }, {
-      "label" : "China",
-      "value" : "cn"
-    }, {
-      "label" : "Chinese Hong Kong",
-      "value" : "hk"
-    }, {
-      "label" : "Hong Kong",
-      "value" : "hk"
-    }, {
-      "label" : "India",
-      "value" : "in"
-    }, {
-      "label" : "Indonesia",
-      "value" : "id"
-    }, {
-      "label" : "Japan",
-      "value" : "jp"
-    }, {
-      "label" : "Malaysia",
-      "value" : "my"
-    }, {
-      "label" : "New Zeland",
-      "value" : "nz"
-    }, {
-      "label" : "Philippines",
-      "value" : "ph"
-    }, {
-      "label" : "Singapore",
-      "value" : "sg"
-    }, {
-      "label" : "South Korea",
-      "value" : "kr"
-    }, {
-      "label" : "Taiwan",
-      "value" : "tw"
-    }, {
-      "label" : "Thiland",
-      "value" : "th"
-    }, {
-      "label" : "Thiland English",
-      "value" : "th"
-    }, {
-      "label" : "Vietnam",
-      "value" : "vn"
-    }, {
-      "label" : "Japan",
-      "value" : "jp"
-    }, {
-      "label" : "Austria",
-      "value" : "at"
-    }, {
-      "label" : "Belgium",
-      "value" : "be"
-    }, {
-      "label" : "Belgium French",
-      "value" : "be"
-    }, {
-      "label" : "Czech Republic",
-      "value" : "cz"
-    }, {
-      "label" : "Denmark",
-      "value" : "dk"
-    }, {
-      "label" : "Finland",
-      "value" : "fi"
-    }, {
-      "label" : "France",
-      "value" : "fr"
-    }, {
-      "label" : "Germany",
-      "value" : "de"
-    }, {
-      "label" : "Ireland",
-      "value" : "ie"
-    }, {
-      "label" : "Israel",
-      "value" : "il"
-    }, {
-      "label" : "Italy",
-      "value" : "it"
-    }, {
-      "label" : "Luxenberg",
-      "value" : "lu"
-    }, {
-      "label" : "Netherlands",
-      "value" : "nl"
-    }, {
-      "label" : "Norway",
-      "value" : "no"
-    }, {
-      "label" : "Portugal",
-      "value" : "pt"
-    }, {
-      "label" : "Russia",
-      "value" : "ru"
-    }, {
-      "label" : "Saudi Arabia",
-      "value" : "sa"
-    }, {
-      "label" : "Spain",
-      "value" : "es"
-    }, {
-      "label" : "Sweden",
-      "value" : "se"
-    }, {
-      "label" : "Switzerland German",
-      "value" : "ch"
-    }, {
-      "label" : "Switzerland French",
-      "value" : "ch"
-    }, {
-      "label" : "Turkey",
-      "value" : "tr"
-    }, {
-      "label" : "United Arab Emirates",
-      "value" : "ae"
-    }, {
-      "label" : "United Kingdom",
-      "value" : "uk"
-    } ]
-  }, {
-    "parameter" : "pageTypes",
-    "options" : [ {
-      "label" : "product",
-      "value" : "product"
-    } ]
-  }, {
-    "parameter" : "statuses",
-    "options" : [ {
-      "label" : "Added",
-      "value" : "added"
-    }, {
-      "label" : "Modified",
-      "value" : "modified"
-    }, {
-      "label" : "End Of Life",
-      "value" : "end-of-life"
-    } ]
-  }, {
-    "parameter" : "dateRanges",
-    "options" : [ {
-      "label" : "All",
-      "value" : "all"
-    }, {
-      "label" : "Last 24 Hours",
-      "value" : "last-24-hours"
-    }, {
-      "label" : "Last 2 Weeks",
-      "value" : "last-2-weeks"
-    }, {
-      "label" : "Last Month",
-      "value" : "last-month"
-    }, {
-      "label" : "Custom Range",
-      "value" : "custom-range"
-    } ]
-  } ]
+    "filters": [
+        {
+            "parameter": "segments",
+            "options": [
+                {
+                    "label": "Consumer",
+                    "value": "consumer"
+                },
+                {
+                    "label": "Education",
+                    "value": "edu"
+                },
+                {
+                    "label": "Small Business",
+                    "value": "smb"
+                },
+                {
+                    "label": "FIXTURE",
+                    "value": "fixture"
+                }
+            ]
+        },
+        {
+            "parameter": "regions",
+            "options": [
+                {
+                    "label": "AMR",
+                    "value": "amr",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "BR",
+                        "CA",
+                        "CA",
+                        "MX",
+                        "US"
+                    ]
+                },
+                {
+                    "label": "APAC",
+                    "value": "apac",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "AU",
+                        "CN",
+                        "HK",
+                        "HK",
+                        "IN",
+                        "ID",
+                        "JP",
+                        "MY",
+                        "NZ",
+                        "PH",
+                        "SG",
+                        "KR",
+                        "TW",
+                        "TH",
+                        "TH",
+                        "VN"
+                    ]
+                },
+                {
+                    "label": "JAPAN",
+                    "value": "japan",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "JP"
+                    ]
+                },
+                {
+                    "label": "EMEA",
+                    "value": "emea",
+                    "secondaryParameter": "countries",
+                    "secondaryValues": [
+                        "AT",
+                        "BE",
+                        "BE",
+                        "CZ",
+                        "DK",
+                        "FI",
+                        "FR",
+                        "DE",
+                        "IE",
+                        "IL",
+                        "IT",
+                        "LU",
+                        "NL",
+                        "NO",
+                        "PT",
+                        "RU",
+                        "SA",
+                        "ES",
+                        "SE",
+                        "CH",
+                        "CH",
+                        "TR",
+                        "AE",
+                        "UK"
+                    ]
+                }
+            ]
+        },
+        {
+            "parameter": "countries",
+            "options": [
+                {
+                    "label": "Brazil",
+                    "value": "br"
+                },
+                {
+                    "label": "Canada",
+                    "value": "ca"
+                },
+                {
+                    "label": "French Canada",
+                    "value": "ca"
+                },
+                {
+                    "label": "Mexico",
+                    "value": "mx"
+                },
+                {
+                    "label": "United States",
+                    "value": "us"
+                },
+                {
+                    "label": "Australia",
+                    "value": "au"
+                },
+                {
+                    "label": "China",
+                    "value": "cn"
+                },
+                {
+                    "label": "Chinese Hong Kong",
+                    "value": "hk"
+                },
+                {
+                    "label": "Hong Kong",
+                    "value": "hk"
+                },
+                {
+                    "label": "India",
+                    "value": "in"
+                },
+                {
+                    "label": "Indonesia",
+                    "value": "id"
+                },
+                {
+                    "label": "Japan",
+                    "value": "jp"
+                },
+                {
+                    "label": "Malaysia",
+                    "value": "my"
+                },
+                {
+                    "label": "New Zeland",
+                    "value": "nz"
+                },
+                {
+                    "label": "Philippines",
+                    "value": "ph"
+                },
+                {
+                    "label": "Singapore",
+                    "value": "sg"
+                },
+                {
+                    "label": "South Korea",
+                    "value": "kr"
+                },
+                {
+                    "label": "Taiwan",
+                    "value": "tw"
+                },
+                {
+                    "label": "Thiland",
+                    "value": "th"
+                },
+                {
+                    "label": "Thiland English",
+                    "value": "th"
+                },
+                {
+                    "label": "Vietnam",
+                    "value": "vn"
+                },
+                {
+                    "label": "Japan",
+                    "value": "jp"
+                },
+                {
+                    "label": "Austria",
+                    "value": "at"
+                },
+                {
+                    "label": "Belgium",
+                    "value": "be"
+                },
+                {
+                    "label": "Belgium French",
+                    "value": "be"
+                },
+                {
+                    "label": "Czech Republic",
+                    "value": "cz"
+                },
+                {
+                    "label": "Denmark",
+                    "value": "dk"
+                },
+                {
+                    "label": "Finland",
+                    "value": "fi"
+                },
+                {
+                    "label": "France",
+                    "value": "fr"
+                },
+                {
+                    "label": "Germany",
+                    "value": "de"
+                },
+                {
+                    "label": "Ireland",
+                    "value": "ie"
+                },
+                {
+                    "label": "Israel",
+                    "value": "il"
+                },
+                {
+                    "label": "Italy",
+                    "value": "it"
+                },
+                {
+                    "label": "Luxenberg",
+                    "value": "lu"
+                },
+                {
+                    "label": "Netherlands",
+                    "value": "nl"
+                },
+                {
+                    "label": "Norway",
+                    "value": "no"
+                },
+                {
+                    "label": "Portugal",
+                    "value": "pt"
+                },
+                {
+                    "label": "Russia",
+                    "value": "ru"
+                },
+                {
+                    "label": "Saudi Arabia",
+                    "value": "sa"
+                },
+                {
+                    "label": "Spain",
+                    "value": "es"
+                },
+                {
+                    "label": "Sweden",
+                    "value": "se"
+                },
+                {
+                    "label": "Switzerland German",
+                    "value": "ch"
+                },
+                {
+                    "label": "Switzerland French",
+                    "value": "ch"
+                },
+                {
+                    "label": "Turkey",
+                    "value": "tr"
+                },
+                {
+                    "label": "United Arab Emirates",
+                    "value": "ae"
+                },
+                {
+                    "label": "United Kingdom",
+                    "value": "uk"
+                }
+            ]
+        },
+        {
+            "parameter": "pageTypes",
+            "options": [
+                {
+                    "label": "product",
+                    "value": "product"
+                }
+            ]
+        },
+        {
+            "parameter": "statuses",
+            "options": [
+                {
+                    "label": "Added",
+                    "value": "added"
+                },
+                {
+                    "label": "Modified",
+                    "value": "modified"
+                },
+                {
+                    "label": "End Of Life",
+                    "value": "end-of-life"
+                }
+            ]
+        },
+        {
+            "parameter": "dateRanges",
+            "options": [
+                {
+                    "label": "All",
+                    "value": "all"
+                },
+                {
+                    "label": "Last 24 Hours",
+                    "value": "last-24-hours"
+                },
+                {
+                    "label": "Last 2 Weeks",
+                    "value": "last-2-weeks"
+                },
+                {
+                    "label": "Last Month",
+                    "value": "last-month"
+                },
+                {
+                    "label": "Custom Range",
+                    "value": "custom-range"
+                }
+            ]
+        }
+    ]
 }
