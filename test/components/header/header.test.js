@@ -48,6 +48,7 @@ describe('Header', function () {
             expect(component).toExist();
             expect(component.find('.global-top-nav')).toExist();
             expect(component.find('.global-secondary-nav')).toExist();
+            expect(component.find('.version')).toExist();
         });
 
         it('Renders users Readonly mode', function () {

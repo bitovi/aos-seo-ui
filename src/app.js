@@ -25,6 +25,7 @@ if (envVars.isDeployedBuild() === 'false') {
     };
     window.seo = {
         'debug': true,
+        'appVersion': '1.0',
         'user': {
             'firstName': 'seo',
             'lastName': 'user',
@@ -56,10 +57,12 @@ function initApp(isDeployed, fixturesOn) {
     serverVars = new ServerVars({
         user: user,
         fixtures: fixturesOn,
-        environment: environment
+        environment: environment,
+        serverVersion: window.seo.appVersion
     });
     appState = new AppState({
-        user: user
+        user: user,
+        version: serverVars.serverVersion
     });
 
     if (!isDeployed) {

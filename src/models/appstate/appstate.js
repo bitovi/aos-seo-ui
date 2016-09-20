@@ -58,8 +58,18 @@ module.exports = can.Map.extend({
             },
             type: '*'
         },
+
         user: {
             Type: User,
+            serialize: false
+        },
+
+        /**
+         * @property {object} app-state.viewModel.version version
+         * @description The app-version
+         */
+        version: {
+            type: 'string',
             serialize: false
         },
 
