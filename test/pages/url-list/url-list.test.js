@@ -43,7 +43,7 @@ var testSort = function (name) {
         });
 
         it('by clicking on the ' + name + ' sort button', function () {
-            var ascVal  = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+            var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
 
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
@@ -117,6 +117,11 @@ describe('URL List Page', function () {
                     cssClass: 'col-md-1',
                     key: 'country',
                     label: 'Country'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'status',
+                    label: 'Status'
                 }
             ]);
         });
@@ -307,6 +312,18 @@ describe('URL List Page', function () {
             testSort('region');
             testSort('segment');
             testSort('url');
+            testSort('status');
         });
+    });
+
+
+    describe('Status badge', function () {
+
+        it('Checks if the status badge has correct class name', function () {
+            var status = component.find('pui-grid-list tbody > tr > td:last span').text();
+            var statusClassName =  status + '-label';
+            expect(component.find("pui-grid-list tbody > tr > td:last span").hasClass(statusClassName)).toBe(true);
+        });
+
     });
 });

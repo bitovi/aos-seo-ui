@@ -193,6 +193,7 @@ module.exports = can.Component.extend({
 
                     vm.attr('searchValue', stateValue);
                 }
+                vm.attr('searchValue', stateValue);
             }
         }),
 
