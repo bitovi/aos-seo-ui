@@ -65,7 +65,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {object} app-state.viewModel.version version
+         * @property {object} appstate.viewModel.version version
          * @description The app-version
          */
         version: {
