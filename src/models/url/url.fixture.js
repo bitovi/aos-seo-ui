@@ -4,11 +4,13 @@ var _ = require('lodash');
 var can = require('can');
 
 var envVars = require('seo-ui/utils/environmentVars');
+var urlFilters = require('./url-filters.json');
 var urls = require('./urls.json').data;
 
 // Find All
 can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
+
     var results = urls;
     var searchField;
     var sort = data.sort;
@@ -65,4 +67,9 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, r
             message: 'URL ' + request.data.url + ' not found.'
         });
     }
+});
+
+// Get Filters
+can.fixture('GET ' + envVars.apiUrl() + '/url-filters.json', function (request, response) {
+    response(urlFilters);
 });

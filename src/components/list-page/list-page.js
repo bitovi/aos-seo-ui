@@ -33,8 +33,14 @@
  * ```
  */
 
+require('bootstrap/js/collapse');
 require('pui/components/action-bar-menu/action-bar-menu');
+require('pui/components/date-picker/date-picker');
+require('pui/components/filter-menu/filter-menu');
 require('pui/components/grid-column-toggle/grid-column-toggle');
+require('pui/components/grid-list/grid-list');
+require('pui/components/grid-search/grid-search');
+require('pui/components/pagination/pagination');
 
 var $ = require('jquery');
 var _ = require('lodash');
@@ -88,37 +94,33 @@ module.exports = can.Component.extend({
          * @description Invoked when the component is initialized.
          */
         'init': function () {
-            var count = 0;
-            var key;
             var vm = this.viewModel;
+            var appState = vm.attr('state');
+            var filterFields = vm.attr('filterFields');
+            var filterOptions = new can.Map();
             var searchFields = vm.attr('searchFields');
             var searchQuery = vm.attr('searchQuery');
-            var stateObject = vm.attr('state');
 
-            if (stateObject && stateObject.attr) {
-                stateObject = stateObject.attr();
+            if (appState && appState.attr) {
+                // Set up search query from state
+                appState = appState.attr();
 
-                // Determine whether the user is performing an advanced search
-                for (key in stateObject) {
-                    if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
-                        count += 1;
-                    }
-                }
-
-                // Simple search
-                for (key in stateObject) {
-                    if (stateObject.hasOwnProperty(key) && stateObject[key] && searchFields.indexOf(key) > -1) {
+                can.each(appState, function (val, key) {
+                    if (filterFields && val && filterFields.indexOf(key) > -1) {
+                        // Advanced search
+                        filterOptions.attr(key, val);
+                        vm.attr('searchFilter', filterOptions.attr());
+                    } else if (searchFields && val && searchFields.indexOf(key) > -1) {
+                        // Basic search
                         searchQuery.attr({
                             field: key,
-                            value: stateObject[key]
+                            value: val
                         });
 
                         vm.attr('searchField', key);
-                        vm.attr('searchValue', stateObject[key]);
-
-                        break;
+                        vm.attr('searchValue', val);
                     }
-                }
+                });
             }
         },
 
@@ -139,33 +141,59 @@ module.exports = can.Component.extend({
                 // Remove the property so it doesn't get triggered again later
                 vm.removeAttr('state.storage.delayedAlert');
             }
+
+            vm.getFilterData();
+
+            vm.attr('filterMenus', this.element.find('pui-filter-menu'));
         },
+
+        '{state} countries': 'searchDidChange',
+        '{state} dateRanges': 'searchDidChange',
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
         '{state} partNumber': 'searchDidChange',
+        '{state} regions': 'searchDidChange',
+        '{state} segments': 'searchDidChange',
+        '{state} statuses': 'searchDidChange',
         '{state} url': 'searchDidChange',
 
         searchDidChange: _.debounce(function () {
-            var key;
             var vm = this.viewModel;
+            var appState = vm.attr('state');
+            var filterFields = vm.attr('filterFields');
+            var key;
             var searchQuery = vm.attr('searchQuery');
             var searchQueryValue;
-            var state = vm.attr('state');
             var stateValue;
+            var updatedSearch = {};
+
+            // Advanced search
+            filterFields.forEach(function (field) {
+                stateValue = appState.attr(field);
+
+                if (stateValue) {
+                    updatedSearch[field] = stateValue;
+                }
+            });
+
+            vm.attr('searchFilter', updatedSearch);
 
             // Simple search
             key = searchQuery.attr('field');
 
             if (key) {
                 searchQueryValue = searchQuery.attr('value') || '';
-                stateValue = state.attr(key) || '';
+                stateValue = appState.attr(key) || '';
 
                 if (searchQueryValue !== stateValue) {
                     vm.attr('searchQuery', {
                         field: key,
                         value: stateValue
                     });
+
+                    vm.attr('searchValue', stateValue);
                 }
+                vm.attr('searchValue', stateValue);
             }
         }),
 
@@ -181,6 +209,19 @@ module.exports = can.Component.extend({
             if (itemData && !expandBtnClicked) {
                 this.viewModel.navigateToDetails(itemData);
             }
+        },
+
+        /**
+         * @description Handles change event of the Date Range filter group menu.
+         * @param {jQuery object} $el The changed element.
+         * @param {jQuery event} evnt The change event.
+         */
+        '.date-range-group change': function ($el, evnt) {
+            var $datePicker = this.element.find('.custom-range-selector');
+            var customRangeSelected = $(evnt.target).is('.custom-range-toggle');
+
+            // Shows date picker if the custom-range option is selected
+            $datePicker.toggleClass('hide', !customRangeSelected);
         }
     }
 });

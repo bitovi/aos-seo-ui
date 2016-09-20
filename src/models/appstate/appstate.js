@@ -19,8 +19,24 @@ var Layout = can.Map.extend({
 
 module.exports = can.Map.extend({
     define: {
-        page: {
-            type: 'string'
+        alert: {
+            serialize: false,
+            set: function (newVal) {
+                this.attr('isAlertVisible', Boolean(newVal));
+                return newVal;
+            },
+            type: '*'
+        },
+
+        error: {
+            serialize: false,
+            type: '*'
+        },
+
+        isAlertVisible: {
+            serialize: false,
+            type: 'boolean',
+            value: false
         },
 
         layoutState: {
@@ -39,24 +55,20 @@ module.exports = can.Map.extend({
             serialize: false
         },
 
-        error: {
-            serialize: false,
-            type: '*'
+        page: {
+            type: 'string'
         },
 
-        isAlertVisible: {
+        /**
+         * Storage is used to maintain data between page transitions. If a page must pass data
+         * to another page, it can be set in `appState.storage`. Remember to always remove the
+         * temporary data on data retrieval.
+         */
+        storage: {
             serialize: false,
-            type: 'boolean',
-            value: false
-        },
-
-        alert: {
-            serialize: false,
-            set: function (newVal) {
-                this.attr('isAlertVisible', Boolean(newVal));
-                return newVal;
-            },
-            type: '*'
+            value: function () {
+                return {};
+            }
         },
 
         user: {
@@ -71,18 +83,6 @@ module.exports = can.Map.extend({
         version: {
             type: 'string',
             serialize: false
-        },
-
-        /**
-         * Storage is used to maintain data between page transitions. If a page must pass data
-         * to another page, it can be set in `appState.storage`. Remember to always remove the
-         * temporary data on data retrieval.
-         */
-        storage: {
-            serialize: false,
-            value: function () {
-                return {};
-            }
         }
     },
 
