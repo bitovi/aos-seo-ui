@@ -6,7 +6,18 @@ var envVars = require('seo-ui/utils/environmentVars');
 module.exports = can.Model.extend(
     {
         findAll: 'GET ' + envVars.apiUrl() + '/urls.json',
-        findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json'
+        findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json',
+
+        getFilters: function () {
+            var url = envVars.apiUrl() + '/url-filters.json';
+
+            return can.ajax({
+                url: url,
+                method: 'get',
+                dataType: 'json',
+                contentType: 'application/json'
+            });
+        }
     },
     {
         define: {

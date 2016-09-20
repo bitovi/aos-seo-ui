@@ -14,13 +14,18 @@
         },
         "title": "SEO",
         "params": {
+            "countries": "",
+            "dateRanges": "",
             "limit": 25,
             "order": "asc",
             "page": "url-list",
             "pageNumber": 1,
             "pageTitle": "",
             "partNumber": "",
+            "regions": "",
+            "segments": "",
             "sort": "partNumber",
+            "statuses": "",
             "url": ""
         },
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",

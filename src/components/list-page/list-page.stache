@@ -16,6 +16,54 @@
 </div>
 
 <div class="list-tools">
+    {{! Filter Menus }}
+    <div class="filters">
+        {{#each filterConfig}}
+            <pui-filter-menu
+                {button-label}="btnLabel"
+                (applied-filter-btn-label)="updateFilterUrl(%viewModel)"
+                {filter-groups}="getFilterOptions({filterGroups})"
+            >
+                {{#is btnLabel 'All Dates'}}
+                    <div class="custom-range-selector hide">
+                        <div class="form-group">
+                            <label for="start-date">From:</label>
+                            <pui-date-picker
+                                date-string="{startDate}"
+                                max-date="{endDate}"
+                                placement="bottom"
+                            >
+                                <input
+                                    class="form-control"
+                                    id="start-date"
+                                    type="text"
+                                    name="start-date"
+                                    can-value="{startDate}"
+                                >
+                            </pui-date-picker>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">To:</label>
+                            <pui-date-picker
+                                date-string="{endDate}"
+                                min-date="{startDate}"
+                                placement="bottom"
+                            >
+                                <input
+                                    class="form-control"
+                                    id="end-date"
+                                    type="text"
+                                    name="end-date"
+                                    can-value="{endDate}"
+                                >
+                            </pui-date-picker>
+                        </div>
+                    </div>
+                {{/is}}
+            </pui-filter-menu>
+        {{/each}}
+    </div>
+
     <div class="row">
         {{! Basic Search }}
         <div class="col-md-5">
@@ -58,6 +106,7 @@
     current-page="{currentPage}"
     expandable-rows="{expandableRows}"
     expanded-template="{expandedTemplate}"
+    {filters-enabled}="filtersEnabled"
     has-more-records="{hasMoreRecords}"
     is-loading="{isLoading}"
     item-link-enabled="{itemLinkEnabled}"
@@ -67,7 +116,6 @@
     row-template="{rowTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
-    search-state-enabled="{searchStateEnabled}"
     sort-by="{state.sort}"
     sort-order="{state.order}"
     state="{state}"
