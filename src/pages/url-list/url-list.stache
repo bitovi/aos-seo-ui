@@ -1,6 +1,9 @@
+<!--
+    Commenting export button for now,since its descoped for R01
+    once the R01 code gets released then we can uncomment and start working on export feature.
 <seo-export-urls
     count="{count}"
-></seo-export-urls>
+></seo-export-urls> -->
 
 <seo-list-page
     columns="{columns}"
