@@ -54,7 +54,7 @@
     "steal": "^0.16.22",
     "steal-jasmine": "0.0.2",
     "steal-tools": "^0.16.5",
-    "testee": "^0.2.5",
+    "testee": "0.2.4",
     "through": "~2.3.6",
     "through2": "~0.6.3",
     "vinyl-source-stream": "~1.1.0",
