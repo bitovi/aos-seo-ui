@@ -16,7 +16,7 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                            {{#is key 'createDate' }}
+                            {{#is key 'createDate'}}
                                 {{showFormattedDate itemValue}}
                             {{else}}
                             {{#is key 'modifyDate'}}
