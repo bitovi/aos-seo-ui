@@ -459,5 +459,45 @@ module.exports = can.Map.extend({
                 }
             });
         }
+    },
+
+    /**
+     * @function resetAllFilters
+     * @description Resets all filters on the page.
+     */
+    resetAllFilters: function () {
+        var filterMenus = this.attr('filterMenus');
+        var filterVm;
+
+        if (filterMenus.length) {
+            can.each(filterMenus, function(filterMenu) {
+                filterVm = can.viewModel(filterMenu);
+
+                filterVm.attr('appliedFilterBtnLabel', filterVm.attr('buttonLabel'));
+
+                filterVm.attr('filterGroups').forEach(function(group) {
+                    var filterOptions = group.attr('filterOptions');
+                    group.attr('appliedFilters', {});
+
+                    if (filterOptions) {
+                        filterOptions.each(function (filter, filterIndex) {
+                            // Sets the filter's selected attribute to false
+                            filter.attr('selected', false);
+
+                            // Resets radio index
+                            if (group.attr('inputType') === 'radio') {
+                                group.attr('selectedRadioIndex', filterIndex);
+                            }
+                        });
+
+                        if (group.attr('inputType') === 'radio') {
+                            group.attr('selectedRadioIndex', null);
+                        }
+                    }
+                });
+
+                filterVm.applyFilters();
+            });
+        }
     }
 });
