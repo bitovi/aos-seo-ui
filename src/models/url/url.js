@@ -25,6 +25,10 @@ module.exports = can.Model.extend(
                 type: 'string'
             },
 
+            createDate: {
+              type: 'string'
+            },
+
             description: {
                 type: 'string'
             },
@@ -34,6 +38,10 @@ module.exports = can.Model.extend(
             },
 
             descriptionUrl: {
+                type: 'string'
+            },
+
+            modifyDate: {
                 type: 'string'
             },
 

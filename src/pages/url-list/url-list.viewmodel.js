@@ -3,6 +3,7 @@ var can = require('can');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
+var formatUtils = require('pui/utils/format-utils');
 
 module.exports = can.Map.extend({
     define: {
@@ -21,6 +22,11 @@ module.exports = can.Map.extend({
                     cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'createDate',
+                    label: 'Created Date'
                 },
                 {
                     cssClass: 'col-md-2',
@@ -189,5 +195,13 @@ module.exports = can.Map.extend({
                 return UrlModel;
             }
         }
+    },
+    /**
+     * @function url-list.viewModel.showFormattedDate showFormattedDate
+     * @description Expects the context to be the date, returns date formated in format utils.
+     */
+    showFormattedDate: function showFormattedDate(date) {
+      console.log(date +" ==date");
+        return formatUtils.formatDate(date);
     }
 });
