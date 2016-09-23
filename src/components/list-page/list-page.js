@@ -222,6 +222,43 @@ module.exports = can.Component.extend({
 
             // Shows date picker if the custom-range option is selected
             $datePicker.toggleClass('hide', !customRangeSelected);
+        },
+
+        /**
+         * @description Event listener to select corresponding countries when Region is selected
+         * @param {jQuery object} $el the clicked element
+         */
+        'pui-filter-menu .region-group label click': function ($el) {
+            var selectedRegion = $el[0].innerText;
+            var filterVm = can.viewModel($el.closest('pui-filter-menu'));
+            var filterGroups = filterVm.attr('filterGroups');
+            var countriesToSelect;
+            var regionPreviousState;
+
+            // Find countries to select based on region
+            filterGroups.forEach(function (group) {
+                if (group.attr('parameter') === 'regions') {
+                    group.attr('filterOptions').forEach(function (option) {
+                        if (option.attr('label') === selectedRegion) {
+                            countriesToSelect = option.attr('secondaryValues');
+                            regionPreviousState = option.attr('selected');
+                        }
+                    });
+                }
+            });
+
+            // Select countries
+            filterGroups.forEach(function (group) {
+                if (group.attr('parameter') === 'countries') {
+                    group.attr('filterOptions').forEach(function (option) {
+                        countriesToSelect.forEach(function (country) {
+                            if (country.toLowerCase() === option.value) {
+                                option.attr('selected', !regionPreviousState);
+                            }
+                        });
+                    });
+                }
+            });
         }
     }
 });
