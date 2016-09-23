@@ -25,6 +25,8 @@
             "region": "AMR",
             "segment": "All",
             "status": "added",
+            "createDate": 1474590682635,
+            "modifyDate": 1474590682635,
             "url": "/macbook/"
         },
         {
@@ -35,8 +37,8 @@
             "region": "EMEA",
             "segment": "Internal EPP",
             "status": "end-of-life",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": 1574590682636,
+            "modifyDate": 1574590682636,
             "url": "/macbook-air/"
         },
         {

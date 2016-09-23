@@ -26,7 +26,14 @@ module.exports = can.Map.extend({
                 {
                     cssClass: 'col-md-2',
                     key: 'createDate',
-                    label: 'Created Date'
+                    label: 'Created Date',
+                    isHidden: true
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'modifyDate',
+                    label: 'Modified Date',
+                    isHidden: true
                 },
                 {
                     cssClass: 'col-md-2',
@@ -201,7 +208,6 @@ module.exports = can.Map.extend({
      * @description Expects the context to be the date, returns date formated in format utils.
      */
     showFormattedDate: function showFormattedDate(date) {
-      console.log(date +" ==date");
         return formatUtils.formatDate(date);
     }
 });

@@ -26,7 +26,7 @@ module.exports = can.Model.extend(
             },
 
             createDate: {
-              type: 'string'
+                type: 'number'
             },
 
             description: {
@@ -42,7 +42,7 @@ module.exports = can.Model.extend(
             },
 
             modifyDate: {
-                type: 'string'
+                type: 'number'
             },
 
             pageTitle: {
