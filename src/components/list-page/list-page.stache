@@ -64,9 +64,8 @@
         {{/each}}
         <button
             type="button"
-            class="btn btn-secondary btn-sm reset-all-filters"
+            class="btn btn-secondary btn-xs reset-all-filters"
             ($click)="resetAllFilters"
-            
         >
             Reset Filters
         </button>
