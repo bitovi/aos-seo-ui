@@ -229,31 +229,31 @@ module.exports = can.Component.extend({
          * @param {jQuery object} $el the clicked element
          */
         'pui-filter-menu .region-group label click': function ($el) {
-            var selectedRegion = $el[0].innerText;
             var filterVm = can.viewModel($el.closest('pui-filter-menu'));
             var filterGroups = filterVm.attr('filterGroups');
-            var countriesToSelect;
-            var regionPreviousState;
+            var primaryItemSelected = $el[0].innerText;
+            var primaryItemPreviousState;
+            var secondaryParameter;
+            var secondaryValues;
 
             // Find countries to select based on region
             filterGroups.forEach(function (group) {
                 if (group.attr('parameter') === 'regions') {
                     group.attr('filterOptions').forEach(function (option) {
-                        if (option.attr('label') === selectedRegion) {
-                            countriesToSelect = option.attr('secondaryValues');
-                            regionPreviousState = option.attr('selected');
+                        if (option.attr('label') === primaryItemSelected) {
+                            secondaryParameter = option.attr('secondaryParameter');
+                            secondaryValues = option.attr('secondaryValues');
+                            primaryItemPreviousState = option.attr('selected');
                         }
                     });
                 }
-            });
 
-            // Select countries
-            filterGroups.forEach(function (group) {
-                if (group.attr('parameter') === 'countries') {
+                // Select Secondary Values based on the Secondary Parameter
+                if (group.attr('parameter') === secondaryParameter) {
                     group.attr('filterOptions').forEach(function (option) {
-                        countriesToSelect.forEach(function (country) {
-                            if (country.toLowerCase() === option.value) {
-                                option.attr('selected', !regionPreviousState);
+                        secondaryValues.forEach(function (secondaryItem) {
+                            if (secondaryItem.toLowerCase() === option.value) {
+                                option.attr('selected', !primaryItemPreviousState);
                             }
                         });
                     });
