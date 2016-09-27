@@ -117,6 +117,16 @@ describe('List Page', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
+        describe('Reset Filters button', function () {
+            it('Renders', function () {
+                expect(component.find(".reset-all-filters").length).toBeGreaterThan(0);
+            });
+
+            it('Has proper label', function () {
+                expect(component.find(".reset-all-filters").text()).toBe('Reset Filters');
+            });
+        });
+
         describe('Routing', function () {
             it('is done by selecting item in the list', function () {
                 var stateObj = state;

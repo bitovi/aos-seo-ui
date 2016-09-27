@@ -474,10 +474,7 @@ module.exports = can.Map.extend({
                 filterVm = can.viewModel(filterMenu);
 
                 filterVm.attr('filterGroups').forEach(function(group) {
-                    var filterOptions = group.attr('filterOptions');
-                    group.attr('appliedFilters', {});
-
-                    if (filterOptions) {
+                    if (group.attr('filterOptions')) {
                         // Unselect all filter options
                         group.attr('isAllSelected', false);
                     }
