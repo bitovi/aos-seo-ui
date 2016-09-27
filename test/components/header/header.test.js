@@ -46,9 +46,11 @@ describe('Header', function () {
 
         it('initial render', function () {
             expect(component).toExist();
+            var vm = $('#sandbox seo-header').viewModel();
             expect(component.find('.global-top-nav')).toExist();
             expect(component.find('.global-secondary-nav')).toExist();
-            expect(component.find('.version')).toExist();
+            vm.attr('version','1.0');
+            expect(component.find('.version').text()).toBe('V 1.0');
         });
 
         it('Renders users Readonly mode', function () {

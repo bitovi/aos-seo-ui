@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand check-saved-state-js" href="{{link homeUrl}}"><span class="apple-logo"></span> SEO
                 {{#version}}
-                    <span class="version">V {{version}} </span>
+                    <span class="version">V {{version}}</span>
                 {{/version}}
             </a>
 
