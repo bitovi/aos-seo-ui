@@ -2,7 +2,9 @@
     <nav class="navbar navbar-inverse global-top-nav" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand check-saved-state-js" href="{{link homeUrl}}"><span class="apple-logo"></span> SEO
-                <span class="version">V {{version}} </span>
+                {{#version}}
+                    <span class="version">V {{version}} </span>
+                {{/version}}
             </a>
 
         </div>
