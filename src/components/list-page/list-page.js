@@ -228,36 +228,26 @@ module.exports = can.Component.extend({
          * @description Event listener to select corresponding countries when Region is selected
          * @param {jQuery object} $el the clicked element
          */
-        'pui-filter-menu .region-group label click': function ($el) {
-            var filterVm = can.viewModel($el.closest('pui-filter-menu'));
+        'pui-filter-menu .region-group input click': function ($input) {
+            var filterVm = can.viewModel($input.closest('pui-filter-menu'));
             var filterGroups = filterVm.attr('filterGroups');
-            var primaryItemSelected = $el[0].innerText;
-            var primaryItemPreviousState;
-            var secondaryParameter;
-            var secondaryValues;
+            var $thisGroup = $input.closest('.filter-group');
+            var $listGroups = $input.closest('.filter-groups').find('.filter-group');
+            var groupIndex = $listGroups.index($thisGroup);
+            var $listItems = $thisGroup.find('.list-group-item');
+            var optionIndex = $listItems.index($input.closest('.list-group-item'));
+            var selectedOption = filterGroups[groupIndex].attr('filterOptions')[optionIndex];
+            var primaryItemPreviousState = selectedOption.attr('selected');
+            var secondaryFilterGroup = filterGroups[1];
+            var secondaryValues = selectedOption.attr('secondaryValues');
 
-            // Find countries to select based on region
-            filterGroups.forEach(function (group) {
-                if (group.attr('parameter') === 'regions') {
-                    group.attr('filterOptions').forEach(function (option) {
-                        if (option.attr('label') === primaryItemSelected) {
-                            secondaryParameter = option.attr('secondaryParameter');
-                            secondaryValues = option.attr('secondaryValues');
-                            primaryItemPreviousState = option.attr('selected');
-                        }
-                    });
-                }
-
-                // Select Secondary Values based on the Secondary Parameter
-                if (group.attr('parameter') === secondaryParameter) {
-                    group.attr('filterOptions').forEach(function (option) {
-                        secondaryValues.forEach(function (secondaryItem) {
-                            if (secondaryItem.toLowerCase() === option.value) {
-                                option.attr('selected', !primaryItemPreviousState);
-                            }
-                        });
-                    });
-                }
+            // Select Secondary Values based on the Secondary Parameter
+            secondaryFilterGroup.attr('filterOptions').forEach(function (option) {
+                secondaryValues.forEach(function (secondaryItem) {
+                    if (secondaryItem.toLowerCase() === option.value) {
+                        option.attr('selected', !primaryItemPreviousState);
+                    }
+                });
             });
         }
     }
