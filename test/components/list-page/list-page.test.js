@@ -26,6 +26,13 @@ var testTemplate = require('./list-page.test.stache');
 var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 var vm;
 
+// Filter Menu setup
+var FilterViewModel = require('pui/components/filter-menu/viewmodel');
+var filterVm;
+var filterGroups;
+var firstFilterGroup;
+var filterOptions;
+
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
 var renderPage = function (newState) {
@@ -89,6 +96,52 @@ describe('List Page', function () {
     describe('View model', function () {
         beforeEach(function () {
             vm = new ViewModel();
+            filterVm = new FilterViewModel();
+            filterGroups = [
+                {
+                    groupTitle: 'Segment:',
+                    filterOptions: [
+                        {
+                            'label': 'Consumer',
+                            'value': 'consumer'
+                        },
+                        {
+                            'label': 'Education',
+                            'value': 'edu'
+                        },
+                        {
+                            'label': 'Small Business',
+                            'value': 'smb'
+                        }
+                    ]
+                },
+                {
+                    groupTitle: 'Radio Option:',
+                    inputType: 'radio',
+                    filterOptions: [
+                        {
+                            'label': 'Option 1',
+                            'value': 'radio-option-1'
+                        },
+                        {
+                            'label': 'Option 2',
+                            'value': 'radio-option-2'
+                        },
+                        {
+                            'label': 'Option 3',
+                            'value': 'radio-option-3'
+                        }
+                    ]
+                }
+            ];
+            filterVm.attr('filterGroups', filterGroups);
+            firstFilterGroup = filterVm.attr('filterGroups.0');
+            secondFilterGroup = filterVm.attr('filterGroups.1');
+            filterOptions = firstFilterGroup.attr('filterOptions');
+
+            renderPage();
+            component = $('#sandbox seo-list-page');
+            vm = component.data('scope');
         });
 
         describe('Has default scope value of', function () {
@@ -97,6 +150,35 @@ describe('List Page', function () {
                 expect(title).toEqual('List Page');
             });
         });
+
+        describe('When Reset Filters method is called', function () {
+            it('updates isAllSelected', function () {
+                filterOptions[0].attr('selected', true);
+                filterOptions[1].attr('selected', true);
+                filterOptions[2].attr('selected', true);
+                expect(firstFilterGroup.attr('isAllSelected')).toEqual(true);
+            });
+
+            beforeEach(function () {
+                spyOn(vm, 'resetAllFilters');
+                $('.reset-all-filters').trigger('click');
+            });
+
+            it('calls resetAllFilters()', function () {
+                expect(vm.resetAllFilters).toHaveBeenCalled();
+            });
+
+            it('then each filterOptions selected property is false', function () {
+                filterOptions.forEach(function (option) {
+                    expect(option.attr('selected')).toEqual(false);
+                });
+            });
+
+            it('then each filterGroups isAllSelected property is false', function () {
+                expect(firstFilterGroup.attr('isAllSelected')).toEqual(false);
+                expect(secondFilterGroup.attr('isAllSelected')).toEqual(false);
+            });
+        });        
     });
 
     describe('Component', function () {
@@ -119,11 +201,22 @@ describe('List Page', function () {
 
         describe('Reset Filters button', function () {
             it('Renders', function () {
-                expect(component.find(".reset-all-filters").length).toBeGreaterThan(0);
+                expect(component.find('.reset-all-filters').length).toBeGreaterThan(0);
             });
 
             it('Has proper label', function () {
-                expect(component.find(".reset-all-filters").text()).toBe('Reset Filters');
+                expect(component.find('.reset-all-filters').text()).toBe('Reset Filters');
+            });
+        });
+
+        describe('When clicking the Reset Filters button', function () {
+            beforeEach(function () {
+                spyOn(vm, 'resetAllFilters');
+                $('.reset-all-filters').trigger('click');
+            });
+
+            it('calls resetAllFilters()', function () {
+                expect(vm.resetAllFilters).toHaveBeenCalled();
             });
         });
 
