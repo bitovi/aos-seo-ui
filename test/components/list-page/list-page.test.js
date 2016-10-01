@@ -152,20 +152,12 @@ describe('List Page', function () {
         });
 
         describe('When Reset Filters method is called', function () {
-            it('updates isAllSelected', function () {
+            beforeEach(function () {
                 filterOptions[0].attr('selected', true);
                 filterOptions[1].attr('selected', true);
                 filterOptions[2].attr('selected', true);
-                expect(firstFilterGroup.attr('isAllSelected')).toEqual(true);
-            });
-
-            beforeEach(function () {
                 spyOn(vm, 'resetAllFilters');
-                $('.reset-all-filters').trigger('click');
-            });
-
-            it('calls resetAllFilters()', function () {
-                expect(vm.resetAllFilters).toHaveBeenCalled();
+                vm.resetAllFilters();
             });
 
             it('then each filterOptions selected property is false', function () {

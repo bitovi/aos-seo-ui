@@ -62,11 +62,14 @@
                 {{/is}}
             </pui-filter-menu>
         {{/each}}
-        <button
-            type="button"
-            class="btn btn-secondary btn-xs reset-all-filters"
-            ($click)="resetAllFilters"
-        >Reset Filters</button>
+
+        {{#if filterConfig.length}}
+            <button
+                type="button"
+                class="btn btn-secondary btn-xs reset-all-filters"
+                ($click)="resetAllFilters"
+            >Reset Filters</button>
+        {{/if}}
     </div>
 
     <div class="row">
