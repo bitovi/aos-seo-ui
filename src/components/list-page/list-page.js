@@ -228,7 +228,7 @@ module.exports = can.Component.extend({
          * @description Event listener to select corresponding countries when Region is selected
          * @param {jQuery object} $el the clicked element
          */
-        'pui-filter-menu .region-group input click': function ($input) {
+        'pui-filter-menu .filter-group input click': function ($input) {
             var filterVm = can.viewModel($input.closest('pui-filter-menu'));
             var filterGroups = filterVm.attr('filterGroups');
             var $thisGroup = $input.closest('.filter-group');
@@ -238,17 +238,22 @@ module.exports = can.Component.extend({
             var optionIndex = $listItems.index($input.closest('.list-group-item'));
             var selectedOption = filterGroups[groupIndex].attr('filterOptions')[optionIndex];
             var primaryItemPreviousState = selectedOption.attr('selected');
-            var secondaryFilterGroup = filterGroups[1];
             var secondaryValues = selectedOption.attr('secondaryValues');
+            var secondaryParameter = selectedOption.attr('secondaryParameter');
+            var secondaryFilterGroup = _.find(filterGroups, function (group) {
+                return group.attr('parameter') === secondaryParameter;
+            });
 
             // Select Secondary Values based on the Secondary Parameter
-            secondaryFilterGroup.attr('filterOptions').forEach(function (option) {
-                secondaryValues.forEach(function (secondaryItem) {
-                    if (secondaryItem.toLowerCase() === option.value) {
-                        option.attr('selected', !primaryItemPreviousState);
-                    }
+            if (secondaryParameter) {
+                secondaryValues.forEach(function (value) {
+                    var filterOption = _.find(secondaryFilterGroup.attr('filterOptions'), function (option) {
+                        return option.attr('value').toLowerCase() === value.toLowerCase();
+                    });
+
+                    filterOption.attr('selected', !primaryItemPreviousState);
                 });
-            });
+            }
         }
     }
 });
