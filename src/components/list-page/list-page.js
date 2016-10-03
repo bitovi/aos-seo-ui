@@ -237,7 +237,7 @@ module.exports = can.Component.extend({
             var $listItems = $thisGroup.find('.list-group-item');
             var optionIndex = $listItems.index($input.closest('.list-group-item'));
             var selectedOption = filterGroups[groupIndex].attr('filterOptions')[optionIndex];
-            var primaryItemPreviousState = selectedOption.attr('selected');
+            var selectedState = $input.prop('checked');
             var secondaryValues = selectedOption.attr('secondaryValues');
             var secondaryParameter = selectedOption.attr('secondaryParameter');
             var secondaryFilterGroup = _.find(filterGroups, function (group) {
@@ -251,7 +251,7 @@ module.exports = can.Component.extend({
                         return option.attr('value').toLowerCase() === value.toLowerCase();
                     });
 
-                    filterOption.attr('selected', !primaryItemPreviousState);
+                    filterOption.attr('selected', selectedState);
                 });
             }
         }
