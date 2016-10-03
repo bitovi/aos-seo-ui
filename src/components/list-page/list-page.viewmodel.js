@@ -473,7 +473,7 @@ module.exports = can.Map.extend({
             can.each(filterMenus, function(filterMenu) {
                 filterVm = can.viewModel(filterMenu);
 
-                filterVm.attr('filterGroups').forEach(function(group) {
+                can.each(filterVm.attr('filterGroups'), function(group) {
                     // Unselect all filter options
                     group.attr('isAllSelected', false);
                 });
