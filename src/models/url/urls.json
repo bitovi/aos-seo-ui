@@ -14,8 +14,8 @@
             "segment": "All",
             "status": "modified",
             "url": "/ipod-classic/",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "urlAspenLink": "http://apsen/ipod-classic/"
         },
         {
@@ -25,8 +25,8 @@
             "region": "AMR",
             "segment": "All",
             "status": "added",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/macbook/"
         },
         {
@@ -37,8 +37,8 @@
             "region": "EMEA",
             "segment": "Internal EPP",
             "status": "end-of-life",
-            "createDate": 1574590682636,
-            "modifyDate": 1574590682636,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/macbook-air/"
         },
         {
@@ -48,8 +48,8 @@
             "region": "APAC",
             "segment": "Direct",
             "status": "added",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipad-wifi/"
         },
         {
@@ -59,8 +59,8 @@
             "region": "JAPAN",
             "segment": "All",
             "status": "modified",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipad-3g/"
         },
         {
@@ -70,8 +70,8 @@
             "region": "EMEA",
             "segment": "Small Business",
             "status": "added",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipad-2-wifi/"
         },
         {
@@ -81,8 +81,8 @@
             "region": "APAC",
             "segment": "Apple",
             "status": "added",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipad-2-3g/"
         },
         {
@@ -92,8 +92,8 @@
             "region": "AMR",
             "segment": "Edu Individual",
             "status": "modified",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipod-nano/"
         },
         {
@@ -103,8 +103,8 @@
             "region": "AMR",
             "segment": "Direct",
             "status": "end-of-life",
-            "createDate": 1474590682635,
-            "modifyDate": 1474590682635,
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "url": "/ipod-touch/"
         }
     ],

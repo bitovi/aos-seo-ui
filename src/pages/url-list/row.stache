@@ -16,15 +16,7 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                            {{#is key 'createDate'}}
-                                {{showFormattedDate itemValue}}
-                            {{else}}
-                            {{#is key 'modifyDate'}}
-                                {{showFormattedDate itemValue}}
-                            {{else}}
                                 {{itemValue}}
-                            {{/is}}
-                            {{/is}}
                             {{/is}}
                         {{/is}}
                     </div>
