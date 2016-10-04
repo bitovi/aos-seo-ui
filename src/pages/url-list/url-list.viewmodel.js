@@ -24,6 +24,18 @@ module.exports = can.Map.extend({
                 },
                 {
                     cssClass: 'col-md-2',
+                    key: 'createDate',
+                    label: 'Created Date',
+                    isHidden: true
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'modifyDate',
+                    label: 'Modified Date',
+                    isHidden: true
+                },
+                {
+                    cssClass: 'col-md-2',
                     key: 'pageTitle',
                     label: 'Page Title'
                 },
