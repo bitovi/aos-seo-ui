@@ -290,7 +290,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
                 });
 
                 it('for a full value', function () {
