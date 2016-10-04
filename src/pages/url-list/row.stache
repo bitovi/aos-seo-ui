@@ -23,25 +23,21 @@
 
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
-                            <span class="keypath label label-alt label-default">
-                                <span class="icon-key"></span>
+                            <span class="icon-key"></span>
 
-                                <a href="{{descriptionUrl}}" target="_blank">
-                                    {{descriptionKeyPath}}
-                                </a>
-                            </span>
+                            <a href="{{descriptionUrl}}" target="_blank">
+                                {{descriptionKeyPath}}
+                            </a>
                         {{/if}}
                     {{/is}}
 
                     {{#is key 'pageTitle'}}
                         {{#if pageTitleKeyPath}}
-                            <span class="keypath label label-alt label-default">
-                                <span class="icon-key"></span>
+                            <span class="icon-key"></span>
 
                                 <a href="{{pageTitleUrl}}" target="_blank">
                                     {{pageTitleKeyPath}}
                                 </a>
-                            </span>
                         {{/if}}
                     {{/is}}
                 {{/if}}

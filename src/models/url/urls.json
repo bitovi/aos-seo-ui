@@ -14,7 +14,24 @@
             "segment": "All",
             "status": "modified",
             "url": "/ipod-classic/",
-            "urlAspenLink": "http://apsen/ipod-classic/"
+            "urlAspenLink": "http://apsen/ipod-classic/",
+            "titleTextAssets" : [ {
+            "keyPath" : "store.seo.hyphen",
+            "value" : "-",
+            "nemoUrl" : "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=dev-integration"
+            }, {
+            "keyPath" : "pub.seo.promotiontext",
+            "value" : "",
+            "nemoUrl" : "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=dev-integration"
+            }, {
+            "keyPath" : "store.base_title",
+            "value" : "Apple  (DE)",
+            "nemoUrl" : "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=dev-integration"
+            }, {
+            "keyPath" : "store.seo.full.pagetitle",
+            "value" : "QuickTime MPEG-2 Wiedergabekomponente für Mac OS X  - Apple  (DE)",
+            "nemoUrl" : "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=dev-integration"
+            } ]
         },
         {
             "country": "United States of America",
