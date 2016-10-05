@@ -33,6 +33,13 @@ var filterGroups;
 var firstFilterGroup;
 var secondFilterGroup;
 var filterOptions;
+var filterOptions2;
+var filterMenus;
+var firstMenu;
+var menuTrigger;
+var firstInput;
+
+require('seo-ui/components/list-page/list-page');
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
@@ -100,6 +107,7 @@ var renderPage = function (newState) {
                     },
                     {
                         groupTitle: 'Countries:',
+                        parameter: 'countries',
                         inputType: 'checkbox',
                         filterOptions: [
                             {
@@ -127,7 +135,7 @@ var renderPage = function (newState) {
 
     jasmine.clock().tick(can.fixture.delay);
     component = $('#sandbox seo-list-page');
-    vm = component.data('scope');
+    vm = can.viewModel(component);
 };
 
 describe('List Page', function () {
@@ -143,57 +151,7 @@ describe('List Page', function () {
 
     describe('View model', function () {
         beforeEach(function () {
-            vm = new ViewModel();
-            filterVm = new FilterViewModel();
-            filterGroups = [
-                {
-                    groupTitle: 'Regions:',
-                    parameter: 'regions',
-                    inputType: 'checkbox',
-                    filterOptions: [
-                        {
-                            "label": "AMR",
-                            "value": "amr",
-                            "secondaryParameter": "countries",
-                            "secondaryValues": [
-                                "BR",
-                                "CA",
-                                "MX",
-                                "US"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    groupTitle: 'Countries:',
-                    parameter: 'countries',
-                    inputType: 'checkbox',
-                    filterOptions: [
-                        {
-                            "label": "Brazil",
-                            "value": "br"
-                        },
-                        {
-                            "label": "Canada",
-                            "value": "ca"
-                        },
-                        {
-                            "label": "Mexico",
-                            "value": "mx"
-                        },
-                        {
-                            "label": "United States",
-                            "value": "us"
-                        }
-                    ]
-                }
-            ];
-            filterVm.attr('filterGroups', filterGroups);
-            firstFilterGroup = filterVm.attr('filterGroups.0');
-            secondFilterGroup = filterVm.attr('filterGroups.1');
-            filterOptions = firstFilterGroup.attr('filterOptions');
-            filterOptions2 = secondFilterGroup.attr('filterOptions');
-            vm = new ViewModel();
+            renderPage();
         });
 
         describe('Has default scope value of', function () {
@@ -207,8 +165,6 @@ describe('List Page', function () {
     describe('Component', function () {
         beforeEach(function () {
             renderPage();
-            component = $('#sandbox seo-list-page');
-            vm = component.data('scope');
         });
 
         // Not sure why this is failing,but will fix as part of different PR.This will unblock the build
@@ -235,15 +191,85 @@ describe('List Page', function () {
             });
         });
 
-        describe('When Region is selected', function () {
-            it('then corresponding countries are selected.', function () {
-                // filterOptions[0].attr('selected', true);
-                // filterVm.applyFilters();
-                // filterOptions2.forEach(function (option) {
-                //     expect(option.attr('selected')).toEqual(true);
-                // });
-                var filterMenus = component.find('pui-filter-menu');
-                expect(filterMenus.length).toEqual(1);
+        describe('When AMR Region is selected', function () {
+            beforeEach(function () {
+                renderPage();
+
+                // Data setup
+                component = $('#sandbox seo-list-page');
+                filterMenus = component.find('pui-filter-menu');
+                firstMenu = filterMenus.eq(0);
+                filterVm = can.viewModel(firstMenu);
+                filterGroups = [
+                    {
+                        groupTitle: 'Regions:',
+                        parameter: 'regions',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        parameter: 'countries',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ];
+                filterVm.attr('filterGroups', filterGroups);
+                firstFilterGroup = filterVm.attr('filterGroups.0');
+                secondFilterGroup = filterVm.attr('filterGroups.1');
+                filterOptions = firstFilterGroup.attr('filterOptions');
+                filterOptions2 = secondFilterGroup.attr('filterOptions');
+
+                menuTrigger = firstMenu.find('.dropdown');
+                menuTrigger.trigger('click');
+                // Select region
+                firstInput = firstMenu.find('.amr-toggle');
+                firstInput.trigger('click');
+            });
+
+            it('then corresponding countries are selected: Brazil.', function () {
+                expect(firstMenu.find('.br-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Canada', function () {
+                expect(firstMenu.find('.ca-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Mexico', function () {
+                expect(firstMenu.find('.mx-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: USA', function () {
+                expect(firstMenu.find('.us-toggle').prop('checked')).toEqual(true);
             });
         });
     });
