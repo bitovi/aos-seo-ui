@@ -105,12 +105,12 @@ describe('URL List Page', function () {
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
+                    cssClass: 'col-md-3',
+                    key: 'titleTextAssets',
                     label: 'Page Title'
                 },
                 {
-                    cssClass: 'col-md-3',
+                    cssClass: 'col-md-2',
                     key: 'description',
                     label: 'Description'
                 },
@@ -318,7 +318,7 @@ describe('URL List Page', function () {
 
         describe('sorts by the', function () {
             testSort('country');
-            testSort('pageTitle');
+            testSort('titleTextAssets');
             testSort('partNumber');
             testSort('region');
             testSort('segment');

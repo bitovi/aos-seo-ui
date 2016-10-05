@@ -29,6 +29,8 @@
             "region": "amr",
             "country": "US",
             "status": "modified",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
             "titleTextAssets": [{
                 "keyPath": "store.seo.hyphen",
                 "value": "-",

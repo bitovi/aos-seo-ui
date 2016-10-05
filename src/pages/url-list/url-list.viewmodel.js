@@ -35,12 +35,12 @@ module.exports = can.Map.extend({
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
+                    cssClass: 'col-md-3',
+                    key: 'titleTextAssets',
                     label: 'Page Title'
                 },
                 {
-                    cssClass: 'col-md-3',
+                    cssClass: 'col-md-2',
                     key: 'description',
                     label: 'Description'
                 },

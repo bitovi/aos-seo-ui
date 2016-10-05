@@ -16,7 +16,21 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
+                            {{#is key 'titleTextAssets'}}
+                            {{#titleTextAssets}}
+                                <span class="row">
+                                    <span class="col-sm-6 title-text-assets-keypath pull-right">
+
+                                    <a href="{{nemoUrl}}" target="_blank">
+                                        <span class="icon-key"></span>{{keyPath}}
+                                    </a>
+                                    </span>
+                                <span class="col-sm-6 title-text-assets-value pull-left">{{value}}-</span>
+                                </span>
+                            {{/titleTextAssets}}
+                            {{else}}
                                 {{itemValue}}
+                            {{/is}}
                             {{/is}}
                         {{/is}}
                     </div>
@@ -31,7 +45,7 @@
                         {{/if}}
                     {{/is}}
 
-                    {{#is key 'pageTitle'}}
+                    <!-- {{#is key 'pageTitle'}}
                         {{#if pageTitleKeyPath}}
                             <span class="icon-key"></span>
 
@@ -39,7 +53,7 @@
                                     {{pageTitleKeyPath}}
                                 </a>
                         {{/if}}
-                    {{/is}}
+                    {{/is}} -->
                 {{/if}}
             </td>
         {{/if}}
