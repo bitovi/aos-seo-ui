@@ -33,6 +33,8 @@ var filterGroups;
 var firstFilterGroup;
 var secondFilterGroup;
 var filterOptions;
+var filterMenus;
+var firstMenu;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
@@ -95,6 +97,37 @@ var renderPage = function (newState) {
                                     "MX",
                                     "US"
                                 ]
+                            },
+                            {
+                                "label": "APAC",
+                                "value": "apac",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "AU",
+                                    "CN",
+                                    "HK",
+                                    "HK",
+                                    "IN",
+                                    "ID",
+                                    "JP",
+                                    "MY",
+                                    "NZ",
+                                    "PH",
+                                    "SG",
+                                    "KR",
+                                    "TW",
+                                    "TH",
+                                    "TH",
+                                    "VN"
+                                ]
+                            },
+                            {
+                                "label": "JAPAN",
+                                "value": "japan",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "JP"
+                                ]
                             }
                         ]
                     },
@@ -143,87 +176,6 @@ describe('List Page', function () {
 
     describe('View model', function () {
         beforeEach(function () {
-            vm = new ViewModel();
-            filterVm = new FilterViewModel();
-            filterGroups = [
-                {
-                    groupTitle: 'Region:',
-                    parameter: 'regions',
-                    inputType: 'checkbox',
-                    filterOptions: [
-                        {
-                            "label": "AMR",
-                            "value": "amr",
-                            "secondaryParameter": "countries",
-                            "secondaryValues": [
-                                "BR",
-                                "CA",
-                                "MX",
-                                "US"
-                            ]
-                        },
-                        {
-                            "label": "APAC",
-                            "value": "apac",
-                            "secondaryParameter": "countries",
-                            "secondaryValues": [
-                                "AU",
-                                "CN",
-                                "HK",
-                                "HK",
-                                "IN",
-                                "ID",
-                                "JP",
-                                "MY",
-                                "NZ",
-                                "PH",
-                                "SG",
-                                "KR",
-                                "TW",
-                                "TH",
-                                "TH",
-                                "VN"
-                            ]
-                        },
-                        {
-                            "label": "JAPAN",
-                            "value": "japan",
-                            "secondaryParameter": "countries",
-                            "secondaryValues": [
-                                "JP"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    groupTitle: 'Countries:',
-                    parameter: 'countries',
-                    inputType: 'checkbox',
-                    filterOptions: [
-                        {
-                            "label": "Brazil",
-                            "value": "br"
-                        },
-                        {
-                            "label": "Canada",
-                            "value": "ca"
-                        },
-                        {
-                            "label": "Mexico",
-                            "value": "mx"
-                        },
-                        {
-                            "label": "United States",
-                            "value": "us"
-                        }
-                    ]
-                }
-            ];
-            filterVm.attr('filterGroups', filterGroups);
-            firstFilterGroup = filterVm.attr('filterGroups.0');
-            secondFilterGroup = filterVm.attr('filterGroups.1');
-            filterOptions = firstFilterGroup.attr('filterOptions');
-
             renderPage();
         });
 
@@ -236,20 +188,110 @@ describe('List Page', function () {
 
         describe('When Reset Filters method is called', function () {
             beforeEach(function () {
+                // Data setup
+                filterMenus = component.find('pui-filter-menu');
+                firstMenu = filterMenus.eq(0);
+                filterVm = can.viewModel(firstMenu);
+                filterGroups = [
+                    {
+                        groupTitle: 'Region:',
+                        parameter: 'regions',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            },
+                            {
+                                "label": "APAC",
+                                "value": "apac",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "AU",
+                                    "CN",
+                                    "HK",
+                                    "HK",
+                                    "IN",
+                                    "ID",
+                                    "JP",
+                                    "MY",
+                                    "NZ",
+                                    "PH",
+                                    "SG",
+                                    "KR",
+                                    "TW",
+                                    "TH",
+                                    "TH",
+                                    "VN"
+                                ]
+                            },
+                            {
+                                "label": "JAPAN",
+                                "value": "japan",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "JP"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        parameter: 'countries',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ];
+                filterVm.attr('filterGroups', filterGroups);
+                firstFilterGroup = filterVm.attr('filterGroups.0');
+                secondFilterGroup = filterVm.attr('filterGroups.1');
+                filterOptions = firstFilterGroup.attr('filterOptions');
+
+                // Select filterOptions
                 filterOptions[0].attr('selected', true);
                 filterOptions[1].attr('selected', true);
                 filterOptions[2].attr('selected', true);
+
                 vm.resetAllFilters();
-                jasmine.clock().tick(can.fixture.delay);
             });
 
-            xit('then each filterOptions selected property is false', function () {
-                expect(filterOptions[0].attr('selected')).toEqual(false);
-                expect(filterOptions[1].attr('selected')).toEqual(false);
-                expect(filterOptions[2].attr('selected')).toEqual(false);
+            it('then filterOptions[0] selected property is false', function () {
+                expect(filterOptions[0].attr('selected')).toBe(false);
             });
 
-            xit('then each filterGroups isAllSelected property is false', function () {
+            it('then filterOptions[1] selected property is false', function () {
+                expect(filterOptions[1].attr('selected')).toBe(false);
+            });
+
+            it('then filterOptions[2] selected property is false', function () {
+                expect(filterOptions[2].attr('selected')).toBe(false);
+            });
+
+            it('then the firstFilterGroup\'s isAllSelected property is false', function () {
                 expect(firstFilterGroup.attr('isAllSelected')).toEqual(false);
             });
         });
