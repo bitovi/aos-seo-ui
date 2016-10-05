@@ -44,7 +44,6 @@ var testSort = function (name) {
 
         it('by clicking on the ' + name + ' sort button', function () {
             var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
-
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
 
@@ -92,6 +91,18 @@ describe('URL List Page', function () {
                     cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'createDate',
+                    label: 'Created Date',
+                    isHidden: true
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'modifyDate',
+                    label: 'Modified Date',
+                    isHidden: true
                 },
                 {
                     cssClass: 'col-md-2',
