@@ -459,5 +459,27 @@ module.exports = can.Map.extend({
                 }
             });
         }
+    },
+
+    /**
+     * @function resetAllFilters
+     * @description Resets all filters on the page.
+     */
+    resetAllFilters: function () {
+        var filterMenus = this.attr('filterMenus');
+        var filterVm;
+
+        if (filterMenus.length) {
+            can.each(filterMenus, function(filterMenu) {
+                filterVm = can.viewModel(filterMenu);
+
+                can.each(filterVm.attr('filterGroups'), function(group) {
+                    // Unselect all filter options
+                    group.attr('isAllSelected', false);
+                });
+
+                filterVm.applyFilters();
+            });
+        }
     }
 });
