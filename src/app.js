@@ -86,7 +86,7 @@ $(function () {
     window.seo.user.roles = window.seo.roles;
     if (!isDeployed) {
         System.import('seo-ui/models/fixtures').then(function () {
-            var fixturesOn = sessionStorage.getItem('seoFixtures') === 'true';
+            var fixturesOn = true;
             fixtureLoader(isDeployed, fixturesOn, initApp);
         });
     } else {

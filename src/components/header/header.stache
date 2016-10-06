@@ -11,6 +11,9 @@
 
         <div class="navbar-collapse collapse navbar-inverse-collapse">
             <div class="navbar-right">
+              {{#if appInfo.debug}}
+                  <seo-fixture-toggle></seo-fixture-toggle>
+              {{/if}}
                 {{^userHasAction 'edit'}}
                     <span class="read-only-label">Read Only</span>
                 {{/userHasAction}}

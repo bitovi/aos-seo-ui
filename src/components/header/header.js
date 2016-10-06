@@ -2,6 +2,7 @@ var can = require('can');
 
 require('can/view/stache/stache');
 require('seo-ui/components/user-menu/user-menu');
+require('seo-ui/components/fixture-toggle/fixture-toggle');
 require('bootstrap/js/dropdown');
 
 var template = require('./header.stache!');
