@@ -19,13 +19,13 @@
                             {{#is key 'titleTextAssets'}}
                             {{#titleTextAssets}}
                                 <span class="row">
-                                    <span class="col-sm-6 title-text-assets-keypath pull-right">
+                                    <span class="col-sm-5 title-text-assets-keypath pull-right">
 
-                                    <a href="{{nemoUrl}}" target="_blank">
+                                    <a href="{{nemoUrl}}" target="_blank" class="key-path">
                                         <span class="icon-key"></span>{{keyPath}}
                                     </a>
                                     </span>
-                                <span class="col-sm-6 title-text-assets-value pull-left">{{value}}-</span>
+                                <span class="col-sm-7 title-text-assets-value pull-left">{{value}}-</span>
                                 </span>
                             {{/titleTextAssets}}
                             {{else}}
@@ -44,16 +44,6 @@
                             </a>
                         {{/if}}
                     {{/is}}
-
-                    <!-- {{#is key 'pageTitle'}}
-                        {{#if pageTitleKeyPath}}
-                            <span class="icon-key"></span>
-
-                                <a href="{{pageTitleUrl}}" target="_blank">
-                                    {{pageTitleKeyPath}}
-                                </a>
-                        {{/if}}
-                    {{/is}} -->
                 {{/if}}
             </td>
         {{/if}}
