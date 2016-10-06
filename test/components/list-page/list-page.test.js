@@ -33,8 +33,11 @@ var filterGroups;
 var firstFilterGroup;
 var secondFilterGroup;
 var filterOptions;
+var filterOptions2;
 var filterMenus;
 var firstMenu;
+var menuTrigger;
+var firstInput;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
@@ -346,6 +349,88 @@ describe('List Page', function () {
 
                 component.find('pui-grid-list .item:eq(0)').trigger('click');
                 jasmine.clock().tick(can.fixture.delay);
+            });
+        });
+
+        describe('When AMR Region is selected', function () {
+            beforeEach(function () {
+                renderPage();
+
+                // Data setup
+                component = $('#sandbox seo-list-page');
+                filterMenus = component.find('pui-filter-menu');
+                firstMenu = filterMenus.eq(0);
+                filterVm = can.viewModel(firstMenu);
+                filterGroups = [
+                    {
+                        groupTitle: 'Regions:',
+                        parameter: 'regions',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        parameter: 'countries',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ];
+                filterVm.attr('filterGroups', filterGroups);
+                firstFilterGroup = filterVm.attr('filterGroups.0');
+                secondFilterGroup = filterVm.attr('filterGroups.1');
+                filterOptions = firstFilterGroup.attr('filterOptions');
+                filterOptions2 = secondFilterGroup.attr('filterOptions');
+
+                menuTrigger = firstMenu.find('.dropdown');
+                menuTrigger.trigger('click');
+                // Select region
+                firstInput = firstMenu.find('.amr-toggle');
+                firstInput.trigger('click');
+            });
+
+            it('then corresponding countries are selected: Brazil.', function () {
+                expect(firstMenu.find('.br-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Canada', function () {
+                expect(firstMenu.find('.ca-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Mexico', function () {
+                expect(firstMenu.find('.mx-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: USA', function () {
+                expect(firstMenu.find('.us-toggle').prop('checked')).toEqual(true);
             });
         });
     });
