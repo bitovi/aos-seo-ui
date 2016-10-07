@@ -25,7 +25,7 @@
                                         <span class="icon-key"></span>{{keyPath}}
                                     </a>
                                     </span>
-                                <span class="col-sm-7 title-text-assets-value pull-left">{{value}}-</span>
+                                <span class="col-sm-7 title-text-assets-value pull-left">{{value}}</span>
                                 </span>
                             {{/titleTextAssets}}
                             {{else}}
