@@ -84,9 +84,8 @@ function initApp(isDeployed, fixturesOn) {
 $(function () {
     var isDeployed = (envVars.isDeployedBuild() === 'true');
     window.seo.user.roles = window.seo.roles;
-    console.log("envVars.isDeployedBuild()=="+envVars.isDeployedBuild());
+
     if (!envVars.isDeployedBuild()) {
-        console.log("inside deployed not");
         System.import('seo-ui/models/fixtures').then(function () {
             var fixturesOn = true;
             fixtureLoader(isDeployed, fixturesOn, initApp);
