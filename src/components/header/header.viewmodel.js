@@ -25,6 +25,7 @@ var ViewModel = can.Map.extend({
             type: 'string'
         }
     },
+
     /**
      * @function header.viewmodel.appInfo
      * @description This will return the super global "seo" that is defined on the window object on the page

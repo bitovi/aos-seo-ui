@@ -1,5 +1,5 @@
-var can = require('can'),
-    ViewModel = require('./fixture-toggle.viewmodel');
+var can = require('can');
+var ViewModel = require('./fixture-toggle.viewmodel');
 
 require('can/view/stache/stache');
 

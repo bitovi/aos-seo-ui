@@ -7,6 +7,7 @@ var ViewModel = can.Map.extend({
             value: function () {
                 var inStorage = window.sessionStorage.getItem('seo.fixtures');
                 var on = true;
+
                 if (inStorage !== null) {
                     on = inStorage !== 'false';
                 }
@@ -15,6 +16,7 @@ var ViewModel = can.Map.extend({
             set: function (newVal) {
                 window.sessionStorage.setItem('seo.fixtures', newVal);
                 can.fixture.on = newVal;
+
                 if (!this.__inSetup) {
                     window.location.reload();
                 }
