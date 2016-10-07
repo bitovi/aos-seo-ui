@@ -20,18 +20,6 @@ module.exports = can.Map.extend({
             type: 'string'
         },
         /**
-         * @property {string} server-vars.fixtures fixtures
-         * @description Whether the fixtures are turned on or off.
-         */
-        fixtures: {
-            type: 'boolean',
-            value: false,
-            set: function (val) {
-                sessionStorage.setItem('seoFixtures', val);
-                return val;
-            }
-        },
-        /**
          * @property {User} server-vars.user user
          * @description The user of the system, and their authorizations.
          */
@@ -59,17 +47,6 @@ module.exports = can.Map.extend({
                     'ROLE_USER',
                     'ROLE_ADMIN'
                 ]);
-                return this;
-            }
-        },
-        /**
-         * @property {function(): ServerVars} server-vars.toggleFixtures toggleFixtures
-         * @description Turns fixtures on or off.
-         */
-        toggleFixtures: {
-            get: function () {
-                can.fixture.on = !this.attr('fixtures');
-                this.attr('fixtures', can.fixture.on);
                 return this;
             }
         }
