@@ -304,6 +304,17 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {String} today
+         * @description Today's date.
+         */
+        today: {
+            get: function () {
+                var today = new Date();
+                return moment.utc(today).format(this.attr('dateMask'));
+            }
+        },
+
+        /**
          * @property {String} dateError
          * @description Stores data parse error.
          * @option {String} Default is '' (empty string).

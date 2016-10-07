@@ -30,7 +30,7 @@
                             <label for="start-date">From:</label>
                             <pui-date-picker
                                 date-string="{startDate}"
-                                max-date="{endDate}"
+                                max-date="{today}"
                                 placement="bottom"
                             >
                                 <input
@@ -47,6 +47,7 @@
                             <pui-date-picker
                                 date-string="{endDate}"
                                 min-date="{startDate}"
+                                max-date="{today}"
                                 placement="bottom"
                             >
                                 <input
