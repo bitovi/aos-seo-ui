@@ -324,11 +324,7 @@ module.exports = can.Map.extend({
                 var today = this.attr('today');
                 var endDate = this.attr('endDate');
 
-                if (endDate && endDate < today) {
-                    return endDate;
-                } else {
-                    return today;
-                }
+                return (endDate && endDate < today) ? endDate : today;
             }
         },
 
