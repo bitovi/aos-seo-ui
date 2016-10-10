@@ -309,8 +309,26 @@ module.exports = can.Map.extend({
          */
         today: {
             get: function () {
-                var today = new Date();
-                return moment.utc(today).format(this.attr('dateMask'));
+                var now = new Date();
+
+                return moment.utc(now).format(this.attr('dateMask'));
+            }
+        },
+
+        /**
+         * @property {String} maxDate
+         * @description maxDate is today or the endDate whichever is lower.
+         */
+        maxDate: {
+            get: function () {
+                var today = this.attr('today');
+                var endDate = this.attr('endDate');
+
+                if (endDate && endDate < today) {
+                    return endDate;
+                } else {
+                    return today;
+                }
             }
         },
 
