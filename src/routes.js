@@ -22,17 +22,22 @@ module.exports = function (appState, content) {
     });
 
     can.route.bind('route', function (ev, newRoute, oldRoute) {
-        var alertTimeout = 25000;
+        var alert = appState.attr('alert');
         var data = routes[newRoute || ''];
         var oldData = routes[oldRoute];
 
         if (newRoute !== undefined && data && (!oldData || (oldData.template !== data.template))) {
             appState.attr('layoutState', data.layout);
 
-            // Make sure we hide the error when we navigate
-            setTimeout(function () {
-                appState.attr('alert', false);
-            }, alertTimeout);
+            // Allow an alert to persist through a route change (but only once)
+            // Useful for sub-page navigation where the sub-page displays an alert before returning to their parent.
+            if (alert) {
+                if (alert.persist) {
+                    alert.persist = false;
+                } else {
+                    appState.attr('alert', false);
+                }
+            }
 
             content.html(can.stache(data.template)(appState));
 
