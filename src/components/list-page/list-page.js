@@ -222,6 +222,38 @@ module.exports = can.Component.extend({
 
             // Shows date picker if the custom-range option is selected
             $datePicker.toggleClass('hide', !customRangeSelected);
+        },
+
+        /**
+         * @description Event listener to select corresponding countries when Region is selected
+         * @param {jQuery object} $el the clicked element
+         */
+        'pui-filter-menu .filter-group input click': function ($input) {
+            var filterVm = can.viewModel($input.closest('pui-filter-menu'));
+            var filterGroups = filterVm.attr('filterGroups');
+            var $thisGroup = $input.closest('.filter-group');
+            var $listGroups = $input.closest('.filter-groups').find('.filter-group');
+            var groupIndex = $listGroups.index($thisGroup);
+            var $listItems = $thisGroup.find('.list-group-item');
+            var optionIndex = $listItems.index($input.closest('.list-group-item'));
+            var selectedOption = filterGroups[groupIndex].attr('filterOptions')[optionIndex];
+            var selectedState = $input.prop('checked');
+            var secondaryValues = selectedOption.attr('secondaryValues');
+            var secondaryParameter = selectedOption.attr('secondaryParameter');
+            var secondaryFilterGroup = _.find(filterGroups, function (group) {
+                return group.attr('parameter') === secondaryParameter;
+            });
+
+            // Select Secondary Values based on the Secondary Parameter
+            if (secondaryParameter) {
+                secondaryValues.forEach(function (value) {
+                    var filterOption = _.find(secondaryFilterGroup.attr('filterOptions'), function (option) {
+                        return option.attr('value').toLowerCase() === value.toLowerCase();
+                    });
+
+                    filterOption.attr('selected', selectedState);
+                });
+            }
         }
     }
 });

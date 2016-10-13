@@ -26,6 +26,19 @@ var testTemplate = require('./list-page.test.stache');
 var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 var vm;
 
+// Filter Menu setup
+var FilterViewModel = require('pui/components/filter-menu/viewmodel');
+var filterVm;
+var filterGroups;
+var firstFilterGroup;
+var secondFilterGroup;
+var filterOptions;
+var filterOptions2;
+var filterMenus;
+var firstMenu;
+var menuTrigger;
+var firstInput;
+
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
 var renderPage = function (newState) {
@@ -67,12 +80,90 @@ var renderPage = function (newState) {
             }
         ],
         searchField: 'targetPath',
-        detailsKey: 'targetPath'
+        detailsKey: 'targetPath',
+        filterConfig: [
+            {
+                buttonLabel: 'Regions:',
+                placement: 'bottom',
+                filterGroups: [
+                    {
+                        groupTitle: 'Regions:',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            },
+                            {
+                                "label": "APAC",
+                                "value": "apac",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "AU",
+                                    "CN",
+                                    "HK",
+                                    "HK",
+                                    "IN",
+                                    "ID",
+                                    "JP",
+                                    "MY",
+                                    "NZ",
+                                    "PH",
+                                    "SG",
+                                    "KR",
+                                    "TW",
+                                    "TH",
+                                    "TH",
+                                    "VN"
+                                ]
+                            },
+                            {
+                                "label": "JAPAN",
+                                "value": "japan",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "JP"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }));
 
     jasmine.clock().tick(can.fixture.delay);
     component = $('#sandbox seo-list-page');
-    vm = component.data('scope');
+    vm = can.viewModel(component);
 };
 
 describe('List Page', function () {
@@ -88,7 +179,7 @@ describe('List Page', function () {
 
     describe('View model', function () {
         beforeEach(function () {
-            vm = new ViewModel();
+            renderPage();
         });
 
         describe('Has default scope value of', function () {
@@ -97,13 +188,123 @@ describe('List Page', function () {
                 expect(title).toEqual('List Page');
             });
         });
+
+        describe('When Reset Filters method is called', function () {
+            beforeEach(function () {
+                // Data setup
+                filterMenus = component.find('pui-filter-menu');
+                firstMenu = filterMenus.eq(0);
+                filterVm = can.viewModel(firstMenu);
+                filterGroups = [
+                    {
+                        groupTitle: 'Region:',
+                        parameter: 'regions',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            },
+                            {
+                                "label": "APAC",
+                                "value": "apac",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "AU",
+                                    "CN",
+                                    "HK",
+                                    "HK",
+                                    "IN",
+                                    "ID",
+                                    "JP",
+                                    "MY",
+                                    "NZ",
+                                    "PH",
+                                    "SG",
+                                    "KR",
+                                    "TW",
+                                    "TH",
+                                    "TH",
+                                    "VN"
+                                ]
+                            },
+                            {
+                                "label": "JAPAN",
+                                "value": "japan",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "JP"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        parameter: 'countries',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ];
+                filterVm.attr('filterGroups', filterGroups);
+                firstFilterGroup = filterVm.attr('filterGroups.0');
+                secondFilterGroup = filterVm.attr('filterGroups.1');
+                filterOptions = firstFilterGroup.attr('filterOptions');
+
+                // Select filterOptions
+                filterOptions[0].attr('selected', true);
+                filterOptions[1].attr('selected', true);
+                filterOptions[2].attr('selected', true);
+
+                vm.resetAllFilters();
+            });
+
+            it('then filterOptions[0] selected property is false', function () {
+                expect(filterOptions[0].attr('selected')).toBe(false);
+            });
+
+            it('then filterOptions[1] selected property is false', function () {
+                expect(filterOptions[1].attr('selected')).toBe(false);
+            });
+
+            it('then filterOptions[2] selected property is false', function () {
+                expect(filterOptions[2].attr('selected')).toBe(false);
+            });
+
+            it('then the firstFilterGroup\'s isAllSelected property is false', function () {
+                expect(firstFilterGroup.attr('isAllSelected')).toEqual(false);
+            });
+        });
     });
 
     describe('Component', function () {
         beforeEach(function () {
             renderPage();
             component = $('#sandbox seo-list-page');
-            vm = component.data('scope');
+            vm = can.viewModel(component);
         });
 
         // Not sure why this is failing,but will fix as part of different PR.This will unblock the build
@@ -117,6 +318,27 @@ describe('List Page', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
+        describe('Reset Filters button', function () {
+            it('Renders', function () {
+                expect(component.find('.reset-all-filters').length).toBeGreaterThan(0);
+            });
+
+            it('Has proper label', function () {
+                expect(component.find('.reset-all-filters').text()).toBe('Reset Filters');
+            });
+        });
+
+        describe('When clicking the Reset Filters button', function () {
+            beforeEach(function () {
+                spyOn(vm, 'resetAllFilters');
+                $('.reset-all-filters').trigger('click');
+            });
+
+            it('calls resetAllFilters()', function () {
+                expect(vm.resetAllFilters).toHaveBeenCalled();
+            });
+        });
+
         describe('Routing', function () {
             it('is done by selecting item in the list', function () {
                 var stateObj = state;
@@ -127,6 +349,88 @@ describe('List Page', function () {
 
                 component.find('pui-grid-list .item:eq(0)').trigger('click');
                 jasmine.clock().tick(can.fixture.delay);
+            });
+        });
+
+        describe('When AMR Region is selected', function () {
+            beforeEach(function () {
+                renderPage();
+
+                // Data setup
+                component = $('#sandbox seo-list-page');
+                filterMenus = component.find('pui-filter-menu');
+                firstMenu = filterMenus.eq(0);
+                filterVm = can.viewModel(firstMenu);
+                filterGroups = [
+                    {
+                        groupTitle: 'Regions:',
+                        parameter: 'regions',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "AMR",
+                                "value": "amr",
+                                "secondaryParameter": "countries",
+                                "secondaryValues": [
+                                    "BR",
+                                    "CA",
+                                    "MX",
+                                    "US"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        groupTitle: 'Countries:',
+                        parameter: 'countries',
+                        inputType: 'checkbox',
+                        filterOptions: [
+                            {
+                                "label": "Brazil",
+                                "value": "br"
+                            },
+                            {
+                                "label": "Canada",
+                                "value": "ca"
+                            },
+                            {
+                                "label": "Mexico",
+                                "value": "mx"
+                            },
+                            {
+                                "label": "United States",
+                                "value": "us"
+                            }
+                        ]
+                    }
+                ];
+                filterVm.attr('filterGroups', filterGroups);
+                firstFilterGroup = filterVm.attr('filterGroups.0');
+                secondFilterGroup = filterVm.attr('filterGroups.1');
+                filterOptions = firstFilterGroup.attr('filterOptions');
+                filterOptions2 = secondFilterGroup.attr('filterOptions');
+
+                menuTrigger = firstMenu.find('.dropdown');
+                menuTrigger.trigger('click');
+                // Select region
+                firstInput = firstMenu.find('.amr-toggle');
+                firstInput.trigger('click');
+            });
+
+            it('then corresponding countries are selected: Brazil.', function () {
+                expect(firstMenu.find('.br-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Canada', function () {
+                expect(firstMenu.find('.ca-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: Mexico', function () {
+                expect(firstMenu.find('.mx-toggle').prop('checked')).toEqual(true);
+            });
+
+            it('then corresponding countries are selected: USA', function () {
+                expect(firstMenu.find('.us-toggle').prop('checked')).toEqual(true);
             });
         });
     });

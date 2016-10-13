@@ -30,7 +30,7 @@
                             <label for="start-date">From:</label>
                             <pui-date-picker
                                 date-string="{startDate}"
-                                max-date="{endDate}"
+                                max-date="{maxDate}"
                                 placement="bottom"
                             >
                                 <input
@@ -47,6 +47,7 @@
                             <pui-date-picker
                                 date-string="{endDate}"
                                 min-date="{startDate}"
+                                max-date="{today}"
                                 placement="bottom"
                             >
                                 <input
@@ -62,6 +63,14 @@
                 {{/is}}
             </pui-filter-menu>
         {{/each}}
+
+        {{#if filterConfig.length}}
+            <button
+                type="button"
+                class="btn btn-secondary btn-xs reset-all-filters"
+                ($click)="resetAllFilters"
+            >Reset Filters</button>
+        {{/if}}
     </div>
 
     <div class="row">

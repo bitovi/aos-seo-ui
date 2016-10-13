@@ -304,6 +304,31 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {String} today
+         * @description Today's date.
+         */
+        today: {
+            get: function () {
+                var now = new Date();
+
+                return moment.utc(now).format(this.attr('dateMask'));
+            }
+        },
+
+        /**
+         * @property {String} maxDate
+         * @description maxDate is today or the endDate whichever is lower.
+         */
+        maxDate: {
+            get: function () {
+                var today = this.attr('today');
+                var endDate = this.attr('endDate');
+
+                return (endDate && endDate < today) ? endDate : today;
+            }
+        },
+
+        /**
          * @property {String} dateError
          * @description Stores data parse error.
          * @option {String} Default is '' (empty string).
@@ -457,6 +482,28 @@ module.exports = can.Map.extend({
                 } else {
                     appState.removeAttr(param);
                 }
+            });
+        }
+    },
+
+    /**
+     * @function resetAllFilters
+     * @description Resets all filters on the page.
+     */
+    resetAllFilters: function () {
+        var filterMenus = this.attr('filterMenus');
+        var filterVm;
+
+        if (filterMenus.length) {
+            can.each(filterMenus, function(filterMenu) {
+                filterVm = can.viewModel(filterMenu);
+
+                can.each(filterVm.attr('filterGroups'), function(group) {
+                    // Unselect all filter options
+                    group.attr('isAllSelected', false);
+                });
+
+                filterVm.applyFilters();
             });
         }
     }
