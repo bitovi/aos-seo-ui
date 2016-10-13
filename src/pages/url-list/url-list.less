@@ -15,7 +15,7 @@ seo-url-list {
         .label;
         .label-alt;
         display: inline-block;
-        min-width: 9.1rem;
+        min-width: 8.1rem;
     }
 
     .added-label {
@@ -46,12 +46,12 @@ seo-url-list {
         padding-top: @padding-base-vertical;
     }
 
-    .title-text-assets-value {
-        word-break: keep-all;
-    }
-
-    .title-text-assets-keypath{
-        word-break: break-all;
+    .title-text-assets-value , .title-text-assets-keypath{
+        max-width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 0px;
     }
 
     .key-path {

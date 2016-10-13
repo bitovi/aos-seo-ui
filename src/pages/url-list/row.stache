@@ -1,7 +1,7 @@
 <tr {{eleAttrs}} {{data 'item'}} class="item">
     {{#columns}}
         {{^if isHidden}}
-            <td class="{{key}}">
+            <td class="{{key}}" title="{{itemValue}}">
                 {{#if itemValue}}
                     <div class="grid-item-value">
                         {{#is key 'url'}}
@@ -19,13 +19,13 @@
                                 {{#is key 'titleTextAssets'}}
                                     {{#titleTextAssets}}
                                         <span class="row">
-                                            <span class="col-sm-5 title-text-assets-keypath pull-right">
+                                            <span class="col-sm-7 title-text-assets-value" title="{{value}}">{{value}}</span>
+                                            <span class="col-sm-5 title-text-assets-keypath" title="{{keyPath}}">
 
                                             <a href="{{nemoUrl}}" target="_blank" class="key-path">
-                                                <span class="icon-key"></span>{{keyPath}}
+                                                <span class="icon-key"></span> {{keyPath}}
                                             </a>
                                         </span>
-                                        <span class="col-sm-7 title-text-assets-value pull-left">{{value}}</span>
                                         </span>
                                     {{/titleTextAssets}}
                                 {{else}}

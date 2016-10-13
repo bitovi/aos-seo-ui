@@ -88,7 +88,7 @@ describe('URL List Page', function () {
                     label: 'Part Number'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'url',
                     label: 'URL'
                 },
@@ -105,12 +105,12 @@ describe('URL List Page', function () {
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-3',
+                    cssClass: 'col-md-4',
                     key: 'titleTextAssets',
                     label: 'Page Title'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-3',
                     key: 'description',
                     label: 'Description'
                 },
@@ -130,7 +130,7 @@ describe('URL List Page', function () {
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'status',
                     label: 'Status'
                 }
