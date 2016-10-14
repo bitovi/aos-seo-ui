@@ -86,7 +86,6 @@
             ></pui-grid-search>
         </div>
 
-
         <div class="col-md-7">
             {{! Column Toggle }}
             <pui-grid-column-toggle
@@ -129,3 +128,22 @@
     sort-order="{state.order}"
     state="{state}"
 ></pui-grid-list>
+
+<div>
+    {{! Column Toggle }}
+    <pui-grid-column-toggle
+        class="pull-right"
+        {(columns)}="columns"
+        menu-align="right"
+        placement="top"
+    ></pui-grid-column-toggle>
+
+    {{! Pagination }}
+    <pui-pagination
+        class="pull-right"
+        count="{count}"
+        current-page="{currentPage}"
+        has-more-records="{hasMoreRecords}"
+        limit="{limit}"
+    ></pui-pagination>
+</div>
