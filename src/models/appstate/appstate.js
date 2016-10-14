@@ -20,12 +20,12 @@ var Layout = can.Map.extend({
 module.exports = can.Map.extend({
     define: {
         alert: {
-            serialize: false,
+            type: '*',
             set: function (newVal) {
                 this.attr('isAlertVisible', Boolean(newVal));
                 return newVal;
             },
-            type: '*'
+            serialize: false
         },
 
         error: {
