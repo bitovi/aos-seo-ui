@@ -261,8 +261,9 @@ module.exports = can.Map.extend({
             get: function () {
                 var params = this.attr('params');
                 var startDate = params.attr('from') ? params.attr('from') : '';
+                var today = this.attr('today');
 
-                return (startDate === '') ? startDate : moment.utc(startDate).format(this.attr('dateMask'));
+                return (startDate === '') ? today : moment.utc(startDate).format(this.attr('dateMask'));
             },
             validate: {
                 mustValidate: true,
@@ -294,8 +295,9 @@ module.exports = can.Map.extend({
             get: function () {
                 var params = this.attr('params');
                 var endDate = params.attr('to') ? params.attr('to') : '';
+                var today = this.attr('today');
 
-                return (endDate === '') ? endDate : moment.utc(endDate).format(this.attr('dateMask'));
+                return (endDate === '') ? today : moment.utc(endDate).format(this.attr('dateMask'));
             },
             validate: {
                 mustValidate: true,
