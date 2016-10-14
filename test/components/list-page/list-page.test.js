@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var can = require('can');
+var moment = require('moment');
 
 require('seo-ui/models/url/url.fixture');
 require('seo-ui/utils/viewHelpers');
@@ -186,6 +187,33 @@ describe('List Page', function () {
             it('title', function () {
                 var title = vm.attr('pageTitle');
                 expect(title).toEqual('List Page');
+            });
+        });
+
+        describe('Has default value of today as', function () {
+            it('today\'s date', function () {
+                var today = vm.attr('today');
+                var now = new Date();
+                var todaysDate = moment.utc(now).format('MM/DD/YYYY');
+                expect(today).toEqual(todaysDate);
+            });
+        });
+
+        describe('Has default Start Date value of', function () {
+            it('today\'s date', function () {
+                var startDate = vm.attr('startDate');
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+                expect(startDate).toEqual(today);
+            });
+        });
+
+        describe('Has default End Date value of', function () {
+            it('today\'s date', function () {
+                var endDate = vm.attr('endDate');
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+                expect(endDate).toEqual(today);
             });
         });
 
