@@ -20,7 +20,7 @@ POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=1.0.3-SNAPSHOT
+MVN_VERSION=1.0.3
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -166,7 +166,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/releases \
   -DrepositoryId=snapshots
 
 #
