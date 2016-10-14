@@ -129,23 +129,21 @@
     state="{state}"
 ></pui-grid-list>
 
-<div class="row">
-    <div class="col-md-7 pull-right">
-        {{! Column Toggle }}
-        <pui-grid-column-toggle
-            class="pull-right"
-            {(columns)}="columns"
-            menu-align="right"
-            placement="top"
-        ></pui-grid-column-toggle>
+<div>
+    {{! Column Toggle }}
+    <pui-grid-column-toggle
+        class="pull-right"
+        {(columns)}="columns"
+        menu-align="right"
+        placement="top"
+    ></pui-grid-column-toggle>
 
-        {{! Pagination }}
-        <pui-pagination
-            class="pull-right"
-            count="{count}"
-            current-page="{currentPage}"
-            has-more-records="{hasMoreRecords}"
-            limit="{limit}"
-        ></pui-pagination>
-    </div>
+    {{! Pagination }}
+    <pui-pagination
+        class="pull-right"
+        count="{count}"
+        current-page="{currentPage}"
+        has-more-records="{hasMoreRecords}"
+        limit="{limit}"
+    ></pui-pagination>
 </div>
