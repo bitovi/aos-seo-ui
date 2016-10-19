@@ -254,6 +254,25 @@ module.exports = can.Component.extend({
                     filterOption.attr('selected', selectedState);
                 });
             }
+        },
+
+        /**
+         * @description Handles mouseup event of the Date Range Apply Filter button.
+         * @param {jQuery object} $applyBtn The button receiving the mouseup event.
+         */
+        '.custom-range-selector ~ .apply-filters mouseup': function ($applyBtn) {
+            var filterVm = can.viewModel($applyBtn.closest('pui-filter-menu'));
+            var vm = this.viewModel;
+
+            // Compares the dateInfo attribute to the dateRanges app state value.
+            // If they differ, we call vm.updateFilterUrl() so the date change
+            // will trigger filtering.
+            // This workaround is necessary because vm.updateFilterUrl() is
+            // normally triggered by a change to the filter-trigger label, but
+            // the Date Range label doesn't change when selecting a custom range.
+            if (vm.attr('dateInfo') !== vm.attr('state.dateRanges')) {
+                vm.updateFilterUrl(filterVm);
+            }
         }
     }
 });

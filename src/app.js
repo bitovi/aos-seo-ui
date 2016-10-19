@@ -1,6 +1,7 @@
 /* jshint camelcase: false */
-
-require('seo-ui/app.less');
+require('pui/components/alert/alert');
+require('pui/components/confirm/confirm');
+require('seo-ui/app.less!');
 require('seo-ui/components/header/');
 require('seo-ui/utils/viewHelpers');
 

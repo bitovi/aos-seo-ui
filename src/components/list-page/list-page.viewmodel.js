@@ -383,6 +383,13 @@ module.exports = can.Map.extend({
             model.getFilters()
                 .then(function (filters) {
                     self.attr('filterData', filters);
+                })
+                .fail(function (error) {
+                    self.state.attr('alert', {
+                        type: 'error',
+                        title: 'Not able to load filters',
+                        message: JSON.stringify(error)
+                    });
                 });
         }
     },
@@ -497,10 +504,10 @@ module.exports = can.Map.extend({
         var filterVm;
 
         if (filterMenus.length) {
-            can.each(filterMenus, function(filterMenu) {
+            can.each(filterMenus, function (filterMenu) {
                 filterVm = can.viewModel(filterMenu);
 
-                can.each(filterVm.attr('filterGroups'), function(group) {
+                can.each(filterVm.attr('filterGroups'), function (group) {
                     // Unselect all filter options
                     group.attr('isAllSelected', false);
                 });

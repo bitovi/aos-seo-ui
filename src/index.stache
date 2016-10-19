@@ -1,15 +1,17 @@
-<pui-confirm class="global-alert global-confirm"></pui-confirm>
-{{#isAlertVisible}}
-    <pui-alert
-        class="global-alert"
-        title="{alert.title}"
-        message="{alert.message}"
-        dismissable="{alert.dismissable}"
-        type="{alert.type}"
-        visible="{isAlertVisible}"
-        display-interval="{alert.displayInterval}"
-    ></pui-alert>
-{{/isAlertVisible}}
+<div class="pui-alerts">
+    <pui-confirm class="global-alert global-confirm"></pui-confirm>
+        {{#isAlertVisible}}
+            <pui-alert
+                class="global-alert"
+                title="{alert.title}"
+                message="{alert.message}"
+                dismissable="{alert.dismissable}"
+                type="{alert.type}"
+                visible="{isAlertVisible}"
+                display-interval="{alert.displayInterval}"
+            ></pui-alert>
+        {{/isAlertVisible}}
+</div>
 
 {{^if layoutState.hideHeader}}
 <seo-header state="{.}"></seo-header>
