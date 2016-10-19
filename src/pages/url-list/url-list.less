@@ -46,12 +46,10 @@ seo-url-list {
         padding-top: @padding-base-vertical;
     }
 
-    .title-text-assets-value , .title-text-assets-keypath{
-        max-width: 300px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-left: 0px;
+    .page-title-value:after {
+        content: attr(data-index);
+        font-size: @font-size-small;
+        vertical-align: super;
     }
 
     .key-path {

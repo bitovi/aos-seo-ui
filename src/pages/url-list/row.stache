@@ -17,17 +17,18 @@
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
                                 {{#is key 'titleTextAssets'}}
-                                    {{#titleTextAssets}}
-                                        <span class="row">
-                                            <span class="col-sm-7 title-text-assets-value" title="{{value}}">{{value}}</span>
-                                            <span class="col-sm-5 title-text-assets-keypath" title="{{keyPath}}">
-
-                                            <a href="{{nemoUrl}}" target="_blank" class="key-path">
+                                    {{#each titleTextAssets}}
+                                        <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
+                                    {{/each}}
+                                    <ol class="key-path">
+                                        {{#each titleTextAssets}}
+                                            <li>
+                                                <a href="{{nemoUrl}}" target="_blank">
                                                 <span class="icon-key"></span> {{keyPath}}
-                                            </a>
-                                        </span>
-                                        </span>
-                                    {{/titleTextAssets}}
+                                                </a>
+                                            </li>
+                                        {{/each}}
+                                    </ol>
                                 {{else}}
                                     {{itemValue}}
                                 {{/is}}
@@ -37,11 +38,13 @@
 
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
-                            <span class="icon-key"></span>
+                            <span class="key-path">
+                                <span class="icon-key"></span>
 
-                            <a href="{{descriptionUrl}}" target="_blank">
-                                {{descriptionKeyPath}}
-                            </a>
+                                <a href="{{descriptionUrl}}" target="_blank">
+                                    {{descriptionKeyPath}}
+                                </a>
+                            </span>
                         {{/if}}
                     {{/is}}
                 {{/if}}

@@ -13,9 +13,9 @@ module.exports = can.Map.extend({
         columns: {
             value: [
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part #'
                 },
                 {
                     cssClass: 'col-md-1',

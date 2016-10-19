@@ -83,9 +83,9 @@ describe('URL List Page', function () {
         it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part #'
                 },
                 {
                     cssClass: 'col-md-1',
