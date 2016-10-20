@@ -87,7 +87,7 @@ $(function () {
 
     if (!isDeployed) {
         System.import('seo-ui/models/fixtures').then(function () {
-            var fixturesOn = true;
+            var fixturesOn = sessionStorage.getItem('sheriffFixtures') === 'true';
             fixtureLoader(isDeployed, fixturesOn, initApp);
         });
     } else {
