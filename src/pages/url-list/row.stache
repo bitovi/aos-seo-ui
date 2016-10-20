@@ -1,7 +1,7 @@
 <tr {{eleAttrs}} {{data 'item'}} class="item">
     {{#columns}}
         {{^if isHidden}}
-            <td class="{{key}}" title="{{itemValue}}">
+            <td class="{{key}}">
                 {{#if itemValue}}
                     <div class="grid-item-value">
                         {{#is key 'url'}}
