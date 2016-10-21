@@ -24,7 +24,7 @@
                                         {{#each titleTextAssets}}
                                             <li>
                                                 <a href="{{nemoUrl}}" target="_blank">
-                                                <span class="icon-key"></span> {{keyPath}}
+                                                    <span class="icon-key"></span> {{keyPath}}
                                                 </a>
                                             </li>
                                         {{/each}}
