@@ -39,10 +39,8 @@
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
                             <span class="key-path">
-
-
                                 <a href="{{descriptionUrl}}" target="_blank">
-                                      <span class="icon-key"></span> {{descriptionKeyPath}}
+                                    <span class="icon-key"></span> {{descriptionKeyPath}}
                                 </a>
                             </span>
                         {{/if}}
