@@ -19,6 +19,42 @@
             "urlAspenLink": "http://apsen/ipod-classic/"
         },
         {
+            "@class": "com.apple.store.content.seo.data.URLProperties",
+            "url": "/us_smb_78313/shop/product/D5690ZM/A",
+            "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
+            "partNumber": "D5690ZM/A",
+            "pageTitle": "AppleCare OS Support - Preferred - Apple for Business - Apple",
+            "description": "Get the IT department-level support you need when deploying iOS, Mac OS X, or Mac OS X Server in your organization. AppleCare OS Support delivers phone and email support for advanced integration, migration, and server operation issues. AppleCare OS Support - Preferred covers an unlimited number of enterprise-level support incidents for two technical contacts from your organization, provides two-hour response for priority 1 (server down) issues 12 x 7, and assigns a technical account manager to your organization for one year.",
+            "segment": "smb",
+            "region": "amr",
+            "country": "US",
+            "status": "modified",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "titleTextAssets": [
+                {
+                    "keyPath": "store.seo.hyphen",
+                    "value": "-",
+                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration"
+                },
+                {
+                    "keyPath": "pub.seo.promotiontext",
+                    "value": "",
+                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration"
+                },
+                {
+                    "keyPath": "store.base_title",
+                    "value": "Apple for Business - Apple",
+                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration"
+                },
+                {
+                    "keyPath": "store.seo.full.pagetitle",
+                    "value": "AppleCare OS Support - Preferred  - Apple for Business - Apple",
+                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration"
+                }
+            ]
+        },
+        {
             "country": "United States of America",
             "pageTitle": "MacBook - Apple",
             "partNumber": "MG482LL/A",

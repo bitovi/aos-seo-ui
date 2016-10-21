@@ -15,7 +15,7 @@ seo-url-list {
         .label;
         .label-alt;
         display: inline-block;
-        min-width: 9.1rem;
+        min-width: 8.1rem;
     }
 
     .added-label {
@@ -44,5 +44,16 @@ seo-url-list {
         font-size: @font-size-small;
         padding-bottom: @padding-base-vertical;
         padding-top: @padding-base-vertical;
+    }
+
+    .page-title-value:after {
+        content: attr(data-index);
+        font-size: @font-size-small;
+        vertical-align: super;
+    }
+
+    .key-path {
+        font-size: @font-size-small;
+        margin-top: @padding-large-vertical;
     }
 }

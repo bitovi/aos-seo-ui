@@ -16,30 +16,31 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                                {{itemValue}}
+                                {{#is key 'titleTextAssets'}}
+                                    {{#each titleTextAssets}}
+                                        <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
+                                    {{/each}}
+                                    <ol class="key-path">
+                                        {{#each titleTextAssets}}
+                                            <li>
+                                                <a href="{{nemoUrl}}" target="_blank">
+                                                    <span class="icon-key"></span> {{keyPath}}
+                                                </a>
+                                            </li>
+                                        {{/each}}
+                                    </ol>
+                                {{else}}
+                                    {{itemValue}}
+                                {{/is}}
                             {{/is}}
                         {{/is}}
                     </div>
 
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
-                            <span class="keypath label label-alt label-default">
-                                <span class="icon-key"></span>
-
+                            <span class="key-path">
                                 <a href="{{descriptionUrl}}" target="_blank">
-                                    {{descriptionKeyPath}}
-                                </a>
-                            </span>
-                        {{/if}}
-                    {{/is}}
-
-                    {{#is key 'pageTitle'}}
-                        {{#if pageTitleKeyPath}}
-                            <span class="keypath label label-alt label-default">
-                                <span class="icon-key"></span>
-
-                                <a href="{{pageTitleUrl}}" target="_blank">
-                                    {{pageTitleKeyPath}}
+                                    <span class="icon-key"></span> {{descriptionKeyPath}}
                                 </a>
                             </span>
                         {{/if}}

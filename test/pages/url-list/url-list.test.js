@@ -83,12 +83,12 @@ describe('URL List Page', function () {
         it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'url',
                     label: 'URL'
                 },
@@ -105,8 +105,8 @@ describe('URL List Page', function () {
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
+                    cssClass: 'col-md-4',
+                    key: 'titleTextAssets',
                     label: 'Page Title'
                 },
                 {
@@ -130,7 +130,7 @@ describe('URL List Page', function () {
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'status',
                     label: 'Status'
                 }
@@ -301,7 +301,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
                 });
 
                 it('for a full value', function () {
@@ -318,7 +318,7 @@ describe('URL List Page', function () {
 
         describe('sorts by the', function () {
             testSort('country');
-            testSort('pageTitle');
+            testSort('titleTextAssets');
             testSort('partNumber');
             testSort('region');
             testSort('segment');

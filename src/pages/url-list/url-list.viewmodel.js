@@ -13,12 +13,12 @@ module.exports = can.Map.extend({
         columns: {
             value: [
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
-                    label: 'Part Number'
+                    label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'url',
                     label: 'URL'
                 },
@@ -35,8 +35,8 @@ module.exports = can.Map.extend({
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-2',
-                    key: 'pageTitle',
+                    cssClass: 'col-md-4',
+                    key: 'titleTextAssets',
                     label: 'Page Title'
                 },
                 {
@@ -60,7 +60,7 @@ module.exports = can.Map.extend({
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'status',
                     label: 'Status'
                 }
