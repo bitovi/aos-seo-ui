@@ -1,5 +1,4 @@
 var can = require('can');
-var $ = require('jquery');
 
 require('can/view/stache/stache');
 require('seo-ui/components/user-menu/user-menu');
@@ -24,17 +23,6 @@ module.exports = can.Component.extend({
                     $el.trigger('click');
                 });
             }
-        },
-
-        /**
-         * @event .navbar-header click
-         * @description whenever .navbar-header is clicked the filters should be cleared
-         */
-        '.navbar-header click': function () {
-            var listPage = $('seo-list-page');
-            var listPageVm = can.viewModel(listPage);
-
-            listPageVm.resetAllFilters();
         }
     },
     helpers: {
