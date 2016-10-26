@@ -176,6 +176,12 @@ module.exports = can.Component.extend({
                 }
             });
 
+            // If there was no new search criteria selected ..
+            if ($.isEmptyObject(updatedSearch)) {
+                // ... then reset the filters
+                vm.resetAllFilters();
+            }
+
             vm.attr('searchFilter', updatedSearch);
 
             // Simple search
