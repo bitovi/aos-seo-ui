@@ -20,7 +20,7 @@ POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=1.0.4
+MVN_VERSION=1.0.5
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
