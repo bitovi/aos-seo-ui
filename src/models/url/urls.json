@@ -31,28 +31,32 @@
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "titleTextAssets": [
-                {
-                    "keyPath": "store.seo.hyphen",
-                    "value": "-",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration"
-                },
-                {
-                    "keyPath": "pub.seo.promotiontext",
-                    "value": "",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration"
-                },
-                {
-                    "keyPath": "store.base_title",
-                    "value": "Apple for Business - Apple",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration"
-                },
-                {
-                    "keyPath": "store.seo.full.pagetitle",
-                    "value": "AppleCare OS Support - Preferred  - Apple for Business - Apple",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration"
-                }
-            ]
+
+            "titleAnatomy": [{
+                "name": "store.seo.hyphen",
+                "value": "-",
+                "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                "type": "text_asset"
+}, {
+                "name": "pub.seo.promotiontext",
+                "value": "",
+                "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                "type": "text_asset"
+}, {
+                "name": "store.base_title",
+                "value": "Apple  (CA)",
+                "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                "type": "text_asset"
+}, {
+                "name": "store.seo.full.pagetitle",
+                "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)",
+                "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                "type": "text_asset"
+}, {
+                "name": "displayName",
+                "value": "iPad Air 2 Wi-Fi 128GB - Gold",
+                "type": "product_attribute"
+}]
         },
         {
             "country": "United States of America",

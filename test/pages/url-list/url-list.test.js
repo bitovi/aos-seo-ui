@@ -106,7 +106,7 @@ describe('URL List Page', function () {
                 },
                 {
                     cssClass: 'col-md-4',
-                    key: 'titleTextAssets',
+                    key: 'titleAnatomy',
                     label: 'Page Title'
                 },
                 {
@@ -318,7 +318,7 @@ describe('URL List Page', function () {
 
         describe('sorts by the', function () {
             testSort('country');
-            testSort('titleTextAssets');
+            testSort('titleAnatomy');
             testSort('partNumber');
             testSort('region');
             testSort('segment');
