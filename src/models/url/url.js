@@ -54,14 +54,6 @@ module.exports = can.Model.extend(
                 type: 'string'
             },
 
-            pageTitleKeyPath: {
-                type: 'string'
-            },
-
-            pageTitleUrl: {
-                type: 'string'
-            },
-
             partNumber: {
                 type: 'string'
             },
