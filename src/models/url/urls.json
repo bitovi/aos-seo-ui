@@ -15,7 +15,8 @@
             "url": "/ipod-classic/",
             "createDate": "2016-10-09T22:47:57Z",
             "modifyDate": "2016-10-10T17:25:46Z",
-            "urlAspenLink": "http://apsen/ipod-classic/"
+            "urlAspenLink": "http://apsen/ipod-classic/",
+            "titleAnatomy":[]
         },
         {
             "@class": "com.apple.store.content.seo.data.URLProperties",
@@ -30,7 +31,6 @@
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-
             "titleAnatomy": [
                 {
                 "name": "store.seo.hyphen",
@@ -72,7 +72,8 @@
             "status": "added",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/macbook/"
+            "url": "/macbook/",
+            "titleAnatomy":[]
         },
         {
             "country": "United Kingdom",
@@ -84,7 +85,8 @@
             "status": "end-of-life",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/macbook-air/"
+            "url": "/macbook-air/",
+            "titleAnatomy":[]
         },
         {
             "country": "Hong Kong",
@@ -95,7 +97,8 @@
             "status": "added",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-wifi/"
+            "url": "/ipad-wifi/",
+            "titleAnatomy":[]
         },
         {
             "country": "Japan",
@@ -106,7 +109,8 @@
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-3g/"
+            "url": "/ipad-3g/",
+            "titleAnatomy":[]
         },
         {
             "country": "Turkey",
@@ -117,7 +121,8 @@
             "status": "added",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-2-wifi/"
+            "url": "/ipad-2-wifi/",
+            "titleAnatomy":[]
         },
         {
             "country": "New Zealand",
@@ -128,7 +133,8 @@
             "status": "added",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-2-3g/"
+            "url": "/ipad-2-3g/",
+            "titleAnatomy":[]
         },
         {
             "country": "Mexico",
@@ -139,7 +145,8 @@
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipod-nano/"
+            "url": "/ipod-nano/",
+            "titleAnatomy":[]
         },
         {
             "country": "Canada",
@@ -150,7 +157,8 @@
             "status": "end-of-life",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipod-touch/"
+            "url": "/ipod-touch/",
+            "titleAnatomy":[]
         }
     ],
     "hasMoreRecords": false

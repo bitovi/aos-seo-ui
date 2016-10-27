@@ -17,14 +17,17 @@
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
                                 {{#is key 'titleAnatomy'}}
-                                    {{#each titleAnatomy}}
-                                        {{#is type 'text_asset'}}
-                                            <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
-                                        {{/is}}
-                                        {{#is type 'product_attribute'}}
-                                            <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
-                                        {{/is}}
-                                    {{/each}}
+                                    {{^if titleAnatomy.length}}
+                                        {{titleAnatomy}}
+                                    {{else}}
+                                        {{#each titleAnatomy}}
+                                            {{#is type 'text_asset'}}
+                                                <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
+                                            {{/is}}
+                                            {{#is type 'product_attribute'}}
+                                                <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
+                                            {{/is}}
+                                        {{/each}}
                                     <ol class="key-path">
                                         {{#each titleAnatomy}}
                                             {{#is type 'text_asset'}}
@@ -41,6 +44,7 @@
                                              {{/is}}
                                         {{/each}}
                                     </ol>
+                                {{/if}}
                                 {{else}}
                                     {{itemValue}}
                                 {{/is}}
