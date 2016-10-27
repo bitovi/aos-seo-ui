@@ -28,23 +28,23 @@
                                                 <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
                                             {{/is}}
                                         {{/each}}
-                                    <ol class="key-path">
-                                        {{#each titleAnatomy}}
-                                            {{#is type 'text_asset'}}
-                                                <li>
-                                                    <a href="{{link}}" target="_blank">
-                                                        <span class="icon-key"></span> {{name}}
-                                                    </a>
-                                                </li>
-                                             {{/is}}
-                                             {{#is type 'product_attribute'}}
-                                                <li>
-                                                    <span class="indicator-product-attribute">a</span> {{name}}
-                                                </li>
-                                             {{/is}}
-                                        {{/each}}
-                                    </ol>
-                                {{/if}}
+                                        <ol class="key-path">
+                                            {{#each titleAnatomy}}
+                                                {{#is type 'text_asset'}}
+                                                    <li>
+                                                        <a href="{{link}}" target="_blank">
+                                                            <span class="icon-key"></span> {{name}}
+                                                        </a>
+                                                    </li>
+                                                 {{/is}}
+                                                 {{#is type 'product_attribute'}}
+                                                    <li>
+                                                        <span class="indicator-product-attribute">a</span> {{name}}
+                                                    </li>
+                                                 {{/is}}
+                                            {{/each}}
+                                        </ol>
+                                    {{/if}}
                                 {{else}}
                                     {{itemValue}}
                                 {{/is}}
