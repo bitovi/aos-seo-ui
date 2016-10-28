@@ -279,6 +279,21 @@ module.exports = can.Component.extend({
             if (vm.attr('dateInfo') !== vm.attr('state.dateRanges')) {
                 vm.updateFilterUrl(filterVm);
             }
+        },
+
+        '.custom-range-selector click': function ($el, $evt) {
+            var $target = $($evt.target);
+            var datePickers = $el.find('pui-date-picker');
+            var thisDatePicker = $target.closest('pui-date-picker')[0];
+            var puiPanels = $el.find('pui-panel');
+
+            // Need to check pui-panels.length, because that's the only element that is getting inserted to the DOM when an actual date-picker is created
+            if (puiPanels.length > 1 && ($target.hasClass('form-control') || $target.hasClass('icon-calendar') || $target.hasClass('form-control-feedback'))) {
+                var datePickerToClose = _.find(datePickers, function (datePicker) {
+                    return datePicker !== thisDatePicker;
+                });
+                can.viewModel(datePickerToClose).toggleCalendar();
+            }
         }
     }
 });
