@@ -135,6 +135,7 @@ module.exports = can.Map.extend({
                     filterGroups: [
                         {
                             groupTitle: 'Status:',
+                            inputType: 'radio',
                             parameter: 'statuses'
                         }
                     ]
