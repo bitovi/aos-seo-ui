@@ -25,18 +25,20 @@
                                         {{/each}}
                                         <ol class="key-path">
                                             {{#each titleAnatomy}}
-                                                {{#is type 'text_asset'}}
-                                                    <li>
-                                                        <a href="{{link}}" target="_blank">
-                                                            <span class="icon-key"></span> {{name}}
-                                                        </a>
-                                                    </li>
-                                                 {{/is}}
-                                                 {{#is type 'product_attribute'}}
-                                                    <li>
-                                                        <span class="indicator-product-attribute">a</span> {{name}}
-                                                    </li>
-                                                 {{/is}}
+                                                 {{#switch type}}
+                                                     {{#case "product_attribute"}}
+                                                         <li>
+                                                             <span class="indicator-product-attribute">a</span> {{name}}
+                                                         </li>
+                                                     {{/case}}
+                                                     {{#default}}
+                                                         <li>
+                                                             <a href="{{link}}" target="_blank">
+                                                                 <span class="icon-key"></span> {{name}}
+                                                             </a>
+                                                         </li>
+                                                    {{/default}}
+                                                {{/switch}}
                                             {{/each}}
                                         </ol>
                                     {{/if}}
