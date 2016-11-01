@@ -130,7 +130,7 @@ describe('URL List Page', function () {
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
                 }

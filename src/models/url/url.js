@@ -80,10 +80,7 @@ module.exports = can.Model.extend(
 
             titleAnatomy: {
                 type: function (value) {
-                    if (value.length) {
-                        return value;
-                    }
-                    return this.attr('pageTitle');
+                    return value.length ? value : this.attr('pageTitle');
                 }
             },
 
