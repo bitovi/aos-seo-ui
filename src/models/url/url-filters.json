@@ -302,8 +302,8 @@
             "parameter": "statuses",
             "options": [
                 {
-                    "label": "New To Store",
-                    "value": "new-to-store"
+                    "label": "Added",
+                    "value": "added"
                 },
                 {
                     "label": "Modified",
