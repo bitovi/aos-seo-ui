@@ -88,7 +88,7 @@ describe('URL List Page', function () {
                     label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
                 },
@@ -105,7 +105,7 @@ describe('URL List Page', function () {
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-4',
+                    cssClass: 'col-md-2',
                     key: 'titleTextAssets',
                     label: 'Page Title'
                 },
