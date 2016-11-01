@@ -21,12 +21,7 @@
                                         {{titleAnatomy}}
                                     {{else}}
                                         {{#each titleAnatomy}}
-                                            {{#is type 'text_asset'}}
-                                                <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
-                                            {{/is}}
-                                            {{#is type 'product_attribute'}}
-                                                <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
-                                            {{/is}}
+                                            <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
                                         {{/each}}
                                         <ol class="key-path">
                                             {{#each titleAnatomy}}
