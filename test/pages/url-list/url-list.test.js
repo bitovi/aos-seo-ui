@@ -143,52 +143,52 @@ describe('URL List Page', function () {
 
         it('has an initial dataOptions value', function () {
 
-        it('has an initial filterConfig value', function () {
-            expect(vm.attr('filterConfig').attr()).toEqual([
-                {
-                    btnLabel: 'All Segments',
-                    filterGroups: [
-                        {
-                            groupTitle: 'Segment:',
-                            parameter: 'segments'
+            it('has an initial filterConfig value', function () {
+                expect(vm.attr('filterConfig').attr()).toEqual([
+                    {
+                        btnLabel: 'All Segments',
+                        filterGroups: [
+                            {
+                                groupTitle: 'Segment:',
+                                parameter: 'segments'
                         }
                     ]
                 },
-                {
-                    btnLabel: 'All Regions',
-                    filterGroups: [
-                        {
-                            groupTitle: 'Region:',
-                            parameter: 'regions'
+                    {
+                        btnLabel: 'All Regions',
+                        filterGroups: [
+                            {
+                                groupTitle: 'Region:',
+                                parameter: 'regions'
                         },
-                        {
-                            groupTitle: 'Country:',
-                            parameter: 'countries'
+                            {
+                                groupTitle: 'Country:',
+                                parameter: 'countries'
                         }
                     ]
                 },
-                {
-                    btnLabel: 'All Statuses',
-                    filterGroups: [
-                        {
-                            groupTitle: 'Status:',
-                            inputType: 'radio',
-                            parameter: 'statuses'
+                    {
+                        btnLabel: 'All Statuses',
+                        filterGroups: [
+                            {
+                                groupTitle: 'Status:',
+                                inputType: 'radio',
+                                parameter: 'statuses'
                         }
                     ]
                 },
-                {
-                    btnLabel: 'All Dates',
-                    filterGroups: [
-                        {
-                            groupTitle: 'Date Range:',
-                            inputType: 'radio',
-                            parameter: 'dateRanges'
+                    {
+                        btnLabel: 'All Dates',
+                        filterGroups: [
+                            {
+                                groupTitle: 'Date Range:',
+                                inputType: 'radio',
+                                parameter: 'dateRanges'
                         }
                     ]
                 }
             ]);
-        });
+            });
             expect(vm.attr('dataOptions').attr()).toEqual([
                 {
                     key: 'url',
@@ -382,8 +382,27 @@ describe('URL List Page', function () {
 
         it('Checks if the status badge has correct class name', function () {
             var status = component.find('pui-grid-list tbody > tr > td:last span').text();
-            var statusClassName =  status + '-label';
+            var statusClassName = status + '-label';
             expect(component.find("pui-grid-list tbody > tr > td:last span").hasClass(statusClassName)).toBe(true);
+        });
+
+    });
+
+    describe('Page Title and tile anatomy', function () {
+
+        it('checks if the page title content is displayed correctly', function () {
+            expect(component.find('pui-grid-list tbody > tr:eq(1) td:eq(2)').text()).toContain('iPod Touch - Apple');
+        });
+
+        it('checks for the title anatomy product attribute', function () {
+            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4) .indicator-product-attribute')).toExist();
+            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4) .indicator-product-attribute').text()).toContain('a');
+            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4)').text()).toContain('displayName');
+        });
+
+        it('checks for the title anatomy text assets attribute', function () {
+            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(1) .icon-key')).toExist();
+            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(1)').text()).toContain('pub');
         });
 
     });
