@@ -359,6 +359,30 @@ module.exports = can.Map.extend({
             get: function () {
                 return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm[Z]');
             }
+        },
+
+        /**
+         * @function fromDatePickerOpen
+         * @description Shows the "From" date picker's open state
+         */
+        fromDatePickerOpen: {
+            set: function (newVal) {
+                if (newVal) {
+                    return newVal;
+                }
+            }
+        },
+
+        /**
+         * @function toDatePickerOpen
+         * @description Shows the "To" date picker's open state
+         */
+        toDatePickerOpen: {
+            set: function (newVal) {
+                if (newVal) {
+                    return newVal;
+                }
+            }
         }
         /** END DATE PROPERTIES */
     },
