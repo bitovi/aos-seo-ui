@@ -502,7 +502,6 @@ module.exports = can.Map.extend({
     resetAllFilters: function () {
         var filterMenus = this.attr('filterMenus');
         var filterVm;
-        var self = this;
 
         if (filterMenus.length) {
             can.each(filterMenus, function (filterMenu) {
@@ -517,8 +516,8 @@ module.exports = can.Map.extend({
             });
 
             // Reset Date Range filter-menu custom range dates to default (today)
-            self.attr('startDate', self.attr('today'));
-            self.attr('endDate', self.attr('today'));
+            this.attr('startDate', this.attr('today'));
+            this.attr('endDate', this.attr('today'));
         }
     }
 });

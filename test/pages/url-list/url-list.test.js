@@ -88,7 +88,7 @@ describe('URL List Page', function () {
                     label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
                 },
@@ -105,7 +105,7 @@ describe('URL List Page', function () {
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-4',
+                    cssClass: 'col-md-2',
                     key: 'titleTextAssets',
                     label: 'Page Title'
                 },
@@ -137,7 +137,58 @@ describe('URL List Page', function () {
             ]);
         });
 
+        it('has an initial count value', function () {
+            expect(vm.attr('count')).toEqual(0);
+        });
+
         it('has an initial dataOptions value', function () {
+
+        it('has an initial filterConfig value', function () {
+            expect(vm.attr('filterConfig').attr()).toEqual([
+                {
+                    btnLabel: 'All Segments',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Segment:',
+                            parameter: 'segments'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Regions',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Region:',
+                            parameter: 'regions'
+                        },
+                        {
+                            groupTitle: 'Country:',
+                            parameter: 'countries'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Statuses',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Status:',
+                            inputType: 'radio',
+                            parameter: 'statuses'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Dates',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Date Range:',
+                            inputType: 'radio',
+                            parameter: 'dateRanges'
+                        }
+                    ]
+                }
+            ]);
+        });
             expect(vm.attr('dataOptions').attr()).toEqual([
                 {
                     key: 'url',
@@ -159,10 +210,6 @@ describe('URL List Page', function () {
             ]);
         });
 
-        it('has a URL model property', function () {
-            expect(vm.attr('urlModel')).toExist();
-        });
-
         it('has an initial pageTitle value', function () {
             expect(vm.attr('pageTitle')).toEqual('URLs');
         });
@@ -177,6 +224,10 @@ describe('URL List Page', function () {
 
         it('has an initial searchField value', function () {
             expect(vm.attr('searchField')).toEqual('url');
+        });
+
+        it('has a URL model property', function () {
+            expect(vm.attr('urlModel')).toExist();
         });
     });
 

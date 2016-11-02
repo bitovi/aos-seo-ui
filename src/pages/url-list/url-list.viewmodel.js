@@ -18,7 +18,7 @@ module.exports = can.Map.extend({
                     label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
                 },
@@ -35,7 +35,7 @@ module.exports = can.Map.extend({
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-4',
+                    cssClass: 'col-md-2',
                     key: 'titleTextAssets',
                     label: 'Page Title'
                 },
@@ -135,6 +135,7 @@ module.exports = can.Map.extend({
                     filterGroups: [
                         {
                             groupTitle: 'Status:',
+                            inputType: 'radio',
                             parameter: 'statuses'
                         }
                     ]
