@@ -16,10 +16,8 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                                {{#is key 'titleAnatomy'}}
-                                    {{^if titleAnatomy.length}}
-                                        {{titleAnatomy}}
-                                    {{else}}
+                                {{#is key 'pageTitle'}}
+                                    {{#if pageTitle.length}}
                                         {{#each titleAnatomy}}
                                             <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
                                         {{/each}}
@@ -41,6 +39,8 @@
                                                 {{/switch}}
                                             {{/each}}
                                         </ol>
+                                    {{else}}
+                                        {{pageTitle}}
                                     {{/if}}
                                 {{else}}
                                     {{itemValue}}

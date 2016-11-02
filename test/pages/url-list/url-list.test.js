@@ -106,7 +106,7 @@ describe('URL List Page', function () {
                 },
                 {
                     cssClass: 'col-md-4',
-                    key: 'titleAnatomy',
+                    key: 'pageTitle',
                     label: 'Page Title'
                 },
                 {
@@ -369,7 +369,7 @@ describe('URL List Page', function () {
 
         describe('sorts by the', function () {
             testSort('country');
-            testSort('titleAnatomy');
+            testSort('pageTitle');
             testSort('partNumber');
             testSort('region');
             testSort('segment');
@@ -377,7 +377,6 @@ describe('URL List Page', function () {
             testSort('status');
         });
     });
-
 
     describe('Status badge', function () {
 

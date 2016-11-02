@@ -16,7 +16,37 @@
             "createDate": "2016-10-09T22:47:57Z",
             "modifyDate": "2016-10-10T17:25:46Z",
             "urlAspenLink": "http://apsen/ipod-classic/",
-            "titleAnatomy":[]
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "displayName",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold",
+                    "type": "product_attribute"
+                }
+            ]
         },
         {
             "@class": "com.apple.store.content.seo.data.URLProperties",

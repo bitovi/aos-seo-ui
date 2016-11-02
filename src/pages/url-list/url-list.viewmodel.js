@@ -36,7 +36,7 @@ module.exports = can.Map.extend({
                 },
                 {
                     cssClass: 'col-md-4',
-                    key: 'titleAnatomy',
+                    key: 'pageTitle',
                     label: 'Page Title'
                 },
                 {
