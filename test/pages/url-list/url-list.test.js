@@ -142,70 +142,70 @@ describe('URL List Page', function () {
         });
 
         it('has an initial dataOptions value', function () {
+          expect(vm.attr('dataOptions').attr()).toEqual([
+              {
+                  key: 'url',
+                  label: 'URL'
+              },
+              {
+                  key: 'pageTitle',
+                  label: 'Page Title'
+              },
+              {
+                  key: 'partNumber',
+                  label: 'Part Number',
+                  autocomplete: {
+                      'character-delay': 2,
+                      'key-name': 'partNumber',
+                      'model': 'partNumberModel'
+                  }
+              }
+          ]);
+        });
 
-            it('has an initial filterConfig value', function () {
-                expect(vm.attr('filterConfig').attr()).toEqual([
-                    {
-                        btnLabel: 'All Segments',
-                        filterGroups: [
-                            {
-                                groupTitle: 'Segment:',
-                                parameter: 'segments'
+        it('has an initial filterConfig value', function () {
+            expect(vm.attr('filterConfig').attr()).toEqual([
+                {
+                    btnLabel: 'All Segments',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Segment:',
+                            parameter: 'segments'
                         }
                     ]
                 },
-                    {
-                        btnLabel: 'All Regions',
-                        filterGroups: [
-                            {
-                                groupTitle: 'Region:',
-                                parameter: 'regions'
+                {
+                    btnLabel: 'All Regions',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Region:',
+                            parameter: 'regions'
                         },
-                            {
-                                groupTitle: 'Country:',
-                                parameter: 'countries'
+                        {
+                            groupTitle: 'Country:',
+                            parameter: 'countries'
                         }
                     ]
                 },
-                    {
-                        btnLabel: 'All Statuses',
-                        filterGroups: [
-                            {
-                                groupTitle: 'Status:',
-                                inputType: 'radio',
-                                parameter: 'statuses'
+                {
+                    btnLabel: 'All Statuses',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Status:',
+                            inputType: 'radio',
+                            parameter: 'statuses'
                         }
                     ]
                 },
-                    {
-                        btnLabel: 'All Dates',
-                        filterGroups: [
-                            {
-                                groupTitle: 'Date Range:',
-                                inputType: 'radio',
-                                parameter: 'dateRanges'
+                {
+                    btnLabel: 'All Dates',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Date Range:',
+                            inputType: 'radio',
+                            parameter: 'dateRanges'
                         }
                     ]
-                }
-            ]);
-            });
-            expect(vm.attr('dataOptions').attr()).toEqual([
-                {
-                    key: 'url',
-                    label: 'URL'
-                },
-                {
-                    key: 'pageTitle',
-                    label: 'Page Title'
-                },
-                {
-                    key: 'partNumber',
-                    label: 'Part Number',
-                    autocomplete: {
-                        'character-delay': 2,
-                        'key-name': 'partNumber',
-                        'model': 'partNumberModel'
-                    }
                 }
             ]);
         });
