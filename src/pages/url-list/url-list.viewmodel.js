@@ -35,8 +35,8 @@ module.exports = can.Map.extend({
                     isHidden: true
                 },
                 {
-                    cssClass: 'col-md-2',
-                    key: 'titleTextAssets',
+                    cssClass: 'col-md-4',
+                    key: 'pageTitle',
                     label: 'Page Title'
                 },
                 {
@@ -60,7 +60,7 @@ module.exports = can.Map.extend({
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
                 }
