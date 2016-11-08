@@ -2,6 +2,7 @@
     columns="{columns}"
     data-options="{dataOptions}"
     details-key="{detailsKey}"
+    filter-config="{filterConfig}"
     model="{Model}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
