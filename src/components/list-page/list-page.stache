@@ -25,7 +25,7 @@
                 {filter-groups}="getFilterOptions({filterGroups})"
             >
                 {{#is btnLabel 'All Dates'}}
-                    <div class="custom-range-selector hide">
+                    <div class="custom-range-selector {{^if datesOpen}}hide{{/if}}">
                         <div class="form-group">
                             <label for="start-date">From:</label>
                             <pui-date-picker
@@ -34,29 +34,29 @@
                                 placement="bottom"
                             >
                                 <input
+                                    can-value="{startDate}"
                                     class="form-control"
                                     id="start-date"
-                                    type="text"
                                     name="start-date"
-                                    can-value="{startDate}"
-                                >
+                                    type="text"
+                                />
                             </pui-date-picker>
                         </div>
                         <div class="form-group">
                             <label for="end-date">To:</label>
                             <pui-date-picker
                                 date-string="{endDate}"
-                                min-date="{startDate}"
                                 max-date="{today}"
+                                min-date="{startDate}"
                                 placement="bottom"
                             >
                                 <input
+                                    can-value="{endDate}"
                                     class="form-control"
                                     id="end-date"
-                                    type="text"
                                     name="end-date"
-                                    can-value="{endDate}"
-                                >
+                                    type="text"
+                                />
                             </pui-date-picker>
                         </div>
                     </div>
