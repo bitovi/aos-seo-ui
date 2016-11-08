@@ -60,7 +60,7 @@ module.exports = can.Map.extend({
                     label: 'Country'
                 },
                 {
-                    cssClass: 'col-md-2',
+                    cssClass: 'col-md-1',
                     key: 'pageType',
                     label: 'Page Type'
                 },
