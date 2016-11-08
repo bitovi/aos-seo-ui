@@ -130,6 +130,11 @@ describe('URL List Page', function () {
                     label: 'Country'
                 },
                 {
+                    cssClass: 'col-md-1',
+                    key: 'pageType',
+                    label: 'Page Type'
+                },
+                {
                     cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
@@ -184,6 +189,15 @@ describe('URL List Page', function () {
                         {
                             groupTitle: 'Country:',
                             parameter: 'countries'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Page Types',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Page Type:',
+                            parameter: 'pageTypes'
                         }
                     ]
                 },

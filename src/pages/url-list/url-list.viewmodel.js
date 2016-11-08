@@ -60,6 +60,11 @@ module.exports = can.Map.extend({
                     label: 'Country'
                 },
                 {
+                    cssClass: 'col-md-1',
+                    key: 'pageType',
+                    label: 'Page Type'
+                },
+                {
                     cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
@@ -127,6 +132,15 @@ module.exports = can.Map.extend({
                         {
                             groupTitle: 'Country:',
                             parameter: 'countries'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Page Types',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Page Type:',
+                            parameter: 'pageTypes'
                         }
                     ]
                 },
