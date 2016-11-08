@@ -16,19 +16,32 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                                {{#is key 'titleTextAssets'}}
-                                    {{#each titleTextAssets}}
-                                        <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
-                                    {{/each}}
-                                    <ol class="key-path">
-                                        {{#each titleTextAssets}}
-                                            <li>
-                                                <a href="{{nemoUrl}}" target="_blank">
-                                                    <span class="icon-key"></span> {{keyPath}}
-                                                </a>
-                                            </li>
+                                {{#is key 'pageTitle'}}
+                                    {{#if pageTitle.length}}
+                                        {{#each pageTitle}}
+                                            <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
                                         {{/each}}
-                                    </ol>
+                                        <ol class="key-path">
+                                            {{#each pageTitle}}
+                                                 {{#switch type}}
+                                                     {{#case "product_attribute"}}
+                                                         <li>
+                                                             <span class="indicator-product-attribute">a</span> {{name}}
+                                                         </li>
+                                                     {{/case}}
+                                                     {{#default}}
+                                                         <li>
+                                                             <a href="{{link}}" target="_blank">
+                                                                 <span class="icon-key"></span> {{name}}
+                                                             </a>
+                                                         </li>
+                                                    {{/default}}
+                                                {{/switch}}
+                                            {{/each}}
+                                        </ol>
+                                    {{else}}
+                                        {{pageTitle}}
+                                    {{/if}}
                                 {{else}}
                                     {{itemValue}}
                                 {{/is}}

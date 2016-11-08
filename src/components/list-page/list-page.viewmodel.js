@@ -474,6 +474,10 @@ module.exports = can.Map.extend({
                 filterVm.applyFilters();
             });
 
+            // Resets Date Range filter-menu custom range dates to default (today)
+            this.attr('startDate', this.attr('today'));
+            this.attr('endDate', this.attr('today'));
+
             this.attr('datesOpen', false);
         }
     },
