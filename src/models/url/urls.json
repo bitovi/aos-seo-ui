@@ -8,7 +8,7 @@
             "descriptionUrl": "http://nemo/text-assets/pub.description.something?version=some-version",
             "pageTitle": "iPod Classic",
             "pageTitleKeyPath": "pub.title",
-            "pageTitleUrl": "http://nemo/text-assets/pub.title?version=some-version",
+            "pageType": "PDP",
             "partNumber": "D6106ZM/A",
             "region": "AMR",
             "segment": "All",
@@ -16,14 +16,46 @@
             "url": "/ipod-classic/",
             "createDate": "2016-10-09T22:47:57Z",
             "modifyDate": "2016-10-10T17:25:46Z",
-            "urlAspenLink": "http://apsen/ipod-classic/"
+            "urlAspenLink": "http://apsen/ipod-classic/",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "displayName",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold",
+                    "type": "product_attribute"
+                }
+            ]
         },
         {
             "@class": "com.apple.store.content.seo.data.URLProperties",
             "url": "/us_smb_78313/shop/product/D5690ZM/A",
             "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
             "partNumber": "D5690ZM/A",
-            "pageTitle": "AppleCare OS Support - Preferred - Apple for Business - Apple",
+            "pageTitle": " ",
+            "pageType": "PDP",
             "description": "Get the IT department-level support you need when deploying iOS, Mac OS X, or Mac OS X Server in your organization. AppleCare OS Support delivers phone and email support for advanced integration, migration, and server operation issues. AppleCare OS Support - Preferred covers an unlimited number of enterprise-level support incidents for two technical contacts from your organization, provides two-hour response for priority 1 (server down) issues 12 x 7, and assigns a technical account manager to your organization for one year.",
             "segment": "smb",
             "region": "amr",
@@ -31,117 +63,142 @@
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "titleTextAssets": [
+            "titleAnatomy": [
                 {
-                    "keyPath": "store.seo.hyphen",
+                    "name": "store.seo.hyphen",
                     "value": "-",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration"
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type": "text_asset"
                 },
                 {
-                    "keyPath": "pub.seo.promotiontext",
+                    "name": "pub.seo.promotiontext",
                     "value": "",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration"
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "type": "text_asset"
                 },
                 {
-                    "keyPath": "store.base_title",
-                    "value": "Apple for Business - Apple",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration"
+                    "name": "store.base_title",
+                    "value": "Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "type": "text_asset"
                 },
                 {
-                    "keyPath": "store.seo.full.pagetitle",
-                    "value": "AppleCare OS Support - Preferred  - Apple for Business - Apple",
-                    "nemoUrl": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration"
+                    "name": "store.seo.full.pagetitle",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "displayName",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold",
+                    "type": "product_attribute"
                 }
             ]
         },
         {
             "country": "United States of America",
             "pageTitle": "MacBook - Apple",
+            "pageType": "PDP",
             "partNumber": "MG482LL/A",
             "region": "AMR",
             "segment": "All",
-            "status": "added",
+            "status": "new-to-store",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/macbook/"
+            "url": "/macbook/",
+            "titleAnatomy":[]
         },
         {
             "country": "United Kingdom",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "pageTitle": "MacBook Air - Apple",
+            "pageType": "PDP",
             "partNumber": "D6377ZM/A",
             "region": "EMEA",
             "segment": "Internal EPP",
             "status": "end-of-life",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/macbook-air/"
+            "url": "/macbook-air/",
+            "titleAnatomy":[]
         },
         {
             "country": "Hong Kong",
             "pageTitle": "iPad WiFi - Apple",
+            "pageType": "buyflow",
             "partNumber": "H1783ZM/A",
             "region": "APAC",
             "segment": "Direct",
-            "status": "added",
+            "status": "new-to-store",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-wifi/"
+            "url": "/ipad-wifi/",
+            "titleAnatomy":[]
         },
         {
             "country": "Japan",
             "pageTitle": "iPad 3G - Apple",
+            "pageType": "buyflow",
             "partNumber": "H1786ZM/A",
             "region": "JAPAN",
             "segment": "All",
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-3g/"
+            "url": "/ipad-3g/",
+            "titleAnatomy":[]
         },
         {
             "country": "Turkey",
             "pageTitle": "iPad 2 WiFi - Apple",
+            "pageType": "buyflow",
             "partNumber": "H3443ZM/A",
             "region": "EMEA",
             "segment": "Small Business",
-            "status": "added",
+            "status": "new-to-store",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-2-wifi/"
+            "url": "/ipad-2-wifi/",
+            "titleAnatomy":[]
         },
         {
             "country": "New Zealand",
             "pageTitle": "iPad 2 3G - Apple",
+            "pageType": "buyflow",
             "partNumber": "H4825ZM/B",
             "region": "APAC",
             "segment": "Apple",
-            "status": "added",
+            "status": "new-to-store",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipad-2-3g/"
+            "url": "/ipad-2-3g/",
+            "titleAnatomy":[]
         },
         {
             "country": "Mexico",
             "pageTitle": "iPod Nano - Apple",
+            "pageType": "buyflow",
             "partNumber": "S4728Z/A",
             "region": "AMR",
             "segment": "Edu Individual",
             "status": "modified",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipod-nano/"
+            "url": "/ipod-nano/",
+            "titleAnatomy":[]
         },
         {
             "country": "Canada",
             "pageTitle": "iPod Touch - Apple",
+            "pageType": "buyflow",
             "partNumber": "Z0S9",
             "region": "AMR",
             "segment": "Direct",
             "status": "end-of-life",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipod-touch/"
+            "url": "/ipod-touch/",
+            "titleAnatomy":[]
         }
     ],
     "hasMoreRecords": false

@@ -151,6 +151,7 @@ module.exports = can.Component.extend({
         '{state} dateRanges': 'searchDidChange',
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
+        '{state} pageTypes': 'searchDidChange',
         '{state} partNumber': 'searchDidChange',
         '{state} regions': 'searchDidChange',
         '{state} segments': 'searchDidChange',

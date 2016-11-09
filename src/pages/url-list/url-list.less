@@ -15,10 +15,13 @@ seo-url-list {
         .label;
         .label-alt;
         display: inline-block;
-        min-width: 8.1rem;
+        min-width: 10.3rem;
+        padding-left: .4rem;
+        padding-right: .4rem;
     }
 
-    .added-label {
+    .added-label,
+    .new-to-store-label {
         .status-badge;
         .label-success;
     }
@@ -55,5 +58,18 @@ seo-url-list {
     .key-path {
         font-size: @font-size-small;
         margin-top: @padding-large-vertical;
+    }
+
+    .indicator-product-attribute {
+        background: @thunderCloud;
+        border-radius: @font-size-small;
+        color: white;
+        display: inline-block;
+        font-size: @font-size-small - 1;
+        font-weight: normal;
+        height: @font-size-small;
+        line-height: @font-size-small - 1;
+        text-align: center;
+        width: @font-size-small;
     }
 }

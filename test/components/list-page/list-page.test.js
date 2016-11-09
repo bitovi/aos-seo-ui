@@ -222,7 +222,9 @@ describe('List Page', function () {
                 // Data setup
                 filterMenus = component.find('pui-filter-menu');
                 firstMenu = filterMenus.eq(0);
+                secondMenu = filterMenus.eq(1);
                 filterVm = can.viewModel(firstMenu);
+                filterVm2 = can.viewModel(secondMenu);
                 filterGroups = [
                     {
                         groupTitle: 'Region:',
@@ -297,15 +299,51 @@ describe('List Page', function () {
                         ]
                     }
                 ];
+                filterGroups2 = [
+                    {
+                        groupTitle: 'Date Range:',
+                        inputType: 'radio',
+                        parameter: 'dateRanges',
+                        filterOptions: [
+                            {
+                                "label": "All",
+                                "value": "all"
+                            },
+                            {
+                                "label": "Last 24 Hours",
+                                "value": "last-24-hours"
+                            },
+                            {
+                                "label": "Last 2 Weeks",
+                                "value": "last-2-weeks"
+                            },
+                            {
+                                "label": "Last Month",
+                                "value": "last-month"
+                            },
+                            {
+                                "label": "Custom Range",
+                                "value": "custom-range"
+                            }
+                        ]
+                    }
+                ];
                 filterVm.attr('filterGroups', filterGroups);
+                filterVm2.attr('filterGroups', filterGroups2);
                 firstFilterGroup = filterVm.attr('filterGroups.0');
                 secondFilterGroup = filterVm.attr('filterGroups.1');
+                dateRangesFilterGroup = filterVm2.attr('filterGroups.0');
                 filterOptions = firstFilterGroup.attr('filterOptions');
+                filterOptions2 = dateRangesFilterGroup.attr('filterOptions');
 
                 // Select filterOptions
                 filterOptions[0].attr('selected', true);
                 filterOptions[1].attr('selected', true);
                 filterOptions[2].attr('selected', true);
+
+                filterOptions2[4].attr('selected', true);
+                filterVm2.attr('startDate', '01/01/2000');
+                filterVm2.attr('endDate', '01/01/2000');
 
                 vm.resetAllFilters();
             });
@@ -324,6 +362,18 @@ describe('List Page', function () {
 
             it('then the firstFilterGroup\'s isAllSelected property is false', function () {
                 expect(firstFilterGroup.attr('isAllSelected')).toEqual(false);
+            });
+
+            it('then the startDate is today', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+                expect(vm.attr('startDate')).toEqual(today);
+            });
+
+            it('then the endDate is today', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+                expect(vm.attr('endDate')).toEqual(today);
             });
         });
     });

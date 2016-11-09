@@ -18,7 +18,7 @@ module.exports = can.Map.extend({
                     label: 'Part #'
                 },
                 {
-                    cssClass: 'col-md-1',
+                    cssClass: 'col-md-2',
                     key: 'url',
                     label: 'URL'
                 },
@@ -36,7 +36,7 @@ module.exports = can.Map.extend({
                 },
                 {
                     cssClass: 'col-md-4',
-                    key: 'titleTextAssets',
+                    key: 'pageTitle',
                     label: 'Page Title'
                 },
                 {
@@ -61,6 +61,11 @@ module.exports = can.Map.extend({
                 },
                 {
                     cssClass: 'col-md-1',
+                    key: 'pageType',
+                    label: 'Page Type'
+                },
+                {
+                    cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
                 }
@@ -131,10 +136,20 @@ module.exports = can.Map.extend({
                     ]
                 },
                 {
+                    btnLabel: 'All Page Types',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Page Type:',
+                            parameter: 'pageTypes'
+                        }
+                    ]
+                },
+                {
                     btnLabel: 'All Statuses',
                     filterGroups: [
                         {
                             groupTitle: 'Status:',
+                            inputType: 'radio',
                             parameter: 'statuses'
                         }
                     ]

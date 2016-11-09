@@ -51,7 +51,10 @@ module.exports = can.Model.extend(
             },
 
             pageTitle: {
-                type: 'string'
+                type: function(value) {
+                    var titleAnatomy = this.attr('titleAnatomy');
+                    return titleAnatomy && titleAnatomy.length ? titleAnatomy : value;
+                }
             },
 
             pageTitleKeyPath: {
@@ -76,6 +79,10 @@ module.exports = can.Model.extend(
 
             status: {
                 type: 'string'
+            },
+
+            titleAnatomy: {
+                value: []
             },
 
             url: {
