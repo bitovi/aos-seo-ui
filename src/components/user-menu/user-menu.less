@@ -1,47 +1,42 @@
 seo-user-menu {
-  display: block;
+    display: block;
     float: left;
 
+
     &.navbar-right {
-      margin-right: 0px;
+        margin-right: 0;
     }
-    .menu-content{
+
+    .menu-content {
         display: none;
     }
-    .user-menu {
-      background: none;
-      border:0;
-      .icon-user,
-      .user-initials,
-      .icon-chevron {
-        color: @dolphin;
-        float:left;
-        margin-right: 10px;
-      }
-      .icon-user {
-        font-size: 20px;
-      }
-      .user-initials {
-        font-size: 14px;
 
-      }
+    .user-menu {
+        background: none;
+        border: 0;
+
+        .icon-user,
+        .user-initials,
+        .icon-chevron {
+            color: @dolphin;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .icon-user {
+            font-size: 20px;
+        }
+
+        .user-initials {
+            font-size: 14px;
+        }
     }
-    // Overwrites to the default dropdown-menu to make this menu sit flushed against the toggle control.
-    .dropdown-menu {
-        border-top: none;
-        li:first-child {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+
+    .dropdown.open {
+        .icon-user,
+        .user-initials,
+        .icon-chevron {
+            color: @whiteTip;
         }
-        li span {
-            &.ON {
-                color: #0179b5;
-                font-weight: bold;
-            }
-            &.OFF {
-                color: #cc0024;
-                font-weight: bold;
-            }
-          }
-        }
+    }
 }
