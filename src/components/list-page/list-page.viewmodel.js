@@ -367,7 +367,9 @@ module.exports = can.Map.extend({
          */
         fromDatePickerOpen: {
             set: function (newVal) {
+                console.log('from: ', newVal);
                 if (newVal) {
+                    this.attr('toDatePickerOpen', false);
                     return newVal;
                 }
             }
@@ -379,7 +381,9 @@ module.exports = can.Map.extend({
          */
         toDatePickerOpen: {
             set: function (newVal) {
+                console.log('to: ', newVal);
                 if (newVal) {
+                    this.attr('fromDatePickerOpen', false);
                     return newVal;
                 }
             }
