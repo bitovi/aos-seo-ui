@@ -163,6 +163,7 @@ module.exports = can.Component.extend({
 
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
+        '{state} pageTypes': 'searchDidChange',
         '{state} partNumber': 'searchDidChange',
         '{state} regions': 'searchDidChange',
         '{state} segments': 'searchDidChange',

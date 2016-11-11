@@ -8,6 +8,7 @@
             "descriptionUrl": "http://nemo/text-assets/pub.description.something?version=some-version",
             "pageTitle": "iPod Classic",
             "pageTitleKeyPath": "pub.title",
+            "pageType": "PDP",
             "partNumber": "D6106ZM/A",
             "region": "AMR",
             "segment": "All",
@@ -54,6 +55,7 @@
             "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
             "partNumber": "D5690ZM/A",
             "pageTitle": " ",
+            "pageType": "PDP",
             "description": "Get the IT department-level support you need when deploying iOS, Mac OS X, or Mac OS X Server in your organization. AppleCare OS Support delivers phone and email support for advanced integration, migration, and server operation issues. AppleCare OS Support - Preferred covers an unlimited number of enterprise-level support incidents for two technical contacts from your organization, provides two-hour response for priority 1 (server down) issues 12 x 7, and assigns a technical account manager to your organization for one year.",
             "segment": "smb",
             "region": "amr",
@@ -96,6 +98,7 @@
         {
             "country": "United States of America",
             "pageTitle": "MacBook - Apple",
+            "pageType": "PDP",
             "partNumber": "MG482LL/A",
             "region": "AMR",
             "segment": "All",
@@ -109,6 +112,7 @@
             "country": "United Kingdom",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "pageTitle": "MacBook Air - Apple",
+            "pageType": "PDP",
             "partNumber": "D6377ZM/A",
             "region": "EMEA",
             "segment": "Internal EPP",
@@ -121,6 +125,7 @@
         {
             "country": "Hong Kong",
             "pageTitle": "iPad WiFi - Apple",
+            "pageType": "buyflow",
             "partNumber": "H1783ZM/A",
             "region": "APAC",
             "segment": "Direct",
@@ -133,6 +138,7 @@
         {
             "country": "Japan",
             "pageTitle": "iPad 3G - Apple",
+            "pageType": "buyflow",
             "partNumber": "H1786ZM/A",
             "region": "JAPAN",
             "segment": "All",
@@ -145,6 +151,7 @@
         {
             "country": "Turkey",
             "pageTitle": "iPad 2 WiFi - Apple",
+            "pageType": "buyflow",
             "partNumber": "H3443ZM/A",
             "region": "EMEA",
             "segment": "Small Business",
@@ -157,6 +164,7 @@
         {
             "country": "New Zealand",
             "pageTitle": "iPad 2 3G - Apple",
+            "pageType": "buyflow",
             "partNumber": "H4825ZM/B",
             "region": "APAC",
             "segment": "Apple",
@@ -169,6 +177,7 @@
         {
             "country": "Mexico",
             "pageTitle": "iPod Nano - Apple",
+            "pageType": "buyflow",
             "partNumber": "S4728Z/A",
             "region": "AMR",
             "segment": "Edu Individual",
@@ -181,6 +190,7 @@
         {
             "country": "Canada",
             "pageTitle": "iPod Touch - Apple",
+            "pageType": "buyflow",
             "partNumber": "Z0S9",
             "region": "AMR",
             "segment": "Direct",

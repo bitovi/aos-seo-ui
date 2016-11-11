@@ -1,33 +1,61 @@
 <header>
-    <nav class="navbar navbar-inverse global-top-nav" role="navigation">
+    {{! App Info }}
+    <nav
+        class="global-top-nav navbar navbar-inverse"
+        role="navigation"
+    >
         <div class="navbar-header">
-            <a class="navbar-brand check-saved-state-js" href="{{link homeUrl}}"><span class="apple-logo"></span> SEO
-                {{#version}}
-                    <span class="version">V {{version}}</span>
-                {{/version}}
+            <a
+                class="check-saved-state-js navbar-brand"
+                href="{{link homeUrl}}"
+            >
+                <span class="apple-logo"></span>
+                SEO Manager
+                {{#if version}}
+                    <span class="version">{{version}}</span>
+                {{/if}}
             </a>
-
         </div>
 
-        <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <div class="collapse navbar-collapse navbar-inverse-collapse">
             <div class="navbar-right">
-              {{#if appInfo.debug}}
-                  <seo-fixture-toggle></seo-fixture-toggle>
-              {{/if}}
+                {{#if appInfo.debug}}
+                    <seo-fixture-toggle></seo-fixture-toggle>
+                {{/if}}
+
                 {{^userHasAction 'edit'}}
                     <span class="read-only-label">Read Only</span>
                 {{/userHasAction}}
+
                 <seo-user-menu user-data="{user}">
-                    <li><a class="check-saved-state-js" href="{{logoutUrl}}">Logout</a></li>
+                    <li>
+                        <a
+                            class="check-saved-state-js"
+                            href="{{logoutUrl}}"
+                        >
+                            Logout
+                        </a>
+                    </li>
                 </seo-user-menu>
             </div>
         </div>
     </nav>
 
-    <nav class="navbar navbar-default global-secondary-nav" role="navigation" aria-label="Site Navigation">
-    <ul class="nav navbar-nav">
-        <li class="selected-tab">
-            <a class="check-saved-state-js" href="{{link homeUrl}}">URLs</a>
-    </ul>
-</nav>
+    {{! App Navigation }}
+    <nav
+        aria-label="Site Navigation"
+        class="global-secondary-nav navbar navbar-default"
+        role="navigation"
+    >
+        <ul class="nav navbar-nav">
+            <li class="selected-tab">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link homeUrl}}"
+                >
+                    URLs
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>
