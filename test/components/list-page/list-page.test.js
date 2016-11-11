@@ -618,12 +618,16 @@ describe('List Page', function () {
                     $(secondMenu.find('.form-control-feedback')[0]).trigger('click');
                 });
 
-                it('then fromDatePickerOpen is true', function () {
-                    expect(vm.attr('fromDatePickerOpen')).toBe(true);
+                it('then fromDatePickerOpen is open', function () {
+                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[0];
+
+                    expect($(formGroup).find('pui-panel').length).toBe(1);
                 });
 
-                it('then toDatePickerOpen is false', function () {
-                    expect(vm.attr('toDatePickerOpen')).toBe(false);
+                it('then toDatePickerOpen is closed', function () {
+                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[1];
+
+                    expect($(formGroup).find('pui-panel').length).toBe(0);
                 });
 
                 afterEach(function () {
@@ -636,12 +640,16 @@ describe('List Page', function () {
                     $(secondMenu.find('.form-control-feedback')[1]).trigger('click');
                 });
 
-                it('then toDatePickerOpen is true', function () {
-                    expect(vm.attr('toDatePickerOpen')).toBe(true);
+                it('then toDatePickerOpen is open', function () {
+                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[1];
+
+                    expect($(formGroup).find('pui-panel').length).toBe(1);
                 });
 
-                it('then fromDatePickerOpen is false', function () {
-                    expect(vm.attr('fromDatePickerOpen')).toBe(false);
+                it('then fromDatePickerOpen is closed', function () {
+                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[0];
+
+                    expect($(formGroup).find('pui-panel').length).toBe(0);
                 });
 
                 afterEach(function () {
