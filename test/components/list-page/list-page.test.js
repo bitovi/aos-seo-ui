@@ -30,13 +30,17 @@ var vm;
 // Filter Menu setup
 var FilterViewModel = require('pui/components/filter-menu/viewmodel');
 var filterVm;
+var filterVm2;
 var filterGroups;
+var filterGroups2;
 var firstFilterGroup;
 var secondFilterGroup;
+var dateRangesFilterGroup;
 var filterOptions;
 var filterOptions2;
 var filterMenus;
 var firstMenu;
+var secondMenu;
 var menuTrigger;
 var firstInput;
 // Date Ranges filter-menu data setup
@@ -91,7 +95,6 @@ var renderPage = function (newState) {
         filterConfig: [
             {
                 buttonLabel: 'Regions:',
-                placement: 'bottom',
                 filterGroups: [
                     {
                         groupTitle: 'Regions:',
@@ -160,6 +163,38 @@ var renderPage = function (newState) {
                             {
                                 "label": "United States",
                                 "value": "us"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                buttonLabel: 'All Dates',
+                filterGroups: [
+                    {
+                        groupTitle: 'Date Range:',
+                        inputType: 'radio',
+                        parameter: 'dateRanges',
+                        filterOptions: [
+                            {
+                                "label" : "All",
+                                "value" : "all"
+                            },
+                            {
+                                "label" : "Last 24 Hours",
+                                "value" : "last-24-hours"
+                            },
+                            {
+                                "label" : "Last 2 Weeks",
+                                "value" : "last-2-weeks"
+                            },
+                            {
+                                "label" : "Last Month",
+                                "value" : "last-month"
+                            },
+                            {
+                                "label" : "Custom Range",
+                                "value" : "custom-range"
                             }
                         ]
                     }
@@ -393,6 +428,8 @@ describe('List Page', function () {
                 filterVm2.attr('startDate', '01/01/2000');
                 filterVm2.attr('endDate', '01/01/2000');
 
+                vm.attr('datesOpen', true);
+
                 vm.resetAllFilters();
             });
 
@@ -415,12 +452,63 @@ describe('List Page', function () {
             it('then the startDate is today', function () {
                 var now = new Date();
                 var today = moment.utc(now).format('MM/DD/YYYY');
+
                 expect(vm.attr('startDate')).toEqual(today);
             });
 
             it('then the endDate is today', function () {
                 var now = new Date();
                 var today = moment.utc(now).format('MM/DD/YYYY');
+
+                expect(vm.attr('endDate')).toEqual(today);
+            });
+
+            it('sets the datesOpen attribute to false', function () {
+                expect(vm.attr('datesOpen')).toEqual(false);
+            });
+        });
+
+        describe('customDateApplied property', function () {
+            it('is initially set to false', function () {
+                expect(vm.attr('customDateApplied')).toEqual(false);
+            });
+
+            describe('when applying a custom date filter', function () {
+                beforeEach(function () {
+                    vm.attr('state.dateRanges', vm.attr('dateInfo'));
+                });
+
+                it('sets customDateApplied to true', function () {
+                    expect(vm.attr('customDateApplied')).toEqual(true);
+                });
+
+                it('sets datesOpen to true', function () {
+                    expect(vm.attr('datesOpen')).toEqual(true);
+                });
+            });
+
+        });
+
+        describe('datesOpen property', function () {
+            it('is initially set to false', function () {
+                expect(vm.attr('datesOpen')).toEqual(false);
+            });
+        });
+
+        describe('startDate property', function () {
+            it('is initially set to today\'s date', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+
+                expect(vm.attr('startDate')).toEqual(today);
+            });
+        });
+
+        describe('endDate property', function () {
+            it('is initially set to today\'s date', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+
                 expect(vm.attr('endDate')).toEqual(today);
             });
         });

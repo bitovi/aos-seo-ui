@@ -148,7 +148,19 @@ module.exports = can.Component.extend({
         },
 
         '{state} countries': 'searchDidChange',
-        '{state} dateRanges': 'searchDidChange',
+
+        /**
+         * @description Handles change of dateRanges application state property.
+         */
+        '{state} dateRanges': function () {
+            var vm = this.viewModel;
+
+            this.searchDidChange();
+
+            // Ensures the custom date range input remains open if a custom range is applied
+            vm.attr('datesOpen', vm.attr('customDateApplied'));
+        },
+
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
         '{state} pageTypes': 'searchDidChange',
@@ -200,7 +212,6 @@ module.exports = can.Component.extend({
 
                     vm.attr('searchValue', stateValue);
                 }
-                vm.attr('searchValue', stateValue);
             }
         }),
 
@@ -224,11 +235,17 @@ module.exports = can.Component.extend({
          * @param {jQuery event} evnt The change event.
          */
         '.date-range-group change': function ($el, evnt) {
-            var $datePicker = this.element.find('.custom-range-selector');
             var customRangeSelected = $(evnt.target).is('.custom-range-toggle');
 
             // Shows date picker if the custom-range option is selected
-            $datePicker.toggleClass('hide', !customRangeSelected);
+            this.viewModel.attr('datesOpen', customRangeSelected);
+        },
+
+        /**
+         * @description Handles click event of the Date Range filter group Clear button.
+         */
+        '.date-range-group .clear-radio click': function () {
+            this.viewModel.attr('datesOpen', false);
         },
 
         /**
@@ -274,12 +291,23 @@ module.exports = can.Component.extend({
             // Compares the dateInfo attribute to the dateRanges app state value.
             // If they differ, we call vm.updateFilterUrl() so the date change
             // will trigger filtering.
+
             // This workaround is necessary because vm.updateFilterUrl() is
             // normally triggered by a change to the filter-trigger label, but
             // the Date Range label doesn't change when selecting a custom range.
-            if (vm.attr('dateInfo') !== vm.attr('state.dateRanges')) {
+            if (!vm.attr('customDateApplied')) {
                 vm.updateFilterUrl(filterVm);
             }
+        },
+
+        /**
+         * @description Handles mouseup event of the Date Range Cancel Filter button.
+         */
+        '.custom-range-selector ~ .cancel-filters mouseup': function () {
+            var vm = this.viewModel;
+
+            // Ensures the custom date range input remains open if a custom range is applied
+            vm.attr('datesOpen', vm.attr('customDateApplied'));
         }
     }
 });

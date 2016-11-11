@@ -30,6 +30,24 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Boolean} customDateApplied
+         * @description Indicates if a custom date range filter has been applied.
+         * @option Default `false`
+         */
+        customDateApplied: {
+            type: 'boolean',
+            value: false,
+            get: function () {
+                var appState = this.attr('state');
+                var dateInfo = this.attr('dateInfo');
+
+                if (appState && dateInfo) {
+                    return dateInfo === appState.attr('dateRanges');
+                }
+            }
+        },
+
+        /**
          * @property {Array<Object>} dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
@@ -260,7 +278,7 @@ module.exports = can.Map.extend({
             },
             get: function () {
                 var params = this.attr('params');
-                var startDate = params.attr('from') ? params.attr('from') : '';
+                var startDate = params.attr('from') || '';
                 var today = this.attr('today');
 
                 return (startDate === '') ? today : moment.utc(startDate).format(this.attr('dateMask'));
@@ -294,7 +312,7 @@ module.exports = can.Map.extend({
             },
             get: function () {
                 var params = this.attr('params');
-                var endDate = params.attr('to') ? params.attr('to') : '';
+                var endDate = params.attr('to') || '';
                 var today = this.attr('today');
 
                 return (endDate === '') ? today : moment.utc(endDate).format(this.attr('dateMask'));
@@ -467,29 +485,72 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function resetAllFilters
+     * @description Resets all filters on the page.
+     */
+    resetAllFilters: function () {
+        var filterMenus = this.attr('filterMenus');
+        var filterVm;
+
+        if (filterMenus.length) {
+            can.each(filterMenus, function (filterMenu) {
+                filterVm = can.viewModel(filterMenu);
+
+                can.each(filterVm.attr('filterGroups'), function (group) {
+                    // Deselects all filter options
+                    group.toggleAllFilters(false);
+                });
+
+                filterVm.applyFilters();
+            });
+
+            // Resets Date Range filter-menu custom range dates to default (today)
+            this.attr('startDate', this.attr('today'));
+            this.attr('endDate', this.attr('today'));
+
+            this.attr('datesOpen', false);
+        }
+    },
+
+    /**
      * @function updateFilterMenus
      * @description Updates the filter menu components, based on the searchFilter property.
      */
     updateFilterMenus: function () {
+        var filterConfig = this.attr('filterConfig');
         var filterMenus = this.attr('filterMenus');
         var searchFilter = this.attr('searchFilter');
+        var self = this;
 
-        if (filterMenus.length && searchFilter) {
-            this.attr('filterConfig').forEach(function (filter, filterIndex) {
+        if (filterConfig && filterMenus.length && searchFilter) {
+            filterConfig.forEach(function (filter, filterIndex) {
                 var filterGroups = filter.attr('filterGroups');
 
                 if (filterGroups) {
                     filterGroups.forEach(function (group, groupIndex) {
-                        var filterVm;
+                        var filterVm = can.viewModel(filterMenus[filterIndex]);
+                        var menuGroups = filterVm.attr('filterGroups');
                         var paramVal = searchFilter[group.attr('parameter')];
+                        var paramDates = [];
                         var selectedGroup;
 
-                        if (paramVal) {
-                            filterVm = can.viewModel(filterMenus[filterIndex]);
-                            selectedGroup = filterVm.attr('filterGroups')[groupIndex];
+                        if (filterVm && menuGroups && paramVal) {
+                            selectedGroup = menuGroups[groupIndex];
+
+                            // Ensures the date values from the URL are persisted after a page refresh
+                            if (group.attr('parameter') === 'dateRanges' && paramVal.split(' to ').length > 1) {
+                                paramDates = paramVal.split(' to ');
+
+                                self.attr({
+                                    startDate: paramDates[0],
+                                    endDate: paramDates[1]
+                                });
+                            }
 
                             selectedGroup.attr('filterOptions').forEach(function (option) {
-                                if (paramVal.match(option.attr('value'))) {
+                                var optionVal = option.attr('value');
+
+                                if (paramVal.match(optionVal) || (optionVal === 'custom-range' && paramVal === self.attr('dateInfo'))) {
                                     option.attr('selected', true);
                                 }
                             });
@@ -509,45 +570,26 @@ module.exports = can.Map.extend({
      */
     updateFilterUrl: function (menuVm) {
         var appState = this.attr('state');
-        var dateInfo = this.attr('dateInfo').match('Invalid date') ? '' : this.attr('dateInfo');
+        var dateInfo = this.attr('dateInfo');
+        var validDate = dateInfo.match('Invalid date') ? '' : dateInfo;
 
         if (menuVm && appState) {
             menuVm.attr('filterGroups').forEach(function (group) {
                 var filterValues = group.attr('appliedFilterValues').attr().toString();
                 var param = group.attr('parameter');
 
+                // Sets custom date parameter value to date string
+                if (filterValues === 'custom-range' && validDate) {
+                    filterValues = validDate;
+                }
+
                 if (filterValues && param) {
-                    appState.attr(param, (filterValues === 'custom-range') && dateInfo ? dateInfo : filterValues);
+                    // Adds filter name and value to appState and URL
+                    appState.attr(param, filterValues);
                 } else {
                     appState.removeAttr(param);
                 }
             });
-        }
-    },
-
-    /**
-     * @function resetAllFilters
-     * @description Resets all filters on the page.
-     */
-    resetAllFilters: function () {
-        var filterMenus = this.attr('filterMenus');
-        var filterVm;
-
-        if (filterMenus.length) {
-            can.each(filterMenus, function (filterMenu) {
-                filterVm = can.viewModel(filterMenu);
-
-                can.each(filterVm.attr('filterGroups'), function (group) {
-                    // Unselect all filter options
-                    group.attr('isAllSelected', false);
-                });
-
-                filterVm.applyFilters();
-            });
-
-            // Reset Date Range filter-menu custom range dates to default (today)
-            this.attr('startDate', this.attr('today'));
-            this.attr('endDate', this.attr('today'));
         }
     }
 });
