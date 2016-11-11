@@ -366,12 +366,13 @@ module.exports = can.Map.extend({
          * @description Shows the "From" date picker's open state
          */
         fromDatePickerOpen: {
+            value: false,
+            type: 'boolean',
             set: function (newVal) {
-                console.log('from: ', newVal);
                 if (newVal) {
                     this.attr('toDatePickerOpen', false);
-                    return newVal;
                 }
+                return newVal;
             }
         },
 
@@ -380,12 +381,13 @@ module.exports = can.Map.extend({
          * @description Shows the "To" date picker's open state
          */
         toDatePickerOpen: {
+            value: false,
+            type: 'boolean',
             set: function (newVal) {
-                console.log('to: ', newVal);
                 if (newVal) {
                     this.attr('fromDatePickerOpen', false);
-                    return newVal;
                 }
+                return newVal;
             }
         }
         /** END DATE PROPERTIES */
