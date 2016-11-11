@@ -39,6 +39,12 @@ var filterMenus;
 var firstMenu;
 var menuTrigger;
 var firstInput;
+// Date Ranges filter-menu data setup
+var filterVm2;
+var secondMenu;
+var dateRangesFilterGroup;
+var filterOptions3;
+var menuTrigger2;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
@@ -214,6 +220,48 @@ describe('List Page', function () {
                 var now = new Date();
                 var today = moment.utc(now).format('MM/DD/YYYY');
                 expect(endDate).toEqual(today);
+            });
+        });
+
+        describe('Has default fromDatePickerOpen value of', function () {
+            it('false', function () {
+                var fromDatePickerOpen = vm.attr('fromDatePickerOpen');
+                expect(fromDatePickerOpen).toBe(false);
+            });
+        });
+
+        describe('Has default toDatePickerOpen value of', function () {
+            it('false', function () {
+                var toDatePickerOpen = vm.attr('toDatePickerOpen');
+                expect(toDatePickerOpen).toBe(false);
+            });
+        });
+
+        describe('When fromDatePickerOpen is set to true', function () {
+            beforeEach(function () {
+                vm.attr('fromDatePickerOpen', true);
+            });
+
+            it('then fromDatePickerOpen is true', function () {
+                expect(vm.attr('fromDatePickerOpen')).toBe(true);
+            });
+
+            it('then toDatePickerOpen is false', function () {
+                expect(vm.attr('toDatePickerOpen')).toBe(false);
+            });
+        });
+
+        describe('When toDatePickerOpen is set to true', function () {
+            beforeEach(function () {
+                vm.attr('toDatePickerOpen', true);
+            });
+
+            it('then toDatePickerOpen is true', function () {
+                expect(vm.attr('toDatePickerOpen')).toBe(true);
+            });
+
+            it('then fromDatePickerOpen is false', function () {
+                expect(vm.attr('fromDatePickerOpen')).toBe(false);
             });
         });
 
@@ -482,15 +530,16 @@ describe('List Page', function () {
                         ]
                     }
                 ];
+
                 filterVm.attr('filterGroups', filterGroups);
                 firstFilterGroup = filterVm.attr('filterGroups.0');
                 secondFilterGroup = filterVm.attr('filterGroups.1');
                 filterOptions = firstFilterGroup.attr('filterOptions');
                 filterOptions2 = secondFilterGroup.attr('filterOptions');
 
+                // Select region
                 menuTrigger = firstMenu.find('.dropdown');
                 menuTrigger.trigger('click');
-                // Select region
                 firstInput = firstMenu.find('.amr-toggle');
                 firstInput.trigger('click');
             });
@@ -509,6 +558,95 @@ describe('List Page', function () {
 
             it('then corresponding countries are selected: USA', function () {
                 expect(firstMenu.find('.us-toggle').prop('checked')).toEqual(true);
+            });
+        });
+
+        describe('When one Date picker is open', function () {
+            beforeEach(function () {
+                renderPage();
+
+                // Data setup
+                component = $('#sandbox seo-list-page');
+                filterMenus = component.find('pui-filter-menu');
+                secondMenu = filterMenus.eq(0);
+                filterVm2 = can.viewModel(secondMenu);
+                filterGroups2 = [
+                    {
+                        groupTitle: 'Date Range:',
+                        inputType: 'radio',
+                        parameter: 'dateRanges',
+                        filterOptions: [
+                            {
+                                "label": "All",
+                                "value": "all"
+                            },
+                            {
+                                "label": "Last 24 Hours",
+                                "value": "last-24-hours"
+                            },
+                            {
+                                "label": "Last 2 Weeks",
+                                "value": "last-2-weeks"
+                            },
+                            {
+                                "label": "Last Month",
+                                "value": "last-month"
+                            },
+                            {
+                                "label": "Custom Range",
+                                "value": "custom-range"
+                            }
+                        ]
+                    }
+                ];
+                filterVm2.attr('filterGroups', filterGroups2);
+                vm.attr('btnLabel', 'All Dates');
+                dateRangesFilterGroup = filterVm2.attr('filterGroups.0');
+                filterOptions3 = dateRangesFilterGroup.attr('filterOptions');
+
+                // Open Date Range filter-menu
+                menuTrigger2 = secondMenu.find('.dropdown');
+                menuTrigger2.trigger('click');
+
+                // Select Custom Range
+                var customRangeToggle = secondMenu.find('.custom-range-toggle');
+                customRangeToggle.trigger('click');
+            });
+
+            describe('When fromDatePickerOpen is set to true', function () {
+                beforeEach(function () {
+                    $(secondMenu.find('.form-control-feedback')[0]).trigger('click');
+                });
+
+                it('then fromDatePickerOpen is true', function () {
+                    expect(vm.attr('fromDatePickerOpen')).toBe(true);
+                });
+
+                it('then toDatePickerOpen is false', function () {
+                    expect(vm.attr('toDatePickerOpen')).toBe(false);
+                });
+
+                afterEach(function () {
+                    $(secondMenu.find('.popover-content')).trigger('click');
+                });
+            });
+
+            describe('When toDatePickerOpen is set to true', function () {
+                beforeEach(function () {
+                    $(secondMenu.find('.form-control-feedback')[1]).trigger('click');
+                });
+
+                it('then toDatePickerOpen is true', function () {
+                    expect(vm.attr('toDatePickerOpen')).toBe(true);
+                });
+
+                it('then fromDatePickerOpen is false', function () {
+                    expect(vm.attr('fromDatePickerOpen')).toBe(false);
+                });
+
+                afterEach(function () {
+                    $(secondMenu.find('.popover-content')).trigger('click');
+                });
             });
         });
     });
