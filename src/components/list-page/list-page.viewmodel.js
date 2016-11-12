@@ -369,9 +369,8 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @function dateInfo
+         * @property {String} dateInfo
          * @description Processes date ranges into strings.
-         * @return {String} Returns the date range as a string.
          */
         dateInfo: {
             get: function () {
@@ -380,31 +379,33 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @function fromDatePickerOpen
+         * @property {Boolean} fromDatePickerOpen
          * @description Shows the "From" date picker's open state
          */
         fromDatePickerOpen: {
-            value: false,
             type: 'boolean',
+            value: false,
             set: function (newVal) {
                 if (newVal) {
                     this.attr('toDatePickerOpen', false);
                 }
+
                 return newVal;
             }
         },
 
         /**
-         * @function toDatePickerOpen
+         * @property {Boolean} toDatePickerOpen
          * @description Shows the "To" date picker's open state
          */
         toDatePickerOpen: {
-            value: false,
             type: 'boolean',
+            value: false,
             set: function (newVal) {
                 if (newVal) {
                     this.attr('fromDatePickerOpen', false);
                 }
+
                 return newVal;
             }
         }
