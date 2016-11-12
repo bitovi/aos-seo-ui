@@ -236,24 +236,6 @@ describe('List Page', function () {
             });
         });
 
-        describe('Has default Start Date value of', function () {
-            it('today\'s date', function () {
-                var startDate = vm.attr('startDate');
-                var now = new Date();
-                var today = moment.utc(now).format('MM/DD/YYYY');
-                expect(startDate).toEqual(today);
-            });
-        });
-
-        describe('Has default End Date value of', function () {
-            it('today\'s date', function () {
-                var endDate = vm.attr('endDate');
-                var now = new Date();
-                var today = moment.utc(now).format('MM/DD/YYYY');
-                expect(endDate).toEqual(today);
-            });
-        });
-
         describe('Has default fromDatePickerOpen value of', function () {
             it('false', function () {
                 var fromDatePickerOpen = vm.attr('fromDatePickerOpen');
