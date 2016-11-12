@@ -38,17 +38,13 @@ var secondFilterGroup;
 var dateRangesFilterGroup;
 var filterOptions;
 var filterOptions2;
+var filterOptions3;
 var filterMenus;
 var firstMenu;
 var secondMenu;
 var menuTrigger;
-var firstInput;
-// Date Ranges filter-menu data setup
-var filterVm2;
-var secondMenu;
-var dateRangesFilterGroup;
-var filterOptions3;
 var menuTrigger2;
+var firstInput;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
@@ -649,7 +645,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('When one Date picker is open', function () {
+        describe('date picker toggling', function () {
             beforeEach(function () {
                 renderPage();
 
@@ -701,47 +697,93 @@ describe('List Page', function () {
                 customRangeToggle.trigger('click');
             });
 
-            describe('When fromDatePickerOpen is set to true', function () {
+            describe('clicking the From Date Picker toggle button', function () {
+                var $fromToggler;
+                var $fromPicker;
+
                 beforeEach(function () {
-                    $(secondMenu.find('.form-control-feedback')[0]).trigger('click');
+                    $fromToggler = secondMenu.find('.form-control-feedback').eq(0);
+                    $fromPicker = secondMenu.find('.custom-range-selector .form-group').eq(0);
                 });
 
-                it('then fromDatePickerOpen is open', function () {
-                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[0];
+                describe('when the From Date Picker is closed', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', false);
+                        $fromToggler.trigger('click');
+                    });
 
-                    expect($(formGroup).find('pui-panel').length).toBe(1);
+                    it('opens the From Date Picker calendar panel', function () {
+                        expect($fromPicker.find('.panel-body').length).toBe(1);
+                    });
                 });
 
-                it('then toDatePickerOpen is closed', function () {
-                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[1];
+                describe('when the From Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', true);
+                        $fromToggler.trigger('click');
+                    });
 
-                    expect($(formGroup).find('pui-panel').length).toBe(0);
+                    it('closes the From Date Picker calendar panel', function () {
+                        expect($fromPicker.find('.panel-body').length).toBe(0);
+                    });
                 });
 
-                afterEach(function () {
-                    $(secondMenu.find('.popover-content')).trigger('click');
+                describe('when the To Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', true);
+                        $fromToggler.trigger('click');
+                    });
+
+                    it('closes the To Date Picker calendar panel', function () {
+                        var $toPicker = secondMenu.find('.custom-range-selector .form-group').eq(1);
+
+                        expect($toPicker.find('.panel-body').length).toBe(0);
+                    });
                 });
             });
 
-            describe('When toDatePickerOpen is set to true', function () {
+            describe('clicking the To Date Picker toggle button', function () {
+                var $toToggler;
+                var $toPicker;
+
                 beforeEach(function () {
-                    $(secondMenu.find('.form-control-feedback')[1]).trigger('click');
+                    $toToggler = secondMenu.find('.form-control-feedback').eq(1);
+                    $toPicker = secondMenu.find('.custom-range-selector .form-group').eq(1);
                 });
 
-                it('then toDatePickerOpen is open', function () {
-                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[1];
+                describe('when the To Date Picker is closed', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', false);
+                        $toToggler.trigger('click');
+                    });
 
-                    expect($(formGroup).find('pui-panel').length).toBe(1);
+                    it('opens the To Date Picker calendar panel', function () {
+                        expect($toPicker.find('.panel-body').length).toBe(1);
+                    });
                 });
 
-                it('then fromDatePickerOpen is closed', function () {
-                    var formGroup = secondMenu.find('.custom-range-selector .form-group')[0];
+                describe('when the To Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', true);
+                        $toToggler.trigger('click');
+                    });
 
-                    expect($(formGroup).find('pui-panel').length).toBe(0);
+                    it('closes the To Date Picker calendar panel', function () {
+                        expect($toPicker.find('.panel-body').length).toBe(0);
+                    });
                 });
 
-                afterEach(function () {
-                    $(secondMenu.find('.popover-content')).trigger('click');
+                describe('when the From Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', true);
+                        $toToggler.trigger('click');
+                    });
+
+                    it('closes the From Date Picker calendar panel', function () {
+                        var $fromPicker = secondMenu.find('.custom-range-selector .form-group').eq(0);
+
+                        expect($fromPicker.find('.panel-body').length).toBe(0);
+                    });
                 });
             });
         });
