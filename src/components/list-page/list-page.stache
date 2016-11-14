@@ -31,6 +31,7 @@
                             <pui-date-picker
                                 date-string="{startDate}"
                                 max-date="{maxDate}"
+                                {(picker-open)}="fromDatePickerOpen"
                                 placement="bottom"
                             >
                                 <input
@@ -47,6 +48,7 @@
                             <pui-date-picker
                                 date-string="{endDate}"
                                 max-date="{today}"
+                                {(picker-open)}="toDatePickerOpen"
                                 min-date="{startDate}"
                                 placement="bottom"
                             >

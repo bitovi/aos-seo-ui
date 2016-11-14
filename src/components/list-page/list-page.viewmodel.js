@@ -369,13 +369,44 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @function dateInfo
+         * @property {String} dateInfo
          * @description Processes date ranges into strings.
-         * @return {String} Returns the date range as a string.
          */
         dateInfo: {
             get: function () {
                 return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm[Z]');
+            }
+        },
+
+        /**
+         * @property {Boolean} fromDatePickerOpen
+         * @description Shows the "From" date picker's open state
+         */
+        fromDatePickerOpen: {
+            type: 'boolean',
+            value: false,
+            set: function (newVal) {
+                if (newVal) {
+                    this.attr('toDatePickerOpen', false);
+                }
+
+                return newVal;
+            }
+        },
+
+        /**
+         * @property {Boolean} toDatePickerOpen
+         * @description Shows the "To" date picker's open state
+         */
+        toDatePickerOpen: {
+            type: 'boolean',
+            value: false,
+            set: function (newVal) {
+                if (newVal) {
+                    this.attr('fromDatePickerOpen', false);
+                }
+
+                return newVal;
             }
         }
         /** END DATE PROPERTIES */
