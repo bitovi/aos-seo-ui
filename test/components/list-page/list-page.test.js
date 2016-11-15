@@ -30,14 +30,20 @@ var vm;
 // Filter Menu setup
 var FilterViewModel = require('pui/components/filter-menu/viewmodel');
 var filterVm;
+var filterVm2;
 var filterGroups;
+var filterGroups2;
 var firstFilterGroup;
 var secondFilterGroup;
+var dateRangesFilterGroup;
 var filterOptions;
 var filterOptions2;
+var filterOptions3;
 var filterMenus;
 var firstMenu;
+var secondMenu;
 var menuTrigger;
+var menuTrigger2;
 var firstInput;
 
 // Renders the component
@@ -85,7 +91,6 @@ var renderPage = function (newState) {
         filterConfig: [
             {
                 buttonLabel: 'Regions:',
-                placement: 'bottom',
                 filterGroups: [
                     {
                         groupTitle: 'Regions:',
@@ -158,6 +163,38 @@ var renderPage = function (newState) {
                         ]
                     }
                 ]
+            },
+            {
+                buttonLabel: 'All Dates',
+                filterGroups: [
+                    {
+                        groupTitle: 'Date Range:',
+                        inputType: 'radio',
+                        parameter: 'dateRanges',
+                        filterOptions: [
+                            {
+                                "label" : "All",
+                                "value" : "all"
+                            },
+                            {
+                                "label" : "Last 24 Hours",
+                                "value" : "last-24-hours"
+                            },
+                            {
+                                "label" : "Last 2 Weeks",
+                                "value" : "last-2-weeks"
+                            },
+                            {
+                                "label" : "Last Month",
+                                "value" : "last-month"
+                            },
+                            {
+                                "label" : "Custom Range",
+                                "value" : "custom-range"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }));
@@ -199,21 +236,45 @@ describe('List Page', function () {
             });
         });
 
-        describe('Has default Start Date value of', function () {
-            it('today\'s date', function () {
-                var startDate = vm.attr('startDate');
-                var now = new Date();
-                var today = moment.utc(now).format('MM/DD/YYYY');
-                expect(startDate).toEqual(today);
+        describe('Has default fromDatePickerOpen value of', function () {
+            it('false', function () {
+                var fromDatePickerOpen = vm.attr('fromDatePickerOpen');
+                expect(fromDatePickerOpen).toBe(false);
             });
         });
 
-        describe('Has default End Date value of', function () {
-            it('today\'s date', function () {
-                var endDate = vm.attr('endDate');
-                var now = new Date();
-                var today = moment.utc(now).format('MM/DD/YYYY');
-                expect(endDate).toEqual(today);
+        describe('Has default toDatePickerOpen value of', function () {
+            it('false', function () {
+                var toDatePickerOpen = vm.attr('toDatePickerOpen');
+                expect(toDatePickerOpen).toBe(false);
+            });
+        });
+
+        describe('When fromDatePickerOpen is set to true', function () {
+            beforeEach(function () {
+                vm.attr('fromDatePickerOpen', true);
+            });
+
+            it('then fromDatePickerOpen is true', function () {
+                expect(vm.attr('fromDatePickerOpen')).toBe(true);
+            });
+
+            it('then toDatePickerOpen is false', function () {
+                expect(vm.attr('toDatePickerOpen')).toBe(false);
+            });
+        });
+
+        describe('When toDatePickerOpen is set to true', function () {
+            beforeEach(function () {
+                vm.attr('toDatePickerOpen', true);
+            });
+
+            it('then toDatePickerOpen is true', function () {
+                expect(vm.attr('toDatePickerOpen')).toBe(true);
+            });
+
+            it('then fromDatePickerOpen is false', function () {
+                expect(vm.attr('fromDatePickerOpen')).toBe(false);
             });
         });
 
@@ -345,6 +406,8 @@ describe('List Page', function () {
                 filterVm2.attr('startDate', '01/01/2000');
                 filterVm2.attr('endDate', '01/01/2000');
 
+                vm.attr('datesOpen', true);
+
                 vm.resetAllFilters();
             });
 
@@ -367,12 +430,63 @@ describe('List Page', function () {
             it('then the startDate is today', function () {
                 var now = new Date();
                 var today = moment.utc(now).format('MM/DD/YYYY');
+
                 expect(vm.attr('startDate')).toEqual(today);
             });
 
             it('then the endDate is today', function () {
                 var now = new Date();
                 var today = moment.utc(now).format('MM/DD/YYYY');
+
+                expect(vm.attr('endDate')).toEqual(today);
+            });
+
+            it('sets the datesOpen attribute to false', function () {
+                expect(vm.attr('datesOpen')).toEqual(false);
+            });
+        });
+
+        describe('customDateApplied property', function () {
+            it('is initially set to false', function () {
+                expect(vm.attr('customDateApplied')).toEqual(false);
+            });
+
+            describe('when applying a custom date filter', function () {
+                beforeEach(function () {
+                    vm.attr('state.dateRanges', vm.attr('dateInfo'));
+                });
+
+                it('sets customDateApplied to true', function () {
+                    expect(vm.attr('customDateApplied')).toEqual(true);
+                });
+
+                it('sets datesOpen to true', function () {
+                    expect(vm.attr('datesOpen')).toEqual(true);
+                });
+            });
+
+        });
+
+        describe('datesOpen property', function () {
+            it('is initially set to false', function () {
+                expect(vm.attr('datesOpen')).toEqual(false);
+            });
+        });
+
+        describe('startDate property', function () {
+            it('is initially set to today\'s date', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+
+                expect(vm.attr('startDate')).toEqual(today);
+            });
+        });
+
+        describe('endDate property', function () {
+            it('is initially set to today\'s date', function () {
+                var now = new Date();
+                var today = moment.utc(now).format('MM/DD/YYYY');
+
                 expect(vm.attr('endDate')).toEqual(today);
             });
         });
@@ -482,15 +596,16 @@ describe('List Page', function () {
                         ]
                     }
                 ];
+
                 filterVm.attr('filterGroups', filterGroups);
                 firstFilterGroup = filterVm.attr('filterGroups.0');
                 secondFilterGroup = filterVm.attr('filterGroups.1');
                 filterOptions = firstFilterGroup.attr('filterOptions');
                 filterOptions2 = secondFilterGroup.attr('filterOptions');
 
+                // Select region
                 menuTrigger = firstMenu.find('.dropdown');
                 menuTrigger.trigger('click');
-                // Select region
                 firstInput = firstMenu.find('.amr-toggle');
                 firstInput.trigger('click');
             });
@@ -509,6 +624,149 @@ describe('List Page', function () {
 
             it('then corresponding countries are selected: USA', function () {
                 expect(firstMenu.find('.us-toggle').prop('checked')).toEqual(true);
+            });
+        });
+
+        describe('date picker toggling', function () {
+            beforeEach(function () {
+                renderPage();
+
+                // Data setup
+                component = $('#sandbox seo-list-page');
+                filterMenus = component.find('pui-filter-menu');
+                secondMenu = filterMenus.eq(0);
+                filterVm2 = can.viewModel(secondMenu);
+                filterGroups2 = [
+                    {
+                        groupTitle: 'Date Range:',
+                        inputType: 'radio',
+                        parameter: 'dateRanges',
+                        filterOptions: [
+                            {
+                                "label": "All",
+                                "value": "all"
+                            },
+                            {
+                                "label": "Last 24 Hours",
+                                "value": "last-24-hours"
+                            },
+                            {
+                                "label": "Last 2 Weeks",
+                                "value": "last-2-weeks"
+                            },
+                            {
+                                "label": "Last Month",
+                                "value": "last-month"
+                            },
+                            {
+                                "label": "Custom Range",
+                                "value": "custom-range"
+                            }
+                        ]
+                    }
+                ];
+                filterVm2.attr('filterGroups', filterGroups2);
+                vm.attr('btnLabel', 'All Dates');
+                dateRangesFilterGroup = filterVm2.attr('filterGroups.0');
+                filterOptions3 = dateRangesFilterGroup.attr('filterOptions');
+
+                // Open Date Range filter-menu
+                menuTrigger2 = secondMenu.find('.dropdown');
+                menuTrigger2.trigger('click');
+
+                // Select Custom Range
+                var customRangeToggle = secondMenu.find('.custom-range-toggle');
+                customRangeToggle.trigger('click');
+            });
+
+            describe('clicking the From Date Picker toggle button', function () {
+                var $fromToggler;
+                var $fromPicker;
+
+                beforeEach(function () {
+                    $fromToggler = secondMenu.find('.form-control-feedback').eq(0);
+                    $fromPicker = secondMenu.find('.custom-range-selector .form-group').eq(0);
+                });
+
+                describe('when the From Date Picker is closed', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', false);
+                        $fromToggler.trigger('click');
+                    });
+
+                    it('opens the From Date Picker calendar panel', function () {
+                        expect($fromPicker.find('.panel-body').length).toBe(1);
+                    });
+                });
+
+                describe('when the From Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', true);
+                        $fromToggler.trigger('click');
+                    });
+
+                    it('closes the From Date Picker calendar panel', function () {
+                        expect($fromPicker.find('.panel-body').length).toBe(0);
+                    });
+                });
+
+                describe('when the To Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', true);
+                        $fromToggler.trigger('click');
+                    });
+
+                    it('closes the To Date Picker calendar panel', function () {
+                        var $toPicker = secondMenu.find('.custom-range-selector .form-group').eq(1);
+
+                        expect($toPicker.find('.panel-body').length).toBe(0);
+                    });
+                });
+            });
+
+            describe('clicking the To Date Picker toggle button', function () {
+                var $toToggler;
+                var $toPicker;
+
+                beforeEach(function () {
+                    $toToggler = secondMenu.find('.form-control-feedback').eq(1);
+                    $toPicker = secondMenu.find('.custom-range-selector .form-group').eq(1);
+                });
+
+                describe('when the To Date Picker is closed', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', false);
+                        $toToggler.trigger('click');
+                    });
+
+                    it('opens the To Date Picker calendar panel', function () {
+                        expect($toPicker.find('.panel-body').length).toBe(1);
+                    });
+                });
+
+                describe('when the To Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('toDatePickerOpen', true);
+                        $toToggler.trigger('click');
+                    });
+
+                    it('closes the To Date Picker calendar panel', function () {
+                        expect($toPicker.find('.panel-body').length).toBe(0);
+                    });
+                });
+
+                describe('when the From Date Picker is open', function () {
+                    beforeEach(function () {
+                        vm.attr('fromDatePickerOpen', true);
+                        $toToggler.trigger('click');
+                    });
+
+                    it('closes the From Date Picker calendar panel', function () {
+                        var $fromPicker = secondMenu.find('.custom-range-selector .form-group').eq(0);
+
+                        expect($fromPicker.find('.panel-body').length).toBe(0);
+                    });
+                });
             });
         });
     });
