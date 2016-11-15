@@ -1,3 +1,6 @@
+@import '../base/base';
+@import '../../../node_modules/pui/dist/less/components/file-downloader/file-downloader.less';
+
 seo-export-urls {
     pui-action-bar-menu > ul.nav-icons.nav-icons-right > pui-action-bar-dropdown:last-child .dropdown-menu.bottom > .arrow {
         left: 80%;
@@ -5,5 +8,9 @@ seo-export-urls {
 
     .dropdown-menu {
         min-width: 190px;
+    }
+
+    pui-alert {
+    .global-alert();
     }
 }
