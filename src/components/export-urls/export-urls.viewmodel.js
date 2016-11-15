@@ -36,14 +36,25 @@ module.exports = can.Map.extend({
             value: false,
             type: 'boolean'
         },
-
+        /**
+         * @property
+         * @description notifications of the export status
+         */
         notifications: {
             value: []
         },
+        /**
+         * @property
+         * @description checks if the export request is triggered
+         */
         exportClicked: {
             type: 'boolean'
         }
     },
+    /**
+     * @property
+     * @description builds the parameters that needs to be passed to  export the records
+     */
     buildParams: function () {
         var params = this.attr('params');
         // tack on search/filter params
@@ -60,7 +71,15 @@ module.exports = can.Map.extend({
         params.attr('statuses', this.attr('state.statuses'));
         params.attr('urls', this.attr('state.urls'));
     },
+    /**
+     * @property
+     * @description Exports as nemo ready file
+     */
     exportNemoReadyFile: function () {},
+    /**
+     * @property
+     * @description Exports in the urls in the csv format
+     */
     exportCsv: function () {
         this.doExport();
     },
