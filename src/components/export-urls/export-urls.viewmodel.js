@@ -27,10 +27,6 @@ module.exports = can.Map.extend({
                 return JSON.stringify(this.attr('params').attr());
             }
         },
-        exportResults: {
-            value: []
-        },
-
         /**
          * @property
          * @description Indicator to help trigger the file download, when set to true
