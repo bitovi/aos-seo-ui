@@ -13,9 +13,7 @@ var vm;
 // Renders the component
 var renderPage = function () {
 
-    $('#sandbox').html(testTemplate({
-        count: 1000
-    }));
+    $('#sandbox').html(testTemplate());
 
     jasmine.clock().tick(can.fixture.delay);
     component = $('#sandbox seo-export-urls');
@@ -45,8 +43,8 @@ describe('Export Urls', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
-        it('Checks if count exists in menu header', function () {
-            expect(component.find('.dropdown-header').html()).toContain(vm.attr('count'));
+        it('Checks if menu header exists', function () {
+            expect(component.find('.dropdown-header').html()).toContain('Export');
         });
     });
 });

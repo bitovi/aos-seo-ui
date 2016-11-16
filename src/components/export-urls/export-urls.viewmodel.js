@@ -2,7 +2,6 @@ var can = require('can');
 require('can/map/define/define');
 require('can/view/stache/stache');
 var envVars = require('seo-ui/utils/environmentVars');
-var ExportProgress = require('seo-ui/models/export-urls/export-urls.js');
 
 module.exports = can.Map.extend({
     define: {
@@ -83,13 +82,20 @@ module.exports = can.Map.extend({
     exportCsv: function () {
         this.doExport();
     },
-
+    /**
+     * @property
+     * @description Exports in the All urls in the csv format
+     */
+    exportAllCsv: function () {
+        var params = this.attr('params');
+        params.attr('exportAll', true);
+        this.doExport();
+    },
     /**
      * @function export-urls.scope.doExport doExport
      * @description Processes selected data and submits request for export file.
      */
     doExport: function () {
-        var self = this;
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
@@ -102,37 +108,10 @@ module.exports = can.Map.extend({
         this.attr('doDownloadExport', true);
 
         this.attr('notifications').push({
-            title: 'Your data export has started.',
-            message: 'Please wait until the process has been completed.',
-            timeout: '-1',
-            type: 'info'
-        });
-
-        can.Deferred(function () {
-            // Reset the download state so we can do an other download, if needed
-            self.attr('doDownloadExport', false);
-
-            var progDef = ExportProgress.findOne(self.attr('exportRequest'));
-            progDef
-                .then(function () {
-                    self.attr('notifications').pop();
-                    self.attr('notifications').push({
-                        title: 'Your data export was successful.',
-                        message: 'Check your downloads folder for the exported file',
-                        timeout: '6000',
-                        type: 'success'
-                    });
-                })
-                .fail(function (resp) {
-                    var msg = resp && resp.message ? resp.message : 'An internal error has occurred and we are unable to complete your request. Please try again later.';
-                    self.attr('notifications').pop();
-                    self.attr('notifications').push({
-                        title: 'Unable to export data.',
-                        message: msg,
-                        timeout: '-1',
-                        type: 'error'
-                    });
-                });
+            title: 'Your data export was successful.',
+            message: 'Check your downloads folder for the exported file',
+            timeout: '6000',
+            type: 'success'
         });
     }
 });
