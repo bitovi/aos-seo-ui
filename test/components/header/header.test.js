@@ -14,11 +14,11 @@ require('seo-ui/components/header/header');
 require('can/util/fixture/fixture');
 
 describe('Header', function () {
-beforeEach(function () {
-    jasmineConfigClean = jasmineConfig({
-        persistentSandbox: true
+    beforeEach(function () {
+        jasmineConfigClean = jasmineConfig({
+            persistentSandbox: true
+        });
     });
-});
 
 afterEach(function () {
     jasmineConfigClean(true);
