@@ -457,7 +457,9 @@ module.exports = can.Map.extend({
                     'parameter': group.attr('parameter')
                 });
 
-                group.attr('filterOptions', match.attr('options'));
+                if (match) {
+                    group.attr('filterOptions', match.attr('options'));
+                }
             });
 
             return filterGroups;
@@ -492,6 +494,7 @@ module.exports = can.Map.extend({
     resetAllFilters: function () {
         var filterMenus = this.attr('filterMenus');
         var filterVm;
+        var today = this.attr('today');
 
         if (filterMenus.length) {
             can.each(filterMenus, function (filterMenu) {
@@ -502,12 +505,16 @@ module.exports = can.Map.extend({
                     group.toggleAllFilters(false);
                 });
 
-                filterVm.applyFilters();
+                if (filterVm.applyFilters) {
+                    filterVm.applyFilters();
+                }
             });
 
             // Resets Date Range filter-menu custom range dates to default (today)
-            this.attr('startDate', this.attr('today'));
-            this.attr('endDate', this.attr('today'));
+            // End date must be set first, so we don't accidentally attempt to set
+            // the start date to a date later than the end date.
+            this.attr('endDate', today);
+            this.attr('startDate', today);
 
             this.attr('datesOpen', false);
         }
@@ -551,12 +558,14 @@ module.exports = can.Map.extend({
                             selectedGroup.attr('filterOptions').forEach(function (option) {
                                 var optionVal = option.attr('value');
 
-                                if (paramVal.match(optionVal) || (optionVal === 'custom-range' && paramVal === self.attr('dateInfo'))) {
+                                if (paramVal.match(_.escapeRegExp(optionVal)) || (optionVal === 'custom-range' && paramVal === self.attr('dateInfo'))) {
                                     option.attr('selected', true);
                                 }
                             });
 
-                            filterVm.applyFilters();
+                            if (filterVm.applyFilters) {
+                                filterVm.applyFilters();
+                            }
                         }
                     });
                 }
