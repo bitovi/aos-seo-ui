@@ -16,55 +16,64 @@ require('can/util/fixture/fixture');
 describe('Header', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig({
-            persistentSandbox: true,
-            useClock: false
+            persistentSandbox: true
         });
     });
 
-    afterEach(function () {
-        jasmineConfigClean(true);
+afterEach(function () {
+    jasmineConfigClean(true);
+});
+
+describe('Component', function () {
+
+    beforeEach(function () {
+
+        setFixtures(sandbox());
+        var frag = testTemplate({
+            state: {
+                user: new User({
+                    "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
+                })
+            }
+        });
+        var sandBox = $('#sandbox');
+        sandBox.html(frag);
+
+        component = $('#sandbox seo-header');
+
     });
 
-    describe('Component', function () {
+    it('initial render', function () {
+        expect(component).toExist();
+        var vm = $('#sandbox seo-header').viewModel();
+        expect(component.find('.global-top-nav')).toExist();
+        expect(component.find('.global-secondary-nav')).toExist();
+        vm.attr('version', '1.0');
+        expect(component.find('.version').text().trim()).toEqual(vm.attr('version'));
+    });
 
-        beforeEach(function () {
-
-            setFixtures(sandbox());
-            var frag = testTemplate({
-                state: {
-                    user: new User({
-                        "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
-                    })
-                }
-            });
-            var sandBox = $('#sandbox');
-            sandBox.html(frag);
-
-            component = $('#sandbox seo-header');
-
+    it('Renders users Readonly mode', function () {
+        var frag = testTemplate({
+            state: {
+                user: new User({
+                    "roles": ["ROLE_USER_READONLY"]
+                })
+            }
         });
+        $('#sandbox').html(frag);
 
-        it('initial render', function () {
-            expect(component).toExist();
-            var vm = $('#sandbox seo-header').viewModel();
-            expect(component.find('.global-top-nav')).toExist();
-            expect(component.find('.global-secondary-nav')).toExist();
-            vm.attr('version', '1.0');
-            expect(component.find('.version').text().trim()).toEqual(vm.attr('version'));
-        });
+        component = $('#sandbox seo-header');
+        expect(component.find('.read-only-label')).toExist();
+    });
 
-        it('Renders users Readonly mode', function () {
-            var frag = testTemplate({
-                state: {
-                    user: new User({
-                        "roles": ["ROLE_USER_READONLY"]
-                    })
-                }
-            });
-            $('#sandbox').html(frag);
+    it('shows menu', function () {
 
-            component = $('#sandbox seo-header');
-            expect(component.find('.read-only-label')).toExist();
-        });
+        $('#sandbox seo-header seo-user-menu .dropdown [data-toggle="dropdown"]').click();
+
+        expect($('#sandbox seo-header seo-user-menu .dropdown-menu li').length).toBe(1);
+        expect($('#sandbox seo-header seo-user-menu .dropdown-menu li').text()).toContain('Logout');
+
+    });
+
     });
 });

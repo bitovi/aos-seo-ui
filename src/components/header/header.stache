@@ -30,7 +30,6 @@
                 <seo-user-menu user-data="{user}">
                     <li>
                         <a
-                            class="check-saved-state-js"
                             href="{{logoutUrl}}"
                         >
                             Logout

@@ -1,8 +1,13 @@
 <ul class="nav navbar-nav">
-  <li>
-      <a class="clearfix user-menu">
-          <span class="icon-user"></span>
-          <span class="user-initials">{{userData.initials}}</span>
-      </a>
+    <li class="dropdown">
+        <a href="#" class="clearfix user-menu" data-toggle="dropdown">
+            <span class="icon-user"></span>
+            <span class="user-initials">{{userData.initials}}</span>
+            <span class="icon-chevron"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-label="User Options">
+            <content></content>
+        </ul>
     </li>
 </ul>
+
