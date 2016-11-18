@@ -127,7 +127,7 @@ module.exports = can.Map.extend({
 
         this.attr('notifications').push({
             title: 'Your data export has started.',
-            message: 'Please wait until the process has been completed.',
+            message: 'Please wait until the process has been completed and check your Downloads folder',
             timeout: '-1',
             type: 'info'
         });
