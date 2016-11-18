@@ -811,8 +811,6 @@ describe('List Page', function () {
                     });
                 });
             });
-
-
         });
     });
 });
