@@ -200,6 +200,12 @@ describe('List Page', function () {
             });
         });
 
+        describe('searchField property', function () {
+            it('has an initial value', function () {
+                expect(vm.attr('searchField')).toEqual('targetPath');
+            });
+        });
+
         describe('searchFields property', function () {
             it('initially contains the search field keys', function () {
                 expect(vm.attr('searchFields')).toEqual(['targetPath', 'description']);
@@ -215,6 +221,37 @@ describe('List Page', function () {
         describe('searchQuery property', function () {
             it('is defined', function () {
                 expect(vm.attr('searchQuery')).toBeDefined();
+            });
+
+            describe('when updated with searchField', function () {
+                var state;
+
+                beforeEach(function () {
+                    state = vm.attr('state');
+
+                    state.attr({
+                        description: 'hello',
+                        targetPath: 'path/to/a/thing'
+                    });
+
+                    vm.attr('searchField', 'description');
+                    vm.attr('searchQuery', {
+                        field: 'description',
+                        value: 'goodbye'
+                    });
+                });
+
+                it('updates the searchFilter property with the new search field and value', function () {
+                    expect(vm.attr('searchFilter.description')).toEqual('goodbye');
+                });
+
+                it('updates the application state with the new search value', function () {
+                    expect(state.attr('description')).toEqual('goodbye');
+                });
+
+                it('clears other search field values from the application state', function () {
+                    expect(state.attr('targetPath')).toEqual('');
+                });
             });
         });
 
@@ -403,49 +440,6 @@ describe('List Page', function () {
 
             it('updates the filter menu selection and does not throw a JavaScript error', function () {
                 expect(filterVm.attr('filterGroups.1.filterOptions.1.selected')).toEqual(true);
-            });
-        });
-
-        describe('searchField property', function () {
-            it('has an initial value', function () {
-                expect(vm.attr('searchField')).toEqual('targetPath');
-            });
-        });
-
-        describe('searchQuery property', function () {
-            it('is defined', function () {
-                expect(vm.attr('searchQuery')).toBeDefined();
-            });
-
-            describe('when updated with searchField', function () {
-                var state;
-
-                beforeEach(function () {
-                    state = vm.attr('state');
-
-                    state.attr({
-                        description: 'hello',
-                        targetPath: 'path/to/a/thing'
-                    });
-
-                    vm.attr('searchField', 'description');
-                    vm.attr('searchQuery', {
-                        field: 'description',
-                        value: 'goodbye'
-                    });
-                });
-
-                it('updates the searchFilter property with the new search field and value', function () {
-                    expect(vm.attr('searchFilter.description')).toEqual('goodbye');
-                });
-
-                it('updates the application state with the new search value', function () {
-                    expect(state.attr('description')).toEqual('goodbye');
-                });
-
-                it('clears other search field values from the application state', function () {
-                    expect(state.attr('targetPath')).toEqual('');
-                });
             });
         });
     });
