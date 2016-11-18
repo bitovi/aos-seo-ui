@@ -346,20 +346,17 @@ describe('List Page', function () {
                 regionVm = can.viewModel($filterMenus.eq(0));
                 regionsGroup = regionVm.attr('filterGroups.0');
                 countriesGroup = regionVm.attr('filterGroups.1');
-
                 dateGroup = can.viewModel($filterMenus.eq(1)).attr('filterGroups.0');
 
                 // Selects filterOptions
                 regionsGroup.toggleAllFilters(true);
                 countriesGroup.toggleAllFilters(true);
-                expect(regionsGroup.attr('isAllSelected')).toEqual(true);
-                expect(countriesGroup.attr('isAllSelected')).toEqual(true);
-
-                vm.attr('datesOpen', true);
-
                 dateGroup.attr('filterOptions.4.selected', true);
+
                 vm.attr('startDate', '01/01/2000');
                 vm.attr('endDate', '01/01/2000');
+
+                vm.attr('datesOpen', true);
 
                 vm.resetAllFilters();
             });
