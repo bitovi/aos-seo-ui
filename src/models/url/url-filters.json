@@ -104,6 +104,10 @@
             "parameter": "countries",
             "options": [
                 {
+                    "label": "All",
+                    "value": "*"
+                },
+                {
                     "label": "Brazil",
                     "value": "br"
                 },
