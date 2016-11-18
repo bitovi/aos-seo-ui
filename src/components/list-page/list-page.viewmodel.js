@@ -203,13 +203,27 @@ module.exports = can.Map.extend({
             set: function (searchQuery) {
                 // Update AppState/route
                 var searchField = this.attr('searchField');
+                var searchFields = this.attr('searchFields');
                 var searchFilter = this.attr('searchFilter');
+                var searchValue = searchQuery.attr('value');
                 var state = this.attr('state');
 
-                searchFilter.attr(searchField, searchQuery.attr('value'));
+                if (searchFilter) {
+                    searchFilter.attr(searchField, searchValue);
+                }
 
                 if (state) {
-                    state.attr(searchField, searchQuery.attr('value'));
+                    state.attr(searchField, searchValue);
+                }
+
+                // Clears search value from application state if the search
+                // field is not in searchQuery
+                if (searchFields && searchFields.length) {
+                    searchFields.forEach(function (fieldName) {
+                        if (fieldName !== searchField) {
+                            state.attr(fieldName, '');
+                        }
+                    });
                 }
 
                 return searchQuery;
