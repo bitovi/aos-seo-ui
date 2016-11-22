@@ -6,40 +6,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {String} exportFilePath
-         * @description The URL/End-point of the service we need to invoke for exporing/download.
-         */
-        exportFilePath: {
-            value: envVars.apiUrl() + '/export-urls.json',
-            type: 'string'
-        },
-        /**
-         * @property {Object} params
-         * @description The params that needs to passed for exporting
-         */
-        params: {
-            value: {}
-        },
-        /**
-         * @property {String} exportRequest
-         * @description Data to be send to the export-urls.json service/
-         */
-        exportRequest: {
-            type: 'string',
-            get: function () {
-                return JSON.stringify(this.attr('params').attr());
-            }
-        },
-        /**
-         * @property {Boolean} doDownloadExport
-         * @description Indicator to help trigger the file download, when set to true
-         * submit the form to the URL and trigger the download
-         */
-        doDownloadExport: {
-            value: false,
-            type: 'boolean'
-        },
-        /**
          * @property {Boolean} displayExportAll
          * @description checks whether to disable or enable export All
          */
@@ -53,11 +19,13 @@ module.exports = can.Map.extend({
             }
         },
         /**
-         * @property {Array} notifications
-         * @description notifications of the export status
+         * @property {Boolean} doDownloadExport
+         * @description Indicator to help trigger the file download, when set to true
+         * submit the form to the URL and trigger the download
          */
-        notifications: {
-            value: []
+        doDownloadExport: {
+            value: false,
+            type: 'boolean'
         },
         /**
          * @property {Boolean} exportClicked
@@ -65,6 +33,38 @@ module.exports = can.Map.extend({
          */
         exportClicked: {
             type: 'boolean'
+        },
+        /**
+         * @property {String} exportFilePath
+         * @description The URL/End-point of the service we need to invoke for exporing/download.
+         */
+        exportFilePath: {
+            value: envVars.apiUrl() + '/export-urls.json',
+            type: 'string'
+        },
+        /**
+         * @property {String} exportRequest
+         * @description Data to be send to the export-urls.json service/
+         */
+        exportRequest: {
+            type: 'string',
+            get: function () {
+                return JSON.stringify(this.attr('params').attr());
+            }
+        },
+        /**
+         * @property {Array} notifications
+         * @description notifications of the export status
+         */
+        notifications: {
+            value: []
+        },
+        /**
+         * @property {Object} params
+         * @description The params that needs to passed for exporting
+         */
+        params: {
+            value: {}
         }
     },
     /**
@@ -91,24 +91,6 @@ module.exports = can.Map.extend({
         }
     },
     /**
-     * @function export-urls.viewmodel.exportCsv exportCsv
-     * @description Exports in the urls in the csv format
-     */
-    exportCsv: function () {
-        var params = this.attr('params');
-        params.attr('exportAll', false);
-        this.doExport();
-    },
-    /**
-     * @function export-urls.viewmodel.exportAllCsv exportAllCsv
-     * @description Exports in the All urls in the csv format
-     */
-    exportAllCsv: function () {
-        var params = this.attr('params');
-        params.attr('exportAll', true);
-        this.doExport();
-    },
-    /**
      * @function export-urls.viewmodel.doExport doExport
      * @description Processes selected data and submits request for export file.
      */
@@ -132,5 +114,23 @@ module.exports = can.Map.extend({
             type: 'info'
         });
         self.attr('doDownloadExport', false);
+    },
+    /**
+     * @function export-urls.viewmodel.exportCsv exportCsv
+     * @description Exports in the urls in the csv format
+     */
+    exportCsv: function () {
+        var params = this.attr('params');
+        params.attr('exportAll', false);
+        this.doExport();
+    },
+    /**
+     * @function export-urls.viewmodel.exportAllCsv exportAllCsv
+     * @description Exports in the All urls in the csv format
+     */
+    exportAllCsv: function () {
+        var params = this.attr('params');
+        params.attr('exportAll', true);
+        this.doExport();
     }
 });
