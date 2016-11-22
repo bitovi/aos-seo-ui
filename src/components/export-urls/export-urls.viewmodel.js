@@ -72,10 +72,10 @@ module.exports = can.Map.extend({
      * @description builds the parameters that needs to be passed to  export the records
      */
     buildParams: function () {
+        var params = this.attr('params');
+        var state = this.attr('state');
         // tack on search/filter params
-        if (this.attr('params') && this.attr('state')) {
-            var params = this.attr('params');
-            var state = this.attr('state');
+        if (params && state) {
             params.attr('countries', state.attr('countries'));
             params.attr('dateRanges', state.attr('dateRanges'));
             params.attr('limit', state.attr('limit'));
