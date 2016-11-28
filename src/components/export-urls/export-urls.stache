@@ -9,15 +9,15 @@
 </pui-action-bar-menu>
 
 {{#exportClicked}}
-<pui-file-downloader
-    action-url="{exportFilePath}"
-    method="POST"
-    enc-type="multipart/form-data"
-    json-string="{exportRequest}"
-    param-key="exportRequest"
-    frameName="export-file-downloader"
-    submit-form="{doDownloadExport}">
-</pui-file-downloader>
+    <pui-file-downloader
+        action-url="{exportFilePath}"
+        method="POST"
+        enc-type="multipart/form-data"
+        json-string="{exportRequest}"
+        param-key="exportRequest"
+        frameName="export-file-downloader"
+        submit-form="{doDownloadExport}">
+    </pui-file-downloader>
 {{/exportClicked}}
 
 {{#notifications}}
