@@ -74,7 +74,6 @@ describe('Export Urls', function () {
             });
 
             it('Checks for the exportAll Option is present or not', function () {
-                debugger;
                 vm.attr('state.url', '/ipod-classic/');
                 vm.attr('state.statuses', 'modified');
                 expect(component.find('pui-action-bar-item:eq(2)').text()).toContain('Export All');
