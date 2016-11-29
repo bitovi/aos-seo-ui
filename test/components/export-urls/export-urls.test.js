@@ -69,13 +69,12 @@ describe('Export Urls', function () {
 
             it('Checks for the export dropdown options', function () {
                 expect(component.find('pui-action-bar-item').length).toEqual(2);
-                vm.attr('state.statuses', 'new-to-store');
+                vm.attr('filterSearchApplied', true);
                 expect(component.find('pui-action-bar-item').length).toEqual(3);
             });
 
             it('Checks for the exportAll Option is present or not', function () {
-                vm.attr('state.url', '/ipod-classic/');
-                vm.attr('state.statuses', 'modified');
+                vm.attr('filterSearchApplied', true);
                 expect(component.find('pui-action-bar-item:eq(2)').text()).toContain('Export All');
             });
 

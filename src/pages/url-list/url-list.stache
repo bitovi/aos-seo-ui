@@ -1,4 +1,5 @@
 <seo-export-urls
+    filter-search-applied="{filterSearchApplied}"
     state="{state}"
 ></seo-export-urls>
 
@@ -8,6 +9,7 @@
     data-options="{dataOptions}"
     disable-advanced-search="true"
     disable-new-item-button="true"
+    filter-search-applied="{filterSearchApplied}"
     filter-config="{filterConfig}"
     item-link-enabled="false"
     model="{urlModel}"

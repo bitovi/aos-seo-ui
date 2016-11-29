@@ -6,19 +6,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Boolean} displayExportAll
-         * @description checks whether to disable or enable export All
-         */
-        displayExportAll: {
-            type: 'boolean',
-            get: function () {
-                if (this.attr('state') && this.attr('state.countries') || this.attr('state.dateRanges') || this.attr('state.pageTitle') || this.attr('state.partNumber') || this.attr('state.regions') || this.attr('state.segments') || this.attr('state.statuses') || this.attr('state.urls')) {
-                    return true;
-                }
-                return false;
-            }
-        },
-        /**
          * @property {Boolean} doDownloadExport
          * @description Indicator to help trigger the file download, when set to true
          * submit the form to the URL and trigger the download

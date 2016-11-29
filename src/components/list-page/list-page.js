@@ -213,6 +213,11 @@ module.exports = can.Component.extend({
                     vm.attr('searchValue', stateValue);
                 }
             }
+            if ((!$.isEmptyObject(searchQuery.attr()) && searchQuery.attr('value') !== '') || !$.isEmptyObject(vm.attr('searchFilter').attr())) {
+                vm.attr('filterSearchApplied', true);
+            } else {
+                vm.attr('filterSearchApplied', false);
+            }
         }),
 
         /**
