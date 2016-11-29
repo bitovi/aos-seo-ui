@@ -97,6 +97,11 @@ describe('Export Urls', function () {
                 expect(component.find('pui-action-bar-item:eq(2)').text()).toContain('Export All');
             });
 
+            it('Checks if the exportAll Option is not present', function () {
+                vm.attr('filterSearchApplied', false);
+                expect(component.find('pui-action-bar-item').length).toEqual(2);
+            });
+
         });
     });
 });

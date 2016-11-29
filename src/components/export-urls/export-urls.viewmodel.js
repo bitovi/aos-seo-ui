@@ -61,20 +61,19 @@ module.exports = can.Map.extend({
     buildParams: function () {
         var params = this.attr('params');
         var state = this.attr('state');
+        var searchFields = can.viewModel('seo-list-page').attr('searchFields');
+        var filterFields = can.viewModel('seo-list-page').attr('filterFields');
         // tack on search/filter params
         if (params && state) {
-            params.attr('countries', state.attr('countries'));
-            params.attr('dateRanges', state.attr('dateRanges'));
-            params.attr('limit', state.attr('limit'));
-            params.attr('order', state.attr('order'));
-            params.attr('pageNumber', state.attr('pageNumber'));
-            params.attr('pageTitle', state.attr('pageTitle'));
-            params.attr('partNumber', state.attr('partNumber'));
-            params.attr('regions', state.attr('regions'));
-            params.attr('segments', state.attr('segments'));
+            can.each(searchFields, function (val) {
+                params.attr(val, state.attr(val));
+            });
+            can.each(filterFields, function (val) {
+                params.attr(val, state.attr(val));
+            });
             params.attr('sort', state.attr('sort'));
-            params.attr('statuses', state.attr('statuses'));
-            params.attr('urls', state.attr('urls'));
+            params.attr('limit', state.attr('limit'));
+            params.attr('pageNumber', state.attr('pageNumber'));
         }
     },
     /**
