@@ -106,6 +106,7 @@ module.exports = can.Map.extend({
                 }
             ]
         },
+
         /**
          * @property {Boolean} filterSearchApplied
          * @description checks whether filter or search is applied

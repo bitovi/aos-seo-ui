@@ -8,6 +8,7 @@ var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./export-urls.test.stache');
 var ViewModel = require('seo-ui/components/export-urls/export-urls.viewmodel');
+var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 
 // Renders the component
@@ -46,6 +47,25 @@ describe('Export Urls', function () {
         jasmineConfigClean(true);
     });
 
+    describe('view model', function () {
+        beforeEach(function () {
+            renderPage();
+        });
+
+        it('has an initial doDownloadExport value', function () {
+            expect(vm.attr('doDownloadExport')).toEqual(false);
+        });
+
+        it('has an initial export file path value', function () {
+            expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+        });
+
+        it('building the params method', function () {
+            vm.buildParams();
+            expect(vm.attr('params.sort')).toEqual('partNumber');
+        });
+
+    });
 
     describe('Component', function () {
         beforeEach(function () {
@@ -55,7 +75,6 @@ describe('Export Urls', function () {
         it('Renders', function () {
             expect(component.length).toBeGreaterThan(0);
         });
-
 
         describe('ExportAll and Current View display', function () {
             beforeEach(function () {
