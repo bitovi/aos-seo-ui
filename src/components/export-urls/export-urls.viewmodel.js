@@ -61,8 +61,8 @@ module.exports = can.Map.extend({
     buildParams: function () {
         var params = this.attr('params');
         var state = this.attr('state');
-        var searchFields = can.viewModel('seo-list-page').attr('searchFields');
-        var filterFields = can.viewModel('seo-list-page').attr('filterFields');
+        var searchFields = this.attr('searchFields');
+        var filterFields = this.attr('filterFields');
         // tack on search/filter params
         if (params && state) {
             can.each(searchFields, function (val) {

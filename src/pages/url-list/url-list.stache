@@ -1,5 +1,6 @@
 <seo-export-urls
-    filter-search-applied="{filterSearchApplied}"
+    {(filter-fields)}="filterFields"
+    {(search-fields)}="searchFields"
     state="{state}"
 ></seo-export-urls>
 
@@ -10,12 +11,14 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     filter-config="{filterConfig}"
+    {(filter-fields)}="filterFields"
     filter-search-applied="{filterSearchApplied}"
     item-link-enabled="false"
     model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
+    {(search-fields)}="searchFields"
     state="{state}"
     type="url"
 ></seo-list-page>
