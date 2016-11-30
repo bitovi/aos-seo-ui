@@ -112,8 +112,7 @@ module.exports = can.Map.extend({
          * @description checks whether filter or search is applied
          */
         filterSearchApplied: {
-            type: 'boolean',
-            value: false
+
         },
 
         /**

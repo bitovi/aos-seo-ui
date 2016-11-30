@@ -377,6 +377,14 @@ module.exports = can.Map.extend({
                 return moment(this.attr('startDate')).format('YYYY-MM-DD[T]HH:mm[Z]') + ' to ' + moment(this.attr('endDate')).format('YYYY-MM-DD[T]HH:mm[Z]');
             }
         },
+        /**
+         * @property {Boolean} filterSearchApplied
+         * @description checks whether filter or search is applied
+         */
+        filterSearchApplied: {
+            type: 'boolean',
+            value: false
+        },
 
         /**
          * @property {Boolean} fromDatePickerOpen
