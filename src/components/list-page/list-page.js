@@ -308,6 +308,29 @@ module.exports = can.Component.extend({
 
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
+        },
+
+        /**
+         * @function api.components.list-page.events.isMenuOpen
+         * @description Handles change to isMenuOpen view model property.
+         * @property vm The viewmodel
+         * @property evnt The browsers event object
+         * @property newVal The new value of the isMenuOpen property
+         * @property oldVal The old value of the isMenuOpen property
+         */
+        '{viewModel} isMenuOpen': function (vm, evnt, newVal) {
+            var $gridColumnToggles = $('pui-grid-column-toggle');
+
+            // Closes all other gridColumntoggles if they are open, except the actual one
+            if (newVal === true) {
+                can.each($gridColumnToggles, function (gridColumnToggle) {
+                    var gridColumnToggleVm = can.viewModel(gridColumnToggle);
+
+                    if (gridColumnToggleVm !== vm) {
+                        gridColumnToggleVm.attr('isMenuOpen', false);
+                    }
+                });
+            }
         }
     }
 });
