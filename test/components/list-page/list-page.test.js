@@ -619,5 +619,27 @@ describe('List Page', function () {
                 });
             });
         });
+
+        describe('When the second grid-column-toggle popover-trigger is clicked', function () {
+            var $gridColumnToggles;
+            var $secondToggle;
+            var $popoverTrigger;
+
+            beforeEach(function () {
+                $gridColumnToggles = $('#sandbox seo-list-page pui-grid-column-toggle');
+                $secondToggle = $gridColumnToggles.eq(1);
+                $popoverTrigger = $secondToggle.find('.popover-trigger');
+                $popoverTrigger.trigger('click');
+            });
+
+            it('then top of popover is visible', function() {
+                var popover = $secondToggle.find('.popover');
+                var isOffsetTopPositive = $secondToggle.find('.popover').offset().top > 0;
+
+                expect(popover).toExist();
+                expect(popover.offset()).toExist();
+                expect(isOffsetTopPositive).toBe(true);
+            });
+        });
     });
 });
