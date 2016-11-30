@@ -624,12 +624,20 @@ describe('List Page', function () {
             var $gridColumnToggles;
             var $secondToggle;
             var $popoverTrigger;
+            var $listGroup;
 
             beforeEach(function () {
                 $gridColumnToggles = $('#sandbox seo-list-page pui-grid-column-toggle');
                 $secondToggle = $gridColumnToggles.eq(1);
                 $popoverTrigger = $secondToggle.find('.popover-trigger');
                 $popoverTrigger.trigger('click');
+                $listGroup = $secondToggle.find('.list-group');
+
+                can.each($listGroup, function(item) {
+                    if($(item).find('.option-checkbox').attr('checked') === true) {
+                        $(item).find('.option-checkbox').trigger('click');
+                    }
+                });
             });
 
             it('then top of popover is visible', function() {
