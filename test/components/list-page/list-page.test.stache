@@ -3,7 +3,7 @@
     data-options="{dataOptions}"
     details-key="{detailsKey}"
     filter-config="{filterConfig}"
-    model="{Model}"
+    model="{model}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
     state="{state}"

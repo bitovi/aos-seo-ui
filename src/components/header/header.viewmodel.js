@@ -45,6 +45,14 @@ var ViewModel = can.Map.extend({
     link: function (url) {
         url = url && url.isComputed ? url() : '';
         return envVars.rootApp() + '/' + url;
+    },
+    /**
+     * @function header.viewmodel.logoutUrl
+     * @description The URL that we need to use to logout of the system
+     * @return {String} The logout URL
+     */
+    logoutUrl: function () {
+        return envVars.rootApp() + '/logout';
     }
 
 });
