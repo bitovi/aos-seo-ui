@@ -18,6 +18,10 @@ seo-list-page {
         }
     }
 
+    // This is a fix for ST-425, so that the bottom 
+    // grid-column-toggle is still visible on the screen
+    // when there are no records on the page, or when all 
+    // columns are unselected
     pui-grid-list {
         .table-responsive {
             min-height: 300px;
