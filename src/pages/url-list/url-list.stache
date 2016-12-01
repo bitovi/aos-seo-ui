@@ -1,9 +1,8 @@
-<!--
-    Commenting export button for now,since its descoped for R01
-    once the R01 code gets released then we can uncomment and start working on export feature.
 <seo-export-urls
-    count="{count}"
-></seo-export-urls> -->
+    {(filter-fields)}="filterFields"
+    {(search-fields)}="searchFields"
+    state="{state}"
+></seo-export-urls>
 
 <seo-list-page
     columns="{columns}"
@@ -12,11 +11,14 @@
     disable-advanced-search="true"
     disable-new-item-button="true"
     filter-config="{filterConfig}"
+    {(filter-fields)}="filterFields"
+    filter-search-applied="{filterSearchApplied}"
     item-link-enabled="false"
     model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
     search-field="{searchField}"
+    {(search-fields)}="searchFields"
     state="{state}"
     type="url"
 ></seo-list-page>

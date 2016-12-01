@@ -1,1 +1,4 @@
-<seo-export-urls count="{{count}}"></seo-export-urls>
+<seo-export-urls
+    state="{state}"
+    filter-search-applied="{filterSearchApplied}">
+</seo-export-urls>

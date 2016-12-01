@@ -8,18 +8,32 @@ var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./export-urls.test.stache');
 var ViewModel = require('seo-ui/components/export-urls/export-urls.viewmodel');
+var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 
 // Renders the component
 var renderPage = function () {
 
     $('#sandbox').html(testTemplate({
-        count: 1000
+        state: {
+            countries: "",
+            dateRanges: "",
+            limit: 25,
+            order: "asc",
+            pageNumber: 1,
+            pageTitle: "",
+            partNumber: "",
+            regions: "",
+            segments: "",
+            sort: "partNumber",
+            statuses: "",
+            url: ""
+        }
     }));
 
     jasmine.clock().tick(can.fixture.delay);
     component = $('#sandbox seo-export-urls');
-    vm = component.data('scope');
+    vm = can.viewModel(component);;
 };
 
 describe('Export Urls', function () {
@@ -33,20 +47,61 @@ describe('Export Urls', function () {
         jasmineConfigClean(true);
     });
 
+    describe('view model', function () {
+        beforeEach(function () {
+            renderPage();
+        });
+
+        it('has an initial doDownloadExport value', function () {
+            expect(vm.attr('doDownloadExport')).toEqual(false);
+        });
+
+        it('has an initial export file path value', function () {
+            expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+        });
+
+        it('building the params method', function () {
+            vm.buildParams();
+            expect(vm.attr('params.sort')).toEqual('partNumber');
+        });
+
+    });
 
     describe('Component', function () {
         beforeEach(function () {
             renderPage();
-            component = $('#sandbox seo-export-urls');
-            vm = component.data('scope');
         });
 
         it('Renders', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
-        it('Checks if count exists in menu header', function () {
-            expect(component.find('.dropdown-header').html()).toContain(vm.attr('count'));
+        describe('ExportAll and Current View display', function () {
+            beforeEach(function () {
+                component.find('pui-action-bar-menu .dropdown-toggle').click();
+            });
+
+            it('Checks if menu header and options are available', function () {
+                expect(component.find('.dropdown-header').html()).toContain('Export');
+                expect(component.find('pui-action-bar-item:eq(1)').html()).toContain('Current View');
+            });
+
+            it('Checks for the export dropdown options', function () {
+                expect(component.find('pui-action-bar-item').length).toEqual(2);
+                vm.attr('filterSearchApplied', true);
+                expect(component.find('pui-action-bar-item').length).toEqual(3);
+            });
+
+            it('Checks for the exportAll Option is present or not', function () {
+                vm.attr('filterSearchApplied', true);
+                expect(component.find('pui-action-bar-item:eq(2)').text()).toContain('Export All');
+            });
+
+            it('Checks if the exportAll Option is not present', function () {
+                vm.attr('filterSearchApplied', false);
+                expect(component.find('pui-action-bar-item').length).toEqual(2);
+            });
+
         });
     });
 });
