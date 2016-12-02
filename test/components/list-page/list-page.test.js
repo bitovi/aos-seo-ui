@@ -619,5 +619,31 @@ describe('List Page', function () {
                 });
             });
         });
+
+        describe('When the second grid-column-toggle popover-trigger is clicked', function () {
+            var $secondToggle;
+
+            beforeEach(function () {
+                $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
+                $secondToggle.find('.popover-trigger').trigger('click');
+
+                can.each($secondToggle.find('.list-group'), function (item) {
+                    var $optionCheckbox = $(item).find('.option-checkbox');
+
+                    if ($optionCheckbox.prop('checked') === true) {
+                        $optionCheckbox.trigger('click');
+                    }
+                });
+            });
+
+            it('then top of popover is visible', function() {
+                var $popover = $secondToggle.find('.popover');
+                var isPopoverTopVisible = $popover.offset().top > 0;
+
+                expect($popover).toExist();
+                expect($popover.offset()).toExist();
+                expect(isPopoverTopVisible).toBe(true);
+            });
+        });
     });
 });
