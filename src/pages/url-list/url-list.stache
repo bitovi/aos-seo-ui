@@ -1,5 +1,6 @@
 <seo-export-urls
     {(filter-fields)}="filterFields"
+    {(items)}="items"
     {(search-fields)}="searchFields"
     state="{state}"
 ></seo-export-urls>
@@ -14,6 +15,7 @@
     {(filter-fields)}="filterFields"
     filter-search-applied="{filterSearchApplied}"
     item-link-enabled="false"
+    {(items)}="items"
     model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
