@@ -515,7 +515,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('When opening a grid-column-toggle popover', function () {
+        describe('When opening multiple grid-column-toggle popovers', function () {
             var $firstToggle;
             var $secondToggle;
 
