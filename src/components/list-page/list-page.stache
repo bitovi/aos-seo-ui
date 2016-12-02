@@ -94,6 +94,7 @@
                 class="pull-right"
                 {(columns)}="columns"
                 menu-align="right"
+                {(is-menu-open)}="topGridColumnToggleOpen"
             ></pui-grid-column-toggle>
 
             {{! Pagination }}
@@ -138,6 +139,7 @@
         {(columns)}="columns"
         menu-align="right"
         placement="top"
+        {(is-menu-open)}="bottomGridColumnToggleOpen"
     ></pui-grid-column-toggle>
 
     {{! Pagination }}

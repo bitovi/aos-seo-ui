@@ -314,26 +314,6 @@ module.exports = can.Component.extend({
 
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
-        },
-
-        /**
-         * @function api.components.list-page.events. pui-grid-column-toggle .popover-trigger click
-         * @description Whenever a grid-column-toggle .popover-trigger is clicked it closes all other instances of it.
-         * @property $el the currently clicked element
-         */
-        'pui-grid-column-toggle .popover-trigger click': function ($el) {
-            var $clickedGridColumnToggle = $el.closest('pui-grid-column-toggle');
-            var gridColumnToggles = this.element.find('pui-grid-column-toggle');
-            var gridColumnToggleVm;
-
-            // Closes all other gridColumntoggles, except the actual one
-            can.each(gridColumnToggles, function (gridColumnToggle) {
-                gridColumnToggleVm = can.viewModel(gridColumnToggle);
-
-                if (gridColumnToggleVm !== can.viewModel($clickedGridColumnToggle)) {
-                    gridColumnToggleVm.attr('isMenuOpen', false);
-                }
-            });
         }
     }
 });
