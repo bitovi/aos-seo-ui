@@ -8,13 +8,6 @@
             menu-heading="Export URLs in:"
         ></pui-action-bar-item>
 
-        {{! TBA }}
-        {{!
-        <pui-action-bar-item action="exportNemoReadyFile">
-            Nemo Ready File
-        </pui-action-bar-item>
-        }}
-
         <pui-action-bar-item action="exportCsv">
             Current View (.csv)
         </pui-action-bar-item>
