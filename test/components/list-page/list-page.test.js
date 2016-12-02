@@ -526,7 +526,7 @@ describe('List Page', function () {
                 $secondToggle.find('.popover-trigger').trigger('click');
             });
 
-            it('Then it closes other instances of grid-column-toggle popover', function () {
+            it('Closes other instances of grid-column-toggle popover', function () {
                 expect($firstToggle.find('.popover')).not.toBeVisible();
                 expect($secondToggle.find('.popover')).toBeVisible();
             });
