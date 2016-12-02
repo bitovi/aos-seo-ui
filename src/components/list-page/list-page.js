@@ -317,26 +317,23 @@ module.exports = can.Component.extend({
         },
 
         /**
-         * @function api.components.list-page.events.isMenuOpen
-         * @description Handles change to isMenuOpen view model property.
-         * @property vm The viewmodel
-         * @property evnt The browsers event object
-         * @property newVal The new value of the isMenuOpen property
-         * @property oldVal The old value of the isMenuOpen property
+         * @function api.components.list-page.events. pui-grid-column-toggle .popover-trigger click
+         * @description Whenever a grid-column-toggle .popover-trigger is clicked it closes all other instances of it.
+         * @property $el the currently clicked element
          */
-        '{viewModel} isMenuOpen': function (vm, evnt, newVal) {
-            var $gridColumnToggles = $('pui-grid-column-toggle');
+        'pui-grid-column-toggle .popover-trigger click': function ($el) {
+            var $clickedGridColumnToggle = $el.closest('pui-grid-column-toggle');
+            var gridColumnToggles = this.element.find('pui-grid-column-toggle');
+            var gridColumnToggleVm;
 
-            // Closes all other gridColumntoggles if they are open, except the actual one
-            if (newVal === true) {
-                can.each($gridColumnToggles, function (gridColumnToggle) {
-                    var gridColumnToggleVm = can.viewModel(gridColumnToggle);
+            // Closes all other gridColumntoggles, except the actual one
+            can.each(gridColumnToggles, function (gridColumnToggle) {
+                gridColumnToggleVm = can.viewModel(gridColumnToggle);
 
-                    if (gridColumnToggleVm !== vm) {
-                        gridColumnToggleVm.attr('isMenuOpen', false);
-                    }
-                });
-            }
+                if (gridColumnToggleVm !== can.viewModel($clickedGridColumnToggle)) {
+                    gridColumnToggleVm.attr('isMenuOpen', false);
+                }
+            });
         }
     }
 });

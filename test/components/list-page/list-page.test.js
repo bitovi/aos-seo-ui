@@ -515,6 +515,29 @@ describe('List Page', function () {
             });
         });
 
+        describe('When opening a grid-column-toggle popover', function () {
+            var $firstToggle;
+            var $secondToggle;
+
+            beforeEach(function () {
+                $firstToggle = $component.find('pui-grid-column-toggle').eq(0);
+                $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
+                $firstToggle.find('.popover-trigger').trigger('click');
+                $secondToggle.find('.popover-trigger').trigger('click');
+            });
+
+            it('Then it closes other instances of grid-column-toggle popover', function () {
+                expect($firstToggle.find('.popover')).not.toBeVisible();
+                expect($secondToggle.find('.popover')).toBeVisible();
+            });
+
+            it('Opening the first closes the second grid-column-toggle popover', function () {
+                $firstToggle.find('.popover-trigger').trigger('click');
+                expect($firstToggle.find('.popover')).toBeVisible();
+                expect($secondToggle.find('.popover')).not.toBeVisible();
+            });            
+        });
+
         describe('date picker toggling', function () {
             var $dateMenu;
 
@@ -570,28 +593,6 @@ describe('List Page', function () {
 
                         expect($toPicker.find('.panel-body')).not.toBeVisible();
                     });
-                });
-            });
-
-            describe('When opening two grid-column-toggle popovers', function () {
-                var $toggleMenu1;
-                var $toggleMenu2;
-                var toggleVm1;
-                var toggleVm2;
-
-                beforeEach(function () {
-                    $toggleMenu1 = $($('#sandbox pui-grid-column-toggle')[0]);
-                    $toggleMenu2 = $($('#sandbox pui-grid-column-toggle')[1]);
-                    toggleVm1 = can.viewModel($toggleMenu1);
-                    toggleVm2 = can.viewModel($toggleMenu2);
-                });
-
-                it('It closes second grid-column-toggle popover when the first gets opened', function () {
-                    toggleVm2.attr('isMenuOpen', true);
-                    toggleVm1.attr('isMenuOpen', true);
-
-                    expect(toggleVm1.attr('isMenuOpen')).toBe(true);
-                    expect(toggleVm2.attr('isMenuOpen')).toBe(false);
                 });
             });
 
