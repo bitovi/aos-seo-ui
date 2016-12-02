@@ -17,4 +17,14 @@ seo-list-page {
             padding: 0;
         }
     }
+
+    // This ensures the bottom
+    // grid-column-toggle is still visible on the screen
+    // when there are no records on the page, or when all
+    // columns are unselected
+    pui-grid-list {
+        .table-responsive {
+            min-height: 300px;
+        }
+    }
 }
