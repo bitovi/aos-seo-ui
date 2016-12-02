@@ -624,13 +624,11 @@ describe('List Page', function () {
             var $secondToggle;
 
             beforeEach(function () {
-                var $optionCheckbox;
-
                 $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
                 $secondToggle.find('.popover-trigger').trigger('click');
 
                 can.each($secondToggle.find('.list-group'), function (item) {
-                    $optionCheckbox = $(item).find('.option-checkbox');
+                    var $optionCheckbox = $(item).find('.option-checkbox');
 
                     if ($optionCheckbox.prop('checked') === true) {
                         $optionCheckbox.trigger('click');
