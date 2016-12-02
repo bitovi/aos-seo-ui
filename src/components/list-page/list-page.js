@@ -146,9 +146,6 @@ module.exports = can.Component.extend({
 
             vm.attr('filterMenus', this.element.find('pui-filter-menu'));
         },
-
-        '{state} countries': 'searchDidChange',
-
         /**
          * @description Handles change of dateRanges application state property.
          */
@@ -160,7 +157,7 @@ module.exports = can.Component.extend({
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
         },
-
+        '{state} countries': 'searchDidChange',
         '{state} description': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
         '{state} pageTypes': 'searchDidChange',

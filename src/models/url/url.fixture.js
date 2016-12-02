@@ -24,6 +24,8 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, respons
         searchField = 'pageTitle';
     } else if (data.partNumber) {
         searchField = 'partNumber';
+    } else if (data.description) {
+        searchField = 'description';
     } else {
         searchField = '';
     }

@@ -97,6 +97,7 @@
         },
         {
             "country": "United States of America",
+            "description": "",
             "pageTitle": "MacBook - Apple",
             "pageType": "PDP",
             "partNumber": "MG482LL/A",
@@ -124,6 +125,7 @@
         },
         {
             "country": "Hong Kong",
+            "description": "",
             "pageTitle": "iPad WiFi - Apple",
             "pageType": "buyflow",
             "partNumber": "H1783ZM/A",
@@ -137,6 +139,7 @@
         },
         {
             "country": "Japan",
+            "description": "",
             "pageTitle": "iPad 3G - Apple",
             "pageType": "buyflow",
             "partNumber": "H1786ZM/A",
@@ -150,6 +153,7 @@
         },
         {
             "country": "Turkey",
+            "description": "",
             "pageTitle": "iPad 2 WiFi - Apple",
             "pageType": "buyflow",
             "partNumber": "H3443ZM/A",
@@ -163,6 +167,7 @@
         },
         {
             "country": "New Zealand",
+            "description": "",
             "pageTitle": "iPad 2 3G - Apple",
             "pageType": "buyflow",
             "partNumber": "H4825ZM/B",
@@ -176,6 +181,7 @@
         },
         {
             "country": "Mexico",
+            "description": "",
             "pageTitle": "iPod Nano - Apple",
             "pageType": "buyflow",
             "partNumber": "S4728Z/A",
@@ -189,6 +195,7 @@
         },
         {
             "country": "Canada",
+            "description": "",
             "pageTitle": "iPod Touch - Apple",
             "pageType": "buyflow",
             "partNumber": "Z0S9",

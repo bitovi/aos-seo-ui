@@ -157,6 +157,10 @@ describe('URL List Page', function () {
                   label: 'Page Title'
               },
               {
+                  key: 'description',
+                  label: 'Description'
+              },
+              {
                   key: 'partNumber',
                   label: 'Part Number',
                   autocomplete: {
@@ -334,6 +338,50 @@ describe('URL List Page', function () {
                     jasmine.clock().tick(can.fixture.delay);
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                });
+            });
+
+
+            describe('Description field', function () {
+                beforeEach(function () {
+                    var searchValue = component.find('pui-grid-search .search-text').val();
+
+                    scope.attr('searchField', 'description');
+
+                    // Resets search results
+                    if (searchValue) {
+                        component.find('pui-grid-search .input-reset').trigger('click');
+                    }
+                });
+
+                it('from the start of a value', function () {
+                    updateSearchTerm({
+                        value: 'Bacon'
+                    });
+
+                    jasmine.clock().tick(can.fixture.delay);
+
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                });
+
+                it('within a value', function () {
+                    updateSearchTerm({
+                        value: 'IT department-level'
+                    });
+
+                    jasmine.clock().tick(can.fixture.delay);
+
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                });
+
+                it('for a full value', function () {
+                    updateSearchTerm({
+                        value: 'ipsum dolor'
+                    });
+
+                    jasmine.clock().tick(can.fixture.delay);
+
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
             });
 
