@@ -16,18 +16,18 @@ var renderPage = function () {
 
     $('#sandbox').html(testTemplate({
         state: {
-            countries: "",
-            dateRanges: "",
+            countries: '',
+            dateRanges: '',
             limit: 25,
-            order: "asc",
+            order: 'asc',
             pageNumber: 1,
-            pageTitle: "",
-            partNumber: "",
-            regions: "",
-            segments: "",
-            sort: "partNumber",
-            statuses: "",
-            url: ""
+            pageTitle: '',
+            partNumber: '',
+            regions: '',
+            segments: '',
+            sort: 'partNumber',
+            statuses: '',
+            url: ''
         }
     }));
 
@@ -36,7 +36,7 @@ var renderPage = function () {
     vm = can.viewModel(component);;
 };
 
-describe('Export Urls', function () {
+describe('Export URLs', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig({
             persistentSandbox: true
@@ -67,41 +67,75 @@ describe('Export Urls', function () {
 
     });
 
-    describe('Component', function () {
+    describe('component', function () {
         beforeEach(function () {
             renderPage();
         });
 
-        it('Renders', function () {
+        it('renders', function () {
             expect(component.length).toBeGreaterThan(0);
         });
 
-        describe('ExportAll and Current View display', function () {
+        describe('drop-down menu', function () {
+            var $export;
+            var $menuLinks;
+
             beforeEach(function () {
-                component.find('pui-action-bar-menu .dropdown-toggle').click();
+                $export = component.find('pui-action-bar-menu');
+                $export.find('.dropdown-toggle').trigger('click');
             });
 
-            it('Checks if menu header and options are available', function () {
-                expect(component.find('.dropdown-header').html()).toContain('Export');
-                expect(component.find('pui-action-bar-item:eq(1)').html()).toContain('Current View');
+            afterEach(function () {
+                $export.find('.dropdown-toggle').trigger('click');
             });
 
-            it('Checks for the export dropdown options', function () {
-                expect(component.find('pui-action-bar-item').length).toEqual(2);
-                vm.attr('filterSearchApplied', true);
-                expect(component.find('pui-action-bar-item').length).toEqual(3);
+            it('has a menu header', function () {
+                expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs in:');
             });
 
-            it('Checks for the exportAll Option is present or not', function () {
-                vm.attr('filterSearchApplied', true);
-                expect(component.find('pui-action-bar-item:eq(2)').text()).toContain('Export All');
+            describe('when applying a filter or search term', function () {
+                beforeEach(function () {
+                    vm.attr('filterSearchApplied', true);
+                    $menuLinks = $export.find('pui-action-bar-item a');
+                });
+
+                it('has two option links', function () {
+                    expect($menuLinks.length).toEqual(2);
+                });
+
+                it('has a Current View option', function () {
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View (.csv)');
+                });
+
+                it('has an Export All option', function () {
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                });
             });
 
-            it('Checks if the exportAll Option is not present', function () {
-                vm.attr('filterSearchApplied', false);
-                expect(component.find('pui-action-bar-item').length).toEqual(2);
+            describe('when no filter or search term is applied', function () {
+                beforeEach(function () {
+                    vm.attr('filterSearchApplied', false);
+                    $menuLinks = $export.find('pui-action-bar-item a');
+                });
+
+                it('has one option link', function () {
+                    expect($menuLinks.length).toEqual(1);
+                });
+
+                it('has a Current View option', function () {
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View (.csv)');
+                });
             });
 
+            describe('when there are no URL results', function () {
+                beforeEach(function () {
+                    vm.attr('items', []);
+                });
+
+                it('disables the export button', function () {
+                    expect($export.find('pui-action-bar-dropdown').attr('disabled')).toEqual('disabled');
+                });
+            });
         });
     });
 });
