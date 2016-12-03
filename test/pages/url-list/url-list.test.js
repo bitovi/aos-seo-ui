@@ -366,7 +366,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
                 it('for a full value', function () {
@@ -387,37 +387,108 @@ describe('URL List Page', function () {
             testSort('partNumber');
             testSort('region');
             testSort('segment');
-            testSort('url');
             testSort('status');
+            testSort('url');
         });
     });
 
-    describe('Status badge', function () {
+    describe('status badge', function () {
+        var $badge;
 
-        it('Checks if the status badge has correct class name', function () {
-            var status = component.find('pui-grid-list tbody > tr > td:last span').text();
-            var statusClassName = status + '-label';
-            expect(component.find("pui-grid-list tbody > tr > td:last span").hasClass(statusClassName)).toBe(true);
+        beforeEach(function () {
+            $badge = component.find('pui-grid-list .item').eq(0).find('.status > .grid-item-value > span');
         });
 
+        it('displays properly', function () {
+            expect($badge.text().trim()).toEqual('modified');
+        });
+
+        it('has a correlating class name', function () {
+            expect($badge.hasClass($badge.text().trim() + '-label')).toEqual(true);
+        });
     });
 
-    describe('Page Title and tile anatomy', function () {
+    describe('page title and title anatomy', function () {
+        var $results;
 
-        it('checks if the page title content is displayed correctly', function () {
-            expect(component.find('pui-grid-list tbody > tr:eq(1) td:eq(2)').text()).toContain('iPod Touch - Apple');
+        beforeEach(function () {
+            $results = component.find('pui-grid-list .item');
         });
 
-        it('checks for the title anatomy product attribute', function () {
-            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4) .indicator-product-attribute')).toExist();
-            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4) .indicator-product-attribute').text()).toContain('a');
-            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(4)').text()).toContain('displayName');
+        describe('when a result has a titleAnatomy property', function () {
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(2).find('.grid-item-value');
+            });
+
+            it('displays the page title in segments', function () {
+                expect($resultTitle.find('.page-title-value').length).toEqual(5);
+                expect($resultTitle.find('.page-title-value').eq(3).text().trim()).toEqual('iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)');
+            });
+
+            it('displays a key path for each title segment', function () {
+                expect($resultTitle.find('.key-path > li').length).toEqual(5);
+                expect($resultTitle.find('.key-path > li').eq(3).text().trim()).toEqual('store.seo.full.pagetitle');
+            });
+
+            describe('when the title anatomy type is text_asset', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.key-path > li').eq(0);
+                });
+
+                it('creates a link to the asset', function () {
+                    expect($keyPath.find('a')).toBeVisible();
+                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration');
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    expect($keyPath.find('.icon-key')).toBeVisible();
+                });
+            });
+
+            describe('when the title anatomy type is product_attribute', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.key-path > li').eq(4);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.indicator-product-attribute')).toBeVisible();
+                    expect($keyPath.find('.indicator-product-attribute').text().trim()).toEqual('a');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
         });
 
-        it('checks for the title anatomy text assets attribute', function () {
-            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(1) .icon-key')).toExist();
-            expect(component.find('pui-grid-list tbody > tr:first td:eq(2) .key-path li:eq(1)').text()).toContain('pub');
+        describe('when a result does not have a titleAnatomy property', function () {
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(3).find('.pageTitle > .grid-item-value');
+            });
+
+            it('displays the page title value as a single string', function () {
+                expect($resultTitle.html().trim()).toEqual('iPod Touch - Apple');
+            });
+        });
+    });
+
+    describe('when a URL contains special characters', function () {
+        var $result;
+
+        beforeEach(function () {
+            $result = component.find('pui-grid-list .item').eq(0);
         });
 
+        it('properly displays the decoded characters', function () {
+            expect($result.find('.url').text().trim()).toEqual('/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français');
+        });
     });
 });

@@ -51,8 +51,9 @@ module.exports = can.Model.extend(
             },
 
             pageTitle: {
-                type: function(value) {
+                type: function (value) {
                     var titleAnatomy = this.attr('titleAnatomy');
+
                     return titleAnatomy && titleAnatomy.length ? titleAnatomy : value;
                 }
             },
@@ -86,7 +87,11 @@ module.exports = can.Model.extend(
             },
 
             url: {
-                type: 'string'
+                type: function (value) {
+                    if (value) {
+                        return decodeURI(value);
+                    }
+                }
             },
 
             urlAspenLink: {

@@ -197,8 +197,103 @@
             "status": "end-of-life",
             "createDate": "2014-01-01T23:28:56.782Z",
             "modifyDate": "2014-01-01T23:28:56.782Z",
-            "url": "/ipod-touch/",
-            "titleAnatomy":[]
+            "url": "/ipod-touch/"
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
+            "partNumber": "MB110F/B",
+            "pageTitle": "Achetez le Clavier USB Apple avec pavé numérique - Apple (FR)",
+            "pageType": "pdp",
+            "description": "Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures.",
+            "segment": "consumer",
+            "region": "emea",
+            "country": "FR",
+            "createDate": "2011-07-13T07:00:00Z",
+            "modifyDate": "2099-12-01T20:46:35Z",
+            "status": "modified",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (FR)",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "type": "text_asset"
+                }
+            ],
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "value": "Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures.",
+                    "type": "product_attribute"
+                }
+            ]
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url": "/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
+            "partNumber": "HJY72ZM/A",
+            "pageTitle": "Clé USB sans fil Connect Wireless Stick de SanDisk - Apple (FR)",
+            "pageType": "pdp",
+            "description": "Profitez de tous vos contenus multimédias lors de vos déplacements grâce à la clé USB sans fil Connect Wireless Stick de SanDisk et votre iPhone, iPad ou iPod touch. Achetez-la en ligne dès maintenant sur apple.com.",
+            "segment": "consumer",
+            "region": "emea",
+            "country": "FR",
+            "createDate": "2016-05-11T07:00:00Z",
+            "modifyDate": "2016-12-01T20:46:35Z",
+            "status": "modified",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (FR)",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "Clé USB sans fil Connect Wireless Stick de SanDisk  - Apple  (FR)",
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "type": "text_asset"
+                }
+            ],
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "value": "Profitez de tous vos contenus multimédias lors de vos déplacements grâce à la clé USB sans fil Connect Wireless Stick de SanDisk et votre iPhone, iPad ou iPod touch. Achetez-la en ligne dès maintenant sur apple.com.",
+                    "type": "product_attribute"
+                }
+            ]
         }
     ],
     "hasMoreRecords": false
