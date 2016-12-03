@@ -1,4 +1,8 @@
-<tr {{eleAttrs}} {{data 'item'}} class="item">
+<tr
+    class="item"
+    {{data 'item'}}
+    {{eleAttrs}}
+>
     {{#columns}}
         {{^if isHidden}}
             <td class="{{key}}">
@@ -6,7 +10,10 @@
                     <div class="grid-item-value">
                         {{#is key 'url'}}
                             {{#if urlAspenLink}}
-                                <a href="{{urlAspenLink}}" target="_blank">
+                                <a
+                                    href="{{urlAspenLink}}"
+                                    target="_blank"
+                                >
                                     {{itemValue}}
                                 </a>
                             {{else}}
@@ -19,22 +26,38 @@
                                 {{#is key 'pageTitle'}}
                                     {{#if pageTitle.length}}
                                         {{#each pageTitle}}
-                                            <span class="page-title-value" data-index="{{@index 1}}">{{value}}</span>
+                                            <span
+                                                class="page-title-value"
+                                                data-index="{{@index 1}}"
+                                            >
+                                                {{value}}
+                                            </span>
                                         {{/each}}
+
                                         <ol class="key-path">
                                             {{#each pageTitle}}
-                                                 {{#switch type}}
-                                                     {{#case "product_attribute"}}
-                                                         <li>
-                                                             <span class="indicator-product-attribute">a</span> {{name}}
-                                                         </li>
-                                                     {{/case}}
-                                                     {{#default}}
-                                                         <li>
-                                                             <a href="{{link}}" target="_blank">
-                                                                 <span class="icon-key"></span> {{name}}
-                                                             </a>
-                                                         </li>
+                                                {{#switch type}}
+                                                    {{#case "product_attribute"}}
+                                                        <li>
+                                                            <span class="indicator-product-attribute">a</span>
+                                                            {{name}}
+                                                        </li>
+                                                    {{/case}}
+                                                    {{#default}}
+                                                        <li>
+                                                            {{#if link}}
+                                                                <a
+                                                                    href="{{link}}"
+                                                                    target="_blank"
+                                                                >
+                                                                    <span class="icon-key"></span>
+                                                                    {{name}}
+                                                                </a>
+                                                            {{else}}
+                                                                <span class="icon-key"></span>
+                                                                {{name}}
+                                                            {{/if}}
+                                                        </li>
                                                     {{/default}}
                                                 {{/switch}}
                                             {{/each}}
@@ -52,8 +75,12 @@
                     {{#is key 'description'}}
                         {{#if descriptionKeyPath}}
                             <span class="key-path">
-                                <a href="{{descriptionUrl}}" target="_blank">
-                                    <span class="icon-key"></span> {{descriptionKeyPath}}
+                                <a
+                                    href="{{descriptionUrl}}"
+                                    target="_blank"
+                                >
+                                    <span class="icon-key"></span>
+                                    {{descriptionKeyPath}}
                                 </a>
                             </span>
                         {{/if}}

@@ -294,6 +294,51 @@
                     "type": "product_attribute"
                 }
             ]
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url": "/us-hed/shop/product/FGEM2LL/A/Refurbished-Apple-Watch-Series-2-42mm-Space-Gray-Aluminum-Case-with-Black-Sport-Band",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/us-hed/shop/product/FGEM2LL/A/Refurbished-Apple-Watch-Series-2-42mm-Space-Gray-Aluminum-Case-with-Black-Sport-Band",
+            "partNumber": "FGEM2LL/A",
+            "pageTitle": "Refurbished Apple Watch Series 2, 42mm Space Gray Aluminum Case with Black Sport Band - Apple for Education - Apple",
+            "pageType": "pdp",
+            "description": "Originally released October 2014 4GB memory 500GB hard drive Thunderbolt 2 ports (up to 20 Gbps) HDMI port supports multichannel audio output Intel HD Graphics 5000",
+            "segment": "eduInd-k12",
+            "region": "amr",
+            "country": "US",
+            "createDate": "2014-11-14T08:00:00Z",
+            "modifyDate": "1979-11-06T23:21:55Z",
+            "status": "",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple for Education - Apple",
+                    "link": "",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "Refurbished Apple Watch Series 2, 42mm Space Gray Aluminum Case with Black Sport Band  - Apple for Education - Apple",
+                    "type": "text_asset"
+                }
+            ],
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "value": "Originally released October 2014<br>\r\n4GB memory<br>\r\n500GB hard drive<br>\r\nThunderbolt 2 ports (up to 20 Gbps)<br>\r\nHDMI port supports multichannel audio output<br>\r\nIntel HD Graphics 5000<br>",
+                    "type": "product_attribute"
+                }
+            ]
         }
     ],
     "hasMoreRecords": false
