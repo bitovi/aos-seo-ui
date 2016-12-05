@@ -96,6 +96,10 @@ module.exports = can.Map.extend({
                     label: 'Page Title'
                 },
                 {
+                    key: 'description',
+                    label: 'Description'
+                },
+                {
                     key: 'partNumber',
                     label: 'Part Number',
                     autocomplete: {
