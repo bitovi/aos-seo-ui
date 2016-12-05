@@ -341,7 +341,6 @@ describe('URL List Page', function () {
                 });
             });
 
-
             describe('Description field', function () {
                 beforeEach(function () {
                     var searchValue = component.find('pui-grid-search .search-text').val();
