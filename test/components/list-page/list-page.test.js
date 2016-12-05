@@ -112,7 +112,6 @@ describe('List Page', function () {
 
     afterEach(function () {
         jasmineConfigClean(true);
-
     });
 
     describe('view model', function () {
@@ -514,6 +513,29 @@ describe('List Page', function () {
             it('does not select options not included in the secondaryValues list', function () {
                 expect($locationMenu.find('.au-toggle').prop('checked')).toEqual(false);
             });
+        });
+
+        describe('When opening multiple grid-column-toggle popovers', function () {
+            var $firstToggle;
+            var $secondToggle;
+
+            beforeEach(function () {
+                $firstToggle = $component.find('pui-grid-column-toggle').eq(0);
+                $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
+                $firstToggle.find('.popover-trigger').trigger('click');
+                $secondToggle.find('.popover-trigger').trigger('click');
+            });
+
+            it('Closes other instances of grid-column-toggle popover', function () {
+                expect($firstToggle.find('.popover')).not.toBeVisible();
+                expect($secondToggle.find('.popover')).toBeVisible();
+            });
+
+            it('Opening the first closes the second grid-column-toggle popover', function () {
+                $firstToggle.find('.popover-trigger').trigger('click');
+                expect($firstToggle.find('.popover')).toBeVisible();
+                expect($secondToggle.find('.popover')).not.toBeVisible();
+            });            
         });
 
         describe('date picker toggling', function () {
