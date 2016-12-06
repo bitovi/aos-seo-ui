@@ -93,12 +93,16 @@ cp -R $NODE_PATH/ $SRC_DIR/node_modules
 export DISABLE_NOTIFIER=true
 
 # Run tests separately because the production flag makes fixtures not work //TODO
-log "Executing gulp test"
-$GULP_BIN bamboo-test
-RETVAL=$?
-if [ "$RETVAL" != "0" ]; then
-  echo Gulp returned error. Cancelling the process now
-  exit 2
+if [ "$bamboo_RUN_TESTS" = true ]; then
+  log "Executing gulp test"
+  $GULP_BIN bamboo-test
+  RETVAL=$?
+  if [ "$RETVAL" != "0" ]; then
+    echo Gulp returned error. Cancelling the process now
+    exit 2
+  fi
+else
+  log "WARNING: SKIPPING TEST RUN!"
 fi
 
 

@@ -430,8 +430,42 @@ module.exports = can.Map.extend({
 
                 return newVal;
             }
-        }
+        },
         /** END DATE PROPERTIES */
+
+        /** Grid Column Toggle Properties **/
+        /**
+         * @property {Boolean} topGridColumnToggleOpen
+         * @description Shows the Top GridColumnToggle's open state
+         */
+        topGridColumnToggleOpen: {
+            type: 'boolean',
+            value: false,
+            set: function (newVal) {
+                if (newVal) {
+                    this.attr('bottomGridColumnToggleOpen', false);
+                }
+
+                return newVal;
+            }
+        },
+
+        /**
+         * @property {Boolean} bottomGridColumnToggleOpen
+         * @description Shows the Bottom GridColumnToggle's open state
+         */
+        bottomGridColumnToggleOpen: {
+            type: 'boolean',
+            value: false,
+            set: function (newVal) {
+                if (newVal) {
+                    this.attr('topGridColumnToggleOpen', false);
+                }
+
+                return newVal;
+            }
+        }
+        /** END Grid Column Toggle Properties **/
     },
 
     /**
