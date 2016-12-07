@@ -13,19 +13,20 @@ var vm;
 
 // Renders the component
 var renderPage = function () {
-
     $('#sandbox').html(testTemplate({
         state: {
             countries: '',
             dateRanges: '',
+            description: '',
             limit: 25,
-            order: 'asc',
+            order: 'desc',
+            page: 'url-list',
             pageNumber: 1,
             pageTitle: '',
             partNumber: '',
             regions: '',
             segments: '',
-            sort: 'partNumber',
+            sort: 'modifyDate',
             statuses: '',
             url: ''
         }
@@ -33,7 +34,7 @@ var renderPage = function () {
 
     jasmine.clock().tick(can.fixture.delay);
     component = $('#sandbox seo-export-urls');
-    vm = can.viewModel(component);;
+    vm = can.viewModel(component);
 };
 
 describe('Export URLs', function () {
@@ -62,7 +63,7 @@ describe('Export URLs', function () {
 
         it('building the params method', function () {
             vm.buildParams();
-            expect(vm.attr('params.sort')).toEqual('partNumber');
+            expect(vm.attr('params.sort')).toEqual('modifyDate');
         });
 
     });
