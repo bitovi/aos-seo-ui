@@ -16,6 +16,7 @@
         "params": {
             "countries": "",
             "dateRanges": "",
+            "description": "",
             "limit": 25,
             "order": "desc",
             "page": "url-list",

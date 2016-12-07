@@ -512,6 +512,26 @@ describe('URL List Page', function () {
                     expect($keyPath.find('a')).not.toExist();
                 });
             });
+
+            describe('when a key path does not have a link property', function () {
+                var $keyPaths;
+
+                beforeEach(function () {
+                    $keyPaths = $results.eq(0).find('.key-path > li');
+                });
+
+                it('does not create an HTML link', function () {
+                    $keyPaths.each(function () {
+                        expect($(this).find('a').length).toEqual(0);
+                    });
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    $keyPaths.each(function () {
+                        expect($(this).find('.icon-key').length).toEqual(1);
+                    });
+                });
+            });
         });
 
         describe('when a result does not have a titleAnatomy property', function () {
