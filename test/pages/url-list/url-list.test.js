@@ -517,7 +517,7 @@ describe('URL List Page', function () {
                 var $keyPaths;
 
                 beforeEach(function () {
-                    $keyPaths = $results.eq(-1).find('.key-path > li');
+                    $keyPaths = $results.eq(0).find('.key-path > li');
                 });
 
                 it('does not create an HTML link', function () {
