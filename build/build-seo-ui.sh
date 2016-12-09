@@ -20,7 +20,7 @@ POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=2.1-SNAPSHOT
+MVN_VERSION=2.1.0
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -95,7 +95,7 @@ export DISABLE_NOTIFIER=true
 # Run tests separately because the production flag makes fixtures not work //TODO
 if [ "$bamboo_RUN_TESTS" = true ]; then
   log "Executing gulp test"
-#  $GULP_BIN bamboo-test
+  $GULP_BIN bamboo-test
   RETVAL=$?
   if [ "$RETVAL" != "0" ]; then
     echo Gulp returned error. Cancelling the process now
@@ -170,7 +170,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/releases \
   -DrepositoryId=snapshots
 
 #
