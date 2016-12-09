@@ -95,7 +95,7 @@ export DISABLE_NOTIFIER=true
 # Run tests separately because the production flag makes fixtures not work //TODO
 if [ "$bamboo_RUN_TESTS" = true ]; then
   log "Executing gulp test"
-  $GULP_BIN bamboo-test
+#  $GULP_BIN bamboo-test
   RETVAL=$?
   if [ "$RETVAL" != "0" ]; then
     echo Gulp returned error. Cancelling the process now
