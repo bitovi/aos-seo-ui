@@ -71,7 +71,7 @@ module.exports = can.Map.extend({
             can.each(filterFields, function (val) {
                 params.attr(val, state.attr(val));
             });
-            params.attr('sort', state.attr('sort'));
+            params.attr('sort', state.attr('sort') + '+' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('pageNumber', state.attr('pageNumber'));
         }
