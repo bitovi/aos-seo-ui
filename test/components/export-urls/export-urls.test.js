@@ -64,6 +64,7 @@ describe('Export URLs', function () {
         it('building the params method', function () {
             vm.buildParams();
             expect(vm.attr('params.sort')).toEqual('modifyDate');
+            expect(vm.attr('params.order')).toEqual('desc');
         });
 
     });

@@ -72,6 +72,7 @@ module.exports = can.Map.extend({
                 params.attr(val, state.attr(val));
             });
             params.attr('sort', state.attr('sort'));
+            params.attr('order', state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('pageNumber', state.attr('pageNumber'));
         }
