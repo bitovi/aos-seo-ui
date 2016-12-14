@@ -65,7 +65,6 @@ describe('Export URLs', function () {
             vm.buildParams();
             expect(vm.attr('params.sort')).toEqual('modifyDate');
         });
-
     });
 
     describe('component', function () {
@@ -86,12 +85,20 @@ describe('Export URLs', function () {
                 $export.find('.dropdown-toggle').trigger('click');
             });
 
-            afterEach(function () {
-                $export.find('.dropdown-toggle').trigger('click');
-            });
-
             it('has a menu header', function () {
                 expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs in:');
+            });
+
+            describe('when clicking export "Currrent View (.csv)" button', function () {
+                beforeEach(function () {
+                    spyOn(vm, 'exportCsv');
+                    $($('pui-action-bar-item a')[0]).trigger('click');
+                });
+
+                it('invokes exportCsv()', function () {
+                    expect(vm.exportCsv).toHaveBeenCalled();
+                    expect(vm.attr.('params').attr('exportAll')).toBe('false');
+                });
             });
 
             describe('when applying a filter or search term', function () {
