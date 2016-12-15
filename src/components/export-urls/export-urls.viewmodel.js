@@ -73,7 +73,7 @@ module.exports = can.Map.extend({
             });
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
-            params.attr('pageNumber', state.attr('pageNumber'));
+            params.attr('page', state.attr('pageNumber'));
         }
     },
     /**
