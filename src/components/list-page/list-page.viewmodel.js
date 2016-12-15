@@ -288,14 +288,14 @@ module.exports = can.Map.extend({
                 }
 
                 this.attr('dateError', '');
-                this.attr('params').attr('from', moment.utc(val).valueOf());
+                this.attr('params').attr('from', moment(val).valueOf());
             },
             get: function () {
                 var params = this.attr('params');
                 var startDate = params.attr('from') || '';
                 var today = this.attr('today');
 
-                return (startDate === '') ? today : moment.utc(startDate).format(this.attr('dateMask'));
+                return (startDate === '') ? today : moment(startDate).format(this.attr('dateMask'));
             },
             validate: {
                 mustValidate: true,
@@ -322,14 +322,14 @@ module.exports = can.Map.extend({
                     return val;
                 }
                 this.attr('dateError', '');
-                this.attr('params').attr('to', moment.utc(val).valueOf());
+                this.attr('params').attr('to', moment(val).valueOf());
             },
             get: function () {
                 var params = this.attr('params');
                 var endDate = params.attr('to') || '';
                 var today = this.attr('today');
 
-                return (endDate === '') ? today : moment.utc(endDate).format(this.attr('dateMask'));
+                return (endDate === '') ? today : moment(endDate).format(this.attr('dateMask'));
             },
             validate: {
                 mustValidate: true,
@@ -345,7 +345,7 @@ module.exports = can.Map.extend({
             get: function () {
                 var now = new Date();
 
-                return moment.utc(now).format(this.attr('dateMask'));
+                return moment(now).format(this.attr('dateMask'));
             }
         },
 

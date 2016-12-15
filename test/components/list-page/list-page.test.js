@@ -271,7 +271,7 @@ describe('List Page', function () {
 
             beforeEach(function () {
                 var now = new Date();
-                today = moment.utc(now).format(vm.attr('dateMask'));
+                today = moment(now).format(vm.attr('dateMask'));
             });
 
             describe('params property', function () {
