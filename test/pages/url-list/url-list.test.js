@@ -170,7 +170,7 @@ describe('URL List Page', function () {
                     }
                 }
            ]);
-        });
+      });
 
         it('has an initial filterConfig value', function () {
             expect(vm.attr('filterConfig').attr()).toEqual([
