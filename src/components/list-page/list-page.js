@@ -323,6 +323,15 @@ module.exports = can.Component.extend({
             // Close popover when the ESC key is hit
             if (evt.which === 27) {
                 $('.date-picker-overlay').off().remove();
+                var $datepickers = $('pui-date-picker');
+
+                can.each($datepickers, function (picker) {
+                    var pickerVm = can.viewModel(picker);
+
+                    if (pickerVm.attr('pickerOpen') === true) {
+                        pickerVm.attr('pickerOpen', false);
+                    }
+                });
             }
         }
     }
