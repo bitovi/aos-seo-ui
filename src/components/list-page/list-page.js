@@ -314,6 +314,16 @@ module.exports = can.Component.extend({
 
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
+        },
+
+        /**
+         * @description Close datepicker overlay when ESC key is hit
+         */
+        '{window} keyup': function ($el, evt) {
+            // Close popover when the ESC key is hit
+            if (evt.which === 27) {
+                $('.date-picker-overlay').off().remove();
+            }
         }
     }
 });
