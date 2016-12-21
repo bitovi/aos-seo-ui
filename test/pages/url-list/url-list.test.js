@@ -151,15 +151,15 @@ describe('URL List Page', function () {
                 {
                     key: 'url',
                     label: 'URL'
-              },
+                },
                 {
                     key: 'pageTitle',
                     label: 'Page Title'
-              },
+                },
                 {
                     key: 'description',
                     label: 'Description'
-              },
+                },
                 {
                     key: 'partNumber',
                     label: 'Part Number',
@@ -168,8 +168,8 @@ describe('URL List Page', function () {
                         'key-name': 'partNumber',
                         'model': 'partNumberModel'
                     }
-              }
-          ]);
+                }
+           ]);
         });
 
         it('has an initial filterConfig value', function () {
