@@ -317,7 +317,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
                 it('within a value', function () {

@@ -194,6 +194,20 @@
             "url": "/ipod-nano/"
         },
         {
+            "country": "America",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad Mini - Apple",
+            "pageType": "buyflow",
+            "partNumber": "S9728Z/A",
+            "region": "AMR",
+            "segment": "Edu Individual",
+            "status": "unchanged",
+            "titleAnatomy": [],
+            "url": "/ipod-mini/"
+        },
+        {
             "country": "Canada",
             "createDate": "2014-01-01T23:28:56.782Z",
             "description": "",
