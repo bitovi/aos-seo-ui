@@ -27,7 +27,11 @@ module.exports = can.Model.extend(
             },
 
             description: {
-                type: 'string'
+                type: function (value) {
+                    var descriptionAnatomy = this.attr('descriptionAnatomy');
+
+                    return descriptionAnatomy && descriptionAnatomy.length ? descriptionAnatomy : value;
+                }
             },
 
             createDate: {
@@ -83,6 +87,10 @@ module.exports = can.Model.extend(
             },
 
             titleAnatomy: {
+                value: []
+            },
+
+            descriptionAnatomy: {
                 value: []
             },
 
