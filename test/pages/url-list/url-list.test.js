@@ -543,7 +543,7 @@ describe('URL List Page', function () {
             });
 
             it('displays the page title value as a single string', function () {
-                expect($resultTitle.html().trim()).toEqual('iPad 2 3G - Apple');
+                expect($resultTitle.html().trim()).toEqual('iPod Nano - Apple');
             });
         });
     });
