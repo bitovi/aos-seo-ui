@@ -317,7 +317,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
                 it('within a value', function () {
@@ -543,7 +543,7 @@ describe('URL List Page', function () {
             });
 
             it('displays the page title value as a single string', function () {
-                expect($resultTitle.html().trim()).toEqual('iPad 2 3G - Apple');
+                expect($resultTitle.html().trim()).toEqual('iPod Nano - Apple');
             });
         });
     });
