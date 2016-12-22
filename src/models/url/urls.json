@@ -312,6 +312,115 @@
             ],
             "url": "/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
             "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk"
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url": "/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-%EC%9D%B4%EC%96%B4%ED%8F%B0-%EC%82%AC%EC%9D%B4%EB%A0%8C-%EB%A0%88%EB%93%9C",
+            "urlAspenLink": "http://wwwqa1.corp.apple.com/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-%EC%9D%B4%EC%96%B4%ED%8F%B0-%EC%82%AC%EC%9D%B4%EB%A0%8C-%EB%A0%88%EB%93%9C",
+            "partNumber": "MNLY2ZP/A",
+            "pageTitle": "Powerbeats3 Wireless 이어폰 - 사이렌 레드 - Apple (KR)",
+            "pageType": "pdp",
+            "description": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+            "segment": "epp-discounted",
+            "region": "apac",
+            "country": "KR",
+            "createDate": "2016-10-18T07:00:00Z",
+            "modifyDate": "2016-12-19T21:45:42Z",
+            "status": "unchanged",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (KR)",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드  - Apple  (KR)",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "productPageTitle",
+                    "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드",
+                    "type": "product_attribute"
+                }
+            ],
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+                    "type": "product_attribute"
+                },
+                {
+                    "name" : "productMetaDescription_temp",
+                    "value" : "store.seo.full.description",
+                    "type" : "text_asset"
+                }
+            ]
+        },
+        {
+            "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url" : "/kr/shop/product/HG5J2ZM/B/incase-13%ED%98%95-icon-sleeve-with-tensaerlite-macbook-pro-retina-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4",
+            "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13%ED%98%95-icon-sleeve-with-tensaerlite-macbook-pro-retina-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4",
+            "partNumber" : "HG5J2ZM/B",
+            "pageTitle" : "Incase 13형 ICON Sleeve with Tensaerlite - Apple (KR)",
+            "pageType" : "pdp",
+            "description" : "Incase ICON Sleeve (MacBook )에는 충격을 흡수하기 위한 첨단 Tensaerlite 기술이 사용되었습니다. 지금 Apple Online Store에서 구입하세요.",
+            "segment" : "epp-discounted",
+            "region" : "apac",
+            "country" : "KR",
+            "createDate" : "2015-08-11T07:00:00Z",
+            "modifyDate" : "2016-12-19T21:45:34Z",
+            "status" : "unchanged",
+            "titleAnatomy" : [
+                {
+                    "name" : "store.seo.hyphen",
+                    "value" : "-",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "pub.seo.promotiontext",
+                    "value" : "",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "store.base_title",
+                    "value" : "Apple  (KR)",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "store.seo.full.pagetitle",
+                    "value" : "Incase 13형 ICON Sleeve with Tensaerlite  - Apple  (KR)",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "productPageTitle",
+                    "value" : "Incase 13형 ICON Sleeve with Tensaerlite",
+                    "type" : "product_attribute"
+                }
+            ],
+            "descriptionAnatomy" : [
+                {
+                    "name" : "productMetaDescription",
+                    "value" : "store.seo.full.description",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type" : "text_asset"
+                },
+                {
+                    "name": "productMetaDescription1",
+                    "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+                    "type": "product_attribute"
+                }
+            ]
         }
     ],
     "hasMoreRecords": false

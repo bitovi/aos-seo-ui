@@ -26,22 +26,22 @@ module.exports = can.Model.extend(
                 type: 'string'
             },
 
-            description: {
-                type: 'string'
-            },
-
             createDate: {
                 type: function (value) {
                     return formatDate(value);
                 }
             },
 
-            descriptionKeyPath: {
-                type: 'string'
+            description: {
+                type: function (value) {
+                    var descriptionAnatomy = this.attr('descriptionAnatomy');
+
+                    return descriptionAnatomy && descriptionAnatomy.length ? descriptionAnatomy : value;
+                }
             },
 
-            descriptionUrl: {
-                type: 'string'
+            descriptionAnatomy: {
+                value: []
             },
 
             modifyDate: {
@@ -56,14 +56,6 @@ module.exports = can.Model.extend(
 
                     return titleAnatomy && titleAnatomy.length ? titleAnatomy : value;
                 }
-            },
-
-            pageTitleKeyPath: {
-                type: 'string'
-            },
-
-            pageTitleUrl: {
-                type: 'string'
             },
 
             partNumber: {

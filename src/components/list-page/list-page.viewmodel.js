@@ -137,6 +137,15 @@ module.exports = can.Map.extend({
         items: {},
 
         /**
+         * @property {Number} maxResultLimit
+         * @description Maximum value that the result limit must not exceed.
+         */
+        maxResultLimit: {
+            type: 'number',
+            value: 200
+        },
+
+        /**
          * @property {can.Model} model
          * @description The model to be used on the list page.
          */
