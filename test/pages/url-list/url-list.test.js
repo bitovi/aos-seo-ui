@@ -169,8 +169,8 @@ describe('URL List Page', function () {
                         'model': 'partNumberModel'
                     }
                 }
-           ]);
-      });
+            ]);
+        });
 
         it('has an initial filterConfig value', function () {
             expect(vm.attr('filterConfig').attr()).toEqual([
