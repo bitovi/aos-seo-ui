@@ -712,5 +712,37 @@ describe('List Page', function () {
                 expect(isPopoverTopVisible).toBe(true);
             });
         });
+
+        describe('when using keyboard', function(){
+            var $dateMenu;
+            var $fromToggler;
+            var $firstToggle;
+
+            beforeEach(function () {
+                $dateMenu = $filterMenus.eq(1);
+
+                // Opens Date Range filter menu
+                $dateMenu.find('.dropdown').trigger('click');
+
+                // Selects Custom Range
+                $dateMenu.find('.custom-range-toggle').trigger('click');
+
+                // Open From Date Picker
+                $fromToggler = $dateMenu.find('.form-control-feedback').eq(0);
+                $fromToggler.click();
+
+                var evt = $.Event('keyup');
+
+                evt.which = 27;
+                $(document).trigger(evt);
+
+                $firstToggle = $component.find('pui-grid-column-toggle').eq(0);
+                $firstToggle.find('.popover-trigger').trigger('click');
+            });
+
+            it('date-picker-overlay is not visible after ESC button was clicked', function(){            
+                expect($('.date-picker-overlay')).not.toBeVisible();
+            });
+        });
     });
 });
