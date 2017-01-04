@@ -98,14 +98,13 @@ module.exports = can.Component.extend({
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
             var filterOptions = new can.Map();
+            var maxResultLimit = vm.attr('maxResultLimit');
             var searchFields = vm.attr('searchFields');
             var searchQuery = vm.attr('searchQuery');
 
             if (appState && appState.attr) {
                 // Set up search query from state
-                appState = appState.attr();
-
-                can.each(appState, function (val, key) {
+                can.each(appState.attr(), function (val, key) {
                     if (filterFields && val && filterFields.indexOf(key) > -1) {
                         // Advanced search
                         filterOptions.attr(key, val);
@@ -121,6 +120,12 @@ module.exports = can.Component.extend({
                         vm.attr('searchValue', val);
                     }
                 });
+
+                // Prevents the user from setting the export limit too high
+                // via the URL/application state
+                if (appState.attr('limit') > maxResultLimit) {
+                    appState.attr('limit', maxResultLimit);
+                }
             }
         },
 
