@@ -118,5 +118,14 @@ module.exports = can.Map.extend({
         var params = this.attr('params');
         params.attr('exportAll', true);
         this.doExport();
+    },
+    /**
+     * @function export-urls.viewmodel.exportNemoReadyFile exportNemoReadyFile
+     * @description Exports in the urls in the nemo ready format
+     */
+    exportNemoReadyFile: function () {
+        var params = this.attr('params');
+        params.attr('nemoReady', true);
+        this.doExport();
     }
 });
