@@ -101,7 +101,7 @@ describe('Export URLs', function () {
                 });
 
                 it('has two option links', function () {
-                    expect($menuLinks.length).toEqual(2);
+                    expect($menuLinks.length).toEqual(3);
                 });
 
                 it('has a Current View option', function () {
@@ -110,6 +110,10 @@ describe('Export URLs', function () {
 
                 it('has an Export All option', function () {
                     expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                });
+
+                it('has an Nemo Ready option', function () {
+                    expect($menuLinks.eq(2).text().trim()).toEqual('Nemo Ready File');
                 });
             });
 
@@ -120,11 +124,15 @@ describe('Export URLs', function () {
                 });
 
                 it('has one option link', function () {
-                    expect($menuLinks.length).toEqual(1);
+                    expect($menuLinks.length).toEqual(2);
                 });
 
                 it('has a Current View option', function () {
                     expect($menuLinks.eq(0).text().trim()).toEqual('Current View (.csv)');
+                });
+
+                it('has an Nemo Ready option', function () {
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Nemo Ready File');
                 });
             });
 
