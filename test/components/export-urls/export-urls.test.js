@@ -91,7 +91,7 @@ describe('Export URLs', function () {
             });
 
             it('has a menu header', function () {
-                expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs in:');
+                expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs:');
             });
 
             describe('when applying a filter or search term', function () {
@@ -100,16 +100,20 @@ describe('Export URLs', function () {
                     $menuLinks = $export.find('pui-action-bar-item a');
                 });
 
-                it('has two option links', function () {
-                    expect($menuLinks.length).toEqual(2);
+                it('has three option links', function () {
+                    expect($menuLinks.length).toEqual(3);
                 });
 
                 it('has a Current View option', function () {
-                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View (.csv)');
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View');
                 });
 
                 it('has an Export All option', function () {
                     expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                });
+
+                it('has an Nemo-Ready option', function () {
+                    expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
                 });
             });
 
@@ -119,12 +123,16 @@ describe('Export URLs', function () {
                     $menuLinks = $export.find('pui-action-bar-item a');
                 });
 
-                it('has one option link', function () {
-                    expect($menuLinks.length).toEqual(1);
+                it('has two option links', function () {
+                    expect($menuLinks.length).toEqual(2);
                 });
 
                 it('has a Current View option', function () {
-                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View (.csv)');
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View');
+                });
+
+                it('has an Nemo-Ready option', function () {
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Nemo-Ready File');
                 });
             });
 

@@ -5,11 +5,11 @@
         tooltip-title="Export"
     >
         <pui-action-bar-item
-            menu-heading="Export URLs in:"
+            menu-heading="Export URLs:"
         ></pui-action-bar-item>
 
         <pui-action-bar-item action="exportCsv">
-            Current View (.csv)
+            Current View
         </pui-action-bar-item>
 
         {{#if filterSearchApplied}}
@@ -17,6 +17,11 @@
                 Export All
             </pui-action-bar-item>
         {{/if}}
+
+        <pui-action-bar-item action="exportNemoReadyFile">
+            Nemo-Ready File
+        </pui-action-bar-item>
+
     </pui-action-bar-dropdown>
 </pui-action-bar-menu>
 
