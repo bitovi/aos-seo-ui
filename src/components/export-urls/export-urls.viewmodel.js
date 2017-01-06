@@ -1,6 +1,7 @@
 var can = require('can');
 require('can/map/define/define');
 require('can/view/stache/stache');
+var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 var envVars = require('seo-ui/utils/environmentVars');
 
 module.exports = can.Map.extend({
@@ -38,6 +39,14 @@ module.exports = can.Map.extend({
             get: function () {
                 return JSON.stringify(this.attr('params').attr());
             }
+        },
+        /**
+         * @property {String} isLoading
+         * @description export progress indication.
+         */
+        isLoading: {
+            type: 'boolean',
+            value: false
         },
         /**
          * @property {Array} notifications
@@ -82,6 +91,8 @@ module.exports = can.Map.extend({
      */
     doExport: function () {
         var self = this;
+        var progressTimerId;
+        console.log('exportId=' + this.attr('exportId'));
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
@@ -99,7 +110,39 @@ module.exports = can.Map.extend({
             timeout: '-1',
             type: 'info'
         });
-        self.attr('doDownloadExport', false);
+        // self.attr('doDownloadExport', false);
+        return can.Deferred(function (defer) {
+            // Reset the download state so we can do an other download, if needed
+            self.attr('doDownloadExport', false);
+
+            progressTimerId = setInterval(function () {
+                var progDef = ExportProgress.findOne({
+                    exportId: '146e0aa0-8e34-4dd5-90ff-ba9f86a102af'
+                });
+
+                progDef
+                    .then(function (resp) {
+                        if (resp && resp.state) {
+                            var respState = resp.state;
+
+                            if (respState === 'SUCCESS') {
+                                defer.resolve(resp);
+                            } else if (respState === 'ERROR') {
+                                defer.reject(resp);
+                            }
+                        } else {
+                            defer.reject();
+                        }
+                    })
+                    .fail(function (resp) {
+                        defer.reject(resp);
+                    });
+            }, 1000);
+        })
+        .always(function () {
+            self.attr('notifications').pop();
+            clearTimeout(progressTimerId);
+        });
     },
     /**
      * @function export-urls.viewmodel.exportCsv exportCsv
