@@ -322,14 +322,13 @@ module.exports = can.Component.extend({
         },
 
         /**
-         * @description Close datepicker overlay when ESC key is hit
+         * @description Register any keyup event in the actual browser window.
          */
         '{window} keyup': function ($el, evt) {
+            var $datepickers = this.element.find('pui-date-picker');
+
             // Close popover when the ESC key is hit
             if (evt.which === 27) {
-                $('.date-picker-overlay').off().remove();
-                var $datepickers = $('pui-date-picker');
-
                 can.each($datepickers, function (picker) {
                     var pickerVm = can.viewModel(picker);
 
