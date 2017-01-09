@@ -1,3 +1,6 @@
+{{#isLoading}}
+
+{{/isLoading}}
 <pui-action-bar-menu action-scope="{.}">
     <pui-action-bar-dropdown
         {{^if items.length}}disabled="true"{{/if}}

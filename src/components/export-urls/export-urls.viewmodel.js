@@ -61,6 +61,11 @@ module.exports = can.Map.extend({
          */
         params: {
             value: {}
+        },
+
+        exportId: {
+          value: 'a032c602-0dee-4885-add4-13fb5337b5bb',
+          type: 'string'
         }
     },
     /**
@@ -117,7 +122,7 @@ module.exports = can.Map.extend({
 
             progressTimerId = setInterval(function () {
                 var progDef = ExportProgress.findOne({
-                    exportId: '146e0aa0-8e34-4dd5-90ff-ba9f86a102af'
+                    exportId: self.attr('exportId')
                 });
 
                 progDef
