@@ -13,4 +13,19 @@ seo-export-urls {
     pui-alert {
         .global-alert();
     }
+
+    .loading-indicator-container {
+    text-align: center;
+    padding-top: 10%;
+    .icon-spinner {
+        font-size: 3.5em;
+        line-height: initial; //corrects spinning getting offcentered
+    }
+
+    .content {
+        color: @coral;
+        font-size: @font-size-large;
+        padding-top: @padding-base-vertical;
+    }
+}
 }

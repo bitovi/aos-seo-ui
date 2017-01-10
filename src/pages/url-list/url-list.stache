@@ -1,7 +1,7 @@
 <seo-export-urls
     {(filter-fields)}="filterFields"
     {(items)}="items"
-    export-id="{exportId}"
+    export-id="{id}"
     {(search-fields)}="searchFields"
     state="{state}"
 ></seo-export-urls>

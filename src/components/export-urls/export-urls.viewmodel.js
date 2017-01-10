@@ -62,9 +62,11 @@ module.exports = can.Map.extend({
         params: {
             value: {}
         },
-
+        /**
+         * @property {Object} exportId
+         * @description The exportId for which the data needs to be exported.
+         */
         exportId: {
-          value: 'a032c602-0dee-4885-add4-13fb5337b5bb',
           type: 'string'
         }
     },
@@ -115,11 +117,9 @@ module.exports = can.Map.extend({
             timeout: '-1',
             type: 'info'
         });
-        // self.attr('doDownloadExport', false);
         return can.Deferred(function (defer) {
             // Reset the download state so we can do an other download, if needed
-            self.attr('doDownloadExport', false);
-
+            self.attr('isLoading',true);
             progressTimerId = setInterval(function () {
                 var progDef = ExportProgress.findOne({
                     exportId: self.attr('exportId')
@@ -145,6 +145,7 @@ module.exports = can.Map.extend({
             }, 1000);
         })
         .always(function () {
+            self.attr('isLoading',false);
             self.attr('notifications').pop();
             clearTimeout(progressTimerId);
         });

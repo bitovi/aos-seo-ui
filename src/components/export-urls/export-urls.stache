@@ -1,5 +1,10 @@
 {{#isLoading}}
-
+<div class="loading-indicator-container">
+    <div class="icon-spinner spin-icon"></div>
+    <p class="content">
+        Exporting the URLs..
+    </p>
+</div>
 {{/isLoading}}
 <pui-action-bar-menu action-scope="{.}">
     <pui-action-bar-dropdown
