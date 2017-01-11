@@ -31,6 +31,13 @@ module.exports = can.Map.extend({
             type: 'string'
         },
         /**
+         * @property {Object} exportId
+         * @description The exportId for which the data needs to be exported.
+         */
+        exportId: {
+            type: 'string'
+        },
+        /**
          * @property {String} exportRequest
          * @description Data to be send to the export-urls.json service/
          */
@@ -61,13 +68,6 @@ module.exports = can.Map.extend({
          */
         params: {
             value: {}
-        },
-        /**
-         * @property {Object} exportId
-         * @description The exportId for which the data needs to be exported.
-         */
-        exportId: {
-            type: 'string'
         }
     },
     /**
