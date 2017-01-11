@@ -713,7 +713,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('When opening the Date Picker and clicking the ESC key', function(){
+        describe('when opening the Date Picker and clicking the ESC key', function(){
             var $dateMenu;
             var $fromToggler;
             var $firstToggle;
@@ -740,7 +740,7 @@ describe('List Page', function () {
                 $firstToggle.find('.popover-trigger').trigger('click');
             });
 
-            it('It hides the date-picker-overlay when ESC button is clicked', function(){
+            it('hides the date-picker-overlay when ESC button is clicked', function(){
                 expect($component.find('.date-picker-overlay')).not.toBeVisible();
             });
         });

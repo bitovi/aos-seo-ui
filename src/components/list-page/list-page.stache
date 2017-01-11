@@ -112,6 +112,7 @@
 
 {{! Grid List }}
 <pui-grid-list
+    class="main-item-list"
     {(columns)}="columns"
     count="{count}"
     current-page="{currentPage}"
@@ -130,7 +131,6 @@
     sort-by="{state.sort}"
     sort-order="{state.order}"
     state="{state}"
-    class="regular-size-pui-grid-list"
 ></pui-grid-list>
 
 <div>
