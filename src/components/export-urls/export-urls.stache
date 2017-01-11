@@ -22,7 +22,7 @@
 
         {{#if filterSearchApplied}}
             <pui-action-bar-item action="exportAllCsv">
-                Export All
+                Export All (.csv)
             </pui-action-bar-item>
         {{/if}}
 

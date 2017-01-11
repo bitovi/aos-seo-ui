@@ -67,7 +67,7 @@ module.exports = can.Map.extend({
          * @description The exportId for which the data needs to be exported.
          */
         exportId: {
-          type: 'string'
+            type: 'string'
         }
     },
     /**
@@ -99,10 +99,12 @@ module.exports = can.Map.extend({
     doExport: function () {
         var self = this;
         var progressTimerId;
-        console.log('exportId=' + this.attr('exportId'));
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
+        if (this.attr('params.nemoReady')) {
+            this.attr('params.pageTypes', 'buyflow');
+        }
         this.attr('exportClicked', true);
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
@@ -114,12 +116,11 @@ module.exports = can.Map.extend({
         this.attr('notifications').push({
             title: 'Your data export has started.',
             message: 'Please wait until the process has been completed and check your Downloads folder',
-            timeout: '-1',
+            timeout: '5000',
             type: 'info'
         });
+
         return can.Deferred(function (defer) {
-            // Reset the download state so we can do an other download, if needed
-            self.attr('isLoading',true);
             progressTimerId = setInterval(function () {
                 var progDef = ExportProgress.findOne({
                     exportId: self.attr('exportId')
@@ -127,28 +128,48 @@ module.exports = can.Map.extend({
 
                 progDef
                     .then(function (resp) {
+                        self.attr('isLoading', true);
                         if (resp && resp.state) {
                             var respState = resp.state;
 
-                            if (respState === 'SUCCESS') {
+                            if (respState === 'success') {
+                                self.attr('isLoading', false);
                                 defer.resolve(resp);
-                            } else if (respState === 'ERROR') {
+                                self.attr('notifications').push({
+                                    title: 'Your data export is success.',
+                                    timeout: '5000',
+                                    type: 'success'
+                                });
+                            } else if (respState === 'inprogress') {
+                                self.attr('isLoading', true);
+                                defer.resolve(resp);
+                            } else if (respState === 'error') {
                                 defer.reject(resp);
+                                self.attr('isLoading', false);
+                                self.attr('notifications').push({
+                                    title: 'Your data export has failed.',
+                                    message: resp.errorMessage,
+                                    timeout: '5000',
+                                    type: 'error'
+                                });
                             }
-                        } else {
-                            defer.reject();
                         }
                     })
                     .fail(function (resp) {
                         defer.reject(resp);
+                        self.attr('notifications').push({
+                            title: 'Not able to export',
+                            message: resp.errorMessage,
+                            timeout: '5000',
+                            type: 'error'
+                        });
                     });
-            }, 1000);
-        })
-        .always(function () {
-            self.attr('isLoading',false);
+            }, 2000);
+        }).always(function () {
             self.attr('notifications').pop();
             clearTimeout(progressTimerId);
         });
+
     },
     /**
      * @function export-urls.viewmodel.exportCsv exportCsv
@@ -175,6 +196,8 @@ module.exports = can.Map.extend({
     exportNemoReadyFile: function () {
         var params = this.attr('params');
         params.attr('nemoReady', true);
+        params.attr('exportAll', true);
+        params.attr('id', this.attr('exportId'));
         this.doExport();
     }
 });

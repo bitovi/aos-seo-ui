@@ -52,7 +52,7 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, respons
 
     response({
         count: results.length,
-        exportId: '146e0aa0-8e34-4dd5-90ff-ba9f86a102af',
+        id: 'c56ac62c-9f74-4c25-a1b4-ab0e9cea2ed0',
         data: results
     });
 });

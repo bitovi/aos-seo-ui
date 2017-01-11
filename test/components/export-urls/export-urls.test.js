@@ -50,7 +50,13 @@ describe('Export URLs', function () {
 
     describe('view model', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
+
         });
 
         it('has an initial doDownloadExport value', function () {
@@ -66,10 +72,40 @@ describe('Export URLs', function () {
             expect(vm.attr('params.sort')).toEqual('modifyDate desc');
         });
 
+        describe('When ViewModel Instantiated', function () {
+
+            it('then Default values are', function () {
+                expect(vm.attr('notifications').length).toBe(0);
+                expect(typeof vm.doExport).toBe('function');
+                expect(typeof vm.exportFilePath).toBe('string');
+                expect(vm.doDownloadExport).toBe(false);
+            });
+
+        });
+
+        describe('When doExport called', function () {
+
+            beforeEach(function () {
+                vm.doExport();
+                jasmine.clock().tick(can.fixture.delay);
+            });
+
+            it('then result is', function () {
+                expect(vm.doDownloadExport).toBe(true);
+                expect(vm.attr('notifications').length).toBe(1);
+            });
+
+        });
+
     });
 
     describe('component', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
         });
 
@@ -109,11 +145,17 @@ describe('Export URLs', function () {
                 });
 
                 it('has an Export All option', function () {
-                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All (.csv)');
                 });
 
                 it('has an Nemo-Ready option', function () {
                     expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
+                });
+
+                it('click the nemo ready option in the export options', function () {
+                    $export.find($menuLinks.eq(2)).trigger('click');
+                    jasmine.clock().tick(can.fixture.delay);
+                    expect(vm.attr('notifications')[0].title).toEqual('Your data export has started.');
                 });
             });
 
