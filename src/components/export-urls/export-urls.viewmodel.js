@@ -95,7 +95,7 @@ module.exports = can.Map.extend({
         this.buildParams();
         this.attr('exportClicked', true);
         if (this.attr('params.nemoReady')) {
-          this.attr('params.pageTypes', 'buyflow');
+            this.attr('params.pageTypes', 'buyflow');
         }
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
