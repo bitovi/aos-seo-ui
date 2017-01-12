@@ -90,6 +90,7 @@ module.exports = can.Map.extend({
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('page', state.attr('pageNumber'));
+            params.attr('id', this.attr('exportId'));
         }
     },
     /**
@@ -102,10 +103,8 @@ module.exports = can.Map.extend({
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
-        console.log('params='+this.attr('params.nemoReady'));
         if (this.attr('params.nemoReady')) {
             this.attr('params.pageTypes', 'buyflow');
-            console.log('inside nemo ready');
         }
         this.attr('exportClicked', true);
         // Set the file path for pui file downloader component
@@ -121,6 +120,8 @@ module.exports = can.Map.extend({
             timeout: '5000',
             type: 'info'
         });
+
+        this.attr('doDownloadExport', false);
 
         return can.Deferred(function (defer) {
             progressTimerId = setInterval(function () {
@@ -171,7 +172,6 @@ module.exports = can.Map.extend({
             self.attr('notifications').pop();
             clearTimeout(progressTimerId);
         });
-
     },
     /**
      * @function export-urls.viewmodel.exportCsv exportCsv
@@ -201,7 +201,6 @@ module.exports = can.Map.extend({
         var params = this.attr('params');
         params.attr('nemoReady', true);
         params.attr('exportAll', true);
-        params.attr('id', this.attr('exportId'));
         this.doExport();
     }
 });

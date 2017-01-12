@@ -72,7 +72,7 @@ describe('Export URLs', function () {
             expect(vm.attr('params.sort')).toEqual('modifyDate desc');
         });
 
-        describe('When ViewModel Instantiated', function () {
+        describe('when ViewModel Instantiated', function () {
 
             it('then Default values are', function () {
                 expect(vm.attr('notifications').length).toBe(0);
@@ -83,7 +83,7 @@ describe('Export URLs', function () {
 
         });
 
-        describe('When doExport called', function () {
+        describe('when doExport called', function () {
 
             beforeEach(function () {
                 vm.doExport();
@@ -91,7 +91,6 @@ describe('Export URLs', function () {
             });
 
             it('then result is', function () {
-                expect(vm.doDownloadExport).toBe(true);
                 expect(vm.attr('notifications').length).toBe(1);
             });
 
