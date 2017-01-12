@@ -28,7 +28,7 @@ var renderPage = function () {
             segments: '',
             sort: 'modifyDate',
             statuses: '',
-            url: '',
+            url: ''
         },
         exportId:'73d5764c-388a-4566-b7cc-d847a1a4ef90'
     }));

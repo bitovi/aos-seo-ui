@@ -170,6 +170,7 @@ module.exports = can.Map.extend({
                 }
             ]
         },
+
         /**
          * @property {String} url-list.viewmodel.id id
          * @description The id for identifying the records that are getting exported.
