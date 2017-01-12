@@ -1,5 +1,7 @@
 <seo-export-urls
+    export-id="{exportId}"
+    {(filter-fields)}="filterFields"
+    {(search-fields)}="searchFields"
     state="{state}"
-    filter-search-applied="{filterSearchApplied}"
-    export-id="{exportId}">
+    >
 </seo-export-urls>

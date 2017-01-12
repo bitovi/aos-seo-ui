@@ -22,18 +22,18 @@ module.exports = can.Map.extend({
             type: 'boolean'
         },
         /**
-         * @property {Object} exportId
-         * @description The exportId for which the data needs to be exported.
-         */
-        exportId: {
-            type: 'string'
-        },
-        /**
          * @property {String} exportFilePath
          * @description The URL/End-point of the service we need to invoke for exporing/download.
          */
         exportFilePath: {
             value: envVars.apiUrl() + '/export-urls.json',
+            type: 'string'
+        },
+        /**
+         * @property {Object} exportId
+         * @description The exportId for which the data needs to be exported.
+         */
+        exportId: {
             type: 'string'
         },
         /**
