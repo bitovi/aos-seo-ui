@@ -28,8 +28,9 @@ var renderPage = function () {
             segments: '',
             sort: 'modifyDate',
             statuses: '',
-            url: ''
-        }
+            url: '',
+        },
+        exportId:'73d5764c-388a-4566-b7cc-d847a1a4ef90'
     }));
 
     jasmine.clock().tick(can.fixture.delay);
@@ -63,7 +64,9 @@ describe('Export URLs', function () {
 
         it('building the params method', function () {
             vm.buildParams();
+            debugger;
             expect(vm.attr('params.sort')).toEqual('modifyDate desc');
+            expect(vm.attr('params.id')).toEqual('73d5764c-388a-4566-b7cc-d847a1a4ef90');
         });
 
     });
@@ -109,7 +112,7 @@ describe('Export URLs', function () {
                 });
 
                 it('has an Export All option', function () {
-                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All (.csv)');
                 });
 
                 it('has an Nemo-Ready option', function () {

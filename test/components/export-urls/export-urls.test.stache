@@ -1,4 +1,5 @@
 <seo-export-urls
     state="{state}"
-    filter-search-applied="{filterSearchApplied}">
+    filter-search-applied="{filterSearchApplied}"
+    export-id="{exportId}">
 </seo-export-urls>

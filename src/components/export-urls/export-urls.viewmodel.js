@@ -22,6 +22,13 @@ module.exports = can.Map.extend({
             type: 'boolean'
         },
         /**
+         * @property {Object} exportId
+         * @description The exportId for which the data needs to be exported.
+         */
+        exportId: {
+            type: 'string'
+        },
+        /**
          * @property {String} exportFilePath
          * @description The URL/End-point of the service we need to invoke for exporing/download.
          */
@@ -74,6 +81,7 @@ module.exports = can.Map.extend({
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('page', state.attr('pageNumber'));
+            params.attr('id', this.attr('exportId'));
         }
     },
     /**
@@ -86,6 +94,9 @@ module.exports = can.Map.extend({
         // build params to pass along with mc details
         this.buildParams();
         this.attr('exportClicked', true);
+        if (this.attr('params.nemoReady')) {
+          this.attr('params.pageTypes', 'buyflow');
+        }
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
             envVars.apiUrl() + '/export-urls.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
@@ -96,7 +107,7 @@ module.exports = can.Map.extend({
         this.attr('notifications').push({
             title: 'Your data export has started.',
             message: 'Please wait until the process has been completed and check your Downloads folder',
-            timeout: '-1',
+            timeout: '5000',
             type: 'info'
         });
         self.attr('doDownloadExport', false);
@@ -107,6 +118,7 @@ module.exports = can.Map.extend({
      */
     exportCsv: function () {
         var params = this.attr('params');
+        params.attr('nemoReady', false);
         params.attr('exportAll', false);
         this.doExport();
     },
@@ -116,6 +128,7 @@ module.exports = can.Map.extend({
      */
     exportAllCsv: function () {
         var params = this.attr('params');
+        params.attr('nemoReady', false);
         params.attr('exportAll', true);
         this.doExport();
     },
@@ -126,6 +139,7 @@ module.exports = can.Map.extend({
     exportNemoReadyFile: function () {
         var params = this.attr('params');
         params.attr('nemoReady', true);
+        params.attr('exportAll', true);
         this.doExport();
     }
 });

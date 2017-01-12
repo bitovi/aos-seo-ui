@@ -2,6 +2,7 @@
     {(filter-fields)}="filterFields"
     {(items)}="items"
     {(search-fields)}="searchFields"
+    export-id="{items.id}"
     state="{state}"
 ></seo-export-urls>
 
