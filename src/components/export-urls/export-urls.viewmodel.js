@@ -102,8 +102,10 @@ module.exports = can.Map.extend({
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
+        console.log('params='+this.attr('params.nemoReady'));
         if (this.attr('params.nemoReady')) {
             this.attr('params.pageTypes', 'buyflow');
+            console.log('inside nemo ready');
         }
         this.attr('exportClicked', true);
         // Set the file path for pui file downloader component
@@ -178,6 +180,7 @@ module.exports = can.Map.extend({
     exportCsv: function () {
         var params = this.attr('params');
         params.attr('exportAll', false);
+        params.attr('nemoReady', false);
         this.doExport();
     },
     /**
@@ -187,6 +190,7 @@ module.exports = can.Map.extend({
     exportAllCsv: function () {
         var params = this.attr('params');
         params.attr('exportAll', true);
+        params.attr('nemoReady', false);
         this.doExport();
     },
     /**

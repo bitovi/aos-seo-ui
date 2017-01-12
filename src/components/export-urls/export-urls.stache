@@ -1,11 +1,3 @@
-{{#isLoading}}
-<div class="loading-indicator-container">
-    <div class="icon-spinner spin-icon"></div>
-    <p class="content">
-        Exporting the URLs..
-    </p>
-</div>
-{{/isLoading}}
 <pui-action-bar-menu action-scope="{.}">
     <pui-action-bar-dropdown
         {{^if items.length}}disabled="true"{{/if}}
@@ -31,8 +23,13 @@
         </pui-action-bar-item>
 
     </pui-action-bar-dropdown>
+    {{#isLoading}}
+    <div class="loading-indicator-container">
+        <div class="icon-spinner spin-icon"></div>
+        <span class="content">Exporting the URLs..</span>
+    </div>
+    {{/isLoading}}
 </pui-action-bar-menu>
-
 {{#exportClicked}}
     <pui-file-downloader
         action-url="{exportFilePath}"
