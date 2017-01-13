@@ -117,6 +117,7 @@ module.exports = can.Map.extend({
     doExport: function () {
         var self = this;
         var progressTimerId;
+
         this.attr('notifications').replace([]);
         this.attr('exportClicked', true);
         // Set the file path for pui file downloader component
@@ -151,7 +152,7 @@ module.exports = can.Map.extend({
                                 self.attr('isLoading', false);
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
-                                    title: 'Your data export is success.',
+                                    title: 'Export completed without errors, wait a few seconds to get the whole file.',
                                     timeout: '5000',
                                     type: 'success'
                                 });
@@ -162,7 +163,7 @@ module.exports = can.Map.extend({
                                 defer.reject(resp);
                                 self.attr('isLoading', false);
                                 self.attr('notifications').push({
-                                    title: 'Your data export has failed.',
+                                    title: 'Data export has failed.',
                                     message: resp.errorMessage,
                                     timeout: '5000',
                                     type: 'error'
@@ -191,11 +192,7 @@ module.exports = can.Map.extend({
      * @description Exports in the urls in the csv format
      */
     exportCsv: function () {
-        this.buildParams({
-            nemoReady: false,
-            exportAll: false
-        });
-
+        this.buildParams();
         this.doExport();
     },
 
@@ -205,8 +202,7 @@ module.exports = can.Map.extend({
      */
     exportAllCsv: function () {
         this.buildParams({
-            exportAll: true,
-            nemoReady: false
+            exportAll: true
         });
 
         this.doExport();

@@ -24,10 +24,10 @@
 
     </pui-action-bar-dropdown>
     {{#isLoading}}
-    <div class="loading-indicator-container">
-        <div class="icon-spinner spin-icon"></div>
-        <span class="content">Exporting the URLs..</span>
-    </div>
+        <div class="loading-indicator-container">
+            <div class="icon-spinner spin-icon"></div>
+            <span class="content">Exporting the URLs..</span>
+        </div>
     {{/isLoading}}
 </pui-action-bar-menu>
 

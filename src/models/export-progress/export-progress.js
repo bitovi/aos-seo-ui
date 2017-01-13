@@ -12,7 +12,7 @@ module.exports = can.Model.extend({
      * @return {Object} Returns the export progress.
      */
     findOne: function (req) {
-        var url = envVars.apiUrl() + '/export-progress.json?exportId='+req.exportId;
+        var url = envVars.apiUrl() + '/export-progress.json?exportId=' + req.exportId;
         return $.ajax({
             url: url,
             method: 'GET',
