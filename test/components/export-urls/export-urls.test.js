@@ -62,14 +62,6 @@ describe('Export URLs', function () {
 
         });
 
-        it('has an initial doDownloadExport value', function () {
-            expect(vm.attr('doDownloadExport')).toEqual(false);
-        });
-
-        it('has an initial export file path value', function () {
-            expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
-        });
-
         describe('buildParams()', function () {
             var params;
 
@@ -129,15 +121,27 @@ describe('Export URLs', function () {
             });
         });
 
-        describe('values of the export related properties', function () {
+        describe('values/types of the export related properties', function () {
 
-            it('then Default values are', function () {
+            it('has default value for notification', function () {
                 expect(vm.attr('notifications').length).toBe(0);
-                expect(typeof vm.doExport).toBe('function');
-                expect(typeof vm.exportFilePath).toBe('string');
-                expect(vm.doDownloadExport).toBe(false);
             });
 
+            it('has type of doExport function ', function () {
+                expect(typeof vm.doExport).toBe('function');
+            });
+
+            it('has type of exportFilePath property ', function () {
+                expect(typeof vm.exportFilePath).toBe('string');
+            });
+
+            it('has an initial doDownloadExport value', function () {
+                expect(vm.attr('doDownloadExport')).toBe(false);
+            });
+
+            it('has an initial export file path value', function () {
+                expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+            });
         });
 
         describe('when doExport called', function () {
@@ -147,7 +151,7 @@ describe('Export URLs', function () {
                 jasmine.clock().tick(can.fixture.delay);
             });
 
-            it('then result is', function () {
+            it('shows the notification', function () {
                 expect(vm.attr('notifications').length).toBe(1);
             });
 
@@ -208,11 +212,6 @@ describe('Export URLs', function () {
                     expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
                 });
 
-                it('click the nemo ready option in the export options', function () {
-                    $export.find($menuLinks.eq(2)).trigger('click');
-                    jasmine.clock().tick(can.fixture.delay);
-                    expect(vm.attr('notifications')[0].title).toEqual('Your data export has started.');
-                });
             });
 
             describe('when no filter or search term is applied', function () {
@@ -241,6 +240,20 @@ describe('Export URLs', function () {
 
                 it('disables the export button', function () {
                     expect($export.find('pui-action-bar-dropdown').attr('disabled')).toEqual('disabled');
+                });
+            });
+
+            describe('click the nemo ready option in the export options', function () {
+                beforeEach(function () {
+                    $menuLinks = $export.find('pui-action-bar-item a');
+                    vm.attr('filterSearchApplied', false);
+                    $export.find($menuLinks.eq(1)).trigger('click');
+                    jasmine.clock().tick(can.fixture.delay);
+                    debugger;
+                });
+
+                it('shows the notification that the export started', function () {
+                    expect(vm.attr('notifications')[0].title).toEqual('Your data export has started.');
                 });
             });
         });
