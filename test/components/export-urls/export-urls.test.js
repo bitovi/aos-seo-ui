@@ -25,6 +25,7 @@ var renderPage = function () {
             page: 'url-list',
             pageNumber: 1,
             pageTitle: '',
+            pageTypes: '',
             partNumber: 'VB005LL/A',
             regions: '',
             segments: '',
@@ -63,8 +64,9 @@ describe('Export URLs', function () {
             expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
         });
 
-        describe('building the params for the records that needs to be exported', function () {
+        describe('buildParams()', function () {
             var params;
+
             beforeEach(function () {
                 vm.attr('filterFields', ['countries']);
                 vm.attr('searchFields', ['partNumber']);
@@ -94,6 +96,30 @@ describe('Export URLs', function () {
 
             it('adds the part number parameter', function () {
                 expect(params.attr('partNumber')).toEqual('VB005LL/A');
+            });
+
+            describe('when passed a object containing extra parameters', function () {
+                beforeEach(function () {
+                    vm.buildParams({
+                        nemoReady: true,
+                        exportAll: false,
+                        pageTypes: 'pdp'
+                    });
+
+                    params = vm.attr('params');
+                });
+
+                it('adds the nemoReady parameter', function () {
+                    expect(params.attr('nemoReady')).toEqual(true);
+                });
+
+                it('adds the exportAll parameter', function () {
+                    expect(params.attr('exportAll')).toEqual(false);
+                });
+
+                it('adds the pageTypes parameter', function () {
+                    expect(params.attr('pageTypes')).toEqual('pdp');
+                });
             });
         });
 
