@@ -129,7 +129,7 @@ describe('Export URLs', function () {
             });
         });
 
-        describe('when ViewModel Instantiated', function () {
+        describe('values of the export related properties', function () {
 
             it('then Default values are', function () {
                 expect(vm.attr('notifications').length).toBe(0);

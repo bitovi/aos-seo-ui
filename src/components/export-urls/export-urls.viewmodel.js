@@ -42,14 +42,6 @@ module.exports = can.Map.extend({
         exportId: {
             type: 'string'
         },
-
-        /**
-         * @property {Object} exportId
-         * @description The exportId for which the data needs to be exported.
-         */
-        exportId: {
-            type: 'string'
-        },
         /**
          * @property {String} exportRequest
          * @description Data to be send to the export-urls.json service/
@@ -124,11 +116,7 @@ module.exports = can.Map.extend({
         var self = this;
         var progressTimerId;
         this.attr('notifications').replace([]);
-        // build params to pass along with mc details
-        this.buildParams();
-        this.attr('notifications').replace([]);
         this.attr('exportClicked', true);
-        console.log(JSON.stringify(this.attr('params.nemoReady'))+'==params');
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
             envVars.apiUrl() + '/export-urls.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
@@ -201,9 +189,10 @@ module.exports = can.Map.extend({
      * @description Exports in the urls in the csv format
      */
     exportCsv: function () {
+        console.log('inside export csv');
         this.buildParams({
-          nemoReady: false,
-          exportAll: false
+            nemoReady: false,
+            exportAll: false
         });
         this.doExport();
     },
@@ -213,6 +202,7 @@ module.exports = can.Map.extend({
      * @description Exports in the All urls in the csv format
      */
     exportAllCsv: function () {
+        console.log('inside export all');
         this.buildParams({
             exportAll: true,
             nemoReady: false
@@ -225,6 +215,7 @@ module.exports = can.Map.extend({
      * @description Exports in the urls in the nemo ready format
      */
     exportNemoReadyFile: function () {
+        console.log('inside nemo ready');
         this.buildParams({
             exportAll: true,
             nemoReady: true,
