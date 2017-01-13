@@ -319,6 +319,24 @@ module.exports = can.Component.extend({
 
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
+        },
+
+        /**
+         * @description Register any keyup event in the actual browser window.
+         */
+        '{window} keyup': function ($el, evt) {
+            var $datepickers = this.element.find('pui-date-picker');
+
+            // Close popover when the ESC key is hit
+            if (evt.which === 27) {
+                can.each($datepickers, function (picker) {
+                    var pickerVm = can.viewModel(picker);
+
+                    if (pickerVm.attr('pickerOpen') === true) {
+                        pickerVm.attr('pickerOpen', false);
+                    }
+                });
+            }
         }
     }
 });
