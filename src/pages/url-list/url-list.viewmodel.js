@@ -170,6 +170,7 @@ module.exports = can.Map.extend({
                 }
             ]
         },
+
         /**
          * @property {String} url-list.viewModel.pageTitle pageTitle
          * @description The page's main header/title.
