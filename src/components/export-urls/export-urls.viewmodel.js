@@ -3,8 +3,8 @@ require('can/view/stache/stache');
 
 var $ = require('jquery');
 var can = require('can');
-var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 var envVars = require('seo-ui/utils/environmentVars');
+var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 
 module.exports = can.Map.extend({
     define: {
@@ -42,6 +42,7 @@ module.exports = can.Map.extend({
         exportId: {
             type: 'string'
         },
+
         /**
          * @property {String} exportRequest
          * @description Data to be send to the export-urls.json service/
@@ -61,6 +62,7 @@ module.exports = can.Map.extend({
             type: 'boolean',
             value: false
         },
+
         /**
          * @property {Array} notifications
          * @description notifications of the export status
@@ -189,11 +191,11 @@ module.exports = can.Map.extend({
      * @description Exports in the urls in the csv format
      */
     exportCsv: function () {
-        console.log('inside export csv');
         this.buildParams({
             nemoReady: false,
             exportAll: false
         });
+
         this.doExport();
     },
 
@@ -202,11 +204,11 @@ module.exports = can.Map.extend({
      * @description Exports in the All urls in the csv format
      */
     exportAllCsv: function () {
-        console.log('inside export all');
         this.buildParams({
             exportAll: true,
             nemoReady: false
         });
+
         this.doExport();
     },
 
@@ -215,12 +217,12 @@ module.exports = can.Map.extend({
      * @description Exports in the urls in the nemo ready format
      */
     exportNemoReadyFile: function () {
-        console.log('inside nemo ready');
         this.buildParams({
             exportAll: true,
             nemoReady: true,
             pageTypes: 'buyflow'
         });
+
         this.doExport();
     }
 });

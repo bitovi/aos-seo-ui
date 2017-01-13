@@ -30,6 +30,7 @@
     </div>
     {{/isLoading}}
 </pui-action-bar-menu>
+
 {{#exportClicked}}
     <pui-file-downloader
         action-url="{exportFilePath}"
