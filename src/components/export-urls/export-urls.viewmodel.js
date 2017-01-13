@@ -1,6 +1,8 @@
-var can = require('can');
 require('can/map/define/define');
 require('can/view/stache/stache');
+
+var $ = require('jquery');
+var can = require('can');
 var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 var envVars = require('seo-ui/utils/environmentVars');
 
@@ -15,6 +17,7 @@ module.exports = can.Map.extend({
             value: false,
             type: 'boolean'
         },
+
         /**
          * @property {Boolean} exportClicked
          * @description checks if the export request is triggered
@@ -22,6 +25,7 @@ module.exports = can.Map.extend({
         exportClicked: {
             type: 'boolean'
         },
+
         /**
          * @property {String} exportFilePath
          * @description The URL/End-point of the service we need to invoke for exporing/download.
@@ -30,6 +34,15 @@ module.exports = can.Map.extend({
             value: envVars.apiUrl() + '/export-urls.json',
             type: 'string'
         },
+
+        /**
+         * @property {Object} exportId
+         * @description The exportId for which the data needs to be exported.
+         */
+        exportId: {
+            type: 'string'
+        },
+
         /**
          * @property {Object} exportId
          * @description The exportId for which the data needs to be exported.
@@ -47,6 +60,7 @@ module.exports = can.Map.extend({
                 return JSON.stringify(this.attr('params').attr());
             }
         },
+
         /**
          * @property {String} isLoading
          * @description export progress indication.
@@ -62,6 +76,7 @@ module.exports = can.Map.extend({
         notifications: {
             value: []
         },
+
         /**
          * @property {Object} params
          * @description The params that needs to passed for exporting
@@ -70,29 +85,37 @@ module.exports = can.Map.extend({
             value: {}
         }
     },
+
     /**
      * @function buildParams
-     * @description builds the parameters that needs to be passed to  export the records
+     * @description builds the parameters that needs to be passed to export the records
+     * @param {Object} [extraParams] Optional object containing additional parameters
      */
-    buildParams: function () {
-        var params = this.attr('params');
-        var state = this.attr('state');
-        var searchFields = this.attr('searchFields');
+    buildParams: function (extraParams) {
         var filterFields = this.attr('filterFields');
+        var params = new can.Map();
+        var searchFields = this.attr('searchFields');
+        var state = this.attr('state');
+
         // tack on search/filter params
-        if (params && state) {
+        if (state) {
             can.each(searchFields, function (val) {
                 params.attr(val, state.attr(val));
             });
+
             can.each(filterFields, function (val) {
                 params.attr(val, state.attr(val));
             });
+
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('page', state.attr('pageNumber'));
             params.attr('id', this.attr('exportId'));
+
+            this.attr('params', $.extend(params.attr(), extraParams));
         }
     },
+
     /**
      * @function export-urls.viewmodel.doExport doExport
      * @description Processes selected data and submits request for export file.
@@ -103,10 +126,9 @@ module.exports = can.Map.extend({
         this.attr('notifications').replace([]);
         // build params to pass along with mc details
         this.buildParams();
-        if (this.attr('params.nemoReady')) {
-            this.attr('params.pageTypes', 'buyflow');
-        }
+        this.attr('notifications').replace([]);
         this.attr('exportClicked', true);
+        console.log(JSON.stringify(this.attr('params.nemoReady'))+'==params');
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
             envVars.apiUrl() + '/export-urls.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
@@ -173,34 +195,41 @@ module.exports = can.Map.extend({
             clearTimeout(progressTimerId);
         });
     },
+
     /**
      * @function export-urls.viewmodel.exportCsv exportCsv
      * @description Exports in the urls in the csv format
      */
     exportCsv: function () {
-        var params = this.attr('params');
-        params.attr('exportAll', false);
-        params.attr('nemoReady', false);
+        this.buildParams({
+          nemoReady: false,
+          exportAll: false
+        });
         this.doExport();
     },
+
     /**
      * @function export-urls.viewmodel.exportAllCsv exportAllCsv
      * @description Exports in the All urls in the csv format
      */
     exportAllCsv: function () {
-        var params = this.attr('params');
-        params.attr('exportAll', true);
-        params.attr('nemoReady', false);
+        this.buildParams({
+            exportAll: true,
+            nemoReady: false
+        });
         this.doExport();
     },
+
     /**
      * @function export-urls.viewmodel.exportNemoReadyFile exportNemoReadyFile
      * @description Exports in the urls in the nemo ready format
      */
     exportNemoReadyFile: function () {
-        var params = this.attr('params');
-        params.attr('nemoReady', true);
-        params.attr('exportAll', true);
+        this.buildParams({
+            exportAll: true,
+            nemoReady: true,
+            pageTypes: 'buyflow'
+        });
         this.doExport();
     }
 });

@@ -1,4 +1,5 @@
 <seo-export-urls
+    export-id="{items.id}"
     {(filter-fields)}="filterFields"
     {(items)}="items"
     export-id="{items.id}"

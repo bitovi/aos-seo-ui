@@ -14,8 +14,10 @@ var vm;
 // Renders the component
 var renderPage = function () {
     $('#sandbox').html(testTemplate({
+        exportId: '73d5764c-388a-4566-b7cc-d847a1a4ef90',
+        params: {},
         state: {
-            countries: '',
+            countries: 'US,CA,XF,MX,BR',
             dateRanges: '',
             description: '',
             limit: 25,
@@ -23,7 +25,8 @@ var renderPage = function () {
             page: 'url-list',
             pageNumber: 1,
             pageTitle: '',
-            partNumber: '',
+            pageTypes: '',
+            partNumber: 'VB005LL/A',
             regions: '',
             segments: '',
             sort: 'modifyDate',
@@ -67,9 +70,63 @@ describe('Export URLs', function () {
             expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
         });
 
-        it('building the params method', function () {
-            vm.buildParams();
-            expect(vm.attr('params.sort')).toEqual('modifyDate desc');
+        describe('buildParams()', function () {
+            var params;
+
+            beforeEach(function () {
+                vm.attr('filterFields', ['countries']);
+                vm.attr('searchFields', ['partNumber']);
+                vm.buildParams();
+                params = vm.attr('params');
+            });
+
+            it('adds the id parameter', function () {
+                expect(params.attr('id')).toEqual('73d5764c-388a-4566-b7cc-d847a1a4ef90');
+            });
+
+            it('adds the limit parameter', function () {
+                expect(params.attr('limit')).toEqual(25);
+            });
+
+            it('adds the page number parameter', function () {
+                expect(params.attr('page')).toEqual(1);
+            });
+
+            it('adds the sort parameter', function () {
+                expect(params.attr('sort')).toEqual('modifyDate desc');
+            });
+
+            it('adds the countries parameter', function () {
+                expect(params.attr('countries')).toEqual('US,CA,XF,MX,BR');
+            });
+
+            it('adds the part number parameter', function () {
+                expect(params.attr('partNumber')).toEqual('VB005LL/A');
+            });
+
+            describe('when passed a object containing extra parameters', function () {
+                beforeEach(function () {
+                    vm.buildParams({
+                        nemoReady: true,
+                        exportAll: false,
+                        pageTypes: 'pdp'
+                    });
+
+                    params = vm.attr('params');
+                });
+
+                it('adds the nemoReady parameter', function () {
+                    expect(params.attr('nemoReady')).toEqual(true);
+                });
+
+                it('adds the exportAll parameter', function () {
+                    expect(params.attr('exportAll')).toEqual(false);
+                });
+
+                it('adds the pageTypes parameter', function () {
+                    expect(params.attr('pageTypes')).toEqual('pdp');
+                });
+            });
         });
 
         describe('when ViewModel Instantiated', function () {
