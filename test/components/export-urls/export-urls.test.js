@@ -248,8 +248,6 @@ describe('Export URLs', function () {
                     $menuLinks = $export.find('pui-action-bar-item a');
                     vm.attr('filterSearchApplied', false);
                     $export.find($menuLinks.eq(1)).trigger('click');
-                    jasmine.clock().tick(can.fixture.delay);
-                    debugger;
                 });
 
                 it('shows the notification that the export started', function () {
