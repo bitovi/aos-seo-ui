@@ -82,7 +82,7 @@ module.exports = can.Map.extend({
         var state = this.attr('state');
 
         // tack on search/filter params
-        if (params && state) {
+        if (state) {
             can.each(searchFields, function (val) {
                 params.attr(val, state.attr(val));
             });
