@@ -112,6 +112,7 @@
 
 {{! Grid List }}
 <pui-grid-list
+    class="main-item-list"
     {(columns)}="columns"
     count="{count}"
     current-page="{currentPage}"
