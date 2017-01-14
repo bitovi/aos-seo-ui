@@ -152,7 +152,7 @@ module.exports = can.Map.extend({
                                 self.attr('isLoading', false);
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
-                                    title: 'Export completed without errors, wait a few seconds to get the whole file.',
+                                    title: 'Export completed without errors, The file will download momentarily.',
                                     timeout: '5000',
                                     type: 'success'
                                 });

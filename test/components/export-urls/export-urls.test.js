@@ -148,7 +148,6 @@ describe('Export URLs', function () {
 
             beforeEach(function () {
                 vm.doExport();
-                jasmine.clock().tick(can.fixture.delay);
             });
 
             it('shows the notification', function () {
