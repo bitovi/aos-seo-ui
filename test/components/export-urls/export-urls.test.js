@@ -14,8 +14,10 @@ var vm;
 // Renders the component
 var renderPage = function () {
     $('#sandbox').html(testTemplate({
+        exportId: '73d5764c-388a-4566-b7cc-d847a1a4ef90',
+        params: {},
         state: {
-            countries: '',
+            countries: 'US,CA,XF,MX,BR',
             dateRanges: '',
             description: '',
             limit: 25,
@@ -23,7 +25,8 @@ var renderPage = function () {
             page: 'url-list',
             pageNumber: 1,
             pageTitle: '',
-            partNumber: '',
+            pageTypes: '',
+            partNumber: 'VB005LL/A',
             regions: '',
             segments: '',
             sort: 'modifyDate',
@@ -50,26 +53,118 @@ describe('Export URLs', function () {
 
     describe('view model', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
+
         });
 
-        it('has an initial doDownloadExport value', function () {
-            expect(vm.attr('doDownloadExport')).toEqual(false);
+        describe('buildParams()', function () {
+            var params;
+
+            beforeEach(function () {
+                vm.attr('filterFields', ['countries']);
+                vm.attr('searchFields', ['partNumber']);
+                vm.buildParams();
+                params = vm.attr('params');
+            });
+
+            it('adds the id parameter', function () {
+                expect(params.attr('id')).toEqual('73d5764c-388a-4566-b7cc-d847a1a4ef90');
+            });
+
+            it('adds the limit parameter', function () {
+                expect(params.attr('limit')).toEqual(25);
+            });
+
+            it('adds the page number parameter', function () {
+                expect(params.attr('page')).toEqual(1);
+            });
+
+            it('adds the sort parameter', function () {
+                expect(params.attr('sort')).toEqual('modifyDate desc');
+            });
+
+            it('adds the countries parameter', function () {
+                expect(params.attr('countries')).toEqual('US,CA,XF,MX,BR');
+            });
+
+            it('adds the part number parameter', function () {
+                expect(params.attr('partNumber')).toEqual('VB005LL/A');
+            });
+
+            describe('when passed a object containing extra parameters', function () {
+                beforeEach(function () {
+                    vm.buildParams({
+                        nemoReady: true,
+                        exportAll: false,
+                        pageTypes: 'pdp'
+                    });
+
+                    params = vm.attr('params');
+                });
+
+                it('adds the nemoReady parameter', function () {
+                    expect(params.attr('nemoReady')).toEqual(true);
+                });
+
+                it('adds the exportAll parameter', function () {
+                    expect(params.attr('exportAll')).toEqual(false);
+                });
+
+                it('adds the pageTypes parameter', function () {
+                    expect(params.attr('pageTypes')).toEqual('pdp');
+                });
+            });
         });
 
-        it('has an initial export file path value', function () {
-            expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+        describe('values/types of the export related properties', function () {
+
+            it('has default value for notification', function () {
+                expect(vm.attr('notifications').length).toBe(0);
+            });
+
+            it('has type of doExport function ', function () {
+                expect(typeof vm.doExport).toBe('function');
+            });
+
+            it('has type of exportFilePath property ', function () {
+                expect(typeof vm.exportFilePath).toBe('string');
+            });
+
+            it('has an initial doDownloadExport value', function () {
+                expect(vm.attr('doDownloadExport')).toBe(false);
+            });
+
+            it('has an initial export file path value', function () {
+                expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+            });
         });
 
-        it('building the params method', function () {
-            vm.buildParams();
-            expect(vm.attr('params.sort')).toEqual('modifyDate desc');
+        describe('when doExport called', function () {
+
+            beforeEach(function () {
+                vm.doExport();
+            });
+
+            it('shows the notification', function () {
+                expect(vm.attr('notifications').length).toBe(1);
+            });
+
         });
 
     });
 
     describe('component', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
         });
 
@@ -109,12 +204,13 @@ describe('Export URLs', function () {
                 });
 
                 it('has an Export All option', function () {
-                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All');
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All (.csv)');
                 });
 
                 it('has an Nemo-Ready option', function () {
                     expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
                 });
+
             });
 
             describe('when no filter or search term is applied', function () {
@@ -143,6 +239,18 @@ describe('Export URLs', function () {
 
                 it('disables the export button', function () {
                     expect($export.find('pui-action-bar-dropdown').attr('disabled')).toEqual('disabled');
+                });
+            });
+
+            describe('click the nemo ready option in the export options', function () {
+                beforeEach(function () {
+                    $menuLinks = $export.find('pui-action-bar-item a');
+                    vm.attr('filterSearchApplied', false);
+                    $export.find($menuLinks.eq(1)).trigger('click');
+                });
+
+                it('shows the notification that the export started', function () {
+                    expect(vm.attr('notifications')[0].title).toEqual('Your data export has started.');
                 });
             });
         });
