@@ -4,6 +4,7 @@ require('can/view/stache/stache');
 var $ = require('jquery');
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
+var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 
 module.exports = can.Map.extend({
     define: {
@@ -51,6 +52,15 @@ module.exports = can.Map.extend({
             get: function () {
                 return JSON.stringify(this.attr('params').attr());
             }
+        },
+
+        /**
+         * @property {String} isLoading
+         * @description export progress indication.
+         */
+        isLoading: {
+            type: 'boolean',
+            value: false
         },
 
         /**
@@ -106,10 +116,10 @@ module.exports = can.Map.extend({
      */
     doExport: function () {
         var self = this;
+        var progressTimerId;
 
         this.attr('notifications').replace([]);
         this.attr('exportClicked', true);
-
         // Set the file path for pui file downloader component
         this.attr('exportFilePath',
             envVars.apiUrl() + '/export-urls.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
@@ -124,7 +134,58 @@ module.exports = can.Map.extend({
             type: 'info'
         });
 
-        self.attr('doDownloadExport', false);
+        this.attr('doDownloadExport', false);
+
+        return can.Deferred(function (defer) {
+            progressTimerId = setInterval(function () {
+                var progDef = ExportProgress.findOne({
+                    exportId: self.attr('exportId')
+                });
+
+                progDef
+                    .then(function (resp) {
+                        self.attr('isLoading', true);
+                        if (resp && resp.state) {
+                            var respState = resp.state;
+
+                            if (respState === 'success') {
+                                self.attr('isLoading', false);
+                                defer.resolve(resp);
+                                self.attr('notifications').push({
+                                    title: 'Export completed without errors.',
+                                    message: 'The file will download momentarily.',
+                                    timeout: '5000',
+                                    type: 'success'
+                                });
+                            } else if (respState === 'inprogress') {
+                                self.attr('isLoading', true);
+                                defer.resolve(resp);
+                            } else if (respState === 'error') {
+                                defer.reject(resp);
+                                self.attr('isLoading', false);
+                                self.attr('notifications').push({
+                                    title: 'Data export has failed.',
+                                    message: resp.errorMessage,
+                                    timeout: '5000',
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    })
+                    .fail(function (resp) {
+                        defer.reject(resp);
+                        self.attr('notifications').push({
+                            title: 'Not able to export',
+                            message: resp.errorMessage,
+                            timeout: '5000',
+                            type: 'error'
+                        });
+                    });
+            }, 2000);
+        }).always(function () {
+            self.attr('notifications').pop();
+            clearTimeout(progressTimerId);
+        });
     },
 
     /**

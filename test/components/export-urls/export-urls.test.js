@@ -53,15 +53,13 @@ describe('Export URLs', function () {
 
     describe('view model', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
-        });
 
-        it('has an initial doDownloadExport value', function () {
-            expect(vm.attr('doDownloadExport')).toEqual(false);
-        });
-
-        it('has an initial export file path value', function () {
-            expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
         });
 
         describe('buildParams()', function () {
@@ -123,10 +121,50 @@ describe('Export URLs', function () {
             });
         });
 
+        describe('values/types of the export related properties', function () {
+
+            it('has default value for notification', function () {
+                expect(vm.attr('notifications').length).toBe(0);
+            });
+
+            it('has type of doExport function ', function () {
+                expect(typeof vm.doExport).toBe('function');
+            });
+
+            it('has type of exportFilePath property ', function () {
+                expect(typeof vm.exportFilePath).toBe('string');
+            });
+
+            it('has an initial doDownloadExport value', function () {
+                expect(vm.attr('doDownloadExport')).toBe(false);
+            });
+
+            it('has an initial export file path value', function () {
+                expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
+            });
+        });
+
+        describe('when doExport called', function () {
+
+            beforeEach(function () {
+                vm.doExport();
+            });
+
+            it('shows the notification', function () {
+                expect(vm.attr('notifications').length).toBe(1);
+            });
+
+        });
+
     });
 
     describe('component', function () {
         beforeEach(function () {
+            window.seo = {
+                'csrfToken': 'n3m0-r0ck5',
+                'csrfHeader': 'X-AOS-CSRF',
+                'csrfParameter': '_aos_csrf'
+            };
             renderPage();
         });
 
@@ -172,6 +210,7 @@ describe('Export URLs', function () {
                 it('has an Nemo-Ready option', function () {
                     expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
                 });
+
             });
 
             describe('when no filter or search term is applied', function () {
@@ -200,6 +239,18 @@ describe('Export URLs', function () {
 
                 it('disables the export button', function () {
                     expect($export.find('pui-action-bar-dropdown').attr('disabled')).toEqual('disabled');
+                });
+            });
+
+            describe('click the nemo ready option in the export options', function () {
+                beforeEach(function () {
+                    $menuLinks = $export.find('pui-action-bar-item a');
+                    vm.attr('filterSearchApplied', false);
+                    $export.find($menuLinks.eq(1)).trigger('click');
+                });
+
+                it('shows the notification that the export started', function () {
+                    expect(vm.attr('notifications')[0].title).toEqual('Your data export has started.');
                 });
             });
         });
