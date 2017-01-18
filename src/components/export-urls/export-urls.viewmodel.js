@@ -224,8 +224,7 @@ module.exports = can.Map.extend({
     exportNemoReadyFile: function () {
         this.buildParams({
             exportAll: true,
-            nemoReady: true,
-            pageTypes: 'buyflow'
+            nemoReady: true
         });
 
         this.doExport();
