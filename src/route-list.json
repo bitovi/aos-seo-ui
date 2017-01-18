@@ -12,7 +12,6 @@
             "hideHeader": false,
             "hideSubHeader": false
         },
-        "title": "SEO",
         "params": {
             "countries": "",
             "dateRanges": "",
@@ -30,6 +29,6 @@
             "url": ""
         },
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
-        "title": "URLs"
+        "title": "SEO Metadata"
     }
 }
