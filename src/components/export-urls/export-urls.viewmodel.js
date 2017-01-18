@@ -160,6 +160,14 @@ module.exports = can.Map.extend({
                             } else if (respState === 'inprogress') {
                                 self.attr('isLoading', true);
                                 defer.resolve(resp);
+                            } else if (respState === 'alert') {
+                                defer.reject(resp);
+                                self.attr('isLoading', false);
+                                self.attr('notifications').push({
+                                    title: resp.errorMessage,
+                                    timeout: '5000',
+                                    type: 'info'
+                                });
                             } else if (respState === 'error') {
                                 defer.reject(resp);
                                 self.attr('isLoading', false);
