@@ -91,7 +91,8 @@
         "consistent"
       ],
       "no-mixed-requires": 0,
-      "space-before-function-paren": 0
+      "space-before-function-paren": 0,
+      "new-cap": 0
     }
   },
   "system": {
