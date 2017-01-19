@@ -189,7 +189,7 @@ module.exports = can.Map.extend({
                             type: 'error'
                         });
                     });
-            }, 2000);
+            }, 3000);
         }).always(function () {
             self.attr('notifications').pop();
             clearTimeout(progressTimerId);
