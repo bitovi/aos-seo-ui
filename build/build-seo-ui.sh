@@ -20,7 +20,7 @@ POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=2.2-SNAPSHOT
+MVN_VERSION=2.1.4-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -81,7 +81,7 @@ cp $BUILD_DIR/package/package.json ${NODE_PATH}/pui/package.json
 # Copy modules inline
 #
 
-echo Copying node_modules inside the nemo-ui build
+echo Copying node_modules inside the seo-ui build
 echo cp -R $NODE_PATH/ $SRC_DIR/node_modules
 cp -R $NODE_PATH/ $SRC_DIR/node_modules
 
@@ -170,7 +170,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/releases \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
 
 #

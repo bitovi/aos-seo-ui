@@ -1,16 +1,16 @@
 require('seo-ui/components/list-page/list-page');
 require('seo-ui/models/url/url.fixture');
 
+var AppState = require('seo-ui/models/appstate/appstate');
 var $ = require('jquery');
 var can = require('can');
+var jasmineConfig = require('test/jasmine-configure');
+var Model = require('seo-ui/models/url/url');
 var moment = require('moment');
+var testTemplate = require('./list-page.test.stache!');
 
-var AppState = require('seo-ui/models/appstate/appstate');
 var $component;
 var $filterMenus;
-var jasmineConfig = require('test/jasmine-configure');
-var jasmineConfigClean;
-var Model = require('seo-ui/models/url/url');
 var state;
 var stateObj = {
     page: '',
@@ -24,7 +24,6 @@ var stateObj = {
         }
     }
 };
-var testTemplate = require('./list-page.test.stache!');
 var vm;
 
 // Renders the component
@@ -104,14 +103,14 @@ var renderPage = function (newState) {
 };
 
 describe('List Page', function () {
+    var jasmineConfigClean;
+
     beforeEach(function () {
-        jasmineConfigClean = jasmineConfig({
-            persistentSandbox: true
-        });
+        jasmineConfigClean = jasmineConfig();
     });
 
     afterEach(function () {
-        jasmineConfigClean(true);
+        jasmineConfigClean();
     });
 
     describe('view model', function () {
@@ -184,6 +183,12 @@ describe('List Page', function () {
         describe('items property', function () {
             it('is defined', function () {
                 expect(vm.attr('items')).toBeDefined();
+            });
+        });
+
+        describe('maxResultLimit property', function () {
+            it('is 200', function () {
+                expect(vm.attr('maxResultLimit')).toEqual(200);
             });
         });
 
@@ -271,7 +276,7 @@ describe('List Page', function () {
 
             beforeEach(function () {
                 var now = new Date();
-                today = moment.utc(now).format(vm.attr('dateMask'));
+                today = moment(now).format(vm.attr('dateMask'));
             });
 
             describe('params property', function () {
@@ -441,6 +446,18 @@ describe('List Page', function () {
                 expect(filterVm.attr('filterGroups.1.filterOptions.1.selected')).toEqual(true);
             });
         });
+
+        describe('when the application state limit property exceeds maxResultLimit', function () {
+            beforeEach(function () {
+                renderPage({
+                    limit: 525600
+                });
+            });
+
+            it('sets the state limit to the maxResultLimit', function () {
+                expect(vm.attr('state.limit')).toEqual(vm.attr('maxResultLimit'));
+            });
+        });
     });
 
     describe('component', function () {
@@ -455,8 +472,16 @@ describe('List Page', function () {
         //     expect(alert).toEqual('success');
         // });
 
-        it('renders', function () {
-            expect($component).toExist();
+        it('displays a page title', function () {
+            expect($component.find('.page-header').text().trim()).toEqual(vm.attr('pageTitle'));
+        });
+
+        it('displays list tools', function () {
+            expect($component.find('.list-tools')).toBeVisible();
+        });
+
+        it('displays a grid list', function () {
+            expect($component.find('pui-grid-list > .table-responsive')).toBeVisible();
         });
 
         describe('Reset Filters button', function () {
@@ -482,8 +507,6 @@ describe('List Page', function () {
 
         describe('routing', function () {
             it('is done by selecting an item in the list', function () {
-                var stateObj = state;
-
                 state.bind('page', function (ev, newVal, oldVal) {
                     expect(newVal).toBeDefined();
                 });
@@ -515,27 +538,52 @@ describe('List Page', function () {
             });
         });
 
-        describe('When opening multiple grid-column-toggle popovers', function () {
+        describe('Grid Column Toggle menu toggling', function () {
             var $firstToggle;
             var $secondToggle;
 
             beforeEach(function () {
                 $firstToggle = $component.find('pui-grid-column-toggle').eq(0);
                 $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
-                $firstToggle.find('.popover-trigger').trigger('click');
-                $secondToggle.find('.popover-trigger').trigger('click');
             });
 
-            it('Closes other instances of grid-column-toggle popover', function () {
-                expect($firstToggle.find('.popover')).not.toBeVisible();
-                expect($secondToggle.find('.popover')).toBeVisible();
+            describe('when opening the first menu', function () {
+                beforeEach(function () {
+                    $firstToggle.find('.popover-trigger').trigger('click');
+                });
+
+                it('displays the first popover', function () {
+                    expect($firstToggle.find('.popover')).toBeVisible();
+                });
             });
 
-            it('Opening the first closes the second grid-column-toggle popover', function () {
-                $firstToggle.find('.popover-trigger').trigger('click');
-                expect($firstToggle.find('.popover')).toBeVisible();
-                expect($secondToggle.find('.popover')).not.toBeVisible();
-            });            
+            describe('when opening the second menu', function () {
+                beforeEach(function () {
+                    $secondToggle.find('.popover-trigger').trigger('click');
+                });
+
+                it('displays the second popover', function () {
+                    expect($secondToggle.find('.popover')).toBeVisible();
+                });
+
+                it('hides the first popover', function () {
+                    expect($firstToggle.find('.popover')).not.toBeVisible();
+                });
+            });
+
+            describe('when re-opening the first menu', function () {
+                beforeEach(function () {
+                    $firstToggle.find('.popover-trigger').trigger('click');
+                });
+
+                it('displays the first popover', function () {
+                    expect($firstToggle.find('.popover')).toBeVisible();
+                });
+
+                it('hides the second popover', function () {
+                    expect($secondToggle.find('.popover')).not.toBeVisible();
+                });
+            });
         });
 
         describe('date picker toggling', function () {
@@ -642,7 +690,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('When the second grid-column-toggle popover-trigger is clicked', function () {
+        describe('when hiding all of the list columns via the bottom Grid Column Toggle component', function () {
             var $secondToggle;
 
             beforeEach(function () {
@@ -658,13 +706,42 @@ describe('List Page', function () {
                 });
             });
 
-            it('then top of popover is visible', function() {
-                var $popover = $secondToggle.find('.popover');
-                var isPopoverTopVisible = $popover.offset().top > 0;
+            it('displays the entire Grid Toggle popover', function () {
+                var isPopoverTopVisible = $secondToggle.find('.popover').offset().top > 0;
 
-                expect($popover).toExist();
-                expect($popover.offset()).toExist();
                 expect(isPopoverTopVisible).toBe(true);
+            });
+        });
+
+        describe('when opening the Date Picker and clicking the ESC key', function(){
+            var $dateMenu;
+            var $fromToggler;
+            var $firstToggle;
+
+            beforeEach(function () {
+                $dateMenu = $filterMenus.eq(1);
+
+                // Opens Date Range filter menu
+                $dateMenu.find('.dropdown').trigger('click');
+
+                // Selects Custom Range
+                $dateMenu.find('.custom-range-toggle').trigger('click');
+
+                // Open From Date Picker
+                $fromToggler = $dateMenu.find('.form-control-feedback').eq(0);
+                $fromToggler.click();
+
+                var evt = $.Event('keyup');
+
+                evt.which = 27;
+                $(document).trigger(evt);
+
+                $firstToggle = $component.find('pui-grid-column-toggle').eq(0);
+                $firstToggle.find('.popover-trigger').trigger('click');
+            });
+
+            it('hides the date-picker-overlay when ESC button is clicked', function(){
+                expect($component.find('.date-picker-overlay')).not.toBeVisible();
             });
         });
     });

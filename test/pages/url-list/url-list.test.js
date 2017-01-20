@@ -147,29 +147,29 @@ describe('URL List Page', function () {
         });
 
         it('has an initial dataOptions value', function () {
-          expect(vm.attr('dataOptions').attr()).toEqual([
-              {
-                  key: 'url',
-                  label: 'URL'
-              },
-              {
-                  key: 'pageTitle',
-                  label: 'Page Title'
-              },
-              {
-                  key: 'description',
-                  label: 'Description'
-              },
-              {
-                  key: 'partNumber',
-                  label: 'Part Number',
-                  autocomplete: {
-                      'character-delay': 2,
-                      'key-name': 'partNumber',
-                      'model': 'partNumberModel'
-                  }
-              }
-          ]);
+            expect(vm.attr('dataOptions').attr()).toEqual([
+                {
+                    key: 'url',
+                    label: 'URL'
+                },
+                {
+                    key: 'pageTitle',
+                    label: 'Page Title'
+                },
+                {
+                    key: 'description',
+                    label: 'Description'
+                },
+                {
+                    key: 'partNumber',
+                    label: 'Part Number',
+                    autocomplete: {
+                        'character-delay': 2,
+                        'key-name': 'partNumber',
+                        'model': 'partNumberModel'
+                    }
+                }
+            ]);
         });
 
         it('has an initial filterConfig value', function () {
@@ -229,7 +229,7 @@ describe('URL List Page', function () {
         });
 
         it('has an initial pageTitle value', function () {
-            expect(vm.attr('pageTitle')).toEqual('URLs');
+            expect(vm.attr('pageTitle')).toEqual('SEO Metadata');
         });
 
         it('has a part number model property', function () {
@@ -317,7 +317,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
                 it('within a value', function () {
@@ -413,7 +413,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
 
                 it('for a full value', function () {
@@ -430,6 +430,7 @@ describe('URL List Page', function () {
 
         describe('sorts by the', function () {
             testSort('country');
+            testSort('description');
             testSort('pageTitle');
             testSort('partNumber');
             testSort('region');
@@ -466,7 +467,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(2).find('.grid-item-value');
+                $resultTitle = $results.eq(4).find('.grid-item-value');
             });
 
             it('displays the page title in segments', function () {
@@ -475,20 +476,20 @@ describe('URL List Page', function () {
             });
 
             it('displays a key path for each title segment', function () {
-                expect($resultTitle.find('.key-path > li').length).toEqual(5);
-                expect($resultTitle.find('.key-path > li').eq(3).text().trim()).toEqual('store.seo.full.pagetitle');
+                expect($resultTitle.find('.title-anatomy-key-path > li').length).toEqual(5);
+                expect($resultTitle.find('.title-anatomy-key-path > li').eq(3).text().trim()).toEqual('store.seo.full.pagetitle');
             });
 
             describe('when the title anatomy type is text_asset', function () {
                 var $keyPath;
 
                 beforeEach(function () {
-                    $keyPath = $resultTitle.find('.key-path > li').eq(0);
+                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(2);
                 });
 
                 it('creates a link to the asset', function () {
                     expect($keyPath.find('a')).toBeVisible();
-                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration');
+                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration');
                 });
 
                 it('displays a key icon next to the key path', function () {
@@ -500,7 +501,7 @@ describe('URL List Page', function () {
                 var $keyPath;
 
                 beforeEach(function () {
-                    $keyPath = $resultTitle.find('.key-path > li').eq(4);
+                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(4);
                 });
 
                 it('displays an attribute icon next to the key path', function () {
@@ -517,7 +518,7 @@ describe('URL List Page', function () {
                 var $keyPaths;
 
                 beforeEach(function () {
-                    $keyPaths = $results.eq(0).find('.key-path > li');
+                    $keyPaths = $results.eq(0).find('.title-anatomy-key-path > li');
                 });
 
                 it('does not create an HTML link', function () {
@@ -538,11 +539,11 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(3).find('.pageTitle > .grid-item-value');
+                $resultTitle = $results.eq(7).find('.pageTitle > .grid-item-value');
             });
 
             it('displays the page title value as a single string', function () {
-                expect($resultTitle.html().trim()).toEqual('iPod Touch - Apple');
+                expect($resultTitle.html().trim()).toEqual('iPod Nano - Apple');
             });
         });
     });
@@ -556,6 +557,97 @@ describe('URL List Page', function () {
 
         it('properly displays the decoded characters', function () {
             expect($result.find('.url').text().trim()).toEqual('/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français');
+        });
+    });
+
+    describe('description and description anatomy', function () {
+        var $results;
+
+        beforeEach(function () {
+            $results = component.find('pui-grid-list .item');
+        });
+        describe('when a result has a descriptionAnatomy property', function () {
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(2).find('.grid-item-value');
+            });
+
+            it('displays the description in segments', function () {
+                expect($resultTitle.find('.description-value').length).toEqual(2);
+                expect($resultTitle.find('.description-value').eq(0).text().trim()).toEqual('store.seo.full.description');
+            });
+
+            it('displays a key path for each description segment', function () {
+                expect($resultTitle.find('.description-anatomy-key-path > li').length).toEqual(2);
+                expect($resultTitle.find('.description-anatomy-key-path > li').eq(0).text().trim()).toEqual('productMetaDescription');
+            });
+
+            describe('when the description anatomy type is text_asset', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(0);
+                });
+
+                it('creates a link to the asset', function () {
+                    expect($keyPath.find('a')).toBeVisible();
+                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration');
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    expect($keyPath.find('.icon-key')).toBeVisible();
+                });
+            });
+
+            describe('when the description anatomy type is product_attribute', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(1);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.indicator-product-attribute')).toBeVisible();
+                    expect($keyPath.find('.indicator-product-attribute').text().trim()).toEqual('a');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
+
+            describe('when a key path does not have a link property', function () {
+                var $keyPaths;
+
+                beforeEach(function () {
+                    $keyPaths = $results.eq(4).find('.description-anatomy-key-path > li');
+                });
+
+                it('does not create an HTML link', function () {
+                    $keyPaths.each(function () {
+                        expect($(this).find('a').length).toEqual(0);
+                    });
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    $keyPaths.each(function () {
+                        expect($(this).find('.icon-key').length).toEqual(1);
+                    });
+                });
+            });
+        });
+
+        describe('when a result does not have a descriptionAnatomy property', function () {
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(4).find('.description > .grid-item-value');
+            });
+
+            it('displays the description value as a single string', function () {
+                expect($resultTitle.html().trim()).toEqual('Bacon ipsum dolor amet spare ribs duis strip steak ut. Spare ribs irure duis shank ad lorem filet mignon ipsum non chicken corned beef.');
+            });
         });
     });
 });

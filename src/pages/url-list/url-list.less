@@ -36,6 +36,11 @@ seo-url-list {
         .label-info;
     }
 
+    .unchanged-label {
+        .status-badge;
+        .label-default;
+    }
+
     // Filters
     .filters {
         border-bottom: .1rem solid @page-header-border-color;
@@ -49,13 +54,15 @@ seo-url-list {
         padding-top: @padding-base-vertical;
     }
 
-    .page-title-value:after {
+    .page-title-value:after,
+    .description-value:after {
         content: attr(data-index);
         font-size: @font-size-small;
         vertical-align: super;
     }
 
-    .key-path {
+    .title-anatomy-key-path,
+    .description-anatomy-key-path {
         font-size: @font-size-small;
         margin-top: @padding-large-vertical;
     }

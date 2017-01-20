@@ -5,19 +5,30 @@
         tooltip-title="Export"
     >
         <pui-action-bar-item
-            menu-heading="Export URLs in:"
+            menu-heading="Export URLs:"
         ></pui-action-bar-item>
 
         <pui-action-bar-item action="exportCsv">
-            Current View (.csv)
+            Current View
         </pui-action-bar-item>
 
         {{#if filterSearchApplied}}
             <pui-action-bar-item action="exportAllCsv">
-                Export All
+                Export All (.csv)
             </pui-action-bar-item>
         {{/if}}
+
+        <pui-action-bar-item action="exportNemoReadyFile">
+            Nemo-Ready File
+        </pui-action-bar-item>
+
     </pui-action-bar-dropdown>
+    {{#isLoading}}
+        <div class="loading-indicator-container">
+            <div class="icon-spinner spin-icon"></div>
+            <span class="content">Exporting the URLs..</span>
+        </div>
+    {{/isLoading}}
 </pui-action-bar-menu>
 
 {{#exportClicked}}

@@ -98,14 +98,13 @@ module.exports = can.Component.extend({
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
             var filterOptions = new can.Map();
+            var maxResultLimit = vm.attr('maxResultLimit');
             var searchFields = vm.attr('searchFields');
             var searchQuery = vm.attr('searchQuery');
 
             if (appState && appState.attr) {
                 // Set up search query from state
-                appState = appState.attr();
-
-                can.each(appState, function (val, key) {
+                can.each(appState.attr(), function (val, key) {
                     if (filterFields && val && filterFields.indexOf(key) > -1) {
                         // Advanced search
                         filterOptions.attr(key, val);
@@ -121,6 +120,12 @@ module.exports = can.Component.extend({
                         vm.attr('searchValue', val);
                     }
                 });
+
+                // Prevents the user from setting the export limit too high
+                // via the URL/application state
+                if (appState.attr('limit') > maxResultLimit) {
+                    appState.attr('limit', maxResultLimit);
+                }
             }
         },
 
@@ -314,6 +319,24 @@ module.exports = can.Component.extend({
 
             // Ensures the custom date range input remains open if a custom range is applied
             vm.attr('datesOpen', vm.attr('customDateApplied'));
+        },
+
+        /**
+         * @description Register any keyup event in the actual browser window.
+         */
+        '{window} keyup': function ($el, evt) {
+            var $datepickers = this.element.find('pui-date-picker');
+
+            // Close popover when the ESC key is hit
+            if (evt.which === 27) {
+                can.each($datepickers, function (picker) {
+                    var pickerVm = can.viewModel(picker);
+
+                    if (pickerVm.attr('pickerOpen') === true) {
+                        pickerVm.attr('pickerOpen', false);
+                    }
+                });
+            }
         }
     }
 });
