@@ -52,7 +52,7 @@
                     class="check-saved-state-js"
                     href="{{link homeUrl}}"
                 >
-                    URLs
+                    SEO Metadata
                 </a>
             </li>
         </ul>

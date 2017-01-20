@@ -81,7 +81,7 @@ cp $BUILD_DIR/package/package.json ${NODE_PATH}/pui/package.json
 # Copy modules inline
 #
 
-echo Copying node_modules inside the nemo-ui build
+echo Copying node_modules inside the seo-ui build
 echo cp -R $NODE_PATH/ $SRC_DIR/node_modules
 cp -R $NODE_PATH/ $SRC_DIR/node_modules
 

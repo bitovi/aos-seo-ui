@@ -177,7 +177,7 @@ module.exports = can.Map.extend({
          */
         pageTitle: {
             type: 'string',
-            value: 'URLs'
+            value: 'SEO Metadata'
         },
 
         /**
