@@ -229,7 +229,7 @@ describe('URL List Page', function () {
         });
 
         it('has an initial pageTitle value', function () {
-            expect(vm.attr('pageTitle')).toEqual('URLs');
+            expect(vm.attr('pageTitle')).toEqual('SEO Metadata');
         });
 
         it('has a part number model property', function () {
