@@ -153,11 +153,11 @@ module.exports = can.Map.extend({
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
                                     title: 'Export completed without errors.',
-                                    message: 'The file will download momentarily.',
+                                    message: 'The file will download momentarily, NOTE: Export will not include pages with product attributes for page title or description',
                                     timeout: '5000',
                                     type: 'success'
                                 });
-                            } else if (respState === 'inprogress') {
+                            } else if (respState === 'progress') {
                                 self.attr('isLoading', true);
                                 defer.resolve(resp);
                             } else if (respState === 'alert') {
