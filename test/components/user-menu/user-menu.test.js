@@ -55,8 +55,4 @@ describe('User-menu', function () {
         });
     });
 
-    describe('Component', function () {
-
-    });
-
 });
