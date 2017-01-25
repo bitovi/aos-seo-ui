@@ -154,14 +154,14 @@ module.exports = can.Map.extend({
                             } else {
                                 message = 'The file will download momentarily.';
                             }
-                            
+
                             if (respState === 'success') {
                                 self.attr('isLoading', false);
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
                                     title: 'Export completed without errors.',
                                     message: message,
-                                    timeout: '5000',
+                                    timeout: '-1',
                                     type: 'success'
                                 });
                             } else if (respState === 'progress') {
@@ -172,7 +172,7 @@ module.exports = can.Map.extend({
                                 self.attr('isLoading', false);
                                 self.attr('notifications').push({
                                     title: resp.errorMessage,
-                                    timeout: '5000',
+                                    timeout: '-1',
                                     type: 'info'
                                 });
                             } else if (respState === 'error') {
@@ -181,7 +181,7 @@ module.exports = can.Map.extend({
                                 self.attr('notifications').push({
                                     title: 'Data export has failed.',
                                     message: resp.errorMessage,
-                                    timeout: '5000',
+                                    timeout: '-1',
                                     type: 'error'
                                 });
                             }
