@@ -147,17 +147,24 @@ module.exports = can.Map.extend({
                         self.attr('isLoading', true);
                         if (resp && resp.state) {
                             var respState = resp.state;
+                            var message;
 
+                            if (self.attr('params.nemoReady')) {
+                                message = 'The file will download momentarily, NOTE: Export will not include pages with product attributes for page title or description';
+                            } else {
+                                message = 'The file will download momentarily.';
+                            }
+                            
                             if (respState === 'success') {
                                 self.attr('isLoading', false);
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
                                     title: 'Export completed without errors.',
-                                    message: 'The file will download momentarily.',
+                                    message: message,
                                     timeout: '5000',
                                     type: 'success'
                                 });
-                            } else if (respState === 'inprogress') {
+                            } else if (respState === 'progress') {
                                 self.attr('isLoading', true);
                                 defer.resolve(resp);
                             } else if (respState === 'alert') {
