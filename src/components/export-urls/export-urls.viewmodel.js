@@ -166,7 +166,6 @@ module.exports = can.Map.extend({
                                 });
                             } else if (respState === 'progress') {
                                 self.attr('isLoading', true);
-                                defer.resolve(resp);
                             } else if (respState === 'alert') {
                                 defer.reject(resp);
                                 self.attr('isLoading', false);
