@@ -9,6 +9,14 @@ var ExportProgress = require('seo-ui/models/export-progress/export-progress.js')
 module.exports = can.Map.extend({
     define: {
         /**
+         * @property {Array} configurableColumns
+         * @description columns set for export.
+         */
+        configurableColumns: {
+            value: []
+        },
+
+        /**
          * @property {Boolean} doDownloadExport
          * @description Indicator to help trigger the file download, when set to true
          * submit the form to the URL and trigger the download
@@ -86,10 +94,12 @@ module.exports = can.Map.extend({
      * @param {Object} [extraParams] Optional object containing additional parameters
      */
     buildParams: function (extraParams) {
+        var columns = this.attr('columns');
         var filterFields = this.attr('filterFields');
         var params = new can.Map();
         var searchFields = this.attr('searchFields');
         var state = this.attr('state');
+        var self = this;
 
         // tack on search/filter params
         if (state) {
@@ -101,11 +111,20 @@ module.exports = can.Map.extend({
                 params.attr(val, state.attr(val));
             });
 
+            // Identify visible columns for export
+            can.each(columns, function (column) {
+                if (column.isVisible === true) {
+                    self.attr('configurableColumns').push(column.key);
+                }
+            });
+
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('page', state.attr('pageNumber'));
             params.attr('id', this.attr('exportId'));
+            params.attr('configurableColumns', this.attr('configurableColumns'));
 
+            this.attr('configurableColumns', []);
             this.attr('params', $.extend(params.attr(), extraParams));
         }
     },

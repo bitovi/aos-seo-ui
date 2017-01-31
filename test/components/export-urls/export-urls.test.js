@@ -66,6 +66,7 @@ describe('Export URLs', function () {
             var params;
 
             beforeEach(function () {
+                vm.attr('configurableColumns', ['partNumber']);
                 vm.attr('filterFields', ['countries']);
                 vm.attr('searchFields', ['partNumber']);
                 vm.buildParams();
@@ -94,6 +95,11 @@ describe('Export URLs', function () {
 
             it('adds the part number parameter', function () {
                 expect(params.attr('partNumber')).toEqual('VB005LL/A');
+            });
+
+            it('adds the configurableColumns parameter', function () {
+                expect(params.attr('configurableColumns').length).toEqual(1);
+                expect(params.attr('configurableColumns')[0]).toEqual('partNumber');
             });
 
             describe('when passed a object containing extra parameters', function () {
@@ -125,6 +131,10 @@ describe('Export URLs', function () {
 
             it('has default value for notification', function () {
                 expect(vm.attr('notifications').length).toBe(0);
+            });
+
+            it('has default value for configurableColumns', function () {
+                expect(vm.attr('configurableColumns').length).toBe(0);
             });
 
             it('has type of doExport function ', function () {
