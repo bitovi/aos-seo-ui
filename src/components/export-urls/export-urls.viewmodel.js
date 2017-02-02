@@ -13,15 +13,15 @@ module.exports = can.Map.extend({
          * @description columns set for export.
          */
         configurableColumns: {
-            value: [],
+            value: Array,
             get: function () {
                 var columns = this.attr('columns');
                 var visibleColumns = [];
 
                 // Identify visible columns for export
-                can.each(columns, function (column) {
+                columns.forEach(function (column) {
                     if (column.attr('isVisible')) {
-                        visibleColumns.push(column.key);
+                        visibleColumns.push(column.attr('key'));
                     }
                 });
 

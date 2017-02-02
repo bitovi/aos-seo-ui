@@ -14,6 +14,12 @@ var vm;
 // Renders the component
 var renderPage = function () {
     $('#sandbox').html(testTemplate({
+        columns: [
+            {
+                key: 'partNumber',
+                isVisible: true
+            }
+        ],
         exportId: '73d5764c-388a-4566-b7cc-d847a1a4ef90',
         params: {},
         state: {
@@ -59,14 +65,12 @@ describe('Export URLs', function () {
                 'csrfParameter': '_aos_csrf'
             };
             renderPage();
-
         });
 
         describe('buildParams()', function () {
             var params;
 
             beforeEach(function () {
-                vm.attr('configurableColumns').push('partNumber');
                 vm.attr('filterFields', ['countries']);
                 vm.attr('searchFields', ['partNumber']);
                 vm.buildParams();
@@ -133,7 +137,7 @@ describe('Export URLs', function () {
             });
 
             it('has default value for configurableColumns', function () {
-                expect(vm.attr('configurableColumns').length).toBe(0);
+                expect(vm.attr('configurableColumns').length).toBe(1);
             });
 
             it('has type of doExport function ', function () {
