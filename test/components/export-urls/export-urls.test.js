@@ -66,7 +66,7 @@ describe('Export URLs', function () {
             var params;
 
             beforeEach(function () {
-                vm.attr('configurableColumns', ['partNumber']);
+                vm.attr('configurableColumns').push('partNumber');
                 vm.attr('filterFields', ['countries']);
                 vm.attr('searchFields', ['partNumber']);
                 vm.buildParams();
@@ -98,7 +98,6 @@ describe('Export URLs', function () {
             });
 
             it('adds the configurableColumns parameter', function () {
-                expect(params.attr('configurableColumns').length).toEqual(1);
                 expect(params.attr('configurableColumns')[0]).toEqual('partNumber');
             });
 

@@ -13,7 +13,20 @@ module.exports = can.Map.extend({
          * @description columns set for export.
          */
         configurableColumns: {
-            value: []
+            value: [],
+            get: function () {
+                var columns = this.attr('columns');
+                var visibleColumns = [];
+
+                // Identify visible columns for export
+                can.each(columns, function (column) {
+                    if (column.attr('isVisible')) {
+                        visibleColumns.push(column.key);
+                    }
+                });
+
+                return visibleColumns;
+            }
         },
 
         /**
@@ -94,12 +107,10 @@ module.exports = can.Map.extend({
      * @param {Object} [extraParams] Optional object containing additional parameters
      */
     buildParams: function (extraParams) {
-        var columns = this.attr('columns');
         var filterFields = this.attr('filterFields');
         var params = new can.Map();
         var searchFields = this.attr('searchFields');
         var state = this.attr('state');
-        var self = this;
 
         // tack on search/filter params
         if (state) {
@@ -111,20 +122,12 @@ module.exports = can.Map.extend({
                 params.attr(val, state.attr(val));
             });
 
-            // Identify visible columns for export
-            can.each(columns, function (column) {
-                if (column.isVisible === true) {
-                    self.attr('configurableColumns').push(column.key);
-                }
-            });
-
             params.attr('sort', state.attr('sort') + ' ' + state.attr('order'));
             params.attr('limit', state.attr('limit'));
             params.attr('page', state.attr('pageNumber'));
             params.attr('id', this.attr('exportId'));
             params.attr('configurableColumns', this.attr('configurableColumns'));
 
-            this.attr('configurableColumns', []);
             this.attr('params', $.extend(params.attr(), extraParams));
         }
     },
