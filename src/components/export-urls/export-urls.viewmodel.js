@@ -147,25 +147,31 @@ module.exports = can.Map.extend({
                         self.attr('isLoading', true);
                         if (resp && resp.state) {
                             var respState = resp.state;
+                            var message;
+
+                            if (self.attr('params.nemoReady')) {
+                                message = 'The file will download momentarily, NOTE: Export will not include pages with product attributes for page title or description';
+                            } else {
+                                message = 'The file will download momentarily.';
+                            }
 
                             if (respState === 'success') {
                                 self.attr('isLoading', false);
                                 defer.resolve(resp);
                                 self.attr('notifications').push({
                                     title: 'Export completed without errors.',
-                                    message: 'The file will download momentarily.',
-                                    timeout: '5000',
+                                    message: message,
+                                    timeout: '-1',
                                     type: 'success'
                                 });
-                            } else if (respState === 'inprogress') {
+                            } else if (respState === 'progress') {
                                 self.attr('isLoading', true);
-                                defer.resolve(resp);
                             } else if (respState === 'alert') {
                                 defer.reject(resp);
                                 self.attr('isLoading', false);
                                 self.attr('notifications').push({
                                     title: resp.errorMessage,
-                                    timeout: '5000',
+                                    timeout: '-1',
                                     type: 'info'
                                 });
                             } else if (respState === 'error') {
@@ -174,7 +180,7 @@ module.exports = can.Map.extend({
                                 self.attr('notifications').push({
                                     title: 'Data export has failed.',
                                     message: resp.errorMessage,
-                                    timeout: '5000',
+                                    timeout: '-1',
                                     type: 'error'
                                 });
                             }
