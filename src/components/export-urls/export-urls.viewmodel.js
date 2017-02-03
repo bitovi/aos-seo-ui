@@ -13,7 +13,7 @@ module.exports = can.Map.extend({
          * @description columns set for export.
          */
         configurableColumns: {
-            value: Array,
+            Value: Array,
             get: function () {
                 var columns = this.attr('columns');
                 var visibleColumns = [];
@@ -35,7 +35,7 @@ module.exports = can.Map.extend({
          * submit the form to the URL and trigger the download
          */
         doDownloadExport: {
-            value: false,
+            Value: false,
             type: 'boolean'
         },
 
@@ -52,7 +52,7 @@ module.exports = can.Map.extend({
          * @description The URL/End-point of the service we need to invoke for exporing/download.
          */
         exportFilePath: {
-            value: envVars.apiUrl() + '/export-urls.json',
+            Value: envVars.apiUrl() + '/export-urls.json',
             type: 'string'
         },
 
@@ -81,7 +81,7 @@ module.exports = can.Map.extend({
          */
         isLoading: {
             type: 'boolean',
-            value: false
+            Value: false
         },
 
         /**
@@ -89,7 +89,7 @@ module.exports = can.Map.extend({
          * @description notifications of the export status
          */
         notifications: {
-            value: []
+            Value: Array
         },
 
         /**
@@ -97,7 +97,7 @@ module.exports = can.Map.extend({
          * @description The params that needs to passed for exporting
          */
         params: {
-            value: {}
+            Value: {}
         }
     },
 
