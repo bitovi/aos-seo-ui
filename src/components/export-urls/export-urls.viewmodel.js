@@ -241,6 +241,7 @@ module.exports = can.Map.extend({
         this.buildParams({
             exportAll: true
         });
+
         this.doExport();
     },
 
@@ -253,6 +254,7 @@ module.exports = can.Map.extend({
             exportAll: true,
             nemoReady: true
         });
+
         this.doExport();
     }
 });
