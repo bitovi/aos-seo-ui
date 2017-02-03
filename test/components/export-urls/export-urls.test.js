@@ -188,7 +188,7 @@ describe('Export URLs', function () {
                 expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs:');
             });
 
-            describe('when clicking export "Currrent View (.csv)" button', function () {
+            describe('when clicking Export URLs "Currrent View" button', function () {
                 beforeEach(function () {
                     spyOn(vm, 'exportCsv');
                     $($('pui-action-bar-item a')[0]).trigger('click');
@@ -196,7 +196,22 @@ describe('Export URLs', function () {
 
                 it('invokes exportCsv()', function () {
                     expect(vm.exportCsv).toHaveBeenCalled();
-                    // expect(vm.attr('params').attr('exportAll')).toBe('false');
+                });
+            });
+
+            describe('when clicking Export URLs "Export All (.csv)" button', function () {
+                beforeEach(function () {
+                    spyOn(vm, 'doExport');
+                    spyOn(vm, 'buildParams');
+                    $($('pui-action-bar-item a')[1]).trigger('click');
+                });
+
+                it('invokes doExport()', function () {
+                    expect(vm.doExport).toHaveBeenCalled();
+                });
+
+                it('invokes buildParams()', function () {
+                    expect(vm.buildParams).toHaveBeenCalled();
                 });
             });
 
