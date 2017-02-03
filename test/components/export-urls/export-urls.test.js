@@ -14,6 +14,12 @@ var vm;
 // Renders the component
 var renderPage = function () {
     $('#sandbox').html(testTemplate({
+        columns: [
+            {
+                key: 'partNumber',
+                isVisible: true
+            }
+        ],
         exportId: '73d5764c-388a-4566-b7cc-d847a1a4ef90',
         params: {},
         state: {
@@ -59,7 +65,6 @@ describe('Export URLs', function () {
                 'csrfParameter': '_aos_csrf'
             };
             renderPage();
-
         });
 
         describe('buildParams()', function () {
@@ -96,6 +101,10 @@ describe('Export URLs', function () {
                 expect(params.attr('partNumber')).toEqual('VB005LL/A');
             });
 
+            it('adds the configurableColumns parameter', function () {
+                expect(params.attr('configurableColumns')[0]).toEqual('partNumber');
+            });
+
             describe('when passed a object containing extra parameters', function () {
                 beforeEach(function () {
                     vm.buildParams({
@@ -125,6 +134,10 @@ describe('Export URLs', function () {
 
             it('has default value for notification', function () {
                 expect(vm.attr('notifications').length).toBe(0);
+            });
+
+            it('has default value for configurableColumns', function () {
+                expect(vm.attr('configurableColumns').length).toBe(1);
             });
 
             it('has type of doExport function ', function () {
