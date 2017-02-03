@@ -99,7 +99,7 @@ describe('Export URLs', function () {
             describe('when passed a object containing extra parameters', function () {
                 beforeEach(function () {
                     vm.buildParams({
-                        nemoReady: true,
+                        nemoReadyExport: true,
                         exportAll: false,
                         pageTypes: 'pdp'
                     });
@@ -107,8 +107,8 @@ describe('Export URLs', function () {
                     params = vm.attr('params');
                 });
 
-                it('adds the nemoReady parameter', function () {
-                    expect(params.attr('nemoReady')).toEqual(true);
+                it('adds the nemoReadyExport parameter', function () {
+                    expect(params.attr('nemoReadyExport')).toEqual(true);
                 });
 
                 it('adds the exportAll parameter', function () {

@@ -94,7 +94,8 @@
                 }
             ],
             "url": "/us_smb_78313/shop/product/D5690ZM/A",
-            "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A"
+            "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
+            "nemoReady": true
         },
         {
             "country": "United States of America",
@@ -122,7 +123,8 @@
             "segment": "Internal EPP",
             "status": "end-of-life",
             "titleAnatomy": [],
-            "url": "/macbook-air/"
+            "url": "/macbook-air/",
+            "nemoReady": true
         },
         {
             "country": "Hong Kong",
@@ -164,7 +166,8 @@
             "segment": "Small Business",
             "status": "new-to-store",
             "titleAnatomy": [],
-            "url": "/ipad-2-wifi/"
+            "url": "/ipad-2-wifi/",
+            "nemoReady": true
         },
         {
             "country": "New Zealand",
@@ -192,7 +195,8 @@
             "segment": "Edu Individual",
             "status": "modified",
             "titleAnatomy": [],
-            "url": "/ipod-nano/"
+            "url": "/ipod-nano/",
+            "nemoReady": true
         },
         {
             "country": "America",
@@ -219,7 +223,8 @@
             "region": "AMR",
             "segment": "Direct",
             "status": "end-of-life",
-            "url": "/ipod-touch/"
+            "url": "/ipod-touch/",
+            "nemoReady": true
         },
         {
             "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -264,7 +269,8 @@
                 }
             ],
             "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
-            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais"
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
+            "nemoReady": true
         },
         {
             "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -366,7 +372,8 @@
                     "value" : "store.seo.full.description",
                     "type" : "text_asset"
                 }
-            ]
+            ],
+            "nemoReady": true
         },
         {
             "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -421,7 +428,8 @@
                     "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
                     "type": "product_attribute"
                 }
-            ]
+            ],
+            "nemoReady": true
         }
     ],
     "hasMoreRecords": false
