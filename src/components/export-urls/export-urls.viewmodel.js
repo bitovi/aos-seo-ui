@@ -35,7 +35,7 @@ module.exports = can.Map.extend({
          * submit the form to the URL and trigger the download
          */
         doDownloadExport: {
-            Value: false,
+            value: false,
             type: 'boolean'
         },
 
@@ -52,7 +52,7 @@ module.exports = can.Map.extend({
          * @description The URL/End-point of the service we need to invoke for exporing/download.
          */
         exportFilePath: {
-            Value: envVars.apiUrl() + '/export-urls.json',
+            value: envVars.apiUrl() + '/export-urls.json',
             type: 'string'
         },
 
@@ -81,7 +81,7 @@ module.exports = can.Map.extend({
          */
         isLoading: {
             type: 'boolean',
-            Value: false
+            value: false
         },
 
         /**
@@ -97,7 +97,7 @@ module.exports = can.Map.extend({
          * @description The params that needs to passed for exporting
          */
         params: {
-            Value: {}
+            value: {}
         }
     },
 
