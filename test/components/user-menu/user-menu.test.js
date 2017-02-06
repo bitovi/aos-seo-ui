@@ -43,13 +43,13 @@ describe('User-menu', function () {
         });
 
         describe('isLocalInstance property', function () {
-            it('has type of isLocalInstance property', function () {
+            it('has type of boolean', function () {
                 expect(typeof vm.attr('isLocalInstance')).toBe('boolean');
             });
         });
 
         describe('toggleFixtures()', function () {
-            it('has type of doExport function ', function () {
+            it('has type of function', function () {
                 expect(typeof vm.toggleFixtures).toBe('function');
             });
         });
