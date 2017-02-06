@@ -155,6 +155,10 @@ describe('Export URLs', function () {
             it('has an initial export file path value', function () {
                 expect(vm.attr('exportFilePath')).toEqual(envVars.apiUrl() + '/export-urls.json');
             });
+
+            it('has an initial isLoading value', function () {
+                expect(vm.attr('isLoading')).toEqual(false);
+            });
         });
 
         describe('when doExport called', function () {
@@ -168,7 +172,6 @@ describe('Export URLs', function () {
             });
 
         });
-
     });
 
     describe('component', function () {
@@ -194,12 +197,35 @@ describe('Export URLs', function () {
                 $export.find('.dropdown-toggle').trigger('click');
             });
 
-            afterEach(function () {
-                $export.find('.dropdown-toggle').trigger('click');
-            });
-
             it('has a menu header', function () {
                 expect($export.find('.dropdown-header').text().trim()).toEqual('Export URLs:');
+            });
+
+            describe('when clicking Export URLs "Currrent View" button', function () {
+                beforeEach(function () {
+                    spyOn(vm, 'exportCsv');
+                    $($('pui-action-bar-item a')[0]).trigger('click');
+                });
+
+                it('invokes exportCsv()', function () {
+                    expect(vm.exportCsv).toHaveBeenCalled();
+                });
+            });
+
+            describe('when clicking Export URLs "Export All (.csv)" button', function () {
+                beforeEach(function () {
+                    spyOn(vm, 'doExport');
+                    spyOn(vm, 'buildParams');
+                    $($('pui-action-bar-item a')[1]).trigger('click');
+                });
+
+                it('invokes doExport()', function () {
+                    expect(vm.doExport).toHaveBeenCalled();
+                });
+
+                it('invokes buildParams()', function () {
+                    expect(vm.buildParams).toHaveBeenCalled();
+                });
             });
 
             describe('when applying a filter or search term', function () {
