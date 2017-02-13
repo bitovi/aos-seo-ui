@@ -95,7 +95,7 @@
             ],
             "url": "/us_smb_78313/shop/product/D5690ZM/A",
             "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "country": "United States of America",
@@ -124,7 +124,7 @@
             "status": "end-of-life",
             "titleAnatomy": [],
             "url": "/macbook-air/",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "country": "Hong Kong",
@@ -167,7 +167,7 @@
             "status": "new-to-store",
             "titleAnatomy": [],
             "url": "/ipad-2-wifi/",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "country": "New Zealand",
@@ -196,7 +196,7 @@
             "status": "modified",
             "titleAnatomy": [],
             "url": "/ipod-nano/",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "country": "America",
@@ -224,7 +224,7 @@
             "segment": "Direct",
             "status": "end-of-life",
             "url": "/ipod-touch/",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -270,7 +270,7 @@
             ],
             "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
             "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -373,7 +373,7 @@
                     "type" : "text_asset"
                 }
             ],
-            "nemoReady": true
+            "nemoReadyRecord": true
         },
         {
             "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
@@ -429,7 +429,7 @@
                     "type": "product_attribute"
                 }
             ],
-            "nemoReady": true
+            "nemoReadyRecord": true
         }
     ],
     "hasMoreRecords": false

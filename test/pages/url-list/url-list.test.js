@@ -141,7 +141,7 @@ describe('URL List Page', function () {
                 },
                 {
                     cssClass: 'col-md-1',
-                    key: 'nemoReady',
+                    key: 'nemoReadyRecord',
                     label: 'Nemo',
                     sorting: false,
                     isHidden: true

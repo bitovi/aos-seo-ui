@@ -23,7 +23,7 @@
                             {{#is key 'status'}}
                                 <span class="{{status}}-label">{{status}}</span>
                             {{else}}
-                                {{#is key 'nemoReady'}}
+                                {{#is key 'nemoReadyRecord'}}
                                     <span class="icon-selected icon-lg"></span>
                                 {{else}}
                                     {{#is key 'pageTitle'}}
