@@ -171,7 +171,7 @@ module.exports = can.Map.extend({
                             var respState = resp.state;
                             var message;
 
-                            if (self.attr('params.nemoReady')) {
+                            if (self.attr('params.nemoReadyExport')) {
                                 message = 'The file will download momentarily, NOTE: Export will not include pages with product attributes for page title or description';
                             } else {
                                 message = 'The file will download momentarily.';
@@ -252,7 +252,7 @@ module.exports = can.Map.extend({
     exportNemoReadyFile: function () {
         this.buildParams({
             exportAll: true,
-            nemoReady: true
+            nemoReadyExport: true
         });
 
         this.doExport();

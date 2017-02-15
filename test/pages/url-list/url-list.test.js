@@ -132,12 +132,19 @@ describe('URL List Page', function () {
                 {
                     cssClass: 'col-md-1',
                     key: 'pageType',
-                    label: 'Page Type'
+                    label: 'Type'
                 },
                 {
                     cssClass: 'col-md-2',
                     key: 'status',
                     label: 'Status'
+                },
+                {
+                    cssClass: 'col-md-1',
+                    key: 'nemoReadyRecord',
+                    label: 'Nemo',
+                    sorting: false,
+                    isHidden: true
                 }
             ]);
         });
