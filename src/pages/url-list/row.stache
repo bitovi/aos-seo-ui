@@ -46,6 +46,12 @@
                                                                 {{name}}
                                                             </li>
                                                         {{/case}}
+                                                        {{#case "node_data"}}
+                                                            <li>
+                                                                <span class="indicator-node-data">n</span>
+                                                                {{name}}
+                                                            </li>
+                                                        {{/case}}
                                                         {{#default}}
                                                             <li>
                                                                 {{#if link}}
@@ -86,6 +92,12 @@
                                                             {{#case "product_attribute"}}
                                                                 <li>
                                                                     <span class="indicator-product-attribute">a</span>
+                                                                    {{name}}
+                                                                </li>
+                                                            {{/case}}
+                                                            {{#case "node_data"}}
+                                                                <li>
+                                                                    <span class="indicator-node-data">n</span>
                                                                     {{name}}
                                                                 </li>
                                                             {{/case}}

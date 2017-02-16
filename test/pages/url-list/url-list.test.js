@@ -478,12 +478,12 @@ describe('URL List Page', function () {
             });
 
             it('displays the page title in segments', function () {
-                expect($resultTitle.find('.page-title-value').length).toEqual(5);
+                expect($resultTitle.find('.page-title-value').length).toEqual(6);
                 expect($resultTitle.find('.page-title-value').eq(3).text().trim()).toEqual('iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)');
             });
 
             it('displays a key path for each title segment', function () {
-                expect($resultTitle.find('.title-anatomy-key-path > li').length).toEqual(5);
+                expect($resultTitle.find('.title-anatomy-key-path > li').length).toEqual(6);
                 expect($resultTitle.find('.title-anatomy-key-path > li').eq(3).text().trim()).toEqual('store.seo.full.pagetitle');
             });
 
@@ -521,6 +521,23 @@ describe('URL List Page', function () {
                 });
             });
 
+            describe('when the title anatomy type is node_data', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(5);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.indicator-node-data')).toBeVisible();
+                    expect($keyPath.find('.indicator-node-data').text().trim()).toEqual('n');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
+
             describe('when a key path does not have a link property', function () {
                 var $keyPaths;
 
@@ -535,8 +552,12 @@ describe('URL List Page', function () {
                 });
 
                 it('displays a key icon next to the key path', function () {
-                    $keyPaths.each(function () {
-                        expect($(this).find('.icon-key').length).toEqual(1);
+                    $keyPaths.each(function (index, element) {
+                        if (index < 4) {
+                            expect($(this).find('.icon-key').length).toEqual(1);
+                        } else {
+                            expect($(this).find('.icon-key').length).toEqual(0);
+                        }
                     });
                 });
             });
@@ -581,12 +602,12 @@ describe('URL List Page', function () {
             });
 
             it('displays the description in segments', function () {
-                expect($resultTitle.find('.description-value').length).toEqual(2);
+                expect($resultTitle.find('.description-value').length).toEqual(3);
                 expect($resultTitle.find('.description-value').eq(0).text().trim()).toEqual('store.seo.full.description');
             });
 
             it('displays a key path for each description segment', function () {
-                expect($resultTitle.find('.description-anatomy-key-path > li').length).toEqual(2);
+                expect($resultTitle.find('.description-anatomy-key-path > li').length).toEqual(3);
                 expect($resultTitle.find('.description-anatomy-key-path > li').eq(0).text().trim()).toEqual('productMetaDescription');
             });
 
@@ -617,6 +638,23 @@ describe('URL List Page', function () {
                 it('displays an attribute icon next to the key path', function () {
                     expect($keyPath.find('.indicator-product-attribute')).toBeVisible();
                     expect($keyPath.find('.indicator-product-attribute').text().trim()).toEqual('a');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
+
+            describe('when the description anatomy type is node_data', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(2);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.indicator-node-data')).toBeVisible();
+                    expect($keyPath.find('.indicator-node-data').text().trim()).toEqual('n');
                 });
 
                 it('does not create a link', function () {

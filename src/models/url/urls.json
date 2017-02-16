@@ -45,6 +45,11 @@
                     "name": "displayName",
                     "type": "product_attribute",
                     "value": "iPad Air 2 Wi-Fi 128GB - Gold"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "url": "/ipod-classic/",
@@ -91,6 +96,11 @@
                     "name": "displayName",
                     "type": "product_attribute",
                     "value": "iPad Air 2 Wi-Fi 128GB - Gold"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "url": "/us_smb_78313/shop/product/D5690ZM/A",
@@ -266,6 +276,11 @@
                     "name": "store.seo.full.pagetitle",
                     "type": "text_asset",
                     "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
@@ -315,6 +330,11 @@
                     "name": "store.seo.full.pagetitle",
                     "type": "text_asset",
                     "value": "Clé USB sans fil Connect Wireless Stick de SanDisk  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "url": "/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
@@ -359,6 +379,11 @@
                     "name": "productPageTitle",
                     "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드",
                     "type": "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "descriptionAnatomy": [
@@ -371,6 +396,11 @@
                     "name" : "productMetaDescription_temp",
                     "value" : "store.seo.full.description",
                     "type" : "text_asset"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "nemoReadyRecord": true
@@ -414,6 +444,11 @@
                     "name" : "productPageTitle",
                     "value" : "Incase 13형 ICON Sleeve with Tensaerlite",
                     "type" : "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "descriptionAnatomy" : [
@@ -427,6 +462,11 @@
                     "name": "productMetaDescription1",
                     "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
                     "type": "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
                 }
             ],
             "nemoReadyRecord": true
