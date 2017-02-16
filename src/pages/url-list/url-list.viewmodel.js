@@ -174,6 +174,16 @@ module.exports = can.Map.extend({
                             parameter: 'dateRanges'
                         }
                     ]
+                },
+                {
+                    btnLabel: 'Nemo Ready',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Nemo Ready:',
+                            inputType: 'radio',
+                            parameter: 'nemoReadyRecord'
+                        }
+                    ]
                 }
             ]
         },

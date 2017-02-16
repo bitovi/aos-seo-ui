@@ -91,6 +91,16 @@ var renderPage = function (newState) {
                         parameter: 'dateRanges'
                     }
                 ]
+            },
+            {
+                btnLabel: 'Nemo Ready',
+                filterGroups: [
+                    {
+                        groupTitle: 'Nemo Ready:',
+                        inputType: 'radio',
+                        parameter: 'nemoReadyRecord'
+                    }
+                ]
             }
         ]
     }));
@@ -170,7 +180,7 @@ describe('List Page', function () {
 
         describe('filterFields property', function () {
             it('initially contains the filter parameter names', function () {
-                expect(vm.attr('filterFields')).toEqual(['regions', 'countries', 'dateRanges']);
+                expect(vm.attr('filterFields')).toEqual(['regions', 'countries', 'dateRanges', 'nemoReadyRecord']);
             });
         });
 
