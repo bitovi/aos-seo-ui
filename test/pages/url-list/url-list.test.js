@@ -231,6 +231,16 @@ describe('URL List Page', function () {
                             parameter: 'dateRanges'
                         }
                     ]
+                },
+                {
+                    btnLabel: 'Nemo Ready',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Nemo Ready:',
+                            inputType: 'radio',
+                            parameter: 'nemoReadyRecord'
+                        }
+                    ]
                 }
             ]);
         });
@@ -504,7 +514,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('when the title anatomy type is product_attribute', function () {
+            describe('when the title anatomy type is product-attribute', function () {
                 var $keyPath;
 
                 beforeEach(function () {
@@ -512,8 +522,8 @@ describe('URL List Page', function () {
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.indicator-product-attribute')).toBeVisible();
-                    expect($keyPath.find('.indicator-product-attribute').text().trim()).toEqual('a');
+                    expect($keyPath.find('.product-attribute')).toBeVisible();
+                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('a');
                 });
 
                 it('does not create a link', function () {
@@ -521,7 +531,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('when the title anatomy type is node_data', function () {
+            describe('when the title anatomy type is node-data', function () {
                 var $keyPath;
 
                 beforeEach(function () {
@@ -529,8 +539,8 @@ describe('URL List Page', function () {
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.indicator-node-data')).toBeVisible();
-                    expect($keyPath.find('.indicator-node-data').text().trim()).toEqual('n');
+                    expect($keyPath.find('.node-data')).toBeVisible();
+                    expect($keyPath.find('.node-data').text().trim()).toEqual('n');
                 });
 
                 it('does not create a link', function () {
@@ -628,7 +638,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('when the description anatomy type is product_attribute', function () {
+            describe('when the description anatomy type is product-attribute', function () {
                 var $keyPath;
 
                 beforeEach(function () {
@@ -636,8 +646,8 @@ describe('URL List Page', function () {
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.indicator-product-attribute')).toBeVisible();
-                    expect($keyPath.find('.indicator-product-attribute').text().trim()).toEqual('a');
+                    expect($keyPath.find('.product-attribute')).toBeVisible();
+                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('a');
                 });
 
                 it('does not create a link', function () {
@@ -645,7 +655,7 @@ describe('URL List Page', function () {
                 });
             });
 
-            describe('when the description anatomy type is node_data', function () {
+            describe('when the description anatomy type is node-data', function () {
                 var $keyPath;
 
                 beforeEach(function () {
@@ -653,8 +663,8 @@ describe('URL List Page', function () {
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.indicator-node-data')).toBeVisible();
-                    expect($keyPath.find('.indicator-node-data').text().trim()).toEqual('n');
+                    expect($keyPath.find('.node-data')).toBeVisible();
+                    expect($keyPath.find('.node-data').text().trim()).toEqual('n');
                 });
 
                 it('does not create a link', function () {

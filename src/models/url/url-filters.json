@@ -343,6 +343,15 @@
                     "value": "custom-range"
                 }
             ]
+        },
+        {
+            "parameter": "nemoReadyRecord",
+            "options": [
+                {
+                    "label": "Nemo Ready Record",
+                    "value": "nemo-ready-record"
+                }
+            ]
         }
     ]
 }

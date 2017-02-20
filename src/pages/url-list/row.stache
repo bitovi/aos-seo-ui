@@ -42,13 +42,13 @@
                                                     {{#switch type}}
                                                         {{#case "product_attribute"}}
                                                             <li>
-                                                                <span class="indicator-product-attribute">a</span>
+                                                                <span class="type-indicator product-attribute">a</span>
                                                                 {{name}}
                                                             </li>
                                                         {{/case}}
                                                         {{#case "node_data"}}
                                                             <li>
-                                                                <span class="indicator-node-data">n</span>
+                                                                <span class="type-indicator node-data">n</span>
                                                                 {{name}}
                                                             </li>
                                                         {{/case}}
@@ -91,13 +91,13 @@
                                                         {{#switch type}}
                                                             {{#case "product_attribute"}}
                                                                 <li>
-                                                                    <span class="indicator-product-attribute">a</span>
+                                                                    <span class="type-indicator product-attribute">a</span>
                                                                     {{name}}
                                                                 </li>
                                                             {{/case}}
                                                             {{#case "node_data"}}
                                                                 <li>
-                                                                    <span class="indicator-node-data">n</span>
+                                                                    <span class="type-indicator node-data">n</span>
                                                                     {{name}}
                                                                 </li>
                                                             {{/case}}
