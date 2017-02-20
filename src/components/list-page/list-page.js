@@ -167,6 +167,7 @@ module.exports = can.Component.extend({
         },
 
         '{state} description': 'searchDidChange',
+        '{state} nemoReadyRecord': 'searchDidChange',
         '{state} pageTitle': 'searchDidChange',
         '{state} pageTypes': 'searchDidChange',
         '{state} partNumber': 'searchDidChange',
