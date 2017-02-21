@@ -268,8 +268,8 @@
                     "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
                 }
             ],
-            "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
-            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pav%C3%A9-num%C3%A9rique-fran%C3%A7ais",
+            "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français",
             "nemoReadyRecord": true
         },
         {
@@ -317,13 +317,13 @@
                     "value": "Clé USB sans fil Connect Wireless Stick de SanDisk  - Apple  (FR)"
                 }
             ],
-            "url": "/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
-            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/HJY72ZM/A/cl%C3%A9-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk"
+            "url": "/fr/shop/product/HJY72ZM/A/clé-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/HJY72ZM/A/clé-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk"
         },
         {
             "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
-            "url": "/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-%EC%9D%B4%EC%96%B4%ED%8F%B0-%EC%82%AC%EC%9D%B4%EB%A0%8C-%EB%A0%88%EB%93%9C",
-            "urlAspenLink": "http://wwwqa1.corp.apple.com/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-%EC%9D%B4%EC%96%B4%ED%8F%B0-%EC%82%AC%EC%9D%B4%EB%A0%8C-%EB%A0%88%EB%93%9C",
+            "url": "/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-이어폰-사이렌-레드",
+            "urlAspenLink": "http://wwwqa1.corp.apple.com/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-이어폰-사이렌-레드",
             "partNumber": "MNLY2ZP/A",
             "pageTitle": "Powerbeats3 Wireless 이어폰 - 사이렌 레드 - Apple (KR)",
             "pageType": "pdp",
@@ -377,8 +377,8 @@
         },
         {
             "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
-            "url" : "/kr/shop/product/HG5J2ZM/B/incase-13%ED%98%95-icon-sleeve-with-tensaerlite-macbook-pro-retina-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4",
-            "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13%ED%98%95-icon-sleeve-with-tensaerlite-macbook-pro-retina-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4",
+            "url" : "/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
+            "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
             "partNumber" : "HG5J2ZM/B",
             "pageTitle" : "Incase 13형 ICON Sleeve with Tensaerlite - Apple (KR)",
             "pageType" : "pdp",

@@ -79,11 +79,7 @@ module.exports = can.Model.extend(
             },
 
             url: {
-                type: function (value) {
-                    if (value) {
-                        return decodeURI(value);
-                    }
-                }
+                type: 'string'
             },
 
             urlAspenLink: {
