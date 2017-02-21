@@ -67,10 +67,8 @@ seo-url-list {
         margin-top: @padding-large-vertical;
     }
 
-    .indicator-product-attribute {
-        background: @thunderCloud;
+    .type-indicator {
         border-radius: @font-size-small;
-        color: white;
         display: inline-block;
         font-size: @font-size-small - 1;
         font-weight: normal;
@@ -78,5 +76,15 @@ seo-url-list {
         line-height: @font-size-small - 1;
         text-align: center;
         width: @font-size-small;
+
+        &.product-attribute {
+            background: @thunderCloud;
+            color: white;
+        }
+
+        &.node-data {
+            background: @pacific;
+            color: @thunderCloud;
+        }
     }
 }
