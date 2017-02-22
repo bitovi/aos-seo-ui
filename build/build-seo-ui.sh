@@ -18,7 +18,7 @@ NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=2.2.0
+MVN_VERSION=2.2.1-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -168,7 +168,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/releases \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
 
 #
