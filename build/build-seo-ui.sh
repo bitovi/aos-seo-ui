@@ -15,8 +15,6 @@ LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 
 NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
-NODE_MODULES_ARCHIVE=node-modules-seo-linux-x64
-POM_VERSION=1.0-SNAPSHOT
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
@@ -39,7 +37,7 @@ if [[ "$PLATFORM" == 'Darwin' ]]; then
 fi
 
 # Set up the paths
-export NODE_PATH="/nc1_storeci2_workspace/Bamboo/Resources/seo-ui/node_modules"
+export NODE_PATH="${WORKSPACE}/node_modules"
 GULP_BIN="$NODE_PATH/.bin/gulp"
 
 log "--Node Environment Variables--"
