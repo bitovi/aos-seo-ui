@@ -8,25 +8,31 @@
             menu-heading="Export URLs:"
         ></pui-action-bar-item>
 
-        <pui-action-bar-item action="exportCsv">
-            Current View
+        <pui-action-bar-item
+            action="exportCsv"
+        >
+            Current Page
         </pui-action-bar-item>
 
         {{#if filterSearchApplied}}
-            <pui-action-bar-item action="exportAllCsv">
-                Export All (.csv)
+            <pui-action-bar-item
+                action="exportAllCsv"
+            >
+                Export All Results (.csv)
             </pui-action-bar-item>
         {{/if}}
 
-        <pui-action-bar-item action="exportNemoReadyFile">
+        <pui-action-bar-item
+            action="exportNemoReadyFile"
+        >
             Nemo-Ready File
         </pui-action-bar-item>
-
     </pui-action-bar-dropdown>
+
     {{#isLoading}}
         <div class="loading-indicator-container">
             <div class="icon-spinner spin-icon"></div>
-            <span class="content">Exporting the URLs..</span>
+            <span class="content">Exporting the URLs…</span>
         </div>
     {{/isLoading}}
 </pui-action-bar-menu>

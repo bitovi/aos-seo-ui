@@ -131,7 +131,6 @@ describe('Export URLs', function () {
         });
 
         describe('values/types of the export related properties', function () {
-
             it('has default value for notification', function () {
                 expect(vm.attr('notifications').length).toBe(0);
             });
@@ -162,7 +161,6 @@ describe('Export URLs', function () {
         });
 
         describe('when doExport called', function () {
-
             beforeEach(function () {
                 vm.doExport();
             });
@@ -170,7 +168,6 @@ describe('Export URLs', function () {
             it('shows the notification', function () {
                 expect(vm.attr('notifications').length).toBe(1);
             });
-
         });
     });
 
@@ -181,6 +178,7 @@ describe('Export URLs', function () {
                 'csrfHeader': 'X-AOS-CSRF',
                 'csrfParameter': '_aos_csrf'
             };
+
             renderPage();
         });
 
@@ -238,12 +236,12 @@ describe('Export URLs', function () {
                     expect($menuLinks.length).toEqual(3);
                 });
 
-                it('has a Current View option', function () {
-                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View');
+                it('has a Current Page option', function () {
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current Page');
                 });
 
                 it('has an Export All option', function () {
-                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All (.csv)');
+                    expect($menuLinks.eq(1).text().trim()).toEqual('Export All Results (.csv)');
                 });
 
                 it('has an Nemo-Ready option', function () {
@@ -262,8 +260,8 @@ describe('Export URLs', function () {
                     expect($menuLinks.length).toEqual(2);
                 });
 
-                it('has a Current View option', function () {
-                    expect($menuLinks.eq(0).text().trim()).toEqual('Current View');
+                it('has a Current Page option', function () {
+                    expect($menuLinks.eq(0).text().trim()).toEqual('Current Page');
                 });
 
                 it('has an Nemo-Ready option', function () {
