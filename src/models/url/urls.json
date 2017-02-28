@@ -16,6 +16,7 @@
             "region": "AMR",
             "segment": "All",
             "status": "modified",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [
                 {
                     "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
@@ -67,6 +68,7 @@
             "region": "amr",
             "segment": "smb",
             "status": "modified",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [
                 {
                     "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
@@ -118,6 +120,7 @@
             "region": "AMR",
             "segment": "All",
             "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/macbook/"
         },
@@ -132,6 +135,7 @@
             "region": "EMEA",
             "segment": "Internal EPP",
             "status": "end-of-life",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/macbook-air/",
             "nemoReadyRecord": true
@@ -147,6 +151,7 @@
             "region": "APAC",
             "segment": "Direct",
             "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipad-wifi/"
         },
@@ -161,6 +166,7 @@
             "region": "JAPAN",
             "segment": "All",
             "status": "modified",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipad-3g/"
         },
@@ -175,6 +181,7 @@
             "region": "EMEA",
             "segment": "Small Business",
             "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipad-2-wifi/",
             "nemoReadyRecord": true
@@ -190,6 +197,7 @@
             "region": "APAC",
             "segment": "Apple",
             "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipad-2-3g/"
         },
@@ -204,6 +212,7 @@
             "region": "AMR",
             "segment": "Edu Individual",
             "status": "modified",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipod-nano/",
             "nemoReadyRecord": true
@@ -219,6 +228,7 @@
             "region": "AMR",
             "segment": "Edu Individual",
             "status": "unchanged",
+            "storeFrontAlias": "cn-smb",
             "titleAnatomy": [],
             "url": "/ipod-mini/"
         },
@@ -233,6 +243,7 @@
             "region": "AMR",
             "segment": "Direct",
             "status": "end-of-life",
+            "storeFrontAlias": "cn-smb",
             "url": "/ipod-touch/",
             "nemoReadyRecord": true
         },
@@ -255,6 +266,7 @@
             "region": "emea",
             "segment": "consumer",
             "status": "modified",
+            "storeFrontAlias": "ru",
             "titleAnatomy": [
                 {
                     "name": "store.seo.hyphen",
@@ -306,6 +318,7 @@
             "region": "emea",
             "segment": "consumer",
             "status": "modified",
+            "storeFrontAlias": "ru",
             "titleAnatomy": [
                 {
                     "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
@@ -354,6 +367,7 @@
             "createDate": "2016-10-18T07:00:00Z",
             "modifyDate": "2016-12-19T21:45:42Z",
             "status": "unchanged",
+            "storeFrontAlias": "uk-business",
             "titleAnatomy": [
                 {
                     "name": "store.seo.hyphen",
@@ -419,6 +433,7 @@
             "createDate" : "2015-08-11T07:00:00Z",
             "modifyDate" : "2016-12-19T21:45:34Z",
             "status" : "unchanged",
+            "storeFrontAlias": "uk-business",
             "titleAnatomy" : [
                 {
                     "name" : "store.seo.hyphen",
