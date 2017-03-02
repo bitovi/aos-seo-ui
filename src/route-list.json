@@ -30,5 +30,12 @@
         },
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "SEO Metadata"
+    },
+    "generate": {
+        "params": {
+            "page": "generate-page"
+        },
+        "template": "<seo-generate-page state=\"{.}\"></seo-generate-page>",
+        "title": "Generate Publishing Ready File"
     }
 }

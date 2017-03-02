@@ -37,6 +37,35 @@ module.exports = can.Component.extend({
             var user = this.attr('state.user');
             user = can.isFunction(user) ? user() : user;
             return user.hasAction(action) ? options.fn(this) : options.inverse(this);
+        },
+
+        /**
+         * @function header.viewModel.activeTab activeTab
+         * @description Sets the class for the current active tab.
+         * @return {String} The active tab class
+         */
+        activeTab: function (url) {
+            var route = can.route.attr('route');
+            var activeTabClass;
+
+            url = url && url.isComputed ? url() : '';
+
+            // Adjustment for home route, which can be either '' or url-list
+            if (route !== '' && url === '') {
+                url = 'url-list';
+            }
+
+            if (route && url) {
+                route = route.indexOf('/') ? _.first(route.split('/')) : route;
+            }
+
+            if (route === '') {
+                activeTabClass = route === url ? 'selected-tab' : '';
+            } else {
+                activeTabClass = url.indexOf(route) > -1 ? 'selected-tab' : '';
+            }
+
+            return activeTabClass;
         }
     }
 });

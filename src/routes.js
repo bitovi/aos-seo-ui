@@ -10,6 +10,7 @@ require('can/route/pushstate/pushstate');
 // routes: https://github.com/substack/node-browserify/issues/377
 require('seo-ui/pages/home/home.js');
 require('seo-ui/pages/url-list/url-list.js');
+require('seo-ui/pages/generate-page/generate-page.js');
 
 var routes = require('./route-list.json');
 
