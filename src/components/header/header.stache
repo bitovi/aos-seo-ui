@@ -55,6 +55,14 @@
                     SEO Metadata
                 </a>
             </li>
+            <li>
+                <a
+                    class="review-page"
+                    href="{{link reviewUrl}}"
+                >
+                    Review
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

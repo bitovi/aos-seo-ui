@@ -30,5 +30,18 @@
         },
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "SEO Metadata"
+    },
+    "review": {
+        "layout": {
+            "hideFooter": false,
+            "hideHeader": false,
+            "hideSubHeader": false
+        },
+        "params": {
+            "page": "review",
+            "pageTitle": ""
+        },
+        "template": "<seo-review state=\"{.}\"></seo-review>",
+        "title": "Review"
     }
 }

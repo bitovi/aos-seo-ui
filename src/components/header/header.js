@@ -14,6 +14,11 @@ module.exports = can.Component.extend({
     template: template,
     viewModel: ViewModel,
     events: {
+        /**
+         * @description Invoked when .check-saved-state-js is clicked
+         * @param {Object} $el the clicked jquery element
+         * @param {Object} ev the event object
+         */
         '.check-saved-state-js click': function ($el, ev) {
             var self = this;
             var isUnsaved = this.viewModel.attr('state.unsaved');
@@ -23,8 +28,24 @@ module.exports = can.Component.extend({
                     $el.trigger('click');
                 });
             }
+        },
+         
+        /**
+         * @description Invoked when a navbar item is clicked
+         * @param {Object} $el the clicked jquery element
+         * @param {Object} ev the event object
+         */
+        '.navbar li click': function ($el, ev) {
+            var navbarItemList = $('.navbar li');
+
+            can.each(navbarItemList, function(item) {
+                $(item).removeClass('selected-tab');
+            });
+
+            $($el).addClass('selected-tab');
         }
     },
+
     helpers: {
         /**
          * @function header.userHasAction userHasAction
