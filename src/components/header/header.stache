@@ -55,10 +55,10 @@
                     SEO Metadata
                 </a>
             </li>
-            <li class="{{activeTab generateUrl}}">
+            <li class="{{activeTab requestUrl}}">
                 <a
                     class="check-saved-state-js"
-                    href="{{link generateUrl}}"
+                    href="{{link requestUrl}}"
                 >
                     Generate
                 </a>
