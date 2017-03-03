@@ -23,7 +23,7 @@
       <ul>
           <li> Only <b>.csv</b> files are supported. </li>
           <li> Input maximum of 500 URLs. </li>
-          <li> Make sure the file follows the formatting requirements. </li>
+          <li> Make sure the file follows the <a href="">formatting requirements.</a> </li>
       <ul>
     </div>
 </div>
