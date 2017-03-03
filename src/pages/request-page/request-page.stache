@@ -7,4 +7,30 @@
         This file will contain the key paths found on the provided URLs.
     </span>
 </div>
-
+<br/>
+<div class="generate-file-upload">
+    <div class="form">
+        <pui-file-upload
+            file-types="{fileTypes}"
+            is-multiple="{useMultiFileMode}"
+            upload-files="{uploadFiles}"
+            is-valid="{readyToValidate}"
+            files="{files}">
+        </pui-file-upload>
+    </div>
+    <br/>
+    <div class="content">
+      <ul>
+          <li> Only CSV Files are supported. </li>
+          <li> Input maximum of 500 URLs. </li>
+          <li> Make sure the file follows the formatting requirements. </li>
+      <ul>
+    </div>
+</div>
+<br/>
+<button
+  type="button"
+  class="btn btn-secondary"
+  can-click="">
+  Generate File
+</button>
