@@ -1,7 +1,10 @@
-<h2>
-Generate Publishing Ready File
-</h2>
-<span class="page-info">
-Use this tool to generate a Publishing Ready File that can be updated to Geppetto. <br/>
-This file will contain the key paths found on the provided URLs.
-</span>
+<div>
+    <h2>
+        Generate Publishing Ready File
+    </h2>
+    <span class="page-info">
+        Use this tool to generate a Publishing Ready File that can be updated to Geppetto. <br/>
+        This file will contain the key paths found on the provided URLs.
+    </span>
+</div>
+
