@@ -27,20 +27,7 @@ module.exports = can.Component.extend({
     },
     helpers: {
         /**
-         * @function header.userHasAction userHasAction
-         * @description Checks  the user permissions
-         * @param {String} action action that we are passing to check users permissions
-         * @param {Object} options current context
-         * @return {String} user permission to access the app
-         */
-        userHasAction: function (action, options) {
-            var user = this.attr('state.user');
-            user = can.isFunction(user) ? user() : user;
-            return user.hasAction(action) ? options.fn(this) : options.inverse(this);
-        },
-
-        /**
-         * @function header.viewModel.activeTab activeTab
+         * @function header.activeTab activeTab
          * @description Sets the class for the current active tab.
          * @return {String} The active tab class
          */
@@ -66,6 +53,18 @@ module.exports = can.Component.extend({
             }
 
             return activeTabClass;
-        }
+        },
+        /**
+         * @function header.userHasAction userHasAction
+         * @description Checks  the user permissions
+         * @param {String} action action that we are passing to check users permissions
+         * @param {Object} options current context
+         * @return {String} user permission to access the app
+         */
+        userHasAction: function (action, options) {
+            var user = this.attr('state.user');
+            user = can.isFunction(user) ? user() : user;
+            return user.hasAction(action) ? options.fn(this) : options.inverse(this);
+        },
     }
 });
