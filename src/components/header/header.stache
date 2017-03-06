@@ -55,9 +55,9 @@
                     SEO Metadata
                 </a>
             </li>
-            <li>
+            <li class="{{activeTab reviewUrl}}">
                 <a
-                    class="review-page"
+                    class="check-saved-state-js"
                     href="{{link reviewUrl}}"
                 >
                     Review

@@ -1,14 +1,13 @@
 var can = require('can');
 
-var ViewModel = require('./review.viewmodel');
-var template = require('./review.stache!');
+var ViewModel = require('./review-page.viewmodel');
+var template = require('./review-page.stache!');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('seo-ui/components/review-page/review-page');
 
 module.exports = can.Component.extend({
-    tag: 'seo-review',
+    tag: 'seo-review-page',
     template: template,
     viewModel: ViewModel
 });

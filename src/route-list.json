@@ -32,16 +32,10 @@
         "title": "SEO Metadata"
     },
     "review": {
-        "layout": {
-            "hideFooter": false,
-            "hideHeader": false,
-            "hideSubHeader": false
-        },
         "params": {
-            "page": "review",
-            "pageTitle": ""
+            "page": "review-page"
         },
-        "template": "<seo-review state=\"{.}\"></seo-review>",
-        "title": "Review"
+        "template": "<seo-review-page state=\"{.}\"></seo-review-page>",
+        "title": "Review Publishing Ready File"
     }
 }

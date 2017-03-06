@@ -8,10 +8,6 @@ var ViewModel = can.Map.extend({
             value: 'urls',
             type: 'string'
         },
-        reviewUrl: {
-            value: 'review',
-            type: 'string'
-        },
         rulesUrl: {
             value: 'rules',
             type: 'string'
@@ -26,6 +22,10 @@ var ViewModel = can.Map.extend({
         },
         reportsUrl: {
             value: 'reports',
+            type: 'string'
+        },
+        reviewUrl: {
+            value: 'review',
             type: 'string'
         }
     },

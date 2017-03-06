@@ -9,7 +9,7 @@ require('can/route/pushstate/pushstate');
 // name must be a string. So we have to manually require the modules we will use in our
 // routes: https://github.com/substack/node-browserify/issues/377
 require('seo-ui/pages/home/home.js');
-require('seo-ui/pages/review/review.js');
+require('seo-ui/pages/review-page/review-page.js');
 require('seo-ui/pages/url-list/url-list.js');
 
 var routes = require('./route-list.json');

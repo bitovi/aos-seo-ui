@@ -28,21 +28,6 @@ module.exports = can.Component.extend({
                     $el.trigger('click');
                 });
             }
-        },
-         
-        /**
-         * @description Invoked when a navbar item is clicked
-         * @param {Object} $el the clicked jquery element
-         * @param {Object} ev the event object
-         */
-        '.navbar li click': function ($el, ev) {
-            var navbarItemList = $('.navbar li');
-
-            can.each(navbarItemList, function(item) {
-                $(item).removeClass('selected-tab');
-            });
-
-            $($el).addClass('selected-tab');
         }
     },
 
