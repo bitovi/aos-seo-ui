@@ -36,6 +36,6 @@
             "page": "request-page"
         },
         "template": "<seo-request-page state=\"{.}\"></seo-request-page>",
-        "title": "Generate Publishing Ready File"
+        "title": "Generate Publishing-Ready File"
     }
 }
