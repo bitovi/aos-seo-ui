@@ -7,13 +7,11 @@
         This file will contain the key paths found on the provided URLs.
     </span>
 </div>
-<br/>
 <div class="generate-file-upload">
     <div class="form">
         <pui-file-upload>
         </pui-file-upload>
     </div>
-    <br/>
     <div class="content">
       <ul>
           <li>Only <b>.csv</b> files are supported.</li>
@@ -22,11 +20,10 @@
       <ul>
     </div>
 </div>
-<br/>
 <button
-  type="button"
-  class="btn btn-secondary">
-  Generate File
+    type="button"
+    class="btn btn-secondary">
+    Generate File
 </button>
 
 <div class="modal fade" id="formatting-requirements-modal">
