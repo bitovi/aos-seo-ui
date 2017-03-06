@@ -8,7 +8,7 @@ var ViewModel = can.Map.extend({
             value: 'urls',
             type: 'string'
         },
-        requestUrl:{
+        requestUrl: {
             value: 'request',
             type: 'string'
         },

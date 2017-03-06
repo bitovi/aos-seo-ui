@@ -1,4 +1,5 @@
 var can = require('can');
+var _ = require('lodash');
 
 require('can/view/stache/stache');
 require('seo-ui/components/user-menu/user-menu');
