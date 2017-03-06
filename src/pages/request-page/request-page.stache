@@ -65,30 +65,18 @@
                       </div>
                   </div>
               <span>Example (include table headers as shown below):</span>
-                  <div class="container example-container">
-                      <div class="row example-format-header">
-                          <div class="col-sm-6">
-                              URL
-                          </div>
-                          <div class="col-sm-3">
-                              type
-                          </div>
-                          <div class="col-sm-2">
-                              value
-                          </div>
-                      </div>
-                      <div class="row example-format-values">
-                          <div class="col-sm-6">
-                              http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8
-                          </div>
-                          <div class="col-sm-3">
-                              title
-                          </div>
-                          <div class="col-sm-2">
-                              _______ - Mac
-                          </div>
-                    </div>
-                </div>
+                <table class="example-container">
+                    <tr>
+                        <th class="example-table-header">URL</th>
+                        <th class="example-table-header">type</th>
+                        <th class="example-table-header">value</th>
+                    </tr>
+                    <tr>
+                        <td class="example-table-values">http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+                        <td class="example-table-values">title</td>
+                        <td class="example-table-values">_______ - Mac</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
