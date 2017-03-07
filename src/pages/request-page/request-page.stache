@@ -13,11 +13,11 @@
         </pui-file-upload>
     </div>
     <div class="content">
-      <ul>
-          <li>Only <b>.csv</b> files are supported.</li>
-          <li>Input maximum of 500 URLs.</li>
-          <li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal">formatting requirements.</a> </li>
-      <ul>
+        <ul>
+            <li>Only <b>.csv</b> files are supported.</li>
+            <li>Input maximum of 500 URLs.</li>
+            <li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal">formatting requirements.</a> </li>
+        <ul>
     </div>
 </div>
 <button
@@ -64,7 +64,7 @@
                           </div>
                       </div>
                   </div>
-              <span>Example (include table headers as shown below):</span>
+                Example (include table headers as shown below):
                 <table class="example-container">
                     <tr>
                         <th class="example-table-header">URL</th>
