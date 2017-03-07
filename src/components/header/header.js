@@ -55,6 +55,7 @@ module.exports = can.Component.extend({
 
             return activeTabClass;
         },
+
         /**
          * @function header.userHasAction userHasAction
          * @description Checks  the user permissions
