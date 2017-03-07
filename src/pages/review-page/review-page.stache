@@ -1,12 +1,5 @@
-<div>
-    <h2>
-        Review Meta Content & Key Paths
-    </h2>
-    <span class="page-info">
-        <p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
-    </span>
-</div>
-
+<h1>Review Meta Content & Key Paths</h1>
+<p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
 <pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
     <div id="enter-urls" class="tab-pane">
 		<textarea
@@ -32,6 +25,7 @@
 			Clear Field
 		</button>
     </div>
+
     <div id="upload-file" class="tab-pane">
     	<div class="generate-file-upload">
 		    <div class="form-group">
@@ -52,40 +46,39 @@
 		    Generate File
 		</button>
 
-		<div class="modal fade" id="formatting-requirements-modal-review-url">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal">
-		                    <span class="icon-new" aria-hidden="true"></span>
-		                    <span class="sr-only">Close</span>
-		                </button>
-		                <h4>File Formatting Requirements</h4>
-		            </div>
-		            <div class="modal-body">
-		                The format of the input csv file should be as follows:
-		                <div class="container formatting-standards">
-		                    <div class="row">
-		                        <div class="col-sm-1">
-		                            <b>URL:</b>
-		                        </div>
-		                        <div class="col-sm-7">
-		                        	Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.
-		                        </div>
-		                    </div>
-		              		<p class="formatting-example">Example (include table headers as shown below):</p>
-			                <table class="example-container">
-			                    <tr>
-			                        <th class="example-table-header">URL</th>
-			                    </tr>
-			                    <tr>
-			                        <td class="example-table-values">http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
-			                    </tr>
-			                </table>
-		            	</div>
-		        	</div>
-		    	</div>
-			</div>
-		</div>
+		<pui-modal
+		    modal-id="formatting-requirements-modal-review-url"
+		    modal-size="lg"
+		>
+		    <pui-modal-header>
+		        <h4 class="modal-title">
+		            File Formatting Requirements
+		        </h4>
+		    </pui-modal-header>
+
+		    <pui-modal-body>
+		        <h5>The format of the input csv file should be as follows:</h5>
+
+		        <dl class="dl-horizontal">
+                	<dt>URL:</dt>
+                	<dd>Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.</dd>
+                </dl>
+
+		        <h5>Example (include table headers as shown below):</h5>
+
+		        <table class="table table-bordered">
+		            <thead>
+		                <tr>
+		                    <th>URL</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr>
+		                    <td>http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+		                </tr>
+		            </tbody>
+		        </table>
+		    </pui-modal-body>
+		</pui-modal>
     </div>
 </pui-tabs>
