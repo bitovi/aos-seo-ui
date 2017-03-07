@@ -47,7 +47,7 @@
         role="navigation"
     >
         <ul class="nav navbar-nav">
-            <li class="selected-tab">
+            <li class="{{activeTab homeUrl}}">
                 <a
                     class="check-saved-state-js"
                     href="{{link homeUrl}}"

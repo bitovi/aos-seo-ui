@@ -1,1 +1,91 @@
+<div>
+    <h2>
+        Review Meta Content & Key Paths
+    </h2>
+    <span class="page-info">
+        <p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
+    </span>
+</div>
 
+<pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
+    <div id="enter-urls" class="tab-pane">
+		<textarea
+			class="form-control"
+			cols="80"
+			id="urlTexts"
+			name="urlTexts"
+			placeholder="Enter one URL per line or separated by semicolons"
+			rows="8"></textarea>
+		<span class="help-block">
+            Input a maximum of 500 URLs.
+        </span>
+    	<button
+		    class="btn btn-primary"
+		    type="button"
+		>
+		    Generate File
+		</button>
+		<button
+			class="btn btn-secondary"
+		    type="button"
+		>
+			Clear Field
+		</button>
+    </div>
+    <div id="upload-file" class="tab-pane">
+    	<div class="generate-file-upload">
+		    <div class="form-group">
+		        <pui-file-upload></pui-file-upload>
+		    </div>
+		    <div class="content">
+		    	<ul>
+		        	<li>Only <b>.csv</b> files are supported</li>
+		        	<li>Input maximum of 500 URLs</li>
+		        	<li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal">formatting requirements</a></li>
+		    	<ul>
+			</div>
+		</div>
+		<button
+		    type="button"
+		    class="btn btn-primary"
+		>
+		    Generate File
+		</button>
+
+		<div class="modal fade" id="formatting-requirements-modal">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal">
+		                    <span class="icon-new" aria-hidden="true"></span>
+		                    <span class="sr-only">Close</span>
+		                </button>
+		                <h4>File Formatting Requirements</h4>
+		            </div>
+		            <div class="modal-body">
+		                The format of the input csv file should be as follows:
+		                <div class="container formatting-standards">
+		                    <div class="row">
+		                        <div class="col-sm-1">
+		                            <b>URL:</b>
+		                        </div>
+		                        <div class="col-sm-7">
+		                        	Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.
+		                        </div>
+		                    </div>
+		              		<span>Example (include table headers as shown below):</span>
+			                <table class="example-container">
+			                    <tr>
+			                        <th class="example-table-header">URL</th>
+			                    </tr>
+			                    <tr>
+			                        <td class="example-table-values">http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+			                    </tr>
+			                </table>
+		            	</div>
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+    </div>
+</pui-tabs>
