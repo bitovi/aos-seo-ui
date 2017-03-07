@@ -6,6 +6,7 @@ var template = require('./request-page.stache!');
 require('can/map/define/define');
 require('can/view/stache/stache');
 require('pui/components/file-upload/file-upload');
+require('pui/components/modal/modal');
 require('bootstrap/js/modal');
 
 module.exports = can.Component.extend({

@@ -1,11 +1,9 @@
+<h1>
+    Generate Publishing-Ready File
+</h1>
 <div>
-    <h2>
-        Generate Publishing-Ready File
-    </h2>
-    <span class="page-info">
-        <p>Use this tool to generate a Publishing-Ready File that can be updated to Geppetto.</p>
-        <p>This file will contain the key paths found on the provided URLs.</p>
-    </span>
+    <p>Use this tool to generate a Publishing-Ready File that can be updated to Geppetto.</p>
+    <p>This file will contain the key paths found on the provided URLs.</p>
 </div>
 <div class="generate-file-upload">
     <div class="form">
@@ -26,58 +24,47 @@
     Generate File
 </button>
 
-<div class="modal fade" id="formatting-requirements-modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span class="icon-new" aria-hidden="true"></span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4>File Formatting Requirements</h4>
-            </div>
-            <div class="modal-body">
-                The format of the input csv file should be as follows :
-                <div class="container formatting-standards">
-                    <div class="row">
-                        <div class="col-sm-1">
-                            <b>URL:</b>
-                        </div>
-                        <div class="col-sm-7">
-                            Enter the actual Unique URL/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-1">
-                            <b>type:<b>
-                        </div>
-                        <div class="col-sm-7">
-                            Enter the value "title" if its the page title and "meta" if its the meta description of the URL in column 1 that needs to be overridden.
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-sm-1">
-                              <b>value:</b>
-                          </div>
-                          <div class="col-sm-7">
-                              Enter the actual localized value of the page title or meta description that needs to appear on the respective AOS pages. (Unencoded)
-                          </div>
-                      </div>
-                  </div>
-                Example (include table headers as shown below):
-                <table class="example-container">
-                    <tr>
-                        <th class="example-table-header">URL</th>
-                        <th class="example-table-header">type</th>
-                        <th class="example-table-header">value</th>
-                    </tr>
-                    <tr>
-                        <td class="example-table-values">http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
-                        <td class="example-table-values">title</td>
-                        <td class="example-table-values">_______ - Mac</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+<pui-modal
+    modal-id="formatting-requirements-modal"
+    modal-size="lg"
+>
+    <pui-modal-header>
+        <h4 class="modal-title">
+            File Formatting Requirements
+        </h4>
+    </pui-modal-header>
+
+    <pui-modal-body>
+        <h5>The format of the input csv file should be as follows:</h5>
+
+        <dl class="dl-horizontal">
+            <dt>URL:</dt>
+            <dd>Enter the actual Unique URL/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.</dd>
+
+            <dt>type:</dt>
+            <dd>Enter the value "title" if its the page title and "meta" if its the meta description of the URL in column 1 that needs to be overridden.</dd>
+
+            <dt>value:</dt>
+            <dd>Enter the actual localized value of the page title or meta description that needs to appear on the respective AOS pages. (Unencoded)</dd>
+        </dl>
+
+        <h5>Example (include table headers as shown below):</h5>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>type</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+                    <td>title</td>
+                    <td>_______ - Mac</td>
+                </tr>
+            </tbody>
+        </table>
+    </pui-modal-body>
+</pui-modal>
