@@ -36,6 +36,6 @@
             "page": "review-page"
         },
         "template": "<seo-review-page state=\"{.}\"></seo-review-page>",
-        "title": "Review Publishing Ready File"
+        "title": "Publishing Ready"
     }
 }

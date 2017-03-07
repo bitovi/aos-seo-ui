@@ -41,7 +41,7 @@
 		    	<ul>
 		        	<li>Only <b>.csv</b> files are supported</li>
 		        	<li>Input maximum of 500 URLs</li>
-		        	<li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal">formatting requirements</a></li>
+		        	<li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal-review-url">formatting requirements</a></li>
 		    	<ul>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 		    Generate File
 		</button>
 
-		<div class="modal fade" id="formatting-requirements-modal">
+		<div class="modal fade" id="formatting-requirements-modal-review-url">
 		    <div class="modal-dialog">
 		        <div class="modal-content">
 		            <div class="modal-header">
@@ -73,7 +73,7 @@
 		                        	Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.
 		                        </div>
 		                    </div>
-		              		<span>Example (include table headers as shown below):</span>
+		              		<p class="formatting-example">Example (include table headers as shown below):</p>
 			                <table class="example-container">
 			                    <tr>
 			                        <th class="example-table-header">URL</th>
