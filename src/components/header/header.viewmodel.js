@@ -8,8 +8,8 @@ var ViewModel = can.Map.extend({
             value: 'urls',
             type: 'string'
         },
-        requestUrl: {
-            value: 'request',
+        generateUrl: {
+            value: 'generate',
             type: 'string'
         },
         rulesUrl: {

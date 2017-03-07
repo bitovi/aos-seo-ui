@@ -31,11 +31,11 @@
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "SEO Metadata"
     },
-    "request": {
+    "generate": {
         "params": {
-            "page": "request-page"
+            "page": "generate-page"
         },
-        "template": "<seo-request-page state=\"{.}\"></seo-request-page>",
+        "template": "<seo-generate-page state=\"{.}\"></seo-generate-page>",
         "title": "Generate Publishing-Ready File"
     }
 }

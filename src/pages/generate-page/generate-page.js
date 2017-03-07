@@ -1,7 +1,7 @@
 var can = require('can');
 
-var ViewModel = require('./request-page.viewmodel');
-var template = require('./request-page.stache!');
+var ViewModel = require('./generate-page.viewmodel');
+var template = require('./generate-page.stache!');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
@@ -10,7 +10,7 @@ require('pui/components/modal/modal');
 require('bootstrap/js/modal');
 
 module.exports = can.Component.extend({
-    tag: 'seo-request-page',
+    tag: 'seo-generate-page',
     template: template,
     viewModel: ViewModel
 });
