@@ -1,5 +1,5 @@
 <div class="page-header clearfix">
-    <h1 class="pull-left">{{pageTitle}}</h1>
+    <h1>{{pageTitle}}</h1>
 
     {{! New Item Button }}
     {{^if disableNewItemButton}}
