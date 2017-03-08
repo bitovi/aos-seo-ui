@@ -26,6 +26,23 @@ module.exports = can.Map.extend({
                     name: 'Upload File'
                 }
             ]
+        },
+
+		/**
+		 * @property {boolean} review-page.viewModel.modalOpen modalOpen
+		 * @description shows if the modal window is open or not
+		 */
+        modalOpen: {
+            type: 'boolean',
+            value: false
         }
+    },
+
+    /**
+     * @function review-page.viewmodel.toggleModal toggleModal
+     * @description Function that toggles the Modal when Close button is clicked.
+     */
+    toggleModal: function () {
+        this.attr('modalOpen', !this.attr('modalOpen'));
     }
 });
