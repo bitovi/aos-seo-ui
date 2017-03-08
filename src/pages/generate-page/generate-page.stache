@@ -14,7 +14,7 @@
         <ul>
             <li>Only <b>.csv</b> files are supported.</li>
             <li>Input maximum of 500 URLs.</li>
-            <li>Make sure the file follows the <a href="" data-toggle="modal" data-target="#formatting-requirements-modal">formatting requirements.</a> </li>
+            <li>Make sure the file follows the <a href="" ($click)="toggleModal()">formatting requirements.</a> </li>
         <ul>
     </div>
 </div>
@@ -26,6 +26,7 @@
 
 <pui-modal
     modal-id="formatting-requirements-modal"
+    {(modal-active)}="modalOpen"
     modal-size="lg"
 >
     <pui-modal-header>
