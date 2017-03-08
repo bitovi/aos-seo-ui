@@ -9,6 +9,7 @@ module.exports = can.Map.extend({
             value: false
         }
     },
+
     toggleModal: function () {
         this.attr('modalOpen', !this.attr('modalOpen'));
     }
