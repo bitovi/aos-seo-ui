@@ -47,8 +47,9 @@
 		</button>
 
 		<pui-modal
-		    modal-id="formatting-requirements-modal-review-url"
-		    modal-size="lg"
+			{modal-active}="isActive"
+			modal-id="formatting-requirements-modal-review-url"
+			modal-size="lg"
 		>
 		    <pui-modal-header>
 		        <h4 class="modal-title">

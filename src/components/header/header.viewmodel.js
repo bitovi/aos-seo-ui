@@ -1,5 +1,6 @@
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
+
 require('can/map/define/define');
 
 var ViewModel = can.Map.extend({
@@ -50,6 +51,7 @@ var ViewModel = can.Map.extend({
         url = url && url.isComputed ? url() : '';
         return envVars.rootApp() + '/' + url;
     },
+
     /**
      * @function header.viewmodel.logoutUrl
      * @description The URL that we need to use to logout of the system
@@ -58,7 +60,6 @@ var ViewModel = can.Map.extend({
     logoutUrl: function () {
         return envVars.rootApp() + '/logout';
     }
-
 });
 
 module.exports = ViewModel;
