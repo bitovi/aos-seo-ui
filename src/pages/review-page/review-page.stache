@@ -27,21 +27,34 @@
     </div>
 
     <div id="upload-file" class="tab-pane">
-    	<div class="generate-file-upload">
-		    <div class="form-group">
-		        <pui-file-upload></pui-file-upload>
+    	<div class="generate-file-upload panel panel-default">
+		    <div class="panel-body">
+		        <pui-file-upload>
+		    	</pui-file-upload>
 		    </div>
-		    <div class="content">
-		    	<ul>
-		        	<li>Only <b>.csv</b> files are supported</li>
-		        	<li>Input maximum of 500 URLs</li>
-		        	<li>Make sure the file follows the <button class="btn btn-link modal-trigger" ($click)="toggleModal()" type="button">formatting requirements.</button></li>
-		    	<ul>
-			</div>
+
+		    <ul class="content">
+		    	<li>
+		    		Only <b>.csv</b> files are supported
+		    	</li>
+	        	<li>
+	        		Input maximum of 500 URLs
+	        	</li>
+		        <li>
+		        	Make sure the file follows the 
+		        	<button 
+		        		class="btn btn-link modal-trigger" 
+		        		($click)="toggleModal()" 
+		        		type="button"
+		        	>
+		        		formatting requirements.
+		        	</button>
+		        </li>
+		    <ul>
 		</div>
 		<button
+			class="btn btn-secondary"
 		    type="button"
-		    class="btn btn-primary"
 		>
 		    Generate File
 		</button>
