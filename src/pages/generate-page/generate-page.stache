@@ -14,7 +14,7 @@
         <ul>
             <li>Only <b>.csv</b> files are supported.</li>
             <li>Input maximum of 500 URLs.</li>
-            <li>Make sure the file follows the <a href="" ($click)="toggleModal()">formatting requirements.</a> </li>
+            <li>Make sure the file follows the<button class="btn btn-link modal-trigger" ($click)="toggleModal()" type="button">formatting requirements.</button></li>
         <ul>
     </div>
 </div>
