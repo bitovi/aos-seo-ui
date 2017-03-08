@@ -1,32 +1,48 @@
 <h1>
     Generate Publishing-Ready File
 </h1>
+
 <div>
     <p>Use this tool to generate a Publishing-Ready File that can be updated to Geppetto.</p>
     <p>This file will contain the key paths found on the provided URLs.</p>
 </div>
-<div class="generate-file-upload">
-    <div class="form">
+
+<div class="generate-file-upload panel panel-default">
+    <div class="panel-body">
         <pui-file-upload>
         </pui-file-upload>
-    </div>
-    <div class="content">
-        <ul>
-            <li>Only <b>.csv</b> files are supported.</li>
-            <li>Input maximum of 500 URLs.</li>
-            <li>Make sure the file follows the <button class="btn btn-link modal-trigger" ($click)="toggleModal()" type="button">formatting requirements.</button></li>
+
+        <ul class="content">
+            <li>
+                Only <b>.csv</b> files are supported.
+            </li>
+            <li>
+                Input maximum of 500 URLs.
+            </li>
+            <li>
+                Make sure the file follows the
+                <button
+                    class="btn btn-link modal-trigger"
+                    ($click)="toggleModal()"
+                    type="button"
+                >
+                    formatting requirements.
+                </button>
+            </li>
         <ul>
     </div>
 </div>
+
 <button
+    class="btn btn-secondary"
     type="button"
-    class="btn btn-secondary">
+>
     Generate File
 </button>
 
 <pui-modal
-    modal-id="formatting-requirements-modal"
     {(modal-active)}="modalOpen"
+    modal-id="formatting-requirements-modal"
     modal-size="lg"
 >
     <pui-modal-header>
