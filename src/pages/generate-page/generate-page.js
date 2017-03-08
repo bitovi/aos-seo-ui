@@ -5,6 +5,7 @@ var template = require('./generate-page.stache!');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
+
 require('pui/components/file-upload/file-upload');
 require('pui/components/modal/modal');
 
