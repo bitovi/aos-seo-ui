@@ -63,6 +63,14 @@
                     Generate
                 </a>
             </li>
+            <li class="{{activeTab reviewUrl}}">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link reviewUrl}}"
+                >
+                    Review
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

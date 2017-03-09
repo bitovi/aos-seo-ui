@@ -15,6 +15,11 @@ module.exports = can.Component.extend({
     template: template,
     viewModel: ViewModel,
     events: {
+        /**
+         * @description Invoked when .check-saved-state-js is clicked
+         * @param {Object} $el the clicked jquery element
+         * @param {Object} ev the event object
+         */
         '.check-saved-state-js click': function ($el, ev) {
             var self = this;
             var isUnsaved = this.viewModel.attr('state.unsaved');
@@ -26,6 +31,7 @@ module.exports = can.Component.extend({
             }
         }
     },
+
     helpers: {
         /**
          * @function header.activeTab activeTab
