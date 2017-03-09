@@ -8,128 +8,92 @@
             <td class="{{key}}">
                 {{#if itemValue}}
                     <div class="grid-item-value">
-                        {{#is key 'url'}}
-                            {{#if urlAspenLink}}
-                                <a
+                        {{#switch key}}
+                            {{#case 'url'}}
+                                {{#if urlAspenLink}}
+                                    <a
                                     href="{{urlAspenLink}}"
                                     target="_blank"
-                                >
-                                    {{itemValue}}
-                                </a>
-                            {{else}}
-                                {{itemValue}}
-                            {{/if}}
-                        {{else}}
-                            {{#is key 'status'}}
-                                <span class="{{status}}-label">{{status}}</span>
-                            {{else}}
-                                {{#is key 'nemoReadyRecord'}}
-                                    <span class="icon-selected icon-lg"></span>
+                                    >
+                                        {{itemValue}}
+                                    </a>
                                 {{else}}
-                                    {{#is key 'pageTitle'}}
-                                        {{#if pageTitle.length}}
-                                            {{#each pageTitle}}
-                                                <span
-                                                    class="page-title-value"
-                                                    data-index="{{@index 1}}"
-                                                >
-                                                    {{value}}
-                                                </span>
-                                            {{/each}}
+                                    {{itemValue}}
+                                {{/if}}
+                            {{/case}}
 
-                                            <ol class="title-anatomy-key-path">
-                                                {{#each pageTitle}}
-                                                    {{#switch type}}
-                                                        {{#case "product_attribute"}}
-                                                            <li>
-                                                                <span class="type-indicator product-attribute">a</span>
-                                                                {{name}}
-                                                            </li>
-                                                        {{/case}}
-                                                        {{#case "node_data"}}
-                                                            <li>
-                                                                <span class="type-indicator node-data">n</span>
-                                                                {{name}}
-                                                            </li>
-                                                        {{/case}}
-                                                        {{#default}}
-                                                            <li>
-                                                                {{#if link}}
-                                                                    <a
-                                                                        href="{{link}}"
-                                                                        target="_blank"
-                                                                    >
-                                                                        <span class="icon-key"></span>
-                                                                        {{name}}
-                                                                    </a>
-                                                                {{else}}
-                                                                    <span class="icon-key"></span>
-                                                                    {{name}}
-                                                                {{/if}}
-                                                            </li>
-                                                        {{/default}}
-                                                    {{/switch}}
-                                                {{/each}}
-                                            </ol>
-                                        {{else}}
-                                            {{pageTitle}}
-                                        {{/if}}
-                                    {{else}}
-                                        {{#is key 'description'}}
-                                            {{#if description.length}}
-                                                {{#each description}}
-                                                    <span
-                                                        class="description-value"
-                                                        data-index="{{@index 1}}"
-                                                    >
-                                                        {{value}}
-                                                    </span>
-                                                {{/each}}
+                            {{#case 'status'}}
+                                <span class="{{status}}-label">{{status}}</span>
+                            {{/case}}
 
-                                                <ol class="description-anatomy-key-path">
-                                                    {{#each description}}
-                                                        {{#switch type}}
-                                                            {{#case "product_attribute"}}
-                                                                <li>
-                                                                    <span class="type-indicator product-attribute">a</span>
-                                                                    {{name}}
-                                                                </li>
-                                                            {{/case}}
-                                                            {{#case "node_data"}}
-                                                                <li>
-                                                                    <span class="type-indicator node-data">n</span>
-                                                                    {{name}}
-                                                                </li>
-                                                            {{/case}}
-                                                            {{#default}}
-                                                                <li>
-                                                                    {{#if link}}
-                                                                        <a
-                                                                            href="{{link}}"
-                                                                            target="_blank"
-                                                                        >
-                                                                            <span class="icon-key"></span>
-                                                                            {{name}}
-                                                                        </a>
-                                                                    {{else}}
-                                                                        <span class="icon-key"></span>
-                                                                        {{name}}
-                                                                    {{/if}}
-                                                                </li>
-                                                            {{/default}}
-                                                        {{/switch}}
-                                                    {{/each}}
-                                                </ol>
-                                            {{else}}
-                                                {{description}}
-                                            {{/if}}
-                                        {{else}}
-                                            {{itemValue}}
-                                        {{/is}}
-                                    {{/is}}
-                                {{/is}}
-                            {{/is}}
-                        {{/is}}
+                            {{#case 'nemoReadyRecord'}}
+                                <span class="icon-lg icon-selected"></span>
+                            {{/case}}
+
+                            {{#case 'pageTitle'}}
+                                <span class="url-page-title">{{pageTitle}}</span>
+
+                                {{! Title Anatomy }}
+                                {{#if titleAnatomy.length}}
+                                    <button
+                                        class="btn btn-link title-anatomy-{{../guid}} toggle-anatomy"
+                                        type="button"
+                                    >
+                                        <span class="icon-lg icon-info"></span>
+                                        <span class="sr-only">
+                                            View {{pageTitle}} title anatomy
+                                        </span>
+                                    </button>
+
+                                    <pui-popover
+                                        content-type="html"
+                                        trigger=".title-anatomy-{{../guid}}"
+                                    >
+                                        <div>
+                                            <dl class="anatomy-list">
+                                                {{#each titleAnatomy}}
+                                                    {{> anatomyItem}}
+                                                {{/each}}
+                                            </dl>
+                                        </div>
+                                    </pui-popover>
+                                {{/if}}
+                            {{/case}}
+
+                            {{#case 'description'}}
+                                <span class="url-desc">{{{description}}}</span>
+
+                                {{! Description Anatomy }}
+                                {{#if descriptionAnatomy.length}}
+                                    <button
+                                        class="btn btn-link desc-anatomy-{{../guid}} toggle-anatomy"
+                                        type="button"
+                                    >
+                                        <span class="icon-lg icon-info"></span>
+                                        <span class="sr-only">
+                                            View {{pageTitle}} description anatomy
+                                        </span>
+                                    </button>
+
+                                    <pui-popover
+                                        content-type="html"
+                                        trigger=".desc-anatomy-{{../guid}}"
+                                    >
+                                        <div>
+                                            <dl class="anatomy-list">
+                                                {{#each descriptionAnatomy}}
+                                                    {{> anatomyItem}}
+                                                {{/each}}
+                                            </dl>
+                                        </div>
+                                    </pui-popover>
+                                {{/if}}
+                            {{/case}}
+
+                            {{#default}}
+                                {{itemValue}}
+                            {{/default}}
+                        {{/switch}}
                     </div>
                 {{/if}}
             </td>

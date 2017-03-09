@@ -9,7 +9,7 @@
             "descriptionKeyPath": "pub.description.something",
             "descriptionUrl": "http://nemo/text-assets/pub.description.something?version=some-version",
             "modifyDate": "2016-10-10T17:25:46Z",
-            "pageTitle": "iPod Classic",
+            "pageTitle": "",
             "pageTitleKeyPath": "pub.title",
             "pageType": "PDP",
             "partNumber": "D6106ZM/A",
@@ -36,7 +36,6 @@
                     "value": "Apple  (CA)"
                 },
                 {
-                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
                     "name": "store.seo.full.pagetitle",
                     "type": "text_asset",
                     "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)"
@@ -111,6 +110,13 @@
             "country": "United States of America",
             "createDate": "2014-01-01T23:28:56.782Z",
             "description": "",
+            "descriptionAnatomy": [
+                {
+                    "name": "testDescription",
+                    "type": "product_attribute",
+                    "value": "Some attribute"
+                }
+            ],
             "modifyDate": "2014-01-01T23:28:56.782Z",
             "pageTitle": "MacBook - Apple",
             "pageType": "PDP",
@@ -120,6 +126,19 @@
             "status": "new-to-store",
             "titleAnatomy": [],
             "url": "/macbook/"
+        },
+        {
+            "country": "France",
+            "createDate": "1979-11-06T23:28:56.782Z",
+            "modifyDate": "1979-11-06T23:28:56.782Z",
+            "pageTitle": "",
+            "pageType": "buyflow",
+            "partNumber": "xy",
+            "region": "FR",
+            "segment": "All",
+            "status": "unchanged",
+            "titleAnatomy": [],
+            "url": "/pippin/"
         },
         {
             "country": "United Kingdom",
@@ -243,20 +262,7 @@
             "description": "Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures.",
             "descriptionAnatomy": [
                 {
-                    "name": "productMetaDescription",
-                    "type": "product_attribute",
-                    "value": "Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures."
-                }
-            ],
-            "modifyDate": "2099-12-01T20:46:35Z",
-            "pageTitle": "Achetez le Clavier USB Apple avec pavé numérique - Apple (FR)",
-            "pageType": "pdp",
-            "partNumber": "MB110F/B",
-            "region": "emea",
-            "segment": "consumer",
-            "status": "modified",
-            "titleAnatomy": [
-                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
                     "name": "store.seo.hyphen",
                     "type": "text_asset",
                     "value": "-"
@@ -274,7 +280,43 @@
                 {
                     "link": "",
                     "name": "store.seo.full.pagetitle",
+                    "type": "product_attribute",
+                    "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "modifyDate": "2099-12-01T20:46:35Z",
+            "pageTitle": "Achetez le Clavier USB Apple avec pavé numérique - Apple (FR)",
+            "pageType": "pdp",
+            "partNumber": "MB110F/B",
+            "region": "emea",
+            "segment": "consumer",
+            "status": "modified",
+            "titleAnatomy": [
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.seo.hyphen",
                     "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (FR)"
+                },
+                {
+                    "link": "",
+                    "name": "store.seo.full.pagetitle",
+                    "type": "product_attribute",
                     "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
                 },
                 {
