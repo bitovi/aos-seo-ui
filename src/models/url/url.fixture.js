@@ -33,7 +33,9 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, respons
     // Search
     if (searchField) {
         results = urls.filter(function (item) {
-            return item[searchField].toLowerCase().indexOf(data[searchField].toLowerCase()) !== -1;
+            if (item[searchField] && data[searchField]) {
+                return item[searchField].toLowerCase().indexOf(data[searchField].toLowerCase()) !== -1;
+            }
         });
     }
 

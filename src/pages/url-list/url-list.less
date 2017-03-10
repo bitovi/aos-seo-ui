@@ -54,17 +54,27 @@ seo-url-list {
         padding-top: @padding-base-vertical;
     }
 
-    .page-title-value:after,
-    .description-value:after {
-        content: attr(data-index);
+    // Anatomy
+    .toggle-anatomy {
         font-size: @font-size-small;
-        vertical-align: super;
+        padding: 0;
+
+        &:hover {
+            color: @text-color;
+        }
     }
 
-    .title-anatomy-key-path,
-    .description-anatomy-key-path {
+    .anatomy-list {
         font-size: @font-size-small;
-        margin-top: @padding-large-vertical;
+        margin-bottom: 0;
+
+        dd {
+            margin-left: 1.7rem;
+
+            + dt {
+                margin-top: @padding-large-vertical;
+            }
+        }
     }
 
     .type-indicator {
@@ -79,12 +89,20 @@ seo-url-list {
 
         &.product-attribute {
             background: @thunderCloud;
-            color: white;
+            color: @whiteTip;
+
+            &:before {
+                content: 'a';
+            }
         }
 
         &.node-data {
             background: @pacific;
             color: @thunderCloud;
+
+            &:before {
+                content: 'n';
+            }
         }
     }
 }

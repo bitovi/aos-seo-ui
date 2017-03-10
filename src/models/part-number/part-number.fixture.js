@@ -13,7 +13,9 @@ can.fixture('GET ' + envVars.apiUrl() + '/part-numbers.json', function (request,
     // Auto-Complete Search
     if (requestData && requestData.partNumber) {
         results = partNumbers.filter(function (item) {
-            return item.partNumber.toLowerCase().indexOf(requestData.partNumber.toLowerCase()) !== -1;
+            if (item.partNumber && requestData.partNumber) {
+                return item.partNumber.toLowerCase().indexOf(requestData.partNumber.toLowerCase()) !== -1;
+            }
         });
     }
 

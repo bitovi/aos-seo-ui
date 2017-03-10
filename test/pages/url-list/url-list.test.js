@@ -80,6 +80,10 @@ describe('URL List Page', function () {
             vm = new ViewModel();
         });
 
+        it('has an initial anatomyItem value', function () {
+            expect(typeof vm.attr('anatomyItem')).toEqual('function');
+        });
+
         it('has an initial columns value', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
@@ -334,7 +338,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().tick(can.fixture.delay);
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
                 });
 
                 it('within a value', function () {
@@ -480,37 +484,173 @@ describe('URL List Page', function () {
             $results = component.find('pui-grid-list .item');
         });
 
-        describe('when a result has a titleAnatomy property', function () {
+        describe('when a result has a titleAnatomy property, and no pageTitle', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(4).find('.grid-item-value');
+                $resultTitle = $results.eq(4).find('.pageTitle');
             });
 
-            it('displays the page title in segments', function () {
-                expect($resultTitle.find('.page-title-value').length).toEqual(6);
-                expect($resultTitle.find('.page-title-value').eq(3).text().trim()).toEqual('iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)');
+            it('does not display any content in the Page Title column', function () {
+                expect($resultTitle.html().trim()).toEqual('');
+            });
+        });
+
+        describe('when a result has a pageTitle property, and no titleAnatomy', function () {
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(7).find('.pageTitle > .grid-item-value');
             });
 
-            it('displays a key path for each title segment', function () {
-                expect($resultTitle.find('.title-anatomy-key-path > li').length).toEqual(6);
-                expect($resultTitle.find('.title-anatomy-key-path > li').eq(3).text().trim()).toEqual('store.seo.full.pagetitle');
+            it('displays the page title value as a single string', function () {
+                expect($resultTitle.text().trim()).toEqual('iPod Nano - Apple');
+            });
+        });
+
+        describe('when a result has both pageTitle and titleAnatomy properties', function () {
+            var $popover;
+            var $resultTitle;
+
+            beforeEach(function () {
+                $resultTitle = $results.eq(0).find('.pageTitle > .grid-item-value');
+                $popover = $resultTitle.find('pui-popover');
+            });
+
+            it('displays the page title value as a single string', function () {
+                expect($resultTitle.find('.url-page-title').html().trim()).toEqual('Achetez le Clavier USB Apple avec pavé numérique - Apple (FR)');
+            });
+
+            describe('title anatomy popover', function () {
+                var titleAnatomy;
+
+                beforeEach(function () {
+                    titleAnatomy = scope.attr('items')[0].attr('titleAnatomy');
+                });
+
+                it('renders', function () {
+                    expect($popover.length).toEqual(1);
+                });
+
+                it('is hidden', function () {
+                    expect($popover).not.toBeVisible();
+                });
+
+                describe('name element', function () {
+                    var $names;
+
+                    beforeEach(function () {
+                        $names = $popover.find('.anatomy-name');
+                    });
+
+                    it('exists for every titleAnatomy item', function () {
+                        expect($names.length).toEqual(titleAnatomy.length);
+                    });
+
+                    it('displays the correlating name for each item', function () {
+                        $names.each(function (index) {
+                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('name'))
+                        });
+                    });
+                });
+
+                describe('value element', function () {
+                    var $values;
+
+                    beforeEach(function () {
+                        $values = $popover.find('.anatomy-value');
+                    });
+
+                    it('exists for every titleAnatomy item', function () {
+                        expect($values.length).toEqual(titleAnatomy.length);
+                    });
+
+                    it('displays the correlating value for each item', function () {
+                        $values.each(function (index) {
+                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('value'))
+                        });
+                    });
+                });
+            });
+
+            describe('title anatomy toggle button', function () {
+                var $anatomyToggler;
+
+                beforeEach(function () {
+                     $anatomyToggler = $resultTitle.find('.toggle-anatomy');
+                });
+
+                it('is displayed', function () {
+                    expect($anatomyToggler).toBeVisible();
+                });
+
+                describe('accessibility text', function () {
+                    var $a11yText;
+
+                    beforeEach(function () {
+                        $a11yText = $anatomyToggler.find('.sr-only');
+                    });
+
+                    it('renders', function () {
+                        expect($a11yText.text().trim()).toEqual('View Achetez le Clavier USB Apple avec pavé numérique - Apple (FR) title anatomy');
+                    });
+
+                    it('is one pixel wide', function () {
+                        expect($a11yText.width()).toEqual(1);
+                    });
+
+                    it('is one pixel tall', function () {
+                        expect($a11yText.height()).toEqual(1);
+                    });
+                });
+
+                describe('when clicked once', function () {
+                    beforeEach(function () {
+                        $anatomyToggler.trigger('click');
+
+                        $popover = $resultTitle.find('.popover');
+                    });
+
+                    it('displays the popover', function () {
+                        expect($popover).toBeVisible();
+                    });
+
+                    it('inserts the popover content into a new element', function () {
+                        expect($popover.find('.anatomy-list').length).toEqual(1);
+                    });
+                });
+
+                describe('when clicked twice', function () {
+                    beforeEach(function () {
+                        $anatomyToggler.trigger('click');
+                        $anatomyToggler.trigger('click');
+
+                        $popover = $resultTitle.find('.popover');
+                    });
+
+                    it('removes the new popover element', function () {
+                        expect($popover).not.toBeVisible();
+                    });
+                });
             });
 
             describe('when the title anatomy type is text_asset', function () {
                 var $keyPath;
 
                 beforeEach(function () {
-                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(2);
+                    $keyPath = $resultTitle.find('dt').eq(0);
                 });
 
                 it('creates a link to the asset', function () {
-                    expect($keyPath.find('a')).toBeVisible();
                     expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration');
                 });
 
                 it('displays a key icon next to the key path', function () {
-                    expect($keyPath.find('.icon-key')).toBeVisible();
+                    expect($keyPath.find('.icon-key').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.icon-key').text().trim()).toEqual('Key Path:');
                 });
             });
 
@@ -518,12 +658,15 @@ describe('URL List Page', function () {
                 var $keyPath;
 
                 beforeEach(function () {
-                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(4);
+                    $keyPath = $resultTitle.find('dt').eq(3);
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.product-attribute')).toBeVisible();
-                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('a');
+                    expect($keyPath.find('.product-attribute').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('Product Attribute:');
                 });
 
                 it('does not create a link', function () {
@@ -535,12 +678,15 @@ describe('URL List Page', function () {
                 var $keyPath;
 
                 beforeEach(function () {
-                    $keyPath = $resultTitle.find('.title-anatomy-key-path > li').eq(5);
+                    $keyPath = $resultTitle.find('dt').eq(4);
                 });
 
                 it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.node-data')).toBeVisible();
-                    expect($keyPath.find('.node-data').text().trim()).toEqual('n');
+                    expect($keyPath.find('.node-data').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.node-data').text().trim()).toEqual('Node Data:');
                 });
 
                 it('does not create a link', function () {
@@ -549,39 +695,278 @@ describe('URL List Page', function () {
             });
 
             describe('when a key path does not have a link property', function () {
-                var $keyPaths;
+                var $keyPath;
 
                 beforeEach(function () {
-                    $keyPaths = $results.eq(0).find('.title-anatomy-key-path > li');
+                    $keyPath = $resultTitle.find('dt').eq(1);
                 });
 
                 it('does not create an HTML link', function () {
-                    $keyPaths.each(function () {
-                        expect($(this).find('a').length).toEqual(0);
-                    });
+                    expect($keyPath.find('a').length).toEqual(0);
                 });
 
                 it('displays a key icon next to the key path', function () {
-                    $keyPaths.each(function (index, element) {
-                        if (index < 4) {
-                            expect($(this).find('.icon-key').length).toEqual(1);
-                        } else {
-                            expect($(this).find('.icon-key').length).toEqual(0);
-                        }
-                    });
+                    expect($keyPath.find('.icon-key').length).toEqual(1);
                 });
             });
         });
 
-        describe('when a result does not have a titleAnatomy property', function () {
+        describe('when a result has neither a pageTitle nor a titleAnatomy property', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(7).find('.pageTitle > .grid-item-value');
+                $resultTitle = $results.last().find('.pageTitle');
             });
 
-            it('displays the page title value as a single string', function () {
-                expect($resultTitle.html().trim()).toEqual('iPod Nano - Apple');
+            it('does not display any content in the Page Title column', function () {
+                expect($resultTitle.html().trim()).toEqual('');
+            });
+        });
+    });
+
+    describe('description and description anatomy', function () {
+        var $results;
+
+        beforeEach(function () {
+            $results = component.find('pui-grid-list .item');
+        });
+
+        describe('when a result has a descriptionAnatomy property, and no description', function () {
+            var $resultDesc;
+
+            beforeEach(function () {
+                $resultDesc = $results.eq(13).find('.description');
+            });
+
+            it('does not display any content in the Description column', function () {
+                expect($resultDesc.html().trim()).toEqual('');
+            });
+        });
+
+        describe('when a result has a description property, and no descriptionAnatomy', function () {
+            var $resultDesc;
+
+            beforeEach(function () {
+                $resultDesc = $results.eq(4).find('.description > .grid-item-value');
+            });
+
+            it('displays the description value as a single string', function () {
+                expect($resultDesc.text().trim()).toEqual('Bacon ipsum dolor amet spare ribs duis strip steak ut. Spare ribs irure duis shank ad lorem filet mignon ipsum non chicken corned beef.');
+            });
+        });
+
+        describe('when a result has both description and descriptionAnatomy properties', function () {
+            var $popover;
+            var $resultDesc;
+
+            beforeEach(function () {
+                $resultDesc = $results.eq(0).find('.description > .grid-item-value');
+                $popover = $resultDesc.find('pui-popover');
+            });
+
+            it('displays the description value as a single string', function () {
+                expect($resultDesc.find('.url-desc').html().trim()).toEqual('Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures.');
+            });
+
+            describe('description anatomy popover', function () {
+                var descriptionAnatomy;
+
+                beforeEach(function () {
+                    descriptionAnatomy = scope.attr('items')[0].attr('descriptionAnatomy');
+                });
+
+                it('renders', function () {
+                    expect($popover.length).toEqual(1);
+                });
+
+                it('is hidden', function () {
+                    expect($popover).not.toBeVisible();
+                });
+
+                describe('name element', function () {
+                    var $names;
+
+                    beforeEach(function () {
+                        $names = $popover.find('.anatomy-name');
+                    });
+
+                    it('exists for every descriptionAnatomy item', function () {
+                        expect($names.length).toEqual(descriptionAnatomy.length);
+                    });
+
+                    it('displays the correlating name for each item', function () {
+                        $names.each(function (index) {
+                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('name'))
+                        });
+                    });
+                });
+
+                describe('value element', function () {
+                    var $values;
+
+                    beforeEach(function () {
+                        $values = $popover.find('.anatomy-value');
+                    });
+
+                    it('exists for every descriptionAnatomy item', function () {
+                        expect($values.length).toEqual(descriptionAnatomy.length);
+                    });
+
+                    it('displays the correlating value for each item', function () {
+                        $values.each(function (index) {
+                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('value'))
+                        });
+                    });
+                });
+            });
+
+            describe('description anatomy toggle button', function () {
+                var $anatomyToggler;
+
+                beforeEach(function () {
+                     $anatomyToggler = $resultDesc.find('.toggle-anatomy');
+                });
+
+                it('is displayed', function () {
+                    expect($anatomyToggler).toBeVisible();
+                });
+
+                describe('accessibility text', function () {
+                    var $a11yText;
+
+                    beforeEach(function () {
+                        $a11yText = $anatomyToggler.find('.sr-only');
+                    });
+
+                    it('renders', function () {
+                        expect($a11yText.text().trim()).toEqual('View Achetez le Clavier USB Apple avec pavé numérique - Apple (FR) description anatomy');
+                    });
+
+                    it('is one pixel wide', function () {
+                        expect($a11yText.width()).toEqual(1);
+                    });
+
+                    it('is one pixel tall', function () {
+                        expect($a11yText.height()).toEqual(1);
+                    });
+                });
+
+                describe('when clicked once', function () {
+                    beforeEach(function () {
+                        $anatomyToggler.trigger('click');
+
+                        $popover = $resultDesc.find('.popover');
+                    });
+
+                    it('displays the popover', function () {
+                        expect($popover).toBeVisible();
+                    });
+
+                    it('inserts the popover content into a new element', function () {
+                        expect($popover.find('.anatomy-list').length).toEqual(1);
+                    });
+                });
+
+                describe('when clicked twice', function () {
+                    beforeEach(function () {
+                        $anatomyToggler.trigger('click');
+                        $anatomyToggler.trigger('click');
+
+                        $popover = $resultDesc.find('.popover');
+                    });
+
+                    it('removes the new popover element', function () {
+                        expect($popover).not.toBeVisible();
+                    });
+                });
+            });
+
+            describe('when the description anatomy type is text_asset', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultDesc.find('dt').eq(0);
+                });
+
+                it('creates a link to the asset', function () {
+                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration');
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    expect($keyPath.find('.icon-key').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.icon-key').text().trim()).toEqual('Key Path:');
+                });
+            });
+
+            describe('when the description anatomy type is product-attribute', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultDesc.find('dt').eq(3);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.product-attribute').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('Product Attribute:');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
+
+            describe('when the description anatomy type is node-data', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultDesc.find('dt').eq(4);
+                });
+
+                it('displays an attribute icon next to the key path', function () {
+                    expect($keyPath.find('.node-data').length).toEqual(1);
+                });
+
+                it('contains hidden accessibility text', function () {
+                    expect($keyPath.find('.node-data').text().trim()).toEqual('Node Data:');
+                });
+
+                it('does not create a link', function () {
+                    expect($keyPath.find('a')).not.toExist();
+                });
+            });
+
+            describe('when a key path does not have a link property', function () {
+                var $keyPath;
+
+                beforeEach(function () {
+                    $keyPath = $resultDesc.find('dt').eq(1);
+                });
+
+                it('does not create an HTML link', function () {
+                    expect($keyPath.find('a').length).toEqual(0);
+                });
+
+                it('displays a key icon next to the key path', function () {
+                    expect($keyPath.find('.icon-key').length).toEqual(1);
+                });
+            });
+        });
+
+        describe('when a result has neither a description nor a descriptionAnatomy property', function () {
+            var $resultDesc;
+
+            beforeEach(function () {
+                $resultDesc = $results.last().find('.description');
+            });
+
+            it('does not display any content in the Description column', function () {
+                expect($resultDesc.html().trim()).toEqual('');
             });
         });
     });
@@ -595,114 +980,6 @@ describe('URL List Page', function () {
 
         it('properly displays the decoded characters', function () {
             expect($result.find('.url').text().trim()).toEqual('/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français');
-        });
-    });
-
-    describe('description and description anatomy', function () {
-        var $results;
-
-        beforeEach(function () {
-            $results = component.find('pui-grid-list .item');
-        });
-        describe('when a result has a descriptionAnatomy property', function () {
-            var $resultTitle;
-
-            beforeEach(function () {
-                $resultTitle = $results.eq(2).find('.grid-item-value');
-            });
-
-            it('displays the description in segments', function () {
-                expect($resultTitle.find('.description-value').length).toEqual(3);
-                expect($resultTitle.find('.description-value').eq(0).text().trim()).toEqual('store.seo.full.description');
-            });
-
-            it('displays a key path for each description segment', function () {
-                expect($resultTitle.find('.description-anatomy-key-path > li').length).toEqual(3);
-                expect($resultTitle.find('.description-anatomy-key-path > li').eq(0).text().trim()).toEqual('productMetaDescription');
-            });
-
-            describe('when the description anatomy type is text_asset', function () {
-                var $keyPath;
-
-                beforeEach(function () {
-                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(0);
-                });
-
-                it('creates a link to the asset', function () {
-                    expect($keyPath.find('a')).toBeVisible();
-                    expect($keyPath.find('a').attr('href')).toEqual('https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration');
-                });
-
-                it('displays a key icon next to the key path', function () {
-                    expect($keyPath.find('.icon-key')).toBeVisible();
-                });
-            });
-
-            describe('when the description anatomy type is product-attribute', function () {
-                var $keyPath;
-
-                beforeEach(function () {
-                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(1);
-                });
-
-                it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.product-attribute')).toBeVisible();
-                    expect($keyPath.find('.product-attribute').text().trim()).toEqual('a');
-                });
-
-                it('does not create a link', function () {
-                    expect($keyPath.find('a')).not.toExist();
-                });
-            });
-
-            describe('when the description anatomy type is node-data', function () {
-                var $keyPath;
-
-                beforeEach(function () {
-                    $keyPath = $resultTitle.find('.description-anatomy-key-path > li').eq(2);
-                });
-
-                it('displays an attribute icon next to the key path', function () {
-                    expect($keyPath.find('.node-data')).toBeVisible();
-                    expect($keyPath.find('.node-data').text().trim()).toEqual('n');
-                });
-
-                it('does not create a link', function () {
-                    expect($keyPath.find('a')).not.toExist();
-                });
-            });
-
-            describe('when a key path does not have a link property', function () {
-                var $keyPaths;
-
-                beforeEach(function () {
-                    $keyPaths = $results.eq(4).find('.description-anatomy-key-path > li');
-                });
-
-                it('does not create an HTML link', function () {
-                    $keyPaths.each(function () {
-                        expect($(this).find('a').length).toEqual(0);
-                    });
-                });
-
-                it('displays a key icon next to the key path', function () {
-                    $keyPaths.each(function () {
-                        expect($(this).find('.icon-key').length).toEqual(1);
-                    });
-                });
-            });
-        });
-
-        describe('when a result does not have a descriptionAnatomy property', function () {
-            var $resultTitle;
-
-            beforeEach(function () {
-                $resultTitle = $results.eq(4).find('.description > .grid-item-value');
-            });
-
-            it('displays the description value as a single string', function () {
-                expect($resultTitle.html().trim()).toEqual('Bacon ipsum dolor amet spare ribs duis strip steak ut. Spare ribs irure duis shank ad lorem filet mignon ipsum non chicken corned beef.');
-            });
         });
     });
 });
