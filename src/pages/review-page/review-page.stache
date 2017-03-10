@@ -14,6 +14,7 @@
         </span>
     	<button
 		    class="btn btn-primary"
+			($click)="getURLsFromTextarea()"
 		    type="button"
 		>
 		    Generate File
@@ -43,8 +44,8 @@
 		        <li>
 		        	Make sure the file follows the 
 		        	<button 
-		        		class="btn btn-link modal-trigger" 
-		        		($click)="toggleModal()" 
+		        		class="btn btn-link modal-trigger"
+		        		($click)="toggleModal()"
 		        		type="button"
 		        	>
 		        		formatting requirements.
