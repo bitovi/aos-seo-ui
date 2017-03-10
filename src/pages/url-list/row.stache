@@ -12,8 +12,8 @@
                             {{#case 'url'}}
                                 {{#if urlAspenLink}}
                                     <a
-                                    href="{{urlAspenLink}}"
-                                    target="_blank"
+                                        href="{{urlAspenLink}}"
+                                        target="_blank"
                                     >
                                         {{itemValue}}
                                     </a>
