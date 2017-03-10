@@ -3,6 +3,7 @@ require('can/map/define/define');
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
 var formatDate = require('pui/utils/formatDate');
+var guid = require('pui/utils/guid');
 
 module.exports = can.Model.extend(
     {
@@ -33,15 +34,18 @@ module.exports = can.Model.extend(
             },
 
             description: {
-                type: function (value) {
-                    var descriptionAnatomy = this.attr('descriptionAnatomy');
-
-                    return descriptionAnatomy && descriptionAnatomy.length ? descriptionAnatomy : value;
-                }
+                type: 'string'
             },
 
             descriptionAnatomy: {
                 value: []
+            },
+
+            guid: {
+                get: function () {
+                    return guid();
+                },
+                serialize: false
             },
 
             modifyDate: {
@@ -51,11 +55,7 @@ module.exports = can.Model.extend(
             },
 
             pageTitle: {
-                type: function (value) {
-                    var titleAnatomy = this.attr('titleAnatomy');
-
-                    return titleAnatomy && titleAnatomy.length ? titleAnatomy : value;
-                }
+                type: 'string'
             },
 
             partNumber: {

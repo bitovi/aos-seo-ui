@@ -1,11 +1,22 @@
 var can = require('can');
 
+var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
 
 module.exports = can.Map.extend({
     define: {
+        /**
+         * @property {Function} url-list.viewModel.anatomyItem anatomyItem
+         * @description Stores the template that renders an anatomy item.
+         */
+        anatomyItem: {
+            value: function () {
+                return anatomyItemTemplate;
+            }
+        },
+
         /**
          * @property {Array<can.Map>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
