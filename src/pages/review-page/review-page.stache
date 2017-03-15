@@ -35,10 +35,6 @@
 					id="review-file-form"
 					method="POST"
 				>
-					<!--<input
-					   	id="exportId"
-					   	name="exportId"
-					   	type="hidden"/>-->
 				    <input
 				    	class="file-upload"
 				    	name="fileUpload"

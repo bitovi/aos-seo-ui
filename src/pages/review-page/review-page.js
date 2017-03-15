@@ -3,7 +3,6 @@ var $ = require('jquery');
 
 var template = require('./review-page.stache!');
 var ViewModel = require('./review-page.viewmodel');
-// var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
@@ -22,10 +21,6 @@ module.exports = can.Component.extend({
          */
         'inserted': function () {
             var vm = this.viewModel;
-            
-            // GenerateExportIdModel.findOne().then(function (response) {
-            //     $('#exportId').val(response.id);
-            // });
             $('#review-file-form').attr('action', vm.exportFilePath);
         }
     }
