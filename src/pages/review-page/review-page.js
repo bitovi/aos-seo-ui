@@ -3,27 +3,30 @@ var $ = require('jquery');
 
 var template = require('./review-page.stache!');
 var ViewModel = require('./review-page.viewmodel');
+// var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('pui/components/file-upload/file-upload');
 require('pui/components/modal/modal');
+require('pui/components/panel/panel');
 require('pui/components/tabs/tabs');
 
 module.exports = can.Component.extend({
     tag: 'seo-review-page',
     template: template,
     viewModel: ViewModel,
-	helpers: {
-		/**
-         * @description Handles click event of the 
+    events: {
+        /**
+         * @function api.components.review-page.events.inserted
+         * @description Event listener that is called when the component is inserted on the page.
          */
-        getURLsFromTextarea: function () {
+        'inserted': function () {
             var vm = this.viewModel;
-            var URLs = $('#urlTexts').val();
-
-            vm.attr('urls', URLs);
-            vm.reviewFileInput();
+            
+            // GenerateExportIdModel.findOne().then(function (response) {
+            //     $('#exportId').val(response.id);
+            // });
+            $('#review-file-form').attr('action', vm.exportFilePath);
         }
-	}
+    }
 });

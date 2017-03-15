@@ -2,17 +2,48 @@ require('can/map/define/define');
 
 var can = require('can');
 
-var ReviewFileInputModel = require('seo-ui/models/review-file-input/review-file-input');
+var envVars = require('seo-ui/utils/environmentVars');
+var ReviewFileFromInputModel = require('seo-ui/models/review-file-input/review-file-input');
+var ReviewFileModel = require('seo-ui/models/review-file/review-file');
 
 module.exports = can.Map.extend({
     define: {
+
+        /**
+         * @property {String} review-page.viewModel.exportFilePath exportFilePath
+         * @description The URL/End-point of the service we need to invoke for exporing/download
+         */
+        exportFilePath: {
+            value: envVars.apiUrl() + '/process-csv-url.json?',
+            type: 'string'
+        },
+
+        /**
+         * @property {boolean} review-page.viewModel.modalOpen modalOpen
+         * @description shows if the modal window is open or not
+         */
+        modalOpen: {
+            type: 'boolean',
+            value: false
+        },
+
     	/**
-		 * @property {String} review-page.viewModel.generateFileFromInputModel generateFileFromInputModel
+		 * @property {String} review-page.viewModel.ReviewFileFromInputModel ReviewFileFromInputModel
 		 * @description The model used to generate and retrieve a file based on input.
 		 */
-        reviewFileInputModel: {
+        ReviewFileFromInputModel: {
             get: function () {
-            	return ReviewFileInputModel;
+            	return ReviewFileFromInputModel;
+            }
+        },
+
+        /**
+         * @property {String} review-page.viewModel.ReviewFileFromModel ReviewFileFromModel
+         * @description The model used to generate and retrieve a file based on the uploaded file.
+         */
+        ReviewFileModel: {
+            get: function () {
+                return ReviewFileModel;
             }
         },
 
@@ -38,51 +69,7 @@ module.exports = can.Map.extend({
                     name: 'Upload File'
                 }
             ]
-        },
-
-		/**
-		 * @property {boolean} review-page.viewModel.modalOpen modalOpen
-		 * @description shows if the modal window is open or not
-		 */
-        modalOpen: {
-            type: 'boolean',
-            value: false
-        },
-
-        /**
-		 * @property {Object} review-page.viewModel.params params
-		 * @description params to be sent to the server.
-         */
-        params: {
-            value: {}
         }
-    },
-
-	/**
-     * @function review-page.viewmodel.buildParams buildParams
-     * @description buils params for POST request
-     */
-    buildParams: function () {
-        var params = this.attr('params');
-
-        // make an AJAX call to get an ExportId
-        // + need to create a model for that
-
-        params.attr('exportId', this.attr('exportId'));
-        params.attr('URLs', this.attr('URLs'));
-    },
-
-    /**
-     * @function review-page.viewmodel.generateFileFromInput generateFileFromInput
-     * @description Gets the input from the textarea, sends it to the backend and 
-     * downloads the generated file.
-     */
-    generateFileFromInput: function () {
-    	this.buildParams();
-
-        var params = this.attr('params');
-console.log(params);
-		this.reviewFileInputModel.findOne(params);
     },
 
     /**

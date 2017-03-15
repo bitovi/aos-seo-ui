@@ -4,5 +4,16 @@ var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
 
 module.exports = can.Model.extend({
-	findOne: 'POST ' + envVars.apiUrl() + '/process-csv-url.json'
-},{});
+    reviewFile: function (params) {
+        var url = environmentVars.apiUrl() + '/process-csv-url.json';
+
+        return can.ajax({
+            contentType: false,
+            data: params,
+            method: 'post',
+            dataType: 'json',
+            processData: false,
+            url: url
+        });
+    }
+}, {});

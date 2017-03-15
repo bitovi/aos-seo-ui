@@ -14,7 +14,7 @@
         </span>
     	<button
 		    class="btn btn-primary"
-			($click)="getURLsFromTextarea()"
+			($click)="getURLsFromTextarea"
 		    type="button"
 		>
 		    Generate File
@@ -28,37 +28,46 @@
     </div>
 
     <div id="upload-file" class="tab-pane">
-    	<div class="generate-file-upload panel panel-default">
+    	<div class="panel panel-default">
 		    <div class="panel-body">
-		        <pui-file-upload>
-		    	</pui-file-upload>
+				<form
+					enctype="multipart/form-data"
+					id="review-file-form"
+					method="POST"
+				>
+					<!--<input
+					   	id="exportId"
+					   	name="exportId"
+					   	type="hidden"/>-->
+				    <input
+				    	class="file-upload"
+				    	name="fileUpload"
+				    	type="file"/>
+				    <ul class="content">
+				    	<li>
+				    		Only <b>.csv</b> files are supported
+				    	</li>
+			        	<li>
+			        		Input maximum of 500 URLs
+			        	</li>
+				        <li>
+				        	Make sure the file follows the 
+				        	<button 
+				        		class="btn btn-link modal-trigger"
+				        		($click)="toggleModal"
+				        		type="button"
+				        	>
+				        		formatting requirements.
+				        	</button>
+				        </li>
+				    </ul>
+				    <button
+					    class="btn btn-primary"
+				    	type="submit"
+				    >Generate File</button>
+				</form>
 		    </div>
-
-		    <ul class="content">
-		    	<li>
-		    		Only <b>.csv</b> files are supported
-		    	</li>
-	        	<li>
-	        		Input maximum of 500 URLs
-	        	</li>
-		        <li>
-		        	Make sure the file follows the 
-		        	<button 
-		        		class="btn btn-link modal-trigger"
-		        		($click)="toggleModal()"
-		        		type="button"
-		        	>
-		        		formatting requirements.
-		        	</button>
-		        </li>
-		    <ul>
 		</div>
-		<button
-			class="btn btn-primary"
-		    type="button"
-		>
-		    Generate File
-		</button>
 
 		<pui-modal
 			{(modal-active)}="modalOpen"
