@@ -74,6 +74,10 @@ module.exports = can.Model.extend(
                 type: 'string'
             },
 
+            storeFrontAlias: {
+                type: 'string'
+            },
+
             titleAnatomy: {
                 value: []
             },

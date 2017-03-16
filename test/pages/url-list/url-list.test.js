@@ -144,6 +144,11 @@ describe('URL List Page', function () {
                     label: 'Status'
                 },
                 {
+                    cssClass: 'col-md-2',
+                    key: 'storeFrontAlias',
+                    label: 'Store Front Alias'
+                },
+                {
                     cssClass: 'col-md-1',
                     key: 'nemoReadyRecord',
                     label: 'Nemo',
