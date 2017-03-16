@@ -3,19 +3,18 @@ require('can/map/define/define');
 var can = require('can');
 
 var envVars = require('seo-ui/utils/environmentVars');
-var ReviewFileFromInputModel = require('seo-ui/models/review-file-input/review-file-input');
-var ReviewFileModel = require('seo-ui/models/review-file/review-file');
 
 module.exports = can.Map.extend({
     define: {
 
         /**
-         * @property {String} review-page.viewModel.exportFilePath exportFilePath
-         * @description The URL/End-point of the service we need to invoke for exporing/download
+         * @property {boolean} review-page.viewModel.doDownloadExport doDownloadExport
+         * @description Indicator to trigger the file download, when set to true
+         * submit the form to the URL and trigger the download
          */
-        exportFilePath: {
-            value: envVars.apiUrl() + '/process-csv-url.json?',
-            type: 'string'
+        doDownloadExport: {
+            value: false,
+            type: 'boolean'
         },
 
         /**
@@ -27,24 +26,22 @@ module.exports = can.Map.extend({
             value: false
         },
 
-    	/**
-		 * @property {String} review-page.viewModel.ReviewFileFromInputModel ReviewFileFromInputModel
-		 * @description The model used to generate and retrieve a file based on input.
-		 */
-        ReviewFileFromInputModel: {
-            get: function () {
-            	return ReviewFileFromInputModel;
-            }
+        /**
+         * @property {String} review-page.viewModel.reviewFileFromInputPath reviewFileFromInputPath
+         * @description The URL/End-point of the service we need to invoke to download a file when providing a list of URLs.
+         */
+        reviewFileFromInputPath: {
+            value: envVars.apiUrl() + '/process-for-textarea-input.json?',
+            type: 'string'
         },
 
         /**
-         * @property {String} review-page.viewModel.ReviewFileFromModel ReviewFileFromModel
-         * @description The model used to generate and retrieve a file based on the uploaded file.
+         * @property {String} review-page.viewModel.reviewFilePath reviewFilePath
+         * @description The URL/End-point of the service we need to invoke to download a file when providing a file as input.
          */
-        ReviewFileModel: {
-            get: function () {
-                return ReviewFileModel;
-            }
+        reviewFilePath: {
+            value: envVars.apiUrl() + '/process-csv-url.json?',
+            type: 'string'
         },
 
 		/**
@@ -69,7 +66,37 @@ module.exports = can.Map.extend({
                     name: 'Upload File'
                 }
             ]
+        },
+
+        /**
+         * @property {String} review-page.viewModel.urlTexts urlTexts
+         * @description List of URLs to upload to the server and get back as an exported file.
+         */
+        urlTexts: {
+            type: 'string',
+            value: ''
         }
+    },
+
+    /**
+     * @function review-page.viewmodel.clearTextareaField clearTextareaField
+     * @description Function that clears the values from the textarea.
+     */
+    clearTextareaField: function () {
+        this.attr('urlTexts', '');
+    },
+
+    /**
+     * @function review-page.viewmodel.doDownload doDownload
+     * @description Function that is fired when the Generate File button is clicked on the Enter URLs tab.
+     */
+    doDownload: function () {
+        this.attr('reviewFileFromInputPath', envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
+
+        // Start the export
+        this.attr('doDownloadExport', true);
+        // Reset the variable to enable doing the export again
+        this.attr('doDownloadExport', false);
     },
 
     /**

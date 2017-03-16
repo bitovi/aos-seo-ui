@@ -3,24 +3,38 @@
 <pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
     <div id="enter-urls" class="tab-pane">
 		<textarea
+			can-value="{urlTexts}"
 			class="form-control"
 			cols="80"
 			id="urlTexts"
 			name="urlTexts"
-			placeholder="Enter one URL per line or separated by semicolons"
+			placeholder="Please enter URLs in a valid format, separated by commas"
 			rows="8"></textarea>
 		<span class="help-block">
             Input a maximum of 500 URLs.
         </span>
-    	<button
+        <pui-file-downloader
+		    action-url="{reviewFileFromInputPath}"
+		    method="POST"
+		    enc-type="multipart/form-data"
+		    json-string="{urlTexts}"
+		    param-key="urlTexts"
+		    frameName="review-file-downloader"
+		    submit-form="{doDownloadExport}">
+		</pui-file-downloader>
+        <button
 		    class="btn btn-primary"
-			($click)="getURLsFromTextarea"
+		    ($click)="doDownload"
+		    disabled="disabled"
+		    id="doDownload"
 		    type="button"
 		>
 		    Generate File
 		</button>
 		<button
 			class="btn btn-secondary"
+			($click)="clearTextareaField"
+			id="clearTextareaField"
 		    type="button"
 		>
 			Clear Field
