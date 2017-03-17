@@ -494,12 +494,6 @@ describe('List Page', function () {
             expect($component.find('pui-grid-list > .table-responsive')).toBeVisible();
         });
 
-        //Here, I am verifying that a value is added. 
-        //The value Vh is converted to px by the browser. This value is a relative value.
-        it('displays a grid with minimim height', function () {
-            expect($component.find('pui-grid-list > .table-responsive').css('min-height')).toBeDefined();
-        });
-
         describe('Reset Filters button', function () {
             it('renders', function () {
                 expect($component.find('.reset-all-filters')).toExist();
