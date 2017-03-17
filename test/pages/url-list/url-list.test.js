@@ -996,6 +996,7 @@ describe('URL List Page', function () {
         });
 
         it('does not collapse the whitespace', function () {
+            // The innerText property is the only way to test what the UI displays.
             expect($result.find('.url-page-title').get(0).innerText).toEqual('iPod Touch  -    Apple');
         });
     });
