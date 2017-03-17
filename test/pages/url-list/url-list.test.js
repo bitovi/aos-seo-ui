@@ -987,4 +987,16 @@ describe('URL List Page', function () {
             expect($result.find('.url').text().trim()).toEqual('/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français');
         });
     });
+
+    describe('when a page title contains multiple consecutive whitespace characters', function () {
+        var $result;
+
+        beforeEach(function () {
+            $result = component.find('pui-grid-list .item').eq(5);
+        });
+
+        it('does not collapse the whitespace', function () {
+            expect($result.find('.url-page-title').get(0).innerText).toEqual('iPod Touch  -    Apple');
+        });
+    });
 });
