@@ -47,13 +47,7 @@ module.exports = can.Component.extend({
          */
         '#clearTextareaField click': function () {
             var $downloadBtn = $('#doDownload');
-            var $urlTextsValue = $('#urlTexts').val();
-
-            if (!$urlTextsValue) {
-                $downloadBtn.attr('disabled', 'disabled');
-            } else {
-                $downloadBtn.prop('disabled', false);
-            }
+            $downloadBtn.attr('disabled', 'disabled');
         }
     }
 });
