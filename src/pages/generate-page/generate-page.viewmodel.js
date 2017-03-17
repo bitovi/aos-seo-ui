@@ -2,11 +2,23 @@ require('can/map/define/define');
 
 var can = require('can');
 
+var envVars = require('seo-ui/utils/environmentVars');
+
 module.exports = can.Map.extend({
     define: {
+
         /**
-         * @property generate-page.viewmodel.modalOpen
-         * @description This is used to identify the state whether to show or hide the modal
+         * @property {String} generate-page.viewModel.generateFilePath generateFilePath
+         * @description The URL/End-point of the service we need to invoke for exporing/download
+         */
+        generateFilePath: {
+            value: envVars.apiUrl() + '/process-publishing-ready-file.json?',
+            type: 'string'
+        },
+
+        /**
+         * @property {boolean} generate-page.viewModel.modalOpen modalOpen
+         * @description shows if the modal window is open or not
          */
         modalOpen: {
             type: 'boolean',
@@ -15,8 +27,8 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function generate-page.viewmodel.toggleModal
-     * @description The modal that toggles the display of an overlay of formatting requirements.
+     * @function generate-page.viewmodel.toggleModal toggleModal
+     * @description Function that toggles the Modal when Close button is clicked.
      */
     toggleModal: function () {
         this.attr('modalOpen', !this.attr('modalOpen'));
