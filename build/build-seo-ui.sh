@@ -13,9 +13,6 @@ fi
 SRC_DIR=$(dirname "$BUILD_DIR")
 LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
-
-NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven/redirect?r=public"
-
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
 MVN_VERSION=3.1-SNAPSHOT
@@ -25,7 +22,7 @@ function log {
     echo $1 1>&2
 }
 
-log "=-=-=-=-=-=Starting Seo-UI Build=-=-=-=-=-="
+log "=-=-=-=-=-=Starting SEO-UI Build=-=-=-=-=-="
 log "BUILD_DIR: $BUILD_DIR"
 log "SRC_DIR: $SRC_DIR"
 
@@ -54,35 +51,6 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 
-#
-# We need to copy the latest pui into node_modules
-#
-log "Updating PUI from NEXUS"
-
-TAR_NAME=publishing-ui-.tar.gz
-
-cd $BUILD_DIR
-curl -L -u aos-readonly:KWcdKwLN8k9 "$NEXUS_REPO&g=com.apple.store.content&a=publishing-ui&v=develop-SNAPSHOT&p=tar.gz" | tar -xz
-
-
-if [ -d $NODE_PATH/pui ]; then
-    rm -rf $NODE_PATH/pui/dist
-    rm -rf $NODE_PATH/pui/src
-    rm $NODE_PATH/pui/package.json
-fi
-
-cp -R $BUILD_DIR/package/dist ${NODE_PATH}/pui/dist
-cp -R $BUILD_DIR/package/src ${NODE_PATH}/pui/src
-cp $BUILD_DIR/package/package.json ${NODE_PATH}/pui/package.json
-
-#
-# Copy modules inline
-#
-
-echo Copying node_modules inside the seo-ui build
-echo cp -R $NODE_PATH/ $SRC_DIR/node_modules
-cp -R $NODE_PATH/ $SRC_DIR/node_modules
-
 ##
 # Regular build process
 ##
@@ -91,9 +59,9 @@ cp -R $NODE_PATH/ $SRC_DIR/node_modules
 export DISABLE_NOTIFIER=true
 
 # Run tests separately because the production flag makes fixtures not work //TODO
-if [ "$bamboo_RUN_TESTS" = true ]; then
+if [ "$RUN_TESTS" = true ]; then
   log "Executing gulp test"
-  $GULP_BIN bamboo-test
+  $GULP_BIN test
   RETVAL=$?
   if [ "$RETVAL" != "0" ]; then
     echo Gulp returned error. Cancelling the process now
@@ -106,7 +74,7 @@ fi
 
 log "Executing gulp build, production"
 export NODE_ENV='production'
-$GULP_BIN build:full:skip-tests
+$GULP_BIN build:skip
 RETVAL=$?
 if [ "$RETVAL" != "0" ]; then
   echo Gulp returned error. Cancelling the process now
@@ -160,7 +128,7 @@ cp $UI_BUILD_DST/route-list.json $JAR_SRC/route-list.json
 cd $SRC_DIR
 jar -cf $JAR_NAME -C target-production/ .
 
-# Check for the task. Used deploy:deploy-file for real deployment (setup in bamboo), else it will just do install
+# Check for the task. Used deploy:deploy-file for real deployment, else it will just do install
 if [ -z $MVN_TASK ]; then
    MVN_TASK="install:install-file"
 fi
@@ -178,6 +146,6 @@ mvn $MVN_TASK -Dfile=$JAR_NAME \
 rm $JAR_NAME
 rm -rf $JAR_SRC
 
-log "=-=-=-=-=-=End Seo-UI Build=-=-=-=-=-="
+log "=-=-=-=-=-=End SEO-UI Build=-=-=-=-=-="
 
 exit 0
