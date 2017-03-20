@@ -17,7 +17,7 @@ var renderPage = function () {
         count: 1000
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
     component = $('#sandbox seo-cancel-export-modal');
     vm = component.data('scope');
 };

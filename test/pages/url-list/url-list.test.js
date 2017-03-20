@@ -29,7 +29,7 @@ var renderPage = function (newState) {
         state: state
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
 
     component = $('#sandbox seo-url-list');
     scope = component.data('scope');
@@ -39,13 +39,13 @@ var testSort = function (name) {
     describe(name + ' field', function () {
         beforeEach(function () {
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
-            jasmine.clock().tick(can.fixture.delay);
+            jasmine.clock().runToLast();
         });
 
         it('by clicking on the ' + name + ' sort button', function () {
             var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
-            jasmine.clock().tick(can.fixture.delay);
+            jasmine.clock().runToLast();
 
             var descVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
 
@@ -298,7 +298,7 @@ describe('URL List Page', function () {
                         value: '/ipad'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(4);
                 });
@@ -308,7 +308,7 @@ describe('URL List Page', function () {
                         value: 'wifi'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
@@ -318,7 +318,7 @@ describe('URL List Page', function () {
                         value: '/ipod-nano/'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
@@ -341,7 +341,7 @@ describe('URL List Page', function () {
                         value: 'iP'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
                 });
@@ -351,7 +351,7 @@ describe('URL List Page', function () {
                         value: '3g'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
@@ -361,7 +361,7 @@ describe('URL List Page', function () {
                         value: 'MacBook Air - Apple'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
@@ -384,7 +384,7 @@ describe('URL List Page', function () {
                         value: 'Bacon'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
@@ -394,7 +394,7 @@ describe('URL List Page', function () {
                         value: 'IT department-level'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
@@ -404,7 +404,7 @@ describe('URL List Page', function () {
                         value: 'ipsum dolor'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
@@ -427,7 +427,7 @@ describe('URL List Page', function () {
                         value: 'h17'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
@@ -437,7 +437,7 @@ describe('URL List Page', function () {
                         value: 'ZM'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
@@ -447,7 +447,7 @@ describe('URL List Page', function () {
                         value: 'Z0S9'
                     });
 
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
 
                     expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
@@ -537,8 +537,12 @@ describe('URL List Page', function () {
                     expect($popover.length).toEqual(1);
                 });
 
-                it('is hidden', function () {
-                    expect($popover).not.toBeVisible();
+                it('has a width of 0', function () {
+                    expect($popover.width()).toEqual(0);
+                });
+
+                it('has a height of 0', function () {
+                    expect($popover.height()).toEqual(0);
                 });
 
                 describe('name element', function () {
@@ -784,8 +788,12 @@ describe('URL List Page', function () {
                     expect($popover.length).toEqual(1);
                 });
 
-                it('is hidden', function () {
-                    expect($popover).not.toBeVisible();
+                it('has a width of 0', function () {
+                    expect($popover.width()).toEqual(0);
+                });
+
+                it('has a height of 0', function () {
+                    expect($popover.height()).toEqual(0);
                 });
 
                 describe('name element', function () {

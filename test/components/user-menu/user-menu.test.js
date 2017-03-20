@@ -21,7 +21,7 @@ var renderPage = function () {
         }
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
     component = $('#sandbox seo-user-menu');
     vm = can.viewModel(component);
 };

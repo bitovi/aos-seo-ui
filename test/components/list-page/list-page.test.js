@@ -105,7 +105,7 @@ var renderPage = function (newState) {
         ]
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
 
     $component = $('#sandbox seo-list-page');
     vm = can.viewModel($component);
