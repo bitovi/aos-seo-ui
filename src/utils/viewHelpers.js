@@ -1,5 +1,5 @@
 var can = require('can');
-var formatDate = require('pui/utils/formatDate');
+var formatDate = require('@apple/pui/utils/formatDate');
 
 // Register helper to show tags as delimited string
 can.stache.registerHelper('showTagAsString', function(options) {

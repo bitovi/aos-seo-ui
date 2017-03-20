@@ -34,13 +34,13 @@
  */
 
 require('bootstrap/js/collapse');
-require('pui/components/action-bar-menu/action-bar-menu');
-require('pui/components/date-picker/date-picker');
-require('pui/components/filter-menu/filter-menu');
-require('pui/components/grid-column-toggle/grid-column-toggle');
-require('pui/components/grid-list/grid-list');
-require('pui/components/grid-search/grid-search');
-require('pui/components/pagination/pagination');
+require('@apple/pui/components/action-bar-menu/action-bar-menu');
+require('@apple/pui/components/date-picker/date-picker');
+require('@apple/pui/components/filter-menu/filter-menu');
+require('@apple/pui/components/grid-column-toggle/grid-column-toggle');
+require('@apple/pui/components/grid-list/grid-list');
+require('@apple/pui/components/grid-search/grid-search');
+require('@apple/pui/components/pagination/pagination');
 
 var $ = require('jquery');
 var _ = require('lodash');
