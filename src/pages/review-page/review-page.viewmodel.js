@@ -18,6 +18,15 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {boolean} review-page.viewModel.fileToUpload fileToUpload
+         * @description The file provided as value for the file-upload component that will be uploaded.
+         */
+        fileToUpload: {
+            type: 'string',
+            value: ''
+        },
+
+        /**
          * @property {boolean} review-page.viewModel.modalOpen modalOpen
          * @description shows if the modal window is open or not
          */
@@ -44,19 +53,19 @@ module.exports = can.Map.extend({
             type: 'string'
         },
 
-		/**
-		 * @property {String} review-page.viewModel.startTab startTab
-		 * @description the tab show when the page loads with pui-tabs component
-		 */
+        /**
+         * @property {String} review-page.viewModel.startTab startTab
+         * @description the tab show when the page loads with pui-tabs component
+         */
         startTab: {
             type: 'string',
             value: 'Enter URLs'
         },
 
-		/**
-		 * @property {Array<Object>} review-page.viewModel.tabsList tabsList
-		 * @description list of tabs to show by the pui-tabs componenet
-		 */
+        /**
+         * @property {Array<Object>} review-page.viewModel.tabsList tabsList
+         * @description list of tabs to show by the pui-tabs componenet
+         */
         tabsList: {
             value: [
                 {
@@ -79,10 +88,10 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function review-page.viewmodel.clearTextareaField clearTextareaField
-     * @description Function that clears the values from the textarea.
+     * @function review-page.viewmodel.clearTextarea clearTextarea
+     * @description Function that clears value from the textarea.
      */
-    clearTextareaField: function () {
+    clearTextarea: function () {
         this.attr('urlTexts', '');
     },
 

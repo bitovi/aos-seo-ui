@@ -7,6 +7,7 @@ var ViewModel = require('./review-page.viewmodel');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
+require('pui/components/file-downloader/file-downloader');
 require('pui/components/modal/modal');
 require('pui/components/panel/panel');
 require('pui/components/tabs/tabs');
@@ -22,7 +23,7 @@ module.exports = can.Component.extend({
          */
         'inserted': function () {
             var vm = this.viewModel;
-            // Add CSRF token ti URL
+            // Add CSRF token to URL
             vm.attr('reviewFilePath', envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
 
             $('#review-file-form').attr('action', vm.reviewFilePath);
@@ -31,9 +32,9 @@ module.exports = can.Component.extend({
         /**
          * @description Register any keyup event within the textarea.
          */
-        '#urlTexts keyup': function () {
-            var $downloadBtn = $('#doDownload');
-            var $urlTextsValue = $('#urlTexts').val();
+        '#url-texts keyup': function () {
+            var $downloadBtn = $('#do-download');
+            var $urlTextsValue = $('#url-texts').val();
 
             if (!$urlTextsValue) {
                 $downloadBtn.attr('disabled', 'disabled');
@@ -45,8 +46,8 @@ module.exports = can.Component.extend({
         /**
          * @description Register click events that happen on the Clear Field button.
          */
-        '#clearTextareaField click': function () {
-            var $downloadBtn = $('#doDownload');
+        '#clear-textarea click': function () {
+            var $downloadBtn = $('#do-download');
             $downloadBtn.attr('disabled', 'disabled');
         }
     }

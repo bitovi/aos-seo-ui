@@ -58,6 +58,11 @@ describe('Review Page', function () {
             expect(vm.attr('doDownloadExport')).toBe(false);
         });
 
+        it('it has a default fileToUpload value', function () {
+            expect(typeof vm.attr('fileToUpload')).toBe('string');
+            expect(vm.attr('fileToUpload')).toBe('');
+        });
+
         it('it has a default modalOpen value', function () {
             expect(typeof vm.attr('modalOpen')).toBe('boolean');
             expect(vm.attr('modalOpen')).toBe(false);
@@ -87,10 +92,10 @@ describe('Review Page', function () {
             expect(vm.attr('urlTexts')).toBe('');
         });
 
-        describe('When clearTextareaField called', function () {
+        describe('When clearTextarea called', function () {
             beforeEach(function () {
-                $('#urlTexts').val('abc');
-                vm.clearTextareaField();
+                $('#url-texts').val('abc');
+                vm.clearTextarea();
                 jasmine.clock().tick(can.fixture.delay);
             });
 
@@ -120,7 +125,7 @@ describe('Review Page', function () {
                 jasmine.clock().tick(can.fixture.delay);
             });
 
-            it('clears textarea', function () {
+            it('opens Modal window', function () {
                 expect(vm.attr('modalOpen')).toBe(true);
             });
         });
@@ -143,15 +148,15 @@ describe('Review Page', function () {
             });
 
             it('shows Generate file button as disabled', function () {
-                expect(component.find('#doDownload').attr('disabled')).toEqual('disabled');
+                expect(component.find('#do-download').attr('disabled')).toEqual('disabled');
             });
 
             it('shows Clear Field button as enabled', function () {
-                expect(component.find('#clearTextareaField').attr('disabled')).not.toBe('disabled');
+                expect(component.find('#clear-textarea').attr('disabled')).not.toBe('disabled');
             });
 
             it('shows Textarea empty', function () {
-                expect(component.find('#urlTexts').val()).toBe('');
+                expect(component.find('#url-texts').val()).toBe('');
             });
         });
 
@@ -167,6 +172,10 @@ describe('Review Page', function () {
 
             it('shows file upload button', function () {
                 expect(component.find('.file-upload')).toBeVisible();
+            });
+
+            it('shows file upload button disabled', function () {
+                expect(component.find('#review-file-form .btn-primary').attr('disabled')).toBe('disabled');
             });
 
             it('shows Generate File button', function () {
