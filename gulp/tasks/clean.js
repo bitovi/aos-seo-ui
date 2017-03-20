@@ -15,10 +15,10 @@ var gulp = require('gulp');
 var del = require('del');
 var config = require('../config');
 
-gulp.task('clean:docs', function(callback){
-    del([config.documentjs.siteConfig.dest], callback);
+gulp.task('clean:docs', function () {
+    return del([config.documentjs.siteConfig.dest]);
 });
 
-gulp.task('clean:build', function(callback){
-    del(['target'], callback);
+gulp.task('clean:build', function () {
+    return del(['target']);
 });

@@ -33,8 +33,8 @@
 
 var browserSync = require('browser-sync');
 var gulp = require('gulp');
-var historyApiMiddleware = require('pui/src/gulp/util/historyApiMiddleware')({index: '/index.html'});
-var productionMiddleware = require('pui/src/gulp/util/productionMiddleware');
+var historyApiMiddleware = require('@apple/pui/src/gulp/util/historyApiMiddleware')({index: '/index.html'});
+var productionMiddleware = require('@apple/pui/src/gulp/util/productionMiddleware');
 var url = require('url');
 var _ = require('lodash');
 var proxy = require('proxy-middleware');

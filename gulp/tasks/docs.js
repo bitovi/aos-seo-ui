@@ -41,6 +41,6 @@ gulp.task('docs:serve', ['docs'], function(){
     gulp.watch(config.watchFiles, ['docs']);
 
     connect.server({
-        root: 'docs/nemo-ui'
+        root: 'docs/seo-ui'
     });
 });

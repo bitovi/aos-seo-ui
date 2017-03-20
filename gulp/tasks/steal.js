@@ -21,6 +21,6 @@ gulp.task('steal', function () {
         .then(function () {
             var taskTime = process.hrtime(startTime);
             var prettyTime = prettyHrtime(taskTime);
-            gutil.log('Built', gutil.colors.green('Seo'), 'in', gutil.colors.magenta(prettyTime));
+            gutil.log('Built', gutil.colors.green('SEO'), 'in', gutil.colors.magenta(prettyTime));
         });
 });

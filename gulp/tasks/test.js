@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var testee = require('testee');
-var bambooReporter = require('mocha-bamboo-reporter');
 var buildTests = require('../build-tests.js');
 var runSequence = require('run-sequence');
 var phantom = 'phantom';
@@ -48,17 +47,6 @@ gulp.task('local-test', function () {
     });
 });
 
-
-// BAMBOO
-
-gulp.task('bamboo-test', function () {
-    return testee.test(config.other.files, phantom, {
-        reporter: bambooReporter,
-        port: 3997
-    });
-});
-
-
 // WEB
 
 gulp.task('web-test', function () {
@@ -69,10 +57,6 @@ gulp.task('web-test', function () {
 
 gulp.task('test:local', function (cb) {
     runSequence('xo', 'build-tests', 'local-test', cb);
-});
-
-gulp.task('test:bamboo', function (cb) {
-    runSequence('xo', 'build-tests', 'bamboo-test', cb);
 });
 
 gulp.task('test:web', function (cb) {
