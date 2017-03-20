@@ -32,10 +32,10 @@ module.exports = can.Component.extend({
          * @description Register any keyup event within the textarea.
          */
         '#url-texts keyup': function () {
-            var $downloadBtn = $('#do-download');
-            var $urlTextsValue = $('#url-texts').val();
+            var $downloadBtn = this.element.find('#do-download');
+            var urlTextsValue = this.element.find('#url-texts').val();
 
-            if (!$urlTextsValue) {
+            if (!urlTextsValue) {
                 $downloadBtn.prop('disabled', true);
             } else {
                 $downloadBtn.prop('disabled', false);
@@ -47,7 +47,7 @@ module.exports = can.Component.extend({
          * @description Register click events that happen on the Clear Field button.
          */
         '#clear-textarea click': function () {
-            var $downloadBtn = $('#do-download');
+            var $downloadBtn = this.element.find('#do-download');
             $downloadBtn.prop('disabled', true);
         }
     }
