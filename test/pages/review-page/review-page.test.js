@@ -8,7 +8,7 @@ var envVars = require('seo-ui/utils/environmentVars');
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 
-var component;
+var $component;
 var state;
 var stateObj = {
     page: 'review-page',
@@ -29,7 +29,7 @@ var renderPage = function (newState) {
 
     jasmine.clock().tick(can.fixture.delay);
 
-    component = $('#sandbox seo-review-page');
+    $component = $('#sandbox seo-review-page');
 };
 
 describe('Review Page', function () {
@@ -54,47 +54,40 @@ describe('Review Page', function () {
         });
 
         it('it has a default doDownloadExport value', function () {
-            expect(typeof vm.attr('doDownloadExport')).toBe('boolean');
             expect(vm.attr('doDownloadExport')).toBe(false);
         });
 
         it('it has a default fileToUpload value', function () {
-            expect(typeof vm.attr('fileToUpload')).toBe('string');
             expect(vm.attr('fileToUpload')).toBe('');
         });
 
         it('it has a default modalOpen value', function () {
-            expect(typeof vm.attr('modalOpen')).toBe('boolean');
             expect(vm.attr('modalOpen')).toBe(false);
         });
 
         it('it has a default reviewFileFromInputPath value', function () {
-            expect(typeof vm.attr('reviewFileFromInputPath')).toBe('string');
             expect(vm.attr('reviewFileFromInputPath')).toBe(envVars.apiUrl() + '/process-for-textarea-input.json?');
         });
 
         it('it has a default reviewFilePath value', function () {
-            expect(typeof vm.attr('reviewFilePath')).toBe('string');
             expect(vm.attr('reviewFilePath')).toBe(envVars.apiUrl() + '/process-csv-url.json?');
         });
 
         it('it has a default startTab value', function () {
-            expect(typeof vm.attr('startTab')).toBe('string');
             expect(vm.attr('startTab')).toBe('Enter URLs');
         });
 
         it('it has a default tabsList value', function () {
-            expect(vm.attr('tabsList')).toBeDefined();
+            expect(vm.attr('tabsList').attr()).toEqual([{ name: 'Enter URLs'},{ name: 'Upload File'}]);
         });
 
         it('it has a default urlTexts value', function () {
-            expect(typeof vm.attr('urlTexts')).toBe('string');
             expect(vm.attr('urlTexts')).toBe('');
         });
 
         describe('When clearTextarea called', function () {
             beforeEach(function () {
-                $('#url-texts').val('abc');
+                $component.find('#url-texts').val('abc');
                 vm.clearTextarea();
                 jasmine.clock().tick(can.fixture.delay);
             });
@@ -131,65 +124,63 @@ describe('Review Page', function () {
         });
     });
 
-    describe('Review Page', function () {
+    describe('Component', function () {
         describe('When Review Page renders', function () {
             it('renders Review file form', function () {
-                expect(component.find('#review-file-form').length).toBeGreaterThan(0);
+                expect($component.find('#review-file-form').length).toBeGreaterThan(0);
             });
-        });
 
-        describe('When Review Page renders', function () {
             it('shows Enter URLs tab by default', function () {
-                expect(component.find('#enter-urls')).toBeVisible();
+                expect($component.find('#enter-urls')).toBeVisible();
             });
 
             it('hides Upload File tab by default', function () {
-                expect(component.find('#upload-file')).not.toBeVisible();
+                expect($component.find('#upload-file')).not.toBeVisible();
             });
 
             it('shows Generate file button as disabled', function () {
-                expect(component.find('#do-download').attr('disabled')).toEqual('disabled');
+                expect($component.find('#do-download').attr('disabled')).toEqual('disabled');
             });
 
             it('shows Clear Field button as enabled', function () {
-                expect(component.find('#clear-textarea').attr('disabled')).not.toBe('disabled');
+                expect($component.find('#clear-textarea').attr('disabled')).not.toBe('disabled');
             });
 
             it('shows Textarea empty', function () {
-                expect(component.find('#url-texts').val()).toBe('');
+                expect($component.find('#url-texts').val()).toBe('');
             });
         });
 
         describe('When Upload File tab is clicked', function () {
             beforeEach(function () {
-                component.find('.nav-tabs li:eq(1) a').trigger('click');
+                $component.find('.nav-tabs li:eq(1) a').trigger('click');
                 jasmine.clock().tick(can.fixture.delay);
             });
 
             it('shows Upload File tab', function () {
-                expect(component.find('#upload-file')).toBeVisible();
+                expect($component.find('#upload-file')).toBeVisible();
             });
 
             it('shows file upload button', function () {
-                expect(component.find('.file-upload')).toBeVisible();
+                expect($component.find('.file-upload')).toBeVisible();
             });
 
             it('shows file upload button disabled', function () {
-                expect(component.find('#review-file-form .btn-primary').attr('disabled')).toBe('disabled');
+                expect($component.find('#review-file-form .btn-primary').attr('disabled')).toBe('disabled');
             });
 
             it('shows Generate File button', function () {
-                expect(component.find('#review-file-form .btn-primary')).toBeVisible();
+                expect($component.find('#review-file-form .btn-primary')).toBeVisible();
             });
 
             describe('When formatting requirements link is clicked', function () {
                 beforeEach(function () {
-                    component.find('#review-file-form .btn-link').trigger('click');
+                    $component.find('#review-file-form .btn-link').trigger('click');
                     jasmine.clock().tick(can.fixture.delay);
                 });
 
                 it('opens Formatting Requirements Modal', function () {
-                    expect(component.find('#formatting-requirements-modal-review-url')).toBeVisible();
+                    expect($component.find('#formatting-requirements-modal-review-url')).toBeVisible();
                 });
             });
         });

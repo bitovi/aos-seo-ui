@@ -45,6 +45,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form
+                    {($action)}="reviewFilePath"
                     enctype="multipart/form-data"
                     id="review-file-form"
                     method="POST"

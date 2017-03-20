@@ -18,18 +18,17 @@ module.exports = can.Component.extend({
     viewModel: ViewModel,
     events: {
         /**
-         * @function api.components.review-page.events.inserted
+         * @function api.pages.review-page.events.inserted
          * @description Event listener that is called when the component is inserted on the page.
          */
         'inserted': function () {
             var vm = this.viewModel;
             // Add CSRF token to URL
             vm.attr('reviewFilePath', envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
-
-            $('#review-file-form').attr('action', vm.reviewFilePath);
         },
 
         /**
+         * @function api.pages.review-page.events.'#url-texts keyup'
          * @description Register any keyup event within the textarea.
          */
         '#url-texts keyup': function () {
@@ -37,18 +36,19 @@ module.exports = can.Component.extend({
             var $urlTextsValue = $('#url-texts').val();
 
             if (!$urlTextsValue) {
-                $downloadBtn.attr('disabled', 'disabled');
+                $downloadBtn.prop('disabled', true);
             } else {
                 $downloadBtn.prop('disabled', false);
             }
         },
 
         /**
+         * @function api.pages.review-page.events.'#clear-textarea click'
          * @description Register click events that happen on the Clear Field button.
          */
         '#clear-textarea click': function () {
             var $downloadBtn = $('#do-download');
-            $downloadBtn.attr('disabled', 'disabled');
+            $downloadBtn.prop('disabled', true);
         }
     }
 });
