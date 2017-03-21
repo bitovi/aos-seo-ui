@@ -17,16 +17,6 @@ module.exports = can.Component.extend({
     viewModel: ViewModel,
     events: {
         /**
-         * @function api.pages.review-page.events.inserted
-         * @description Event listener that is called when the component is inserted on the page.
-         */
-        'inserted': function () {
-            var vm = this.viewModel;
-            // Add CSRF token to URL
-            vm.attr('reviewFilePath', envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
-        },
-
-        /**
          * @function api.pages.review-page.events.'#url-texts keyup'
          * @description Register any keyup event within the textarea.
          */

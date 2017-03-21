@@ -66,11 +66,11 @@ describe('Review Page', function () {
         });
 
         it('it has a default reviewFileFromInputPath value', function () {
-            expect(vm.attr('reviewFileFromInputPath')).toBe(envVars.apiUrl() + '/process-for-textarea-input.json?');
+            expect(vm.attr('reviewFileFromInputPath')).toBe(envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
         });
 
         it('it has a default reviewFilePath value', function () {
-            expect(vm.attr('reviewFilePath')).toBe(envVars.apiUrl() + '/process-csv-url.json?');
+            expect(vm.attr('reviewFilePath')).toBe(envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
         });
 
         it('it has a default startTab value', function () {

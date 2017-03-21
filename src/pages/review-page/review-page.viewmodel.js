@@ -41,7 +41,10 @@ module.exports = can.Map.extend({
          */
         reviewFileFromInputPath: {
             value: envVars.apiUrl() + '/process-for-textarea-input.json?',
-            type: 'string'
+            type: 'string',
+            get: function () {
+                return envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
+            }
         },
 
         /**
@@ -50,7 +53,10 @@ module.exports = can.Map.extend({
          */
         reviewFilePath: {
             value: envVars.apiUrl() + '/process-csv-url.json?',
-            type: 'string'
+            type: 'string',
+            get: function () {
+                return envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
+            }
         },
 
         /**
