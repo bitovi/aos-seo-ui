@@ -56,7 +56,7 @@ describe('Generate Page', function () {
         });
 
         it('it has a default generateFilePath value', function () {
-            expect(vm.attr('generateFilePath')).toBe(envVars.apiUrl() + '/process-publishing-ready-file.json?');
+            expect(vm.attr('generateFilePath')).toBe(envVars.apiUrl() + '/process-publishing-ready-file.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
         });
 
         it('it has a default modalOpen value', function () {

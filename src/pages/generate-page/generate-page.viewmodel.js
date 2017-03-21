@@ -22,7 +22,10 @@ module.exports = can.Map.extend({
          */
         generateFilePath: {
             value: envVars.apiUrl() + '/process-publishing-ready-file.json?',
-            type: 'string'
+            type: 'string',
+            get: function () {
+                return envVars.apiUrl() + '/process-publishing-ready-file.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
+            }
         },
 
         /**
