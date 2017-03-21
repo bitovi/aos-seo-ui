@@ -1,5 +1,4 @@
 var can = require('can');
-var $ = require('jquery');
 
 var envVars = require('seo-ui/utils/environmentVars');
 var template = require('./generate-page.stache!');
@@ -16,13 +15,12 @@ module.exports = can.Component.extend({
     viewModel: ViewModel,
     events: {
         /**
-         * @function api.components.review-page.events.inserted
+         * @function api.pages.generate-page.events.inserted
          * @description Event listener that is called when the component is inserted on the page.
          */
         'inserted': function () {
             var vm = this.viewModel;
             vm.attr('generateFilePath', envVars.apiUrl() + '/process-publishing-ready-file.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
-            $('#generate-form').attr('action', vm.generateFilePath);
         }
     }
 });

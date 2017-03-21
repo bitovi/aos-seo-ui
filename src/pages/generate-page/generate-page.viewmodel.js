@@ -8,6 +8,15 @@ module.exports = can.Map.extend({
     define: {
 
         /**
+         * @property {boolean} generate-page.viewModel.fileToUpload fileToUpload
+         * @description The file provided as value for the file-upload component that will be uploaded.
+         */
+        fileToUpload: {
+            type: 'string',
+            value: ''
+        },
+
+        /**
          * @property {String} generate-page.viewModel.generateFilePath generateFilePath
          * @description The URL/End-point of the service we need to invoke for exporing/download
          */

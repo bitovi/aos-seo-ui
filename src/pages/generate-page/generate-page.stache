@@ -1,16 +1,19 @@
-<h1>Review Meta Content & Key Paths</h1>
+<h1>Review Meta Content &amp; Key Paths</h1>
 <p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
 <div class="panel panel-default">
     <div class="panel-body">
         <form
+            {($action)}="generateFilePath"
             enctype="multipart/form-data"
             id="generate-form"
             method="POST"
         >
             <input
+                accept=".csv"
                 class="file-upload"
-                name="fileUploadPublish"
-                type="file"/>
+                name="file-upload-publish"
+                type="file"
+                {($value)}="fileToUpload"/>
             <ul class="content">
                 <li>
                     Only <b>.csv</b> files are supported
@@ -32,6 +35,7 @@
             <button
                 class="btn btn-primary"
                 type="submit"
+                {{#unless fileToUpload}}disabled="disabled"{{/unless}}
             >Generate File</button>
         </form>
     </div>
