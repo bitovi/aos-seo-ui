@@ -1,27 +1,27 @@
-require('can/util/fixture/fixture');
-require('jasmine-jquery/lib/jasmine-jquery');
-require('steal-jasmine');
-
 var $ = require('jquery');
-var _ = require('lodash');
 var can = require('can');
+var _ = require('lodash');
 var llx = require('lolex');
+require('steal-jasmine');
+require('jasmine-jquery/lib/jasmine-jquery');
+
+require('can/util/fixture/fixture');
 
 var defaults = {
-    fixtureDelay: 0,
-    persistentSandbox: false,
-    useClock: true,
     useFixtures: true,
-    useSandbox: true
+    fixtureDelay: 0,
+    useSandbox: true,
+    useClock: true,
+    persistentSandbox: false
 };
 
 var realDebounce = _.debounce;
-var fakeDebounce = function (fn, delay){
+var fakeDebounce = function(fn, delay){
     var timeoutId;
-    return function () {
+    return function(){
         var args = arguments;
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(function () {
+        timeoutId = setTimeout(function(){
             fn.apply(this, args);
         }, delay);
     };
@@ -29,7 +29,7 @@ var fakeDebounce = function (fn, delay){
 
 var mockClock, oldClock;
 
-module.exports = function (options) {
+module.exports = function(options) {
     var config = can.extend({}, defaults, options);
 
     var oldFixtureValue = can.fixture.on;
@@ -40,22 +40,22 @@ module.exports = function (options) {
     can.fixture.on = config.useFixtures;
     can.fixture.delay = config.fixtureDelay;
 
-    if (config.useClock) {
+    if(config.useClock) {
         // jQuery animations do not work with the mock timer
         // https://github.com/jasmine/jasmine/issues/184
         $.fx.off = true;
         $.support.transition = undefined;
-        mockClock = llx.install();
-        oldClock = jasmine.clock;
-        jasmine.clock = function () {
-            return mockClock;
-        }
+		mockClock = llx.install();
+		oldClock = jasmine.clock;
+		jasmine.clock = function() {
+			return mockClock;
+		}
 
         _.debounce = fakeDebounce;
     }
 
-    if (config.useSandbox) {
-        if (config.persistentSandbox && $('#sandbox').length === 0) {
+    if(config.useSandbox) {
+        if(config.persistentSandbox && $('#sandbox').length === 0) {
             $('body').append('<div id="persistent-jasmine-fixtures"><div id="sandbox"></div></div>');
         } else {
             setFixtures(sandbox());
@@ -63,19 +63,19 @@ module.exports = function (options) {
             // Jasmine does not properly clear the sandbox. Many of the Can events
             // are tied to jQuery methods. In our case, some elements stick around
             // because Jasmine does not use jQuery methods to clear the sandbox.
-            jasmine.Fixtures.prototype.cleanUp = function () {
+            jasmine.Fixtures.prototype.cleanUp = function() {
                 $('#' + this.containerId).remove();
             };
         }
     }
 
-    // cleanup function
-    return function (force) {
+    //cleanup function
+    return function(force) {
         can.fixture.on = oldFixtureValue;
         can.fixture.delay = oldFixtureDelay;
 
         //Only clean up the persistent sandbox when force is true
-        if (config.useSandbox && config.persistentSandbox && force) {
+        if(config.useSandbox && config.persistentSandbox && force) {
             $('#persistent-jasmine-fixtures').remove();
         }
 
@@ -93,7 +93,7 @@ module.exports = function (options) {
 
         $('.modal-backdrop').remove();
 
-        if (config.useClock) {
+        if(config.useClock) {
             // Clean up any remaining deferreds or pending setTimeouts so they
             // don't leak into the next specs
             jasmine.clock().runToLast();
@@ -101,8 +101,8 @@ module.exports = function (options) {
             $.fx.on = true;
             $.support.transition = oldSupportTransition;
 
-            mockClock.uninstall();
-            jasmine.clock = oldClock;
+			mockClock.uninstall();
+			jasmine.clock = oldClock;
             // jasmine.clock().uninstall();
             _.debounce = realDebounce;
         }
