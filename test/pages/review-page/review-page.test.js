@@ -165,12 +165,12 @@ describe('Review Page', function () {
                 expect($component.find('.file-upload')).toBeVisible();
             });
 
-            it('shows file upload button disabled', function () {
-                expect($component.find('#review-file-form .btn-primary').attr('disabled')).toBe('disabled');
-            });
-
             it('shows Generate File button', function () {
                 expect($component.find('#review-file-form .btn-primary')).toBeVisible();
+            });
+
+            it('shows Generate File button disabled', function () {
+                expect($component.find('#review-file-form .btn-primary').attr('disabled')).toBe('disabled');
             });
 
             describe('When formatting requirements link is clicked', function () {
