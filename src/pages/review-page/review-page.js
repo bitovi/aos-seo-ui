@@ -1,6 +1,5 @@
 var can = require('can');
 
-var envVars = require('seo-ui/utils/environmentVars');
 var template = require('./review-page.stache!');
 var ViewModel = require('./review-page.viewmodel');
 
