@@ -1,5 +1,4 @@
 var can = require('can');
-var $ = require('jquery');
 
 var envVars = require('seo-ui/utils/environmentVars');
 var template = require('./review-page.stache!');
