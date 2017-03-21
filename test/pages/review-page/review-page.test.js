@@ -57,6 +57,10 @@ describe('Review Page', function () {
             expect(vm.attr('doDownloadExport')).toBe(false);
         });
 
+        it('it has a default downloadBtnEnabled value', function () {
+            expect(vm.attr('downloadBtnEnabled')).toBe(false);
+        });
+
         it('it has a default fileToUpload value', function () {
             expect(vm.attr('fileToUpload')).toBe('');
         });
@@ -83,18 +87,6 @@ describe('Review Page', function () {
 
         it('it has a default urlTexts value', function () {
             expect(vm.attr('urlTexts')).toBe('');
-        });
-
-        describe('When clearTextarea called', function () {
-            beforeEach(function () {
-                $component.find('#url-texts').val('abc');
-                vm.clearTextarea();
-                jasmine.clock().tick(can.fixture.delay);
-            });
-
-            it('clears textarea', function () {
-                expect(vm.attr('urlTexts')).toBe('');
-            });
         });
 
         describe('When doDownload called', function () {
@@ -148,6 +140,18 @@ describe('Review Page', function () {
 
             it('shows Textarea empty', function () {
                 expect($component.find('#url-texts').val()).toBe('');
+            });
+
+            describe('When Clear Field button clicked', function () {
+                beforeEach(function () {
+                    $component.find('#url-texts').val('abc');
+                    $component.find('#clear-textarea').trigger('click');
+                    jasmine.clock().tick(can.fixture.delay);
+                });
+
+                it('clears textarea', function () {
+                    expect(vm.attr('urlTexts')).toBe('');
+                });
             });
         });
 

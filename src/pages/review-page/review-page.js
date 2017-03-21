@@ -13,30 +13,5 @@ require('pui/components/tabs/tabs');
 module.exports = can.Component.extend({
     tag: 'seo-review-page',
     template: template,
-    viewModel: ViewModel,
-    events: {
-        /**
-         * @function api.pages.review-page.events.'#url-texts keyup'
-         * @description Register any keyup event within the textarea.
-         */
-        '#url-texts keyup': function () {
-            var $downloadBtn = this.element.find('#do-download');
-            var urlTextsValue = this.element.find('#url-texts').val();
-
-            if (!urlTextsValue) {
-                $downloadBtn.prop('disabled', true);
-            } else {
-                $downloadBtn.prop('disabled', false);
-            }
-        },
-
-        /**
-         * @function api.pages.review-page.events.'#clear-textarea click'
-         * @description Register click events that happen on the Clear Field button.
-         */
-        '#clear-textarea click': function () {
-            var $downloadBtn = this.element.find('#do-download');
-            $downloadBtn.prop('disabled', true);
-        }
-    }
+    viewModel: ViewModel
 });

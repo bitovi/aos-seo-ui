@@ -7,6 +7,7 @@
             class="form-control"
             cols="80"
             id="url-texts"
+            ($keyup)="updateUrlText($element.val())"
             name="url-texts"
             placeholder="Please enter URLs in a valid format, separated by commas"
             rows="8"></textarea>
@@ -25,7 +26,7 @@
         <button
             class="btn btn-primary"
             ($click)="doDownload"
-            disabled="disabled"
+            {{^if downloadBtnEnabled}}disabled="disabled"{{/if}}
             id="do-download"
             type="button"
         >
@@ -33,7 +34,7 @@
         </button>
         <button
             class="btn btn-secondary"
-            ($click)="clearTextarea"
+            ($click)="updateUrlText('')"
             id="clear-textarea"
             type="button"
         >

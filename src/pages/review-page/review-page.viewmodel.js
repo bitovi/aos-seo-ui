@@ -1,7 +1,6 @@
 require('can/map/define/define');
 
 var can = require('can');
-
 var envVars = require('seo-ui/utils/environmentVars');
 
 module.exports = can.Map.extend({
@@ -15,6 +14,15 @@ module.exports = can.Map.extend({
         doDownloadExport: {
             value: false,
             type: 'boolean'
+        },
+
+        /**
+         * @property {boolean} review-page.viewModel.downloadBtnEnabled downloadBtnEnabled
+         * @description Indicates if the download button is enabled
+         */
+        downloadBtnEnabled: {
+            type: 'boolean',
+            value: false
         },
 
         /**
@@ -40,9 +48,10 @@ module.exports = can.Map.extend({
          * @description The URL/End-point of the service we need to invoke to download a file when providing a list of URLs.
          */
         reviewFileFromInputPath: {
-            value: envVars.apiUrl() + '/process-for-textarea-input.json?',
+            value: '',
             type: 'string',
             get: function () {
+                // Adding CSRF token here, because the window.seo doesn't exist yet when the 'value' is set
                 return envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
             }
         },
@@ -52,9 +61,10 @@ module.exports = can.Map.extend({
          * @description The URL/End-point of the service we need to invoke to download a file when providing a file as input.
          */
         reviewFilePath: {
-            value: envVars.apiUrl() + '/process-csv-url.json?',
+            value: '',
             type: 'string',
             get: function () {
+                // Adding CSRF token here, because the window.seo doesn't exist yet when the 'value' is set
                 return envVars.apiUrl() + '/process-csv-url.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
             }
         },
@@ -89,16 +99,13 @@ module.exports = can.Map.extend({
          */
         urlTexts: {
             type: 'string',
-            value: ''
-        }
-    },
+            value: '',
+            set: function (newVal) {
+                this.attr('downloadBtnEnabled', Boolean(newVal.trim()));
 
-    /**
-     * @function review-page.viewmodel.clearTextarea clearTextarea
-     * @description Function that clears value from the textarea.
-     */
-    clearTextarea: function () {
-        this.attr('urlTexts', '');
+                return newVal;
+            }
+        }
     },
 
     /**
@@ -106,8 +113,6 @@ module.exports = can.Map.extend({
      * @description Function that is fired when the Generate File button is clicked on the Enter URLs tab.
      */
     doDownload: function () {
-        this.attr('reviewFileFromInputPath', envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
-
         // Start the export
         this.attr('doDownloadExport', true);
         // Reset the variable to enable doing the export again
@@ -120,5 +125,13 @@ module.exports = can.Map.extend({
      */
     toggleModal: function () {
         this.attr('modalOpen', !this.attr('modalOpen'));
+    },
+
+    /**
+     * @function review-page.viewmodel.updateUrlText updateUrlText
+     * @description Updates the URLtexts textarea.
+     */
+    updateUrlText: function (text) {
+        this.attr('urlTexts', text);
     }
 });
