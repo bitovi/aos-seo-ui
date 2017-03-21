@@ -1,7 +1,6 @@
 require('can/map/define/define');
 
 var can = require('can');
-
 var envVars = require('seo-ui/utils/environmentVars');
 
 module.exports = can.Map.extend({
@@ -21,7 +20,7 @@ module.exports = can.Map.extend({
          * @description The URL/End-point of the service we need to invoke for exporing/download
          */
         generateFilePath: {
-            value: envVars.apiUrl() + '/process-publishing-ready-file.json?',
+            value: '',
             type: 'string',
             get: function () {
                 return envVars.apiUrl() + '/process-publishing-ready-file.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken;
