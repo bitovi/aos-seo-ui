@@ -6,4 +6,5 @@ require('test/components/header/header.test');
 require('test/components/list-page/list-page.test');
 require('test/components/user-menu/user-menu.test');
 require('test/pages/generate-page/generate.test');
+require('test/pages/review-page/review-page.test');
 require('test/pages/url-list/url-list.test');
