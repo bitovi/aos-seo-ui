@@ -1,48 +1,49 @@
-<h1>
-    Generate Publishing-Ready File
-</h1>
-
-<div>
-    <p>Use this tool to generate a Publishing-Ready File that can be updated to Geppetto.</p>
-    <p>This file will contain the key paths found on the provided URLs.</p>
-</div>
-
-<div class="generate-file-upload panel panel-default">
+<h1>Review Meta Content &amp; Key Paths</h1>
+<p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
+<div class="panel panel-default">
     <div class="panel-body">
-        <pui-file-upload>
-        </pui-file-upload>
-
-        <ul class="content">
-            <li>
-                Only <b>.csv</b> files are supported.
-            </li>
-            <li>
-                Input maximum of 500 URLs.
-            </li>
-            <li>
-                Make sure the file follows the
-                <button
-                    class="btn btn-link modal-trigger"
-                    ($click)="toggleModal()"
-                    type="button"
-                >
-                    formatting requirements.
-                </button>
-            </li>
-        <ul>
+        <form
+            {($action)}="generateFilePath"
+            enctype="multipart/form-data"
+            id="generate-form"
+            method="POST"
+        >
+            <input
+                accept=".csv"
+                class="file-upload"
+                name="file-upload-publish"
+                type="file"
+                {($value)}="fileToUpload"/>
+            <ul class="content">
+                <li>
+                    Only <b>.csv</b> files are supported
+                </li>
+                <li>
+                    Input maximum of 500 URLs
+                </li>
+                <li>
+                    Make sure the file follows the 
+                    <button 
+                        class="btn btn-link modal-trigger"
+                        ($click)="toggleModal"
+                        type="button"
+                    >
+                        formatting requirements.
+                    </button>
+                </li>
+            </ul>
+            <button
+                class="btn btn-primary"
+                type="submit"
+                {{#unless fileToUpload}}disabled="disabled"{{/unless}}
+            >Generate File</button>
+        </form>
     </div>
 </div>
 
-<button
-    class="btn btn-primary"
-    type="button"
->
-    Generate File
-</button>
-
 <pui-modal
     {(modal-active)}="modalOpen"
-    modal-id="formatting-requirements-modal"
+    modal-id="formatting-requirements-modal-generate-url"
     modal-size="lg"
 >
     <pui-modal-header>
@@ -56,13 +57,7 @@
 
         <dl class="dl-horizontal">
             <dt>URL:</dt>
-            <dd>Enter the actual Unique URL/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.</dd>
-
-            <dt>type:</dt>
-            <dd>Enter the value "title" if its the page title and "meta" if its the meta description of the URL in column 1 that needs to be overridden.</dd>
-
-            <dt>value:</dt>
-            <dd>Enter the actual localized value of the page title or meta description that needs to appear on the respective AOS pages. (Unencoded)</dd>
+            <dd>Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.</dd>
         </dl>
 
         <h5>Example (include table headers as shown below):</h5>
@@ -71,15 +66,11 @@
             <thead>
                 <tr>
                     <th>URL</th>
-                    <th>type</th>
-                    <th>value</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
-                    <td>title</td>
-                    <td>_______ - Mac</td>
                 </tr>
             </tbody>
         </table>
