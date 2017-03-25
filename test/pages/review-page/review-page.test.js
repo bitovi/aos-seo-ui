@@ -27,7 +27,7 @@ var renderPage = function (newState) {
         state: state
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
 
     $component = $('#sandbox seo-review-page');
 };
@@ -92,7 +92,7 @@ describe('Review Page', function () {
         describe('When doDownload called', function () {
             beforeEach(function () {
                 vm.doDownload();
-                jasmine.clock().tick(can.fixture.delay);
+                jasmine.clock().runToLast();
             });
 
             it('sets doDownloadExport property to false ', function () {
@@ -107,7 +107,7 @@ describe('Review Page', function () {
         describe('When toggleModal called', function () {
             beforeEach(function () {
                 vm.toggleModal();
-                jasmine.clock().tick(can.fixture.delay);
+                jasmine.clock().runToLast();
             });
 
             it('opens Modal window', function () {
@@ -146,7 +146,7 @@ describe('Review Page', function () {
                 beforeEach(function () {
                     $component.find('#url-texts').val('abc');
                     $component.find('#clear-textarea').trigger('click');
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
                 });
 
                 it('clears textarea', function () {
@@ -158,7 +158,7 @@ describe('Review Page', function () {
         describe('When Upload File tab is clicked', function () {
             beforeEach(function () {
                 $component.find('.nav-tabs li:eq(1) a').trigger('click');
-                jasmine.clock().tick(can.fixture.delay);
+                jasmine.clock().runToLast();
             });
 
             it('shows Upload File tab', function () {
@@ -180,7 +180,7 @@ describe('Review Page', function () {
             describe('When formatting requirements link is clicked', function () {
                 beforeEach(function () {
                     $component.find('#review-file-form .btn-link').trigger('click');
-                    jasmine.clock().tick(can.fixture.delay);
+                    jasmine.clock().runToLast();
                 });
 
                 it('opens Formatting Requirements Modal', function () {

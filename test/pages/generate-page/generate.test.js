@@ -29,7 +29,7 @@ var renderPage = function(newState) {
         state: state
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
     $component = $('#sandbox seo-generate-page');
 };
 
