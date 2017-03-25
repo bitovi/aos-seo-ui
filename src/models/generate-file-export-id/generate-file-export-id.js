@@ -1,22 +1,21 @@
-var can = require('can');
 var $ = require('jquery');
+var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
 
 require('can/map/define/');
 
 module.exports = can.Model.extend({
-    /**
-     * @function export-progress.findOne is used to get the progress of a download
-     * @description is used to get the progress of a download.
+	/**
+     * @function generate-file-export-id.findOne
+     * @description is used to get the exportId to get the progress of a download later.
      * @param {Object} the request query params.
      * @return {Object} Returns the export progress.
      */
-    findOne: function (req) {
-        var url = envVars.apiUrl() + '/export-progress.json?exportId=' + req.exportId;
+    findOne: function () {
+        var url = envVars.apiUrl() + '/generate-export-id.json';
         return $.ajax({
+            type: 'GET',
             url: url,
-            method: 'GET',
-            processData: false,
             contentType: 'application/json'
         });
     }
