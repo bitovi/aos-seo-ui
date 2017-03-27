@@ -1,5 +1,5 @@
 <h1>Generate Publishing-Ready File</h1>
-<p>Use this tool to generate a Publishing-Ready File that can be uploaded to Nemo. This file will contain the key paths found on the provided URLs.</p>
+<p>Use this tool to generate a publishing-ready file that can be uploaded to Nemo. This file will contain the key paths found on the provided URLs.</p>
 <div class="panel panel-default">
     <div class="panel-body">
         <form
