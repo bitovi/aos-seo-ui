@@ -83,7 +83,7 @@
     </pui-modal-body>
 </pui-modal>
 
-{{#notifications}}
+{{#each notifications}}
     <pui-alert
         class="global-alert"
         title="{title}"
@@ -93,4 +93,4 @@
         dismissable="true"
         visible="true">
     </pui-alert>
-{{/notifications}}
+{{/each}}

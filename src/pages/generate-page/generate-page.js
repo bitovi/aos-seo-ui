@@ -16,17 +16,8 @@ module.exports = can.Component.extend({
     viewModel: ViewModel,
     events: {
         /**
-         * @function api.components.generate-page.events.inserted
-         * @description Event listener that is called when the component is inserted on the page.
-         */
-        'inserted': function () {
-            var vm = this.viewModel;
-            this.element.find('#generate-form').attr('action', vm.exportFilePath);
-        },
-
-        /**
-         * @function api.components.generate-page.events.'#generate-file-btn click'
-         * @description Callback function invoked when there is a change in the
+         * @function api.pages.generate-page.events.'#generate-file-btn click'
+         * @description Callback function invoked when '#generate-file-btn' is clicked.
          */
         '#generate-file-btn click': function () {
             var def = GenerateExportIdModel.findOne();
