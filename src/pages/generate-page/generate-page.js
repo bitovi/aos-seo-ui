@@ -26,7 +26,6 @@ module.exports = can.Component.extend({
 
             def.then(function (resp) {
                 vm.attr('exportId', resp.id);
-                vm.attr('params.exportId', resp.id);
 
                 // Submit the form
                 self.element.find('#generate-form').submit();

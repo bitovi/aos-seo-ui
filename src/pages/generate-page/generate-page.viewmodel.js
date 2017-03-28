@@ -9,7 +9,7 @@ module.exports = can.Map.extend({
     define: {
         /**
          * @property {String} generate-page.viewModel.exportId exportId
-         * @description ExportId needed to submit and download a file
+         * @description ExportId needed to submit and download files.
          */
         exportId: {
             type: 'string'
@@ -17,23 +17,11 @@ module.exports = can.Map.extend({
 
         /**
          * @property {can.Model} generate-page.viewModel.ExportProgressModel ExportProgressModel
-         * @description The model used to get the export progress for any file export/download.
+         * @description The model used to get the export progress for any file export.
          */
         ExportProgressModel: {
             get: function () {
                 return ExportProgressModel;
-            }
-        },
-
-        /**
-         * @property {String} generate-page.viewModel.exportRequest exportRequest
-         * @description The API of the service we need to call to export the file
-         */
-        exportRequest: {
-            type: 'string',
-            get: function () {
-                this.attr('params.exportId', this.attr('exportId'));
-                return JSON.stringify(this.attr('params').attr());
             }
         },
 
@@ -48,7 +36,7 @@ module.exports = can.Map.extend({
 
         /**
          * @property {can.Model} generate-page.viewModel.GenerateExportIdModel GenerateExportIdModel
-         * @description The model used to get the exportId for the file export/download
+         * @description The model used to get the exportId for the file export.
          */
         GenerateExportIdModel: {
             get: function () {
@@ -83,14 +71,6 @@ module.exports = can.Map.extend({
          */
         notifications: {
             Value: Array
-        },
-
-        /**
-         * @property {Object} generate-page.viewModel.params params
-         * @description params to be sent to the server.
-         */
-        params: {
-            value: {}
         }
     },
 
@@ -104,35 +84,75 @@ module.exports = can.Map.extend({
 
         this.attr('notifications').push({
             title: 'Your data export has started.',
-            message: 'Please check your Downloads folder for the export file.',
+            message: 'Please wait for the process to complete.',
             timeout: '5000',
             type: 'info'
         });
 
         progressTimerId = setInterval(function () {
             var progDef = ExportProgressModel.findOne({
-                exportId: self.attr('params.exportId')
+                exportId: self.attr('exportId')
             });
+            var alertConfig = {
+                title: '',
+                timeout: 5000,
+                message: '',
+                type: 'info'
+            };
 
             progDef.then(function (resp) {
                 if (resp && resp.state) {
                     var respState = resp.state;
 
-                    if (respState === 'success' || respState === 'error') {
+                    if (resp.errorMessage) {
+                        alertConfig.message = resp.errorMessage;
+                    }
+
+                    // Remove first alert message
+                    setTimeout(function () {
+                        self.attr('notifications').shift();
+                    }, 5000);
+
+                    // Only setting the message in two cases (alert, progress) 
+                    // when the BE is nto sending a message to the UI
+                    if (respState === 'progress') {
+                        alertConfig.title = 'Export in Progress';
+                        alertConfig.message = 'We are porcessing the file right now. Please wait till the process completes.';
+                    } else {
+                        // Stop Export progress API requests
                         clearTimeout(progressTimerId);
-                        setTimeout(function () {
-                            self.attr('notifications').pop();
-                        }, 3000);
+
+                        if (respState === 'success') {
+                            alertConfig.title = 'Export Successful';
+                            alertConfig.message = 'File has been downloaded successfully, please check your Downloads folder.';
+                        } else if (respState === 'error') {
+                            alertConfig.title = 'Export Failed';
+                            alertConfig.type = 'error';
+                        } else if (respState === 'warning') {
+                            alertConfig.title = 'Warning: Export Completed with errors';
+                        } else if (respState === 'alert') {
+                            alertConfig.title = 'Alert: Export Completed with errors';
+                        }
                     }
                 }
             })
-            .fail(function (resp) {
+            .fail(function () {
+                alertConfig.title = 'Not able to export';
+                alertConfig.type = 'error';
+            })
+            .always(function () {
+                // Show alert message
                 self.attr('notifications').push({
-                    title: 'Not able to export',
-                    message: resp.errorMessage,
-                    timeout: '5000',
-                    type: 'error'
+                    title: alertConfig.title,
+                    message: alertConfig.message,
+                    timeout: alertConfig.timeout,
+                    type: alertConfig.type
                 });
+
+                // Remove notification with a 3 second delay
+                setTimeout(function () {
+                    self.attr('notifications').shift();
+                }, 5000);
             });
         }, 1000);
     },

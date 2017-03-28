@@ -33,7 +33,6 @@
                 </li>
             </ul>
             <input
-                id="exportId"
                 name="exportId"
                 type="hidden"
                 {($value)}="exportId"/>
