@@ -76,7 +76,7 @@ describe('Generate Page', function () {
 
     describe('Component', function () {
         it('shows a Header', function () {
-            expect($component.find('h1').text()).toBe('Review Meta Content & Key Paths');
+            expect($component.find('h1').text()).toBe('Generate Publishing-Ready File');
         });
 
         it('shows Generate Form', function () {
