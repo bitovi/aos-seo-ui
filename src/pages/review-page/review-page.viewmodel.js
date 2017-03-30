@@ -258,7 +258,7 @@ module.exports = can.Map.extend({
                     self.attr('notifications').shift();
                 }, 10000);
             });
-        }, 1000);
+        }, 5000);
     },
 
     /**
