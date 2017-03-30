@@ -131,8 +131,10 @@ module.exports = can.Map.extend({
                             alertConfig.type = 'error';
                         } else if (respState === 'warning') {
                             alertConfig.title = 'Warning: Export Completed with errors';
+                            alertConfig.type = 'warning';
                         } else if (respState === 'alert') {
                             alertConfig.title = 'Alert: Export Completed with errors';
+
                         }
                     }
                 }
@@ -150,12 +152,12 @@ module.exports = can.Map.extend({
                     type: alertConfig.type
                 });
 
-                // Remove notification with a 3 second delay
+                // Remove notification with a delay
                 setTimeout(function () {
                     self.attr('notifications').shift();
                 }, 10000);
             });
-        }, 1000);
+        }, 5000);
     },
 
     /**
