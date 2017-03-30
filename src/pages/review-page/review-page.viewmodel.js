@@ -32,7 +32,8 @@ module.exports = can.Map.extend({
          * @description ExportId needed to submit and download files.
          */
         exportId: {
-            type: 'string'
+            type: 'string',
+            value: ''
         },
 
         /**
@@ -159,8 +160,9 @@ module.exports = can.Map.extend({
             type: 'string',
             value: '',
             set: function (newVal) {
-                this.attr('downloadBtnEnabled', Boolean(newVal.trim()));
-
+                if (newVal) {
+                    this.attr('downloadBtnEnabled', Boolean(newVal.trim()));
+                }
                 return newVal;
             }
         }
@@ -254,7 +256,7 @@ module.exports = can.Map.extend({
                 // Remove notification with a 3 second delay
                 setTimeout(function () {
                     self.attr('notifications').shift();
-                }, 5000);
+                }, 10000);
             });
         }, 1000);
     },

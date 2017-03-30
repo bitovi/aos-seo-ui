@@ -2,8 +2,8 @@ require('can/map/define/define');
 
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
-var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 var ExportProgressModel = require('seo-ui/models/export-progress/export-progress');
+var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 
 module.exports = can.Map.extend({
     define: {
@@ -12,7 +12,8 @@ module.exports = can.Map.extend({
          * @description ExportId needed to submit and download files.
          */
         exportId: {
-            type: 'string'
+            type: 'string',
+            value: ''
         },
 
         /**
@@ -152,7 +153,7 @@ module.exports = can.Map.extend({
                 // Remove notification with a 3 second delay
                 setTimeout(function () {
                     self.attr('notifications').shift();
-                }, 5000);
+                }, 10000);
             });
         }, 1000);
     },
