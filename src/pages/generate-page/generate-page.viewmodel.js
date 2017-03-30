@@ -108,12 +108,12 @@ module.exports = can.Map.extend({
                         alertConfig.message = resp.errorMessage;
                     }
 
-                    // Remove first alert message
+                    // Remove previous alert message
                     setTimeout(function () {
                         self.attr('notifications').shift();
-                    }, 5000);
+                    }, 1000);
 
-                    // Only setting the message in two cases (alert, progress) 
+                    // Only setting the message in two cases (alert, progress)
                     // when the BE is nto sending a message to the UI
                     if (respState === 'progress') {
                         alertConfig.title = 'Export in Progress';

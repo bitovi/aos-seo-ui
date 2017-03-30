@@ -89,21 +89,6 @@ describe('Review Page', function () {
             expect(vm.attr('urlTexts')).toBe('');
         });
 
-        describe('When doDownload called', function () {
-            beforeEach(function () {
-                vm.doDownload();
-                jasmine.clock().tick(can.fixture.delay);
-            });
-
-            it('sets doDownloadExport property to false ', function () {
-                expect(vm.attr('doDownloadExport')).toBe(false);
-            });
-
-            it('sets reviewFileFromInputPath property', function () {
-                expect(vm.attr('reviewFileFromInputPath')).toBe(envVars.apiUrl() + '/process-for-textarea-input.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
-            });
-        });
-
         describe('When toggleModal called', function () {
             beforeEach(function () {
                 vm.toggleModal();
@@ -131,7 +116,7 @@ describe('Review Page', function () {
             });
 
             it('shows Generate file button as disabled', function () {
-                expect($component.find('#do-download').attr('disabled')).toEqual('disabled');
+                expect($component.find('#review-file-from-input-btn').attr('disabled')).toEqual('disabled');
             });
 
             it('shows Clear Field button as enabled', function () {

@@ -18,16 +18,15 @@
             action-url="{reviewFileFromInputPath}"
             method="POST"
             enc-type="multipart/form-data"
-            json-string="{urlTexts}"
-            param-key="urlTexts"
+            json-string="{exportRequest}"
+            param-key="exportRequest"
             frameName="review-file-downloader"
             submit-form="{doDownloadExport}">
         </pui-file-downloader>
         <button
             class="btn btn-primary"
-            ($click)="doDownload"
             {{^if downloadBtnEnabled}}disabled="disabled"{{/if}}
-            id="do-download"
+            id="review-file-from-input-btn"
             type="button"
         >
             Generate File

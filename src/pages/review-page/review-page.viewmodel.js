@@ -46,6 +46,17 @@ module.exports = can.Map.extend({
         },
 
         /**
+        * @property {string} review-page.viewModel.exportRequest exportRequest
+        * @description Data to be sent to the reviewFileFromInputPath export API
+        */
+        exportRequest: {
+            type: 'string',
+            get: function() {
+                return JSON.stringify(this.attr('params').attr());
+            }
+        },
+
+        /**
          * @property {boolean} review-page.viewModel.fileToUpload fileToUpload
          * @description The file provided as value for the file-upload component that will be uploaded.
          */
@@ -79,6 +90,15 @@ module.exports = can.Map.extend({
          */
         notifications: {
             Value: Array
+        },
+
+        /**
+        * @property {Object} review-page.viewModel.params params
+        * @description list of params to be submitted to the server
+        * note: only for the reviewFileFromInputPath export API
+        */
+        params: {
+            Value: Object
         },
 
         /**
@@ -147,18 +167,17 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function review-page.viewmodel.doDownload doDownload
-     * @description Function that is fired when the Generate File button is clicked on the Enter URLs tab.
+     * @function {function} review-page.viewModel.buildParams buildParams
+     * @description builds query params for HTTP request that will be submitted in the request body.
      */
-    doDownload: function () {
-        // Start the export
-        this.attr('doDownloadExport', true);
-        // Reset the variable to enable doing the export again
-        this.attr('doDownloadExport', false);
+    buildParams: function () {
+        var params = this.attr('params');
+        params.attr('urlTexts', this.attr('urlTexts'));
+        params.attr('exportId', this.attr('exportId'));
     },
 
     /**
-     * @function generate-page.viewmodel.getProgress getProgress
+     * @function review-page.viewmodel.getProgress getProgress
      * @description Function queries export progress status.
      */
     getProgress: function () {
@@ -184,7 +203,6 @@ module.exports = can.Map.extend({
             };
 
             progDef.then(function (resp) {
-
                 if (resp && resp.state) {
                     var respState = resp.state;
 
@@ -192,12 +210,12 @@ module.exports = can.Map.extend({
                         alertConfig.message = resp.errorMessage;
                     }
 
-                    // Remove first alert message
+                    // Remove previous alert message
                     setTimeout(function () {
                         self.attr('notifications').shift();
-                    }, 5000);
+                    }, 1000);
 
-                    // Only setting the message in two cases (alert, progress) 
+                    // Only setting the message in two cases (alert, progress)
                     // when the BE is nto sending a message to the UI
                     if (respState === 'progress') {
                         alertConfig.title = 'Export in Progress';
