@@ -18,16 +18,15 @@
             action-url="{reviewFileFromInputPath}"
             method="POST"
             enc-type="multipart/form-data"
-            json-string="{urlTexts}"
-            param-key="urlTexts"
+            json-string="{exportRequest}"
+            param-key="exportRequest"
             frameName="review-file-downloader"
             submit-form="{doDownloadExport}">
         </pui-file-downloader>
         <button
             class="btn btn-primary"
-            ($click)="doDownload"
             {{^if downloadBtnEnabled}}disabled="disabled"{{/if}}
-            id="do-download"
+            id="review-file-from-input-btn"
             type="button"
         >
             Generate File
@@ -69,15 +68,20 @@
                             <button 
                                 class="btn btn-link modal-trigger"
                                 ($click)="toggleModal"
-                                type="button"
                             >
                                 formatting requirements.
                             </button>
                         </li>
                     </ul>
+                    <input
+                        id="export-id"
+                        name="exportId"
+                        type="hidden"
+                        {($value)}="exportId"/>
                     <button
                         class="btn btn-primary"
-                        type="submit"
+                        id="review-file-btn"
+                        type="button"
                         {{#unless fileToUpload}}disabled="disabled"{{/unless}}
                     >Generate File</button>
                 </form>
@@ -121,3 +125,15 @@
         </pui-modal>
     </div>
 </pui-tabs>
+
+{{#each notifications}}
+    <pui-alert
+        class="global-alert"
+        title="{title}"
+        message="{message}"
+        type="{type}"
+        display-interval="{timeout}"
+        dismissable="true"
+        visible="true">
+    </pui-alert>
+{{/each}}
