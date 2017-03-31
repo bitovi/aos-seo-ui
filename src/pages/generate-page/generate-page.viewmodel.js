@@ -100,8 +100,11 @@ module.exports = can.Map.extend({
                 message: '',
                 type: 'info'
             };
+            var counter = 0;
 
             progDef.then(function (resp) {
+                counter++;
+
                 if (resp && resp.state) {
                     var respState = resp.state;
 
@@ -114,11 +117,19 @@ module.exports = can.Map.extend({
                         self.attr('notifications').shift();
                     }, 1000);
 
-                    // Only setting the message in two cases (alert, progress)
-                    // when the BE is nto sending a message to the UI
+                    // Only set the message when the BE is not sending a message
                     if (respState === 'progress') {
                         alertConfig.title = 'Export in Progress';
                         alertConfig.message = 'We are porcessing the file right now. Please wait till the process completes.';
+
+                        // Only in case of the first requestdo this once
+                        if (counter === 1) {
+                            // If the file download is still in progress state after
+                            // 60 seconds then stop querying the Export PRogress API
+                            setTimeout(function () {
+                                clearTimeout(progressTimerId);
+                            }, 60000);
+                        }
                     } else {
                         // Stop Export progress API requests
                         clearTimeout(progressTimerId);
@@ -134,7 +145,7 @@ module.exports = can.Map.extend({
                             alertConfig.type = 'warning';
                         } else if (respState === 'alert') {
                             alertConfig.title = 'Alert: Export Completed with errors';
-
+                            alertConfig.type = 'warning';
                         }
                     }
                 }
