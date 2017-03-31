@@ -27,7 +27,6 @@
             class="btn btn-primary"
             {{^if downloadBtnEnabled}}disabled="disabled"{{/if}}
             id="review-file-from-input-btn"
-            type="button"
         >
             Generate File
         </button>
@@ -35,7 +34,6 @@
             class="btn btn-secondary"
             ($click)="updateUrlText('')"
             id="clear-textarea"
-            type="button"
         >
             Clear Field
         </button>
@@ -68,7 +66,6 @@
                             <button 
                                 class="btn btn-link modal-trigger"
                                 ($click)="toggleModal"
-                                type="button"
                             >
                                 formatting requirements.
                             </button>
@@ -82,7 +79,6 @@
                     <button
                         class="btn btn-primary"
                         id="review-file-btn"
-                        type="button"
                         {{#unless fileToUpload}}disabled="disabled"{{/unless}}
                     >Generate File</button>
                 </form>
