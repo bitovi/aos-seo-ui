@@ -26,6 +26,7 @@
                     <button 
                         class="btn btn-link modal-trigger"
                         ($click)="toggleModal"
+                        type="button"
                     >
                         formatting requirements.
                     </button>
@@ -38,6 +39,7 @@
             <button
                 class="btn btn-primary"
                 id="generate-file-btn"
+                type="button"
                 {{#unless fileToUpload}}disabled="disabled"{{/unless}}
             >Generate File</button>
         </form>
