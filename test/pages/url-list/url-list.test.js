@@ -151,7 +151,8 @@ describe('URL List Page', function () {
                 {
                     cssClass: 'col-md-1',
                     key: 'nemoReadyRecord',
-                    label: 'Nemo'
+                    label: 'Nemo',
+                    isHidden: true
                 }
             ]);
         });
