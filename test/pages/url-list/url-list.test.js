@@ -151,9 +151,7 @@ describe('URL List Page', function () {
                 {
                     cssClass: 'col-md-1',
                     key: 'nemoReadyRecord',
-                    label: 'Nemo',
-                    sorting: false,
-                    isHidden: true
+                    label: 'Nemo'
                 }
             ]);
         });
@@ -457,6 +455,7 @@ describe('URL List Page', function () {
         describe('sorts by the', function () {
             testSort('country');
             testSort('description');
+            testSort('nemoReadyRecord');
             testSort('pageTitle');
             testSort('partNumber');
             testSort('region');
