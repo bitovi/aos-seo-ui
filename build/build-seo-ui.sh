@@ -18,7 +18,7 @@ NEXUS_REPO="https://store-nexusrepo.apple.com/nexus/service/local/artifact/maven
 
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=3.2-SNAPSHOT
+MVN_VERSION=3.1.1-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
