@@ -47,7 +47,6 @@ describe('Review Page', function () {
 
     afterEach(function () {
         jasmineConfigClean();
-        $('#sandbox').html('');
     });
 
     describe('View Model', function () {
