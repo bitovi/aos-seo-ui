@@ -32,9 +32,14 @@
                     </button>
                 </li>
             </ul>
+            <input
+                name="exportId"
+                type="hidden"
+                {($value)}="exportId"/>
             <button
                 class="btn btn-primary"
-                type="submit"
+                id="generate-file-btn"
+                type="button"
                 {{#unless fileToUpload}}disabled="disabled"{{/unless}}
             >Generate File</button>
         </form>
@@ -86,3 +91,15 @@
         </table>
     </pui-modal-body>
 </pui-modal>
+
+{{#each notifications}}
+    <pui-alert
+        class="global-alert"
+        title="{title}"
+        message="{message}"
+        type="{type}"
+        display-interval="{timeout}"
+        dismissable="true"
+        visible="true">
+    </pui-alert>
+{{/each}}

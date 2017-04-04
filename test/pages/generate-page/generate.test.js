@@ -1,3 +1,4 @@
+require('seo-ui/pages/generate-page/generate-page');
 require('can/util/fixture/fixture');
 
 var $ = require('jquery');
@@ -14,14 +15,13 @@ var stateObj = {
 
 var testTemplate = require('./generate.test.stache!');
 var ViewModel = require('seo-ui/pages/generate-page/generate-page.viewmodel');
+var ExportProgressModel = require('seo-ui/models/export-progress/export-progress');
+var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 var $component;
 
-require('seo-ui/pages/generate-page/generate-page');
-
-
-//Renders the page 
+// Renders the page
 var renderPage = function(newState) {
     state = new AppState(can.extend({}, stateObj, newState || {}));
 
@@ -34,10 +34,8 @@ var renderPage = function(newState) {
 };
 
 describe('Generate Page', function () {
-
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig();
-        
         window.seo = {
             csrfHeader:"X-AOS-CSRF",
             csrfParameter:"_aos_csrf",
@@ -55,12 +53,32 @@ describe('Generate Page', function () {
             vm = new ViewModel();
         });
 
-        it('it has a default generateFilePath value', function () {
+        it('has a default exportId value', function () {
+            expect(vm.attr('exportId')).toBe('');
+        });
+
+        it('has an ExportProgressModel property with type function', function () {
+            expect(typeof vm.attr('ExportProgressModel')).toBe('function');
+        });
+
+        it('has a default fileToUpload value', function () {
+            expect(vm.attr('fileToUpload')).toBe('');
+        });
+
+        it('has a GenerateExportIdModel property with type function', function () {
+            expect(typeof vm.attr('GenerateExportIdModel')).toBe('function');
+        });
+
+        it('has a default generateFilePath value', function () {
             expect(vm.attr('generateFilePath')).toBe(envVars.apiUrl() + '/process-publishing-ready-file.json?' + window.seo.csrfParameter + '=' + window.seo.csrfToken);
         });
 
-        it('it has a default modalOpen value', function () {
+        it('has a default modalOpen value', function () {
             expect(vm.attr('modalOpen')).toBe(false);
+        });
+
+        it('has a notifications Array property with a length of 0', function () {
+            expect(vm.attr('notifications').length).toBe(0);
         });
 
         describe('When modal link is clicked', function () {
@@ -70,6 +88,23 @@ describe('Generate Page', function () {
 
             it('opens the Modal window', function () {
                 expect($component.find('#formatting-requirements-modal-generate-url').length).toBeGreaterThan(0);
+            });
+        });
+
+        describe('When getProgress function is called', function () {
+            beforeEach(function () {
+                vm.getProgress();
+                spyOn(vm, 'getProgress');
+                jasmine.clock().runToLast();
+            });
+
+            it('adds a notifications message', function () {
+                expect(vm.attr('notifications').attr()).toEqual([{
+                    title: 'Your data export has started.',
+                    message: 'Please wait for the process to complete.',
+                    timeout: '5000',
+                    type: 'info'
+                }]);
             });
         });
     });
@@ -83,7 +118,7 @@ describe('Generate Page', function () {
             expect($component.find('#generate-form').length).toBeGreaterThan(0);
         });
 
-        describe('Choose File Button', function () {            
+        describe('Choose File Button', function () {
             it('should be visible on the page', function () {
                 expect($component.find('.file-upload')).toBeVisible();
             });
