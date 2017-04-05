@@ -38,14 +38,14 @@ var renderPage = function (newState) {
 var testSort = function (name) {
     describe(name + ' field', function () {
         beforeEach(function () {
-            // Show NemoReadyRecord column
-            if (name === 'nemoReadyRecord') {
-                var $gridColumntoggle = component.find('pui-grid-column-toggle').eq(0);
-                $gridColumntoggle.find('.popover-trigger').trigger('click');
-                jasmine.clock().tick(can.fixture.delay);
-                $gridColumntoggle.find('.list-group-item').eq(12).find('.option-checkbox').trigger('click');
-                jasmine.clock().tick(can.fixture.delay);
-            }
+            // Ensures columns are visible before attempting to sort
+            vm = can.viewModel(component);
+            var column = _.find(vm.attr('columns'), {
+                key: name
+            });
+
+            column.attr('isVisible', true);
+            // jasmine.clock().tick(can.fixture.delay);
 
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
