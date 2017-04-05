@@ -120,7 +120,7 @@ module.exports = can.Map.extend({
                     // Only set the message when the BE is not sending a message
                     if (respState === 'progress') {
                         alertConfig.title = 'Export in Progress';
-                        alertConfig.message = 'We are porcessing the file right now. Please wait till the process completes.';
+                        alertConfig.message = 'We are processing the file right now. Please wait till the process is completed.';
 
                         // Only in case of the first requestdo this once
                         if (counter === 1) {
