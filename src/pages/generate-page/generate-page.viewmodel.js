@@ -151,7 +151,6 @@ module.exports = can.Map.extend({
                 }
             })
             .fail(function (resp) {
-console.log(resp.statusText);
                 alertConfig.title = 'Not able to export';
                 alertConfig.type = 'error';
                 alertConfig.message = resp.statusText;
