@@ -89,7 +89,6 @@ module.exports = can.Map.extend({
                     cssClass: 'col-md-1',
                     key: 'nemoReadyRecord',
                     label: 'Nemo',
-                    sorting: false,
                     isHidden: true
                 }
             ]

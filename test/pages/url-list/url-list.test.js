@@ -38,6 +38,14 @@ var renderPage = function (newState) {
 var testSort = function (name) {
     describe(name + ' field', function () {
         beforeEach(function () {
+            // Ensures columns are visible before attempting to sort
+            vm = can.viewModel(component);
+            var column = _.find(vm.attr('columns'), {
+                key: name
+            });
+
+            column.attr('isVisible', true);
+
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
         });
@@ -152,7 +160,6 @@ describe('URL List Page', function () {
                     cssClass: 'col-md-1',
                     key: 'nemoReadyRecord',
                     label: 'Nemo',
-                    sorting: false,
                     isHidden: true
                 }
             ]);
@@ -457,6 +464,7 @@ describe('URL List Page', function () {
         describe('sorts by the', function () {
             testSort('country');
             testSort('description');
+            testSort('nemoReadyRecord');
             testSort('pageTitle');
             testSort('partNumber');
             testSort('region');
