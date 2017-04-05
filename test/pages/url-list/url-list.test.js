@@ -45,7 +45,6 @@ var testSort = function (name) {
             });
 
             column.attr('isVisible', true);
-            // jasmine.clock().tick(can.fixture.delay);
 
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().tick(can.fixture.delay);
