@@ -225,7 +225,7 @@ module.exports = can.Map.extend({
                         alertConfig.title = 'Export in Progress';
                         alertConfig.message = 'We are processing the file right now. Please wait till the process is completed.';
 
-                        // Only in case of the first requestdo this once
+                        // Only in case of the first request do this once
                         if (counter === 1) {
                             // If the file download is still in progress state after
                             // 60 seconds then stop querying the Export PRogress API
@@ -253,9 +253,13 @@ module.exports = can.Map.extend({
                     }
                 }
             })
-            .fail(function () {
+            .fail(function (resp) {
                 alertConfig.title = 'Not able to export';
                 alertConfig.type = 'error';
+                alertConfig.message = resp.statusText;
+
+                // Stop Export progress API requests
+                clearTimeout(progressTimerId);
             })
             .always(function () {
                 // Show alert message
