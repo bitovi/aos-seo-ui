@@ -239,7 +239,8 @@ module.exports = can.Map.extend({
 
                         if (respState === 'success') {
                             alertConfig.title = 'Export Successful';
-                            alertConfig.message = 'File has been downloaded successfully, please check your Downloads folder.';
+                            alertConfig.type = 'success';
+                            alertConfig.message = 'The file has been downloaded successfully, please check your Downloads folder.';
                         } else if (respState === 'error') {
                             alertConfig.title = 'Export Failed';
                             alertConfig.type = 'error';

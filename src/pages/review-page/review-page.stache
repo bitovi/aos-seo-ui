@@ -11,9 +11,6 @@
             name="url-texts"
             placeholder="Please enter URLs in a valid format, separated by commas"
             rows="8"></textarea>
-        <span class="help-block">
-            Input a maximum of 500 URLs.
-        </span>
         <pui-file-downloader
             action-url="{reviewFileFromInputPath}"
             method="POST"
@@ -59,9 +56,6 @@
                     <ul class="content">
                         <li>
                             Only <b>.csv</b> files are supported
-                        </li>
-                        <li>
-                            Input maximum of 500 URLs
                         </li>
                         <li>
                             Make sure the file follows the 
