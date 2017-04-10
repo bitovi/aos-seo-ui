@@ -594,7 +594,7 @@ describe('URL List Page', function () {
                 var $anatomyToggler;
 
                 beforeEach(function () {
-                     $anatomyToggler = $resultTitle.find('.toggle-anatomy');
+                    $anatomyToggler = $resultTitle.find('.toggle-anatomy');
                 });
 
                 it('is displayed', function () {
@@ -726,6 +726,17 @@ describe('URL List Page', function () {
                     expect($keyPath.find('.icon-key').length).toEqual(1);
                 });
             });
+
+            describe('when a key-path string is wider than the popover', function () {
+                beforeEach(function () {
+                    $resultTitle.find('.toggle-anatomy').trigger('click');
+                    $popover = $resultTitle.find('.popover');
+                });
+
+                it('wraps the key path within the popover', function () {
+                    expect($popover.innerWidth()).toEqual($popover.get(0).scrollWidth);
+                });
+            });
         });
 
         describe('when a result has neither a pageTitle nor a titleAnatomy property', function () {
@@ -845,7 +856,7 @@ describe('URL List Page', function () {
                 var $anatomyToggler;
 
                 beforeEach(function () {
-                     $anatomyToggler = $resultDesc.find('.toggle-anatomy');
+                    $anatomyToggler = $resultDesc.find('.toggle-anatomy');
                 });
 
                 it('is displayed', function () {
