@@ -155,7 +155,6 @@ module.exports = can.Map.extend({
                     alertConfig.type = 'error';
                     alertConfig.message = 'The server has failed processing the data that has been provided. Please make sure that the data and the data format are both correct and try again.';
 
-                    // Stop polling in this case, because the server will not be able send any data
                     clearTimeout(progressTimerId);
                 }
             })
