@@ -2,8 +2,8 @@ require('can/map/define/define');
 
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
-var formatDate = require('pui/utils/formatDate');
-var guid = require('pui/utils/guid');
+var formatDate = require('@apple/pui/utils/formatDate');
+var guid = require('@apple/pui/utils/guid');
 
 module.exports = can.Model.extend(
     {

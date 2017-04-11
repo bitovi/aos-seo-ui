@@ -5,9 +5,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 require('can/view/stache/stache');
 require('can/route/pushstate/pushstate');
 
-// Browserify can only use `require`s that can be statically analyzed meaning the module
-// name must be a string. So we have to manually require the modules we will use in our
-// routes: https://github.com/substack/node-browserify/issues/377
 require('seo-ui/pages/generate-page/generate-page.js');
 require('seo-ui/pages/home/home.js');
 require('seo-ui/pages/review-page/review-page.js');

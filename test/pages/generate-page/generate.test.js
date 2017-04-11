@@ -21,7 +21,7 @@ var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 var $component;
 
-//Renders the page 
+// Renders the page
 var renderPage = function(newState) {
     state = new AppState(can.extend({}, stateObj, newState || {}));
 
@@ -29,7 +29,7 @@ var renderPage = function(newState) {
         state: state
     }));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
     $component = $('#sandbox seo-generate-page');
 };
 
@@ -95,7 +95,7 @@ describe('Generate Page', function () {
             beforeEach(function () {
                 vm.getProgress();
                 spyOn(vm, 'getProgress');
-                jasmine.clock().tick(can.fixture.delay);
+                jasmine.clock().runToLast();
             });
 
             it('adds a notifications message', function () {
@@ -118,7 +118,7 @@ describe('Generate Page', function () {
             expect($component.find('#generate-form').length).toBeGreaterThan(0);
         });
 
-        describe('Choose File Button', function () {            
+        describe('Choose File Button', function () {
             it('should be visible on the page', function () {
                 expect($component.find('.file-upload')).toBeVisible();
             });

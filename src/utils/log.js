@@ -1,4 +1,4 @@
-var log = require('pui/utils/logger');
+var log = require('@apple/pui/utils/logger');
 var apiLogHandler = require('seo-ui/utils/log-handlers/serverLogApiHandler');
 
 module.exports = {

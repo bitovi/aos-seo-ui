@@ -20,14 +20,14 @@ var config = {
         },
         buildOptions: {
             bundleSteal: true,
-            // sourceMaps: true,
-            // // Include the original source contents in the generated source maps
-            // sourceMapsContent: true,
+            sourceMaps: false,
+            // Include the original source contents in the generated source maps
+            sourceMapsContent: false,
             quiet: false,
             // Sets whether the source code is minified prior to writing
             minify: false,
             // Turns on debug messages.
-            // debug: true,
+            debug: true,
             // Remove any development code from the bundle specified using //!steal-remove-start, and //!steal-remove-end
             removeDevelopmentCode: true
         }
@@ -128,13 +128,13 @@ var config = {
             glob: {
                 ignore: [
                     '{node_modules,target,test,coverage}/**/*',
-                    'docs/{nemo-ui,theme}/*',
+                    'docs/{seo-ui,theme}/*',
                     '**/{demo,fixture}/*',
                     '**/*.bundle.js'
                 ]
             },
-            dest: './docs/nemo-ui',
-            parent: 'nemo-ui',
+            dest: './docs/seo-ui',
+            parent: 'seo-ui',
             templates: './docs/theme/templates',
             'static': './docs/theme/static'
         },

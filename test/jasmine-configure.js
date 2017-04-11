@@ -1,54 +1,61 @@
 var $ = require('jquery');
-var _ = require('lodash');
 var can = require('can');
+var _ = require('lodash');
+var llx = require('lolex');
 require('steal-jasmine');
 require('jasmine-jquery/lib/jasmine-jquery');
 
 require('can/util/fixture/fixture');
 
 var defaults = {
-    fixtureDelay: 0,
-    persistentSandbox: false,
-    useClock: true,
     useFixtures: true,
-    useSandbox: true
+    fixtureDelay: 0,
+    useSandbox: true,
+    useClock: true,
+    persistentSandbox: false
 };
 
 var realDebounce = _.debounce;
-var fakeDebounce = function (fn, delay) {
+var fakeDebounce = function(fn, delay){
     var timeoutId;
-
-    return function () {
+    return function(){
         var args = arguments;
-
         clearTimeout(timeoutId);
-
-        timeoutId = setTimeout(function () {
+        timeoutId = setTimeout(function(){
             fn.apply(this, args);
         }, delay);
     };
 };
 
-module.exports = function (options) {
+var mockClock, oldClock;
+
+module.exports = function(options) {
     var config = can.extend({}, defaults, options);
-    var oldFixtureDelay = can.fixture.delay;
+
     var oldFixtureValue = can.fixture.on;
+    var oldFixtureDelay = can.fixture.delay;
+
     var oldSupportTransition = $.support.transition;
 
     can.fixture.on = config.useFixtures;
     can.fixture.delay = config.fixtureDelay;
 
-    if (config.useClock) {
+    if(config.useClock) {
         // jQuery animations do not work with the mock timer
         // https://github.com/jasmine/jasmine/issues/184
         $.fx.off = true;
         $.support.transition = undefined;
-        jasmine.clock().install();
+		mockClock = llx.install();
+		oldClock = jasmine.clock;
+		jasmine.clock = function() {
+			return mockClock;
+		}
+
         _.debounce = fakeDebounce;
     }
 
-    if (config.useSandbox) {
-        if (config.persistentSandbox && $('#sandbox').length === 0) {
+    if(config.useSandbox) {
+        if(config.persistentSandbox && $('#sandbox').length === 0) {
             $('body').append('<div id="persistent-jasmine-fixtures"><div id="sandbox"></div></div>');
         } else {
             setFixtures(sandbox());
@@ -63,12 +70,12 @@ module.exports = function (options) {
     }
 
     //cleanup function
-    return function (force) {
+    return function(force) {
         can.fixture.on = oldFixtureValue;
         can.fixture.delay = oldFixtureDelay;
 
         //Only clean up the persistent sandbox when force is true
-        if (config.useSandbox && config.persistentSandbox && force) {
+        if(config.useSandbox && config.persistentSandbox && force) {
             $('#persistent-jasmine-fixtures').remove();
         }
 
@@ -84,13 +91,21 @@ module.exports = function (options) {
             window.unbindComputes();
         }
 
-        can.$('.modal-backdrop').remove();
+        $('.modal-backdrop').remove();
 
-        if (config.useClock) {
+        if(config.useClock) {
+            // Clean up any remaining deferreds or pending setTimeouts so they
+            // don't leak into the next specs
+            jasmine.clock().runToLast();
+
             $.fx.on = true;
             $.support.transition = oldSupportTransition;
-            jasmine.clock().uninstall();
+
+			mockClock.uninstall();
+			jasmine.clock = oldClock;
+            // jasmine.clock().uninstall();
             _.debounce = realDebounce;
         }
     };
+
 };

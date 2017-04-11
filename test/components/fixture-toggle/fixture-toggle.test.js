@@ -12,7 +12,7 @@ var vm;
 var renderPage = function () {
     $('#sandbox').html(testTemplate({}));
 
-    jasmine.clock().tick(can.fixture.delay);
+    jasmine.clock().runToLast();
     component = $('#sandbox seo-fixture-toggle');
     vm = can.viewModel(component);
 };

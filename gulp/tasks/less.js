@@ -32,7 +32,7 @@ var config = require('../config').less;
 var mergeStream = require('merge-stream');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
-var errorHandler = require('pui/src/gulp/util/handleErrors')({
+var errorHandler = require('@apple/pui/src/gulp/util/handleErrors')({
     title: "LESS Error",
 });
 

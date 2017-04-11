@@ -14,7 +14,7 @@
 
 var can = require('can');
 
-require('pui/components/dialog/dialog');
+require('@apple/pui/components/dialog/dialog');
 
 var template = require('./cancel-export-modal.stache!');
 var ViewModel = require('./cancel-export-modal.viewmodel');

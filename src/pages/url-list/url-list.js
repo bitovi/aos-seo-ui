@@ -1,6 +1,6 @@
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('pui/components/popover/popover');
+require('@apple/pui/components/popover/popover');
 require('seo-ui/components/export-urls/export-urls');
 require('seo-ui/components/list-page/list-page');
 

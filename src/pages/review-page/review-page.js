@@ -6,11 +6,11 @@ var ViewModel = require('./review-page.viewmodel');
 
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('pui/components/alert/alert');
-require('pui/components/file-downloader/file-downloader');
-require('pui/components/modal/modal');
-require('pui/components/panel/panel');
-require('pui/components/tabs/tabs');
+require('@apple/pui/components/alert/alert');
+require('@apple/pui/components/file-downloader/file-downloader');
+require('@apple/pui/components/modal/modal');
+require('@apple/pui/components/panel/panel');
+require('@apple/pui/components/tabs/tabs');
 
 module.exports = can.Component.extend({
     tag: 'seo-review-page',
