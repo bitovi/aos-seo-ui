@@ -149,6 +149,13 @@ module.exports = can.Map.extend({
                             alertConfig.type = 'warning';
                         }
                     }
+                // When the backend fails to send any error message, because of processing failure
+                } else {
+                    alertConfig.title = 'Export Failed';
+                    alertConfig.type = 'error';
+                    alertConfig.message = 'The server has failed processing the data that has been provided. Please make sure that the data and the data format are both correct and try again.';
+
+                    clearTimeout(progressTimerId);
                 }
             })
             .fail(function (resp) {
