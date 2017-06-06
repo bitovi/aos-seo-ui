@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker-slave' }
+    agent { label 'sai-slave' }
     stages {
         stage("build") {
             steps {
