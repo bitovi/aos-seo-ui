@@ -1,9 +1,19 @@
 pipeline {
-    agent { label 'sai-slave' }
+    agent { label 'aosdc' }
+    environment {
+        MVN_TASK='deploy:deploy-file'
+    }
     stages {
         stage("build") {
+            tools {
+                nodejs 'node-v6.10.0'
+
+            }
             steps {
-                sh "echo hello-world"
+                sh "node --version"
+                sh "npm --version"
+                sh "npm install"
+                sh "build/build-seo-ui.sh"
             }
         }
     }
