@@ -1,0 +1,57 @@
+buildscript {
+  repositories {
+    maven {
+      url 'https://retail-bint.corp.apple.com/artifactory/jcenter-maven-virtual'
+    }
+  }
+  dependencies {
+    classpath 'com.gradle:build-scan-plugin:1.7.1'
+    classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.17'
+    classpath 'com.moowork.gradle:gradle-node-plugin:1.1.1'
+
+  }
+}
+
+
+apply plugin: 'maven-publish'
+apply plugin: 'com.moowork.node'
+apply plugin: 'com.moowork.gulp'
+apply plugin: 'java'
+
+
+description = 'seo-ui'
+group = 'com.apple.store.content'
+
+
+
+
+task npm(type: Exec) {
+    description = "Grab NodeJS dependencies (from package.json)"
+    String osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("darwin")) {
+      throw new GradleException("rpmbuild does not exist")
+    }
+    commandLine = ["npm", "install"]
+    inputs.file "package.json"
+    outputs.dir "node_modules"
+}
+
+
+task npm_update(type: Exec) {
+    description = "Grab NodeJS dependencies (from package.json)"
+    String osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("darwin")) {
+      throw new GradleException("rpmbuild does not exist")
+    }
+    commandLine = ["npm", "update"]
+    // inputs.file "package.json"
+    // outputs.dir "node_modules"
+}
+
+task gulpTest(type: GulpTask) {
+  args = ["test"]
+}
+
+task gulpBuild(type: GulpTask) {
+  args = ["build:skip"]
+}
