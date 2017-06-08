@@ -27,10 +27,6 @@ group = 'com.apple.store.content'
 
 task npm(type: Exec) {
     description = "Grab NodeJS dependencies (from package.json)"
-    String osName = System.getProperty("os.name").toLowerCase();
-    if (osName.contains("darwin")) {
-      throw new GradleException("rpmbuild does not exist")
-    }
     commandLine = ["npm", "install"]
     inputs.file "package.json"
     outputs.dir "node_modules"
@@ -39,10 +35,6 @@ task npm(type: Exec) {
 
 task npm_update(type: Exec) {
     description = "Grab NodeJS dependencies (from package.json)"
-    String osName = System.getProperty("os.name").toLowerCase();
-    if (osName.contains("darwin")) {
-      throw new GradleException("rpmbuild does not exist")
-    }
     commandLine = ["npm", "update"]
     // inputs.file "package.json"
     // outputs.dir "node_modules"
@@ -54,4 +46,41 @@ task gulpTest(type: GulpTask) {
 
 task gulpBuild(type: GulpTask) {
   args = ["build:skip"]
+}
+
+task copyTask(type: Copy) {
+    from 'target/seo-ui'
+    from 'target'
+    into 'target-production'
+    include('app.css','app.js','*.html','*.json')
+    inputs.sourceFiles.stopExecutionIfEmpty()
+    rename { String fileName ->
+      fileName.replace("app.css", "app.min.css")
+    }
+    rename { String fileName ->
+      fileName.replace("app.js", "app.min.js")
+    }
+  }
+
+task anothercopyTask(type: Copy) {
+    from 'target/seo-ui/'
+    into 'target-production'
+    include('app.css','app.js')
+    from copyTask
+
+  }
+
+task npmBuild {
+  dependsOn 'anothercopyTask'
+  dependsOn 'gulpBuild'
+  dependsOn 'gulpTest'
+  dependsOn 'npm_update'
+  dependsOn 'npm'
+  tasks.findByName('npm').mustRunAfter 'npm_update'
+  tasks.findByName('gulpTest').mustRunAfter 'npm'
+  tasks.findByName('gulpBuild').mustRunAfter 'gulpTest'
+  tasks.findByName('anothercopyTask').mustRunAfter 'gulpBuild'
+
+
+
 }
