@@ -73,16 +73,20 @@ repositories {
     }
 }
 
+
+// task sourceJar(type: Jar) {
+//     from sourceSets.main.allJava
+// }
+
+
 publish.dependsOn 'build_jar'
 
 publishing {
     publications {
 
       maven(MavenPublication) {
-        from components.java
-        // artifact sourceJar {
-        //   classifier "sources"
-        // }
+        // from components.java
+        artifact "build/libs/seo-ui-${version}.jar"
       }
     }
     repositories {
