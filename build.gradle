@@ -95,7 +95,7 @@ publishing {
         username "${nexusUsername}"
         password "${nexusPassword}"
       }
-      url "${nexusBase}/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
+      url "https://store-nexusrepo.apple.com/nexus/content/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
     }
   }
 }
