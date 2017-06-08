@@ -12,7 +12,6 @@ buildscript {
   }
 }
 
-
 apply plugin: 'maven-publish'
 apply plugin: 'com.moowork.node'
 apply plugin: 'com.moowork.gulp'
@@ -23,37 +22,12 @@ description = 'seo-ui'
 group = 'com.apple.store.content'
 
 
-
-
-task npm(type: Exec) {
-    description = "Grab NodeJS dependencies (from package.json)"
-    commandLine = ["npm", "install"]
-    inputs.file "package.json"
-    outputs.dir "node_modules"
-}
-
-
-task npm_update(type: Exec) {
-    description = "Grab NodeJS dependencies (from package.json)"
-    commandLine = ["npm", "update"]
-    // inputs.file "package.json"
-    // outputs.dir "node_modules"
-}
-
-task gulpTest(type: GulpTask) {
-  args = ["test"]
-}
-
-task gulpBuild(type: GulpTask) {
-  args = ["build:skip"]
-}
-
 task copyTask(type: Copy) {
     from 'target/seo-ui'
     from 'target'
     into 'target-production'
     include('app.css','app.js','*.html','*.json')
-    inputs.sourceFiles.stopExecutionIfEmpty()
+    // inputs.sourceFiles.stopExecutionIfEmpty()
     rename { String fileName ->
       fileName.replace("app.css", "app.min.css")
     }
@@ -70,17 +44,55 @@ task anothercopyTask(type: Copy) {
 
   }
 
-task npmBuild {
+task build_jar(type: Jar) {
+  from('target-production')
+  include('*')
   dependsOn 'anothercopyTask'
-  dependsOn 'gulpBuild'
-  dependsOn 'gulpTest'
+  dependsOn 'gulp_build'
+  dependsOn 'gulp_test'
   dependsOn 'npm_update'
-  dependsOn 'npm'
-  tasks.findByName('npm').mustRunAfter 'npm_update'
-  tasks.findByName('gulpTest').mustRunAfter 'npm'
-  tasks.findByName('gulpBuild').mustRunAfter 'gulpTest'
-  tasks.findByName('anothercopyTask').mustRunAfter 'gulpBuild'
-
+  dependsOn 'npmInstall'
+  tasks.findByName('npmInstall').mustRunAfter 'npm_update'
+  tasks.findByName('gulp_test').mustRunAfter 'npmInstall'
+  tasks.findByName('gulp_build').mustRunAfter 'gulp_test'
+  tasks.findByName('anothercopyTask').mustRunAfter 'gulp_build'
+  tasks.findByName('build_jar').mustRunAfter 'anothercopyTask'
 
 
 }
+
+
+repositories {
+  mavenLocal()
+    maven {
+         url 'https://store-nexusrepo.apple.com/nexus/content/groups/public'
+         credentials {
+             username = "$nexusUsername"
+             password = "$nexusPassword"
+         }
+    }
+}
+
+publish.dependsOn 'build_jar'
+
+publishing {
+    publications {
+
+      maven(MavenPublication) {
+        from components.java
+        // artifact sourceJar {
+        //   classifier "sources"
+        // }
+      }
+    }
+    repositories {
+    maven {
+      credentials {
+        username "${nexusUsername}"
+        password "${nexusPassword}"
+      }
+      url "${nexusBase}/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
+    }
+  }
+}
+
