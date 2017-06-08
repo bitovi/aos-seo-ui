@@ -1,20 +1,19 @@
 pipeline {
-    agent { label 'aosdc' }
     environment {
-        MVN_TASK='deploy:deploy-file'
+        NEXUS = credentials('deployment-snapshots')
     }
+    agent { label 'aosdc'}
     stages {
         stage("build") {
             tools {
                 nodejs 'node-v6.10.0'
-
+                
             }
             steps {
-                sh "node --version"
-                sh "npm --version"
-                sh "npm install"
-                sh "build/build-seo-ui.sh"
+                sh "gradle -PnexusUsername=$NEXUS_USR -PnexusPassword=$NEXUS_PSW build_jar"
             }
         }
     }
 }
+
+
