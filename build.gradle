@@ -22,6 +22,17 @@ description = 'seo-ui'
 group = 'com.apple.store.content'
 
 
+task gulpTest(type: GulpTask) {
+  args = ["test"]
+}
+
+
+task gulpBuild(type: GulpTask) {
+  args = ["build:skip"]
+}
+
+
+
 task copyTask(type: Copy) {
     from 'target/seo-ui'
     from 'target'
