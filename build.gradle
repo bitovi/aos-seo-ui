@@ -12,11 +12,9 @@ buildscript {
   }
 }
 
-apply plugin: 'maven-publish'
-apply plugin: 'com.moowork.node'
-apply plugin: 'com.moowork.gulp'
 apply plugin: 'java'
-
+apply plugin: 'maven-publish'
+apply plugin: 'com.moowork.gulp'
 
 description = 'seo-ui'
 group = 'com.apple.store.content'
@@ -73,7 +71,7 @@ repositories {
 // task sourceJar(type: Jar) {
 //     from sourceSets.main.allJava
 // }
-npmInstall.dependsOn 'npm_update'
+//npmInstall.dependsOn 'npm_update'
 gulp_build.dependsOn 'npmInstall'
 copyTask.dependsOn 'gulp_build'
 anothercopyTask.dependsOn 'copyTask'
