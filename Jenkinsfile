@@ -7,10 +7,10 @@ pipeline {
         stage("build") {
             tools {
                 nodejs 'node-v6.10.0'
-                
+
             }
             steps {
-                sh "gradle -PnexusUsername=$NEXUS_USR -PnexusPassword=$NEXUS_PSW build_jar"
+                sh "gradle gulpTest -PnexusUsername=$NEXUS_USR -PnexusPassword=$NEXUS_PSW"
             }
         }
     }
