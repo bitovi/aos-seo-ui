@@ -31,9 +31,8 @@ task gulpBuild(type: GulpTask) {
   args = ["build:skip"]
 }
 
-task gulpBuild(type: GulpTask) {
-  args = ["build:skip"]
-}
+
+
 task copyTask(type: Copy) {
     from 'target/seo-ui'
     from 'target'
