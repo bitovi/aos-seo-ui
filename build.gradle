@@ -31,8 +31,8 @@ task gulp_build(type: GulpTask) {
 }
 
 task copyTask(type: Copy) {
-    from 'target/seo-ui'
-    from 'target'
+    from 'target/seo-ui/'
+    from 'target/'
     into 'target-production'
     include('app.css','app.js','*.html','*.json')
     // inputs.sourceFiles.stopExecutionIfEmpty()
@@ -46,9 +46,9 @@ task copyTask(type: Copy) {
 
 task anothercopyTask(type: Copy) {
     from 'target/seo-ui/'
-    into 'target-production'
+    into 'target-production/'
     include('app.css','app.js')
-    from copyTask
+    // from copyTask
 
   }
 
