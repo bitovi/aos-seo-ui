@@ -27,9 +27,9 @@ task gulpTest(type: GulpTask) {
 }
 
 
-task gulpBuild(type: GulpTask) {
-  args = ["build:skip"]
-}
+// task gulpBuild(type: GulpTask) {
+//   args = ["build:skip"]
+// }
 
 
 
@@ -58,17 +58,6 @@ task anothercopyTask(type: Copy) {
 task build_jar(type: Jar) {
   from('target-production')
   include('*')
-  dependsOn 'anothercopyTask'
-  dependsOn 'gulp_build'
-  dependsOn 'gulp_test'
-  dependsOn 'npm_update'
-  dependsOn 'npmInstall'
-  tasks.findByName('npmInstall').mustRunAfter 'npm_update'
-  tasks.findByName('gulp_test').mustRunAfter 'npmInstall'
-  tasks.findByName('gulp_build').mustRunAfter 'gulp_test'
-  tasks.findByName('anothercopyTask').mustRunAfter 'gulp_build'
-  tasks.findByName('build_jar').mustRunAfter 'anothercopyTask'
-
 
 }
 
@@ -84,12 +73,14 @@ repositories {
     }
 }
 
-
 // task sourceJar(type: Jar) {
 //     from sourceSets.main.allJava
 // }
-
-
+npmInstall.dependsOn 'npm_update'
+copyTask.dependsOn 'npmInstall'
+anothercopyTask.dependsOn 'copyTask'
+build_jar.dependsOn 'anothercopyTask'
+build.dependsOn 'build_jar'
 publish.dependsOn 'build_jar'
 
 publishing {
@@ -110,4 +101,16 @@ publishing {
     }
   }
 }
+
+
+// dependsOn 'anothercopyTask'
+  // dependsOn 'gulp_build'
+  // dependsOn 'gulp_test'
+  // dependsOn 'npm_update'
+  // dependsOn 'npmInstall'
+  // tasks.findByName('npmInstall').mustRunAfter 'npm_update'
+  // tasks.findByName('gulp_test').mustRunAfter 'npmInstall'
+  // tasks.findByName('gulp_build').mustRunAfter 'gulp_test'
+  // tasks.findByName('anothercopyTask').mustRunAfter 'gulp_build'
+  // tasks.findByName('build_jar').mustRunAfter 'anothercopyTask'
 
