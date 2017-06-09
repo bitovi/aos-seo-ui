@@ -26,12 +26,9 @@ task gulpTest(type: GulpTask) {
   args = ["test"]
 }
 
-
-// task gulpBuild(type: GulpTask) {
-//   args = ["build:skip"]
-// }
-
-
+task gulp_build(type: GulpTask) {
+  args = ["build:skip"]
+}
 
 task copyTask(type: Copy) {
     from 'target/seo-ui'
@@ -77,11 +74,12 @@ repositories {
 //     from sourceSets.main.allJava
 // }
 npmInstall.dependsOn 'npm_update'
-copyTask.dependsOn 'npmInstall'
+gulp_build.dependsOn 'npmInstall'
+copyTask.dependsOn 'gulp_build'
 anothercopyTask.dependsOn 'copyTask'
 build_jar.dependsOn 'anothercopyTask'
 build.dependsOn 'build_jar'
-publish.dependsOn 'build_jar'
+publish.dependsOn 'build'
 
 publishing {
     publications {
@@ -101,16 +99,4 @@ publishing {
     }
   }
 }
-
-
-// dependsOn 'anothercopyTask'
-  // dependsOn 'gulp_build'
-  // dependsOn 'gulp_test'
-  // dependsOn 'npm_update'
-  // dependsOn 'npmInstall'
-  // tasks.findByName('npmInstall').mustRunAfter 'npm_update'
-  // tasks.findByName('gulp_test').mustRunAfter 'npmInstall'
-  // tasks.findByName('gulp_build').mustRunAfter 'gulp_test'
-  // tasks.findByName('anothercopyTask').mustRunAfter 'gulp_build'
-  // tasks.findByName('build_jar').mustRunAfter 'anothercopyTask'
 
