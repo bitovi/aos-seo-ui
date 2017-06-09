@@ -10,7 +10,7 @@ pipeline {
 
             }
             steps {
-                sh "gradle gulpTest -PnexusUsername=$NEXUS_USR -PnexusPassword=$NEXUS_PSW"
+                sh "gradle gulpBuild -PnexusUsername=$NEXUS_USR -PnexusPassword=$NEXUS_PSW"
             }
         }
     }
