@@ -89,7 +89,7 @@ repositories {
 //     from sourceSets.main.allJava
 // }
 
-build.dependsOn(['npm_update', 'npmInstall', 'gulp_build', 'copyTask', 'anothercopyTask', 'createTar'])
+build.dependsOn(['npmInstall', 'gulp_build', 'copyTask', 'anothercopyTask', 'createTar'])
 
 // npmInstall.dependsOn 'npm_update'
 gulp_build.dependsOn 'npmInstall'
