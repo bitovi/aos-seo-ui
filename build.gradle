@@ -65,7 +65,7 @@ task createTar(type: Tar) {
   version = project.property('version')
   compression = Compression.GZIP
   from "target-production"
-  extension "tar.gz"
+  extension "tgz"
   destinationDir file("${buildDir}")
 }
 
