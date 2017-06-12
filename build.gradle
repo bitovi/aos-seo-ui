@@ -20,6 +20,10 @@ description = 'seo-ui'
 group = 'com.apple.store.content'
 
 
+def tarFolder = project.property('name') + "-" + project.property('version')
+def tarFile = tarFolder + '.tar.gz'
+
+
 task gulpTest(type: GulpTask) {
   args = ["test"]
 }
@@ -27,6 +31,8 @@ task gulpTest(type: GulpTask) {
 task gulp_build(type: GulpTask) {
   args = ["build:skip"]
 }
+
+jar.enabled = false
 
 task copyTask(type: Copy) {
     from 'target/seo-ui/'
@@ -46,21 +52,32 @@ task anothercopyTask(type: Copy) {
     from 'target/seo-ui/'
     into 'target-production/'
     include('app.css','app.js')
-    // from copyTask
-
   }
 
-task build_jar(type: Jar) {
-  from('target-production')
-  include('*')
+// task build_jar(type: Jar) {
+//   from('target-production')
+//   include('*')
 
+// }
+
+task createTar(type: Tar) {
+  baseName = project.property('name')
+  version = project.property('version')
+  compression = Compression.GZIP
+  from "target-production"
+  extension "tar.gz"
+  destinationDir file("${buildDir}")
+}
+
+build.doLast {
+    file('target-production').deleteDir()
 }
 
 
 repositories {
   mavenLocal()
     maven {
-         url 'https://store-nexusrepo.apple.com/nexus/content/groups/public'
+         url '${nexusBase}/groups/public'
          credentials {
              username = "$nexusUsername"
              password = "$nexusPassword"
@@ -71,12 +88,14 @@ repositories {
 // task sourceJar(type: Jar) {
 //     from sourceSets.main.allJava
 // }
-//npmInstall.dependsOn 'npm_update'
+
+build.dependsOn(['npm_update', 'npmInstall', 'gulp_build', 'copyTask', 'anothercopyTask', 'createTar'])
+
+// npmInstall.dependsOn 'npm_update'
 gulp_build.dependsOn 'npmInstall'
 copyTask.dependsOn 'gulp_build'
 anothercopyTask.dependsOn 'copyTask'
-build_jar.dependsOn 'anothercopyTask'
-build.dependsOn 'build_jar'
+createTar.dependsOn 'anothercopyTask'
 publish.dependsOn 'build'
 
 publishing {
@@ -84,7 +103,7 @@ publishing {
 
       maven(MavenPublication) {
         // from components.java
-        artifact "build/libs/seo-ui-${version}.jar"
+        artifact createTar
       }
     }
     repositories {
@@ -93,7 +112,7 @@ publishing {
         username "${nexusUsername}"
         password "${nexusPassword}"
       }
-      url "https://store-nexusrepo.apple.com/nexus/content/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
+      url "${nexusBase}/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
     }
   }
 }
