@@ -15,7 +15,7 @@ LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=3.2.0
+MVN_VERSION=3.3-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
@@ -136,7 +136,7 @@ fi
 mvn $MVN_TASK -Dfile=$JAR_NAME \
   -DgeneratePom=true \
   -DgroupId=com.apple.store.content -DartifactId=$MVN_ARTIFACT_NAME -Dversion=$MVN_VERSION -Dpackaging=jar \
-  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/releases \
+  -Durl=https://store-nexusrepo.apple.com/nexus/content/repositories/snapshots \
   -DrepositoryId=snapshots
 
 #
