@@ -90,8 +90,8 @@ var config = {
         */
         apiProxies: {
             // This is Seo 1.0
-            'dev': 'http://nc1d-dc1-pubdev-1002.corp.apple.com:9510/seo',
-            'qa': 'http://nc1d-dc1-pubqa-1003.corp.apple.com:9510/seo'
+            'dev': 'http://nc1d-dc1-pubdev-1008.corp.apple.com:5100/seo',
+            'qa': 'http://nc1d-dc1-pubqa-1003.corp.apple.com:5100/seo'
         }
     },
 
