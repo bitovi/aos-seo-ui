@@ -170,6 +170,10 @@ module.exports = can.Map.extend({
             type: templateRenderer
         },
 
+        primaryHeaderTemplate: {
+            type: templateRenderer
+        },
+
         /**
          * @property {String} searchField
          * @description The initial search key.

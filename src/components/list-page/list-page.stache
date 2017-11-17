@@ -126,6 +126,7 @@
     limit="{limit}"
     model="{model}"
     row-template="{rowTemplate}"
+    primary-header-template="{primaryHeaderTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
     sort-by="{state.sort}"

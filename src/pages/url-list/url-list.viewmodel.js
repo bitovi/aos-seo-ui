@@ -2,6 +2,7 @@ var can = require('can');
 
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
+var primaryHeaderTemplate = require('./primary-header.stache!');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
 
@@ -23,6 +24,15 @@ module.exports = can.Map.extend({
          */
         columns: {
             value: [
+                {
+                    cssClass: 'col-md-1',
+                    key: 'selectUrl',
+                    label: 'select',
+                    custom: {
+                        name:'row-select',
+                        type:'checkbox'
+                    }
+                },
                 {
                     cssClass: 'col-md-1',
                     key: 'partNumber',
@@ -235,6 +245,18 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {function} url-list.viewModel.primaryHeaderTemplate primaryHeaderTemplate
+         * @description Stores the template renderer function reference.
+         */
+        primaryHeaderTemplate: {
+            value: function () {
+                return function () {
+                    return primaryHeaderTemplate;
+                };
+            }
+        },
+
+        /**
          * @property {String} url-list.viewModel.searchField searchField
          * @description The initial search key.
          */
@@ -252,5 +274,9 @@ module.exports = can.Map.extend({
                 return UrlModel;
             }
         }
+    },
+
+    selectAll: function (items) {
+        alert('selected');
     }
 });

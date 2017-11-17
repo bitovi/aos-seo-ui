@@ -1,0 +1,25 @@
+{{#columns}}
+    {{^if isHidden}}
+        {{#switch key}}
+            {{#case 'selectUrl'}}
+                <th can-click="selectAll"
+                    class="{{key}} {{cssClass}}">
+                    <span class="col-name">
+                       <input type="{{custom.type}}" name="{{key}}_{{custom.name}}">
+                    </span>
+                </th>
+            {{/case}}
+            {{#default}}
+                <th can-click="setSort"
+                    class="{{key}}{{#if useSorting}} sortable{{/if}} {{cssClass}}"
+                    {{#if useSorting}} tabindex="0"{{/if}}
+                    can-enter="setSort">
+                    <span class="col-name">{{label}}</span>
+                    <button class="order-toggle" type="button">
+                        Sort list by {{label}}, in <span class="next-order">ascending</span> order
+                    </button>
+                </th>
+            {{/default}}
+        {{/switch}}
+    {{/if}}
+{{/columns}}
