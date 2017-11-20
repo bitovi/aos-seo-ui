@@ -2,10 +2,9 @@
     {{^if isHidden}}
         {{#switch key}}
             {{#case 'selectUrl'}}
-                <th can-click="selectAll"
-                    class="{{key}} {{cssClass}}">
+                <th class="{{key}} {{cssClass}}">
                     <span class="col-name">
-                       <input type="{{custom.type}}" name="{{key}}_{{custom.name}}">
+                       <input class="toggleSelect" type="{{custom.type}}" name="{{custom.name}}">
                     </span>
                 </th>
             {{/case}}

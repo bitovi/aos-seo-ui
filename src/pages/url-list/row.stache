@@ -10,7 +10,7 @@
                     {{#switch key}}
                         {{#case 'selectUrl'}}
                             {{#if custom}}
-                                <input type="{{custom.type}}" name="{{key}}_{{custom.name}}" >
+                                <input type="{{custom.type}}" name="{{custom.name}}" class="{{custom.name}}">
                             {{/if}}
                         {{/case}}
                         {{#case 'url'}}

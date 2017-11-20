@@ -30,7 +30,7 @@ module.exports = can.Map.extend({
                     label: 'select',
                     custom: {
                         name:'row-select',
-                        type:'checkbox'
+                        type:'checkbox',
                     }
                 },
                 {
@@ -274,9 +274,5 @@ module.exports = can.Map.extend({
                 return UrlModel;
             }
         }
-    },
-
-    selectAll: function (items) {
-        alert('selected');
     }
 });
