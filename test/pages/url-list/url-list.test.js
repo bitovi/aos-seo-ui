@@ -474,6 +474,26 @@ describe('URL List Page', function () {
         });
     });
 
+    describe('on clicking of checkbox',function () {
+        beforeEach(function () {
+            $allRow  = component.find('pui-grid-list tbody > tr').find("td input");
+            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
+            $header = component.find('pui-grid-list thead > tr').eq(0).find("input");
+        });
+
+        it('header checkbox is unselected when any row checkbox is unselected.', function () {
+            $row.trigger("click");
+            expect($header.is(':checked')).toEqual(false);
+        });
+
+        it('all row checkbox  is selected when header checkbox is selected', function () {
+            $header.trigger("click");
+            $allRow.each(function(index,row){
+                expect($(row).is(':checked')).toEqual(true);
+            });
+        });
+    });
+
     describe('status badge', function () {
         var $badge;
 
