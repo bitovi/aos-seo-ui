@@ -26,11 +26,13 @@ module.exports = can.Component.extend({
             if($el[0].checked) {
                 $rowItems.each(function (index, item) {
                     item.checked = true;
-                })
+                });
+                this.viewModel.attr("selectUrlCount",this.viewModel.attr("count"));
             } else {
                 $rowItems.each(function (index, item) {
                     item.checked = false;
-                })
+                });
+                this.viewModel.attr("selectUrlCount",0);
             }
 
         },
@@ -46,7 +48,11 @@ module.exports = can.Component.extend({
             var $rowItems = $('.row-select');
             if (!$el[0].checked) {
                header.prop('checked', false);
+               if(  this.viewModel.attr("selectUrlCount")!==0){
+                   this.viewModel.attr("selectUrlCount",( this.viewModel.attr("selectUrlCount")-1));
+               }
             } else {
+                var vm =  this.viewModel;
                 $rowItems.each(function (index, item) {
                     if (item.checked) {
                         header.prop('checked', true);
@@ -55,7 +61,7 @@ module.exports = can.Component.extend({
                         return false;
                     }
                 })
-
+                vm.attr("selectUrlCount",( vm.attr("selectUrlCount")+1));
             }
         }
     }

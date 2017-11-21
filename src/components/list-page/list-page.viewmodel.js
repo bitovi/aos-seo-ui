@@ -170,6 +170,10 @@ module.exports = can.Map.extend({
             type: templateRenderer
         },
 
+        /**
+         * @property {Function} primaryHeaderTemplate
+         * @description Stores the template renderer function reference.
+         */
         primaryHeaderTemplate: {
             type: templateRenderer
         },

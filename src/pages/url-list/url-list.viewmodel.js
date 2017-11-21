@@ -114,6 +114,15 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Number} url-list.viewmodel.selectUrlCount selectUrlCount
+         * @description The number of rows is selected.
+         */
+        selectUrlCount: {
+            value: 0,
+            type: 'number'
+        },
+
+        /**
          * @property {Array<can.Map>} url-list.viewModel.dataOptions dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
