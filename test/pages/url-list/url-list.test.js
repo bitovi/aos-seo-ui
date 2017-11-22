@@ -1047,4 +1047,25 @@ describe('URL List Page', function () {
             expect($result.find('.url-page-title').get(0).innerText).toEqual('iPod Touch  -    Apple');
         });
     });
+
+    describe('Create Request button', function () {
+        it('renders', function () {
+            expect(component.find('.create-request-button')).toExist();
+        });
+
+        it('has proper label', function () {
+            expect(component.find('.create-request-button').text().trim()).toEqual('Create Request | 0');
+        });
+    });
+
+    describe('create request select url count', function () {
+        it('on load the count will be zero', function () {
+            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('0');
+        });
+
+        it('selecting a row item increases the count ', function () {
+            component.find('pui-grid-list tbody > tr').eq(1).find("input").trigger("click");
+            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
+        });
+    });
 });
