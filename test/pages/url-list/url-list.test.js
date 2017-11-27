@@ -96,6 +96,15 @@ describe('URL List Page', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
                     cssClass: 'col-md-1',
+                    key: 'selectUrl',
+                    label: 'select',
+                    custom: {
+                        name:'row-select',
+                        type:'checkbox'
+                    }
+                },
+                {
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
                     label: 'Part #'
                 },
