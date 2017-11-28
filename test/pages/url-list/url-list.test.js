@@ -530,7 +530,6 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                debugger;
                 $resultTitle = $results.eq(4).find('.url-page-title');
             });
 
