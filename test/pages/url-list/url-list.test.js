@@ -530,7 +530,8 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(4).find('.pageTitle');
+                debugger;
+                $resultTitle = $results.eq(4).find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -772,7 +773,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.last().find('.pageTitle');
+                $resultTitle = $results.last().find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -792,7 +793,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(13).find('.description');
+                $resultDesc = $results.eq(13).find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
@@ -1023,7 +1024,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.last().find('.description');
+                $resultDesc = $results.last().find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
