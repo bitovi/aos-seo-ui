@@ -73,11 +73,11 @@
                 ($click)="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
-           <button
-                type="button"
-                class="btn btn-secondary btn-xs create-request-button"
-            >Create Request | {{selectUrlCount}}
-           </button>
+       <button
+            type="button"
+            class="btn btn-secondary btn-xs create-request-button"
+        >Create Request | {{selectUrlCount}}
+       </button>
     </div>
 
     <div class="row">
