@@ -1,17 +1,11 @@
-<tr
-    class="item"
-    {{data 'item'}}
-    {{eleAttrs}}
->
+<tr class="item" {{data 'item'}} {{eleAttrs}}>
     {{#columns}}
         {{^if isHidden}}
             <td class="{{key}}">
                 <div class="grid-item-value">
                     {{#switch key}}
                         {{#case 'selectUrl'}}
-                            {{#if custom}}
-                                <input type="{{custom.type}}" name="{{custom.name}}" class="{{custom.name}}">
-                            {{/if}}
+                            <input type="checkbox" {{#if selected}}checked{{/if}} ($click)="selectRowUrl" />
                         {{/case}}
                         {{#case 'url'}}
                             {{#if urlAspenLink}}

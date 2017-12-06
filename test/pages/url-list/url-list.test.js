@@ -97,11 +97,7 @@ describe('URL List Page', function () {
                 {
                     cssClass: 'col-md-1',
                     key: 'selectUrl',
-                    label: 'select',
-                    custom: {
-                        name:'row-select',
-                        type:'checkbox'
-                    }
+                    label: 'select'
                 },
                 {
                     cssClass: 'col-md-1',

@@ -1,5 +1,6 @@
 var can = require('can');
 
+var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
 var primaryHeaderTemplate = require('./primary-header.stache!');
@@ -27,11 +28,7 @@ module.exports = can.Map.extend({
                 {
                     cssClass: 'col-md-1',
                     key: 'selectUrl',
-                    label: 'select',
-                    custom: {
-                        name:'row-select',
-                        type:'checkbox',
-                    }
+                    label: 'select'
                 },
                 {
                     cssClass: 'col-md-1',
@@ -282,6 +279,58 @@ module.exports = can.Map.extend({
             get: function () {
                 return UrlModel;
             }
+        },
+
+        /**
+         * @property {Boolean} url-list.viewModel.isAllSelected
+         * @description Indicates if all options are selected.
+         * @option Default `false`
+         */
+        isAllSelected: {
+            type: 'boolean',
+            get: function () {
+                if (this.attr('items')) {
+                    return this.attr('items').attr('length') === this.attr('selectUrlCount');
+                }
+            },
+            set: function (selectAll) {
+                can.batch.start();
+                this.attr('items').each(function (item) {
+                    item.attr('selected', selectAll);
+                });
+                var selectedCount = _.filter(this.attr('items'), function(item) { return item.selected === true; }).length;
+                this.attr('selectUrlCount', selectedCount);
+                can.batch.stop();
+            }
         }
+    },
+
+    /**
+     * @function url-list.viewModel.selectAllUrl
+     * @description Toggles the selected state of all table rows.
+     * @param {$el} retuns element
+     * @param {evt} Determines if the checkbox will be selected or deselected
+     */
+    selectAllUrl: function ($el, evt) {
+        this.attr('isAllSelected', evt.context.checked);
+    },
+
+    /**
+     * @function url-list.viewModel.selectRowUrl
+     * @description Toggles the selected rows.
+     * @param {$el} retuns element
+     * @param {evt} Determines if the checkbox will be selected or deselected
+     */
+    selectRowUrl: function($el, evt) {
+        var dataItem = evt.parent().parent().parent().data('item');
+
+        this.attr('items').each(function (item) {
+            if (item.pageTitle === dataItem.pageTitle) {
+                item.attr('selected', evt.context.checked);
+            }
+        });
+
+        var selectedCount = _.filter(this.attr('items'), function(item) { return item.selected === true; }).length;
+        this.attr('selectUrlCount', selectedCount);
     }
 });
