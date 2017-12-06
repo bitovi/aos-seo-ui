@@ -294,13 +294,11 @@ module.exports = can.Map.extend({
                 }
             },
             set: function (selectAll) {
-                can.batch.start();
                 this.attr('items').each(function (item) {
                     item.attr('selected', selectAll);
                 });
                 var selectedCount = _.filter(this.attr('items'), function(item) { return item.selected === true; }).length;
                 this.attr('selectUrlCount', selectedCount);
-                can.batch.stop();
             }
         }
     },
