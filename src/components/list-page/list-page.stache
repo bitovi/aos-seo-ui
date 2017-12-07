@@ -73,12 +73,22 @@
                 ($click)="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
-       <button
+        <button
             type="button"
-            class="btn btn-secondary btn-xs create-request-button"
-        >Create Request | {{selectUrlCount |}}
+            class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
        </button>
     </div>
+
+    <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" >
+        <pui-modal-header>
+            <h4 class="modal-title">Select the Segment and region</h4>
+        </pui-modal-header>
+        <pui-modal-body>
+            <div class="clearfix">
+            </div>
+        </pui-modal-body>
+    </pui-modal>
+
 
     <div class="row">
         {{! Basic Search }}

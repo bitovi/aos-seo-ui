@@ -41,6 +41,7 @@ require('@apple/pui/components/grid-column-toggle/grid-column-toggle');
 require('@apple/pui/components/grid-list/grid-list');
 require('@apple/pui/components/grid-search/grid-search');
 require('@apple/pui/components/pagination/pagination');
+require('@apple/pui/components/modal/modal');
 
 var $ = require('jquery');
 var _ = require('lodash');

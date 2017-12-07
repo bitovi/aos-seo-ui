@@ -594,6 +594,16 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function toggleModal
+     * @description Enabled the overlay model when we click on create button.
+     *
+     */
+    toggleModal: function () {
+        this.attr('isActive', !this.attr('isActive'));
+    },
+
+
+    /**
      * @function updateFilterMenus
      * @description Updates the filter menu components, based on the searchFilter property.
      */
