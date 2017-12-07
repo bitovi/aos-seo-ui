@@ -316,15 +316,12 @@ module.exports = can.Map.extend({
     /**
      * @function url-list.viewModel.selectRowUrl
      * @description Toggles the selected rows.
-     * @param {$el} retuns element
      * @param {evt} Determines if the checkbox will be selected or deselected
      */
-    selectRowUrl: function($el, evt) {
-        var dataItem = evt.parent().parent().parent().data('item');
-
+    selectRowUrl: function(title, evt) {
         this.attr('items').each(function (item) {
-            if (item.pageTitle === dataItem.pageTitle) {
-                item.attr('selected', evt.context.checked);
+            if (item.pageTitle === title) {
+                item.attr('selected', evt.currentTarget.checked);
             }
         });
 
