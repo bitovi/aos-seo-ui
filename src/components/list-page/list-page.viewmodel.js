@@ -21,6 +21,37 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Array<Object>} filterConfig filterConfig
+         * @description Configuration of filters to use.
+         */
+        createRequestfilterConfig: {
+            value: [
+                {
+                    btnLabel: 'All Segments',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Segment:',
+                            parameter: 'segments'
+                        }
+                    ]
+                },
+                {
+                    btnLabel: 'All Regions',
+                    filterGroups: [
+                        {
+                            groupTitle: 'Region:',
+                            parameter: 'regions'
+                        },
+                        {
+                            groupTitle: 'Country:',
+                            parameter: 'countries'
+                        }
+                    ]
+                }
+            ]
+        },
+
+        /**
          * @property {Number} currentPage
          * @description The current page number.
          */

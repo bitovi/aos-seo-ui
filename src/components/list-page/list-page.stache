@@ -85,6 +85,63 @@
         </pui-modal-header>
         <pui-modal-body>
             <div class="clearfix">
+                {{#each createRequestfilterConfig}}
+                    <div class="filter-groups">
+                        {{#each getFilterOptions(filterGroups)}}
+                            <div class="filter-group {{groupClassName}}" {{data 'filterGroup'}}>
+                                {{#if groupTitle}}
+                                    <strong class="group-title">{{groupTitle}}</strong>
+                                {{/if}}
+
+                                {{! Toggle All Filters }}
+                                {{#switch inputType}}
+                                    {{#case 'radio'}}
+                                        <button
+                                            class="clear-radio btn btn-link btn-sm"
+                                            ($click)="toggleAllFilters(false)"
+                                            type="button"
+                                        >
+                                            Clear
+                                        </button>
+                                    {{/case}}
+
+                                    {{#default}}
+                                        <button
+                                            class="select-all btn btn-link btn-sm"
+                                            ($click)="toggleAllFilters()"
+                                            type="button"
+                                        >
+                                            {{#if isAllSelected}}Deselect{{else}}Select{{/if}} All
+                                        </button>
+                                    {{/default}}
+                                {{/switch}}
+
+                                {{#if filterOptions.length}}
+                                    <ul class="list-group">
+                                        {{#each filterOptions}}
+                                            <li class="list-group-item" {{data 'filterOption'}}>
+                                                {{#switch inputType}}
+                                                    {{#default}}
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input
+                                                                    {($checked)}="selected"
+                                                                    class="{{value}}-toggle"
+                                                                    type="checkbox"
+                                                                />
+                                                                <span class="{{value}}-label">{{label}}</span>
+                                                            </label>
+                                                        </div>
+                                                    {{/default}}
+                                                {{/switch}}
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                       </div>
+                {{/each}}
             </div>
         </pui-modal-body>
     </pui-modal>

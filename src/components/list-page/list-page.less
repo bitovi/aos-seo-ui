@@ -4,6 +4,22 @@ seo-list-page {
         margin-bottom: @line-height-computed;
     }
 
+    .modal-body {
+        max-height: 500px;
+        overflow-y: auto;
+        
+        .filter-groups {
+            float: left;
+
+            .filter-group {
+                float: left;
+                width: 180px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+
     pui-grid-column-toggle {
         margin-top: .4rem;
 
