@@ -116,7 +116,20 @@ module.exports = can.Map.extend({
          */
         selectUrlCount: {
             value: 0,
-            type: 'number'
+            type: 'number',
+            get: function () {
+                if (this.attr('items')) {
+                    var selectedOptions = this.attr('items')
+                        .filter(function (option) {
+                            return option.attr('selected');
+                        });
+
+                    return selectedOptions.attr('length');
+                }
+            },
+            set: function (newVal) {
+                return newVal < 0 ? 0 : newVal;
+            }
         },
 
         /**
@@ -292,13 +305,6 @@ module.exports = can.Map.extend({
                 if (this.attr('items')) {
                     return this.attr('items').attr('length') === this.attr('selectUrlCount');
                 }
-            },
-            set: function (selectAll) {
-                this.attr('items').each(function (item) {
-                    item.attr('selected', selectAll);
-                });
-                var selectedCount = _.filter(this.attr('items'), function(item) { return item.selected === true; }).length;
-                this.attr('selectUrlCount', selectedCount);
             }
         }
     },
@@ -310,7 +316,9 @@ module.exports = can.Map.extend({
      * @param {evt} Determines if the checkbox will be selected or deselected
      */
     selectAllUrl: function ($el, evt) {
-        this.attr('isAllSelected', evt.context.checked);
+        this.attr('items').map(function (option) {
+            option.attr('selected', evt.context.checked);
+        });
     },
 
     /**
@@ -319,13 +327,10 @@ module.exports = can.Map.extend({
      * @param {evt} Determines if the checkbox will be selected or deselected
      */
     selectRowUrl: function(title, evt) {
-        this.attr('items').each(function (item) {
-            if (item.pageTitle === title) {
-                item.attr('selected', evt.currentTarget.checked);
+        this.attr('items').map(function (option) {
+            if (option.pageTitle === title) {
+                option.attr('selected', evt.currentTarget.checked);
             }
         });
-
-        var selectedCount = _.filter(this.attr('items'), function(item) { return item.selected === true; }).length;
-        this.attr('selectUrlCount', selectedCount);
     }
 });
