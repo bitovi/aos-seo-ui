@@ -73,6 +73,11 @@
                 ($click)="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
+       <button
+            type="button"
+            class="btn btn-secondary btn-xs create-request-button"
+        >Create Request | {{selectUrlCount |}}
+       </button>
     </div>
 
     <div class="row">
@@ -126,6 +131,7 @@
     limit="{limit}"
     model="{model}"
     row-template="{rowTemplate}"
+    primary-header-template="{primaryHeaderTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
     sort-by="{state.sort}"

@@ -171,6 +171,14 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Function} primaryHeaderTemplate
+         * @description Stores the template renderer function reference.
+         */
+        primaryHeaderTemplate: {
+            type: templateRenderer
+        },
+
+        /**
          * @property {String} searchField
          * @description The initial search key.
          */
