@@ -11,5 +11,5 @@ var ViewModel = require('./url-list.viewmodel');
 module.exports = can.Component.extend({
     tag: 'seo-url-list',
     template: template,
-    viewModel: ViewModel,
+    viewModel: ViewModel
 });
