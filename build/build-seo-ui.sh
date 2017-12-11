@@ -15,7 +15,7 @@ LOG_FILE=$BUILD_DIR/build.log
 MD5_FILE=$BUILD_DIR/node_modules.md5
 JAR_NAME=seo-ui.jar
 MVN_ARTIFACT_NAME=seo-ui
-MVN_VERSION=18.1.0-SNAPSHOT
+MVN_VERSION=18.3.0-SNAPSHOT
 
 function log {
     echo $1 >> $LOG_FILE 2>&1
