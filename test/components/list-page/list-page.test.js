@@ -766,7 +766,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('when the create reques modal  is opened', function () {
+        describe('when the create request modal  is opened', function () {
             beforeEach(function () {
                 $createRequestButton  = $component.find('.create-request-button');
                 $createRequestButton.trigger('click');
