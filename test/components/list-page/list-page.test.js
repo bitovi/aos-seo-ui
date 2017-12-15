@@ -807,13 +807,5 @@ describe('List Page', function () {
                     .toEqual($component.find('.modal-body').find(".filter-groups").eq(0).find(".list-group-item input:checked").length);
             });
         });
-
-
-
-
-
-
-
-
     });
 });

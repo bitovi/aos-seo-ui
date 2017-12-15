@@ -136,8 +136,7 @@
              </button>
         <pui-modal-footer>
     </pui-modal>
-
-
+    
     <div class="row">
         {{! Basic Search }}
         <div class="col-md-5">
