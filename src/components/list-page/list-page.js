@@ -262,6 +262,22 @@ module.exports = can.Component.extend({
         },
 
         /**
+         * @description Handles close click event and clear all selected item.
+         */
+        'pui-modal-header .modal-header .close click' : function () {
+            var vm = this.viewModel;
+
+            vm.attr('createRequestMarketContextFilterConfig').forEach(function (group) {
+                group.attr('filterGroups').forEach(function (filter) {
+                    filter.attr('selected', false);
+                    filter.attr('filterOptions').forEach(function (option) {
+                        option.attr('selected', false);
+                    });
+                });
+            });
+        },
+
+        /**
          * @description Event listener to select corresponding countries when Region is selected
          * @param {jQuery object} $el the clicked element
          */

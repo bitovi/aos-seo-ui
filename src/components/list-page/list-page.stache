@@ -79,61 +79,46 @@
        </button>
     </div>
 
-    <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" >
+    <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">
         <pui-modal-header>
-            <h4 class="modal-title">Select the Segment and region</h4>
+            <h4 class="modal-title">Select the Segment and Region</h4>
         </pui-modal-header>
         <pui-modal-body>
             <div class="clearfix">
-                {{#each createRequestfilterConfig}}
+                {{#each createRequestMarketContextFilterConfig}}
                     <div class="filter-groups">
                         {{#each getFilterOptions(filterGroups)}}
                             <div class="filter-group {{groupClassName}}" {{data 'filterGroup'}}>
                                 {{#if groupTitle}}
                                     <strong class="group-title">{{groupTitle}}</strong>
                                 {{/if}}
-
-                                {{! Toggle All Filters }}
-                                {{#switch inputType}}
-                                    {{#case 'radio'}}
-                                        <button
-                                            class="clear-radio btn btn-link btn-sm"
-                                            ($click)="toggleAllFilters(false)"
-                                            type="button"
-                                        >
-                                            Clear
-                                        </button>
-                                    {{/case}}
-
-                                    {{#default}}
-                                        <button
-                                            class="select-all btn btn-link btn-sm"
-                                            ($click)="toggleAllFilters()"
-                                            type="button"
-                                        >
-                                            {{#if isAllSelected}}Deselect{{else}}Select{{/if}} All
-                                        </button>
-                                    {{/default}}
-                                {{/switch}}
+                                {{#if selected}}
+                                    <button
+                                        class="select-all btn btn-link btn-sm"
+                                        ($click)="createRequestToggleAll(filterGroups, parameter, false)"
+                                        type="button">Deselect All</button>
+                                {{/else}}
+                                    <button
+                                        class="select-all btn btn-link btn-sm"
+                                        ($click)="createRequestToggleAll(filterGroups, parameter, true)"
+                                        type="button">Select All</button>
+                                {{/if}}
 
                                 {{#if filterOptions.length}}
                                     <ul class="list-group">
                                         {{#each filterOptions}}
                                             <li class="list-group-item" {{data 'filterOption'}}>
-                                                {{#switch inputType}}
-                                                    {{#default}}
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input
-                                                                    {($checked)}="selected"
-                                                                    class="{{value}}-toggle"
-                                                                    type="checkbox"
-                                                                />
-                                                                <span class="{{value}}-label">{{label}}</span>
-                                                            </label>
-                                                        </div>
-                                                    {{/default}}
-                                                {{/switch}}
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input
+                                                            {($checked)}="selected"
+                                                            class="{{value}}-toggle"
+                                                            type="checkbox"
+                                                            ($click)="createRequestToggle(filterGroups, parameter, @index, %event)"
+                                                        />
+                                                        <span class="{{value}}-label">{{label}}</span>
+                                                    </label>
+                                                </div>
                                             </li>
                                         {{/each}}
                                     </ul>
@@ -144,6 +129,12 @@
                 {{/each}}
             </div>
         </pui-modal-body>
+        <pui-modal-footer>
+             <button
+                class="btn btn-primary btn-block"
+                type="button">Edit Title and description
+             </button>
+        <pui-modal-footer>
     </pui-modal>
 
 
