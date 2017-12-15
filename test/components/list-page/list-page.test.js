@@ -773,7 +773,7 @@ describe('List Page', function () {
             });
 
             it('check for the title name', function () {
-                expect($component.find('.modal-title').text()).toEqual('Select the Segment and region');
+                expect($component.find('.modal-title').text()).toEqual('Select the Segment and Region');
             });
             it('check for the title for the filter Segment', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".group-title").text()).toEqual('Segment:');
