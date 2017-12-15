@@ -85,7 +85,7 @@
         </pui-modal-header>
         <pui-modal-body>
             <div class="clearfix">
-                {{#each createRequestMarketContextFilterConfig}}
+                {{#each createRequestMarketContextOptions}}
                     <div class="filter-groups">
                         {{#each getFilterOptions(filterGroups)}}
                             <div class="filter-group {{groupClassName}}" {{data 'filterGroup'}}>

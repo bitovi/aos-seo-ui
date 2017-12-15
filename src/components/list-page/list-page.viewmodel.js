@@ -21,10 +21,10 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<Object>} createRequestMarketContextFilterConfig
+         * @property {Array<Object>} createRequestMarketContextOptions
          * @description Configuration for create request market context filters.
          */
-        createRequestMarketContextFilterConfig: {
+        createRequestMarketContextOptions: {
             value: [
                 {
                     filterGroups: [

@@ -267,7 +267,7 @@ module.exports = can.Component.extend({
         'pui-modal-header .modal-header .close click' : function () {
             var vm = this.viewModel;
 
-            vm.attr('createRequestMarketContextFilterConfig').forEach(function (group) {
+            vm.attr('createRequestMarketContextOptions').forEach(function (group) {
                 group.attr('filterGroups').forEach(function (filter) {
                     filter.attr('selected', false);
                     filter.attr('filterOptions').forEach(function (option) {
