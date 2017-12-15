@@ -537,10 +537,10 @@ module.exports = can.Map.extend({
 
     /**
      * @function list-page.viewModel.createRequestToggle
-     * @description Toggles select All/Deselect All if all checkboxs selects and selects secondary filter groups options.
+     * @description Toggles select All/Deselect All option with respect to checkbox selection and it also select the countries with selected region.
      * @param {object} filterGroup data
      * @param {string} groupType parameter
-     * @param {boolean} optionIndex option index.
+     * @param {number} optionIndex option index.
      * @param {event} evt click event of checkbox
      */
     createRequestToggle: function (filterGroup, groupType, optionIndex, evt) {
@@ -686,12 +686,10 @@ module.exports = can.Map.extend({
     /**
      * @function toggleModal
      * @description Enabled the overlay model when we click on create button.
-     *
      */
     toggleModal: function () {
         this.attr('isActive', !this.attr('isActive'));
     },
-
 
     /**
      * @function updateFilterMenus
