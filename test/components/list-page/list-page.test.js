@@ -778,19 +778,19 @@ describe('List Page', function () {
             it('check for the title for the filter Segment', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".group-title").text()).toEqual('Segment:');
             });
-            it('check for the title for the filter Segment options', function () {
+            it('check for the Segment options', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".list-group-item").length).toBeGreaterThan(0);
             });
             it('check for the title for the  filter Region', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(0).find(".group-title").text()).toEqual('Region:');
             });
-            it('check for the title for the filter Region options', function () {
+            it('check for the Region options', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(0).find(".list-group-item").length).toBeGreaterThan(0);
             });
             it('check for the title for the filter Country', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(1).find(".group-title").text()).toEqual('Country:');
             });
-            it('check for the title for the filter Country options', function () {
+            it('check for the Country options', function () {
                 expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(1).find(".list-group-item").length).toBeGreaterThan(0);
             });
         });
