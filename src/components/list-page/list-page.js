@@ -41,6 +41,7 @@ require('@apple/pui/components/grid-column-toggle/grid-column-toggle');
 require('@apple/pui/components/grid-list/grid-list');
 require('@apple/pui/components/grid-search/grid-search');
 require('@apple/pui/components/pagination/pagination');
+require('@apple/pui/components/modal/modal');
 
 var $ = require('jquery');
 var _ = require('lodash');
@@ -258,6 +259,22 @@ module.exports = can.Component.extend({
          */
         '.date-range-group .clear-radio click': function () {
             this.viewModel.attr('datesOpen', false);
+        },
+
+        /**
+         * @description Handles close click event and clear all selected item.
+         */
+        'pui-modal-header .modal-header .close click' : function () {
+            var vm = this.viewModel;
+
+            vm.attr('createRequestMarketContextOptions').forEach(function (group) {
+                group.attr('filterGroups').forEach(function (filter) {
+                    filter.attr('selected', false);
+                    filter.attr('filterOptions').forEach(function (option) {
+                        option.attr('selected', false);
+                    });
+                });
+            });
         },
 
         /**
