@@ -73,10 +73,16 @@
                 ($click)="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
-        <button
-            type="button"
-            class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
-       </button>
+        <div class="request-selection-option">
+            <button
+                type="button"
+                class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
+           </button>
+           <button
+                type="button"
+                class="btn btn-secondary btn-xs deselect-all-button" ($click)="deselectAll()">Deselect
+           </button>
+        </div>
     </div>
 
     <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">

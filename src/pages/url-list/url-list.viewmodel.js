@@ -110,6 +110,10 @@ module.exports = can.Map.extend({
             type: 'number'
         },
 
+        selectedItems: {
+            value: []
+        },
+
         /**
          * @property {Number} url-list.viewmodel.selectUrlCount selectUrlCount
          * @description The number of rows is selected.
@@ -295,6 +299,33 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Array<can.Map>} url-list.viewModel.items
+         * @description selects/deselects if the items were previously selected.
+         */
+        items: {
+            set: function (newVal) {
+                var self = this;
+                var searchTerm;
+                var itemIndex;
+                if (self.attr('selectedItems').length > 0) {
+                    newVal.map(function (item) {
+                        searchTerm = item.attr('url');
+                        itemIndex = _.findIndex(self.attr('selectedItems'), function(o) {
+                            return o.url == searchTerm;
+                        });
+
+                        if (itemIndex  > -1) {
+                            item.attr('selected', true);
+                        }
+                    });
+                    return newVal;
+                } else {
+                    return newVal;
+                }
+            }
+        },
+
+        /**
          * @property {Boolean} url-list.viewModel.isAllSelected
          * @description Indicates if all options are selected.
          * @option Default `false`
@@ -316,8 +347,16 @@ module.exports = can.Map.extend({
      * @param {evt} Determines if the checkbox will be selected or deselected
      */
     selectAllUrl: function ($el, evt) {
-        this.attr('items').map(function (option) {
-            option.attr('selected', evt.context.checked);
+        var self = this;
+        var toggleState = evt.context.checked;
+
+        this.attr('items').map(function (option, index) {
+            option.attr('selected', toggleState);
+            if (toggleState) {
+                self.attr('selectedItems').push(option);
+            } else {
+                self.attr('selectedItems').splice(index, 1);
+            }
         });
     },
 
@@ -326,11 +365,31 @@ module.exports = can.Map.extend({
      * @description Toggles the selected rows.
      * @param {evt} Determines if the checkbox will be selected or deselected
      */
-    selectRowUrl: function(title, evt) {
-        this.attr('items').map(function (option) {
-            if (option.pageTitle === title) {
-                option.attr('selected', evt.currentTarget.checked);
+    selectRowUrl: function(url, evt) {
+        var self = this;
+        var toggleState = evt.currentTarget.checked;
+
+        this.attr('items').map(function (option, index) {
+            if (option.url === url) {
+                option.attr('selected', toggleState);
+
+                if (toggleState) {
+                    self.attr('selectedItems').push(option);
+                } else {
+                    self.attr('selectedItems').splice(index, 1);
+                }
             }
+        });
+    },
+
+    /**
+     * @function url-list.viewModel.deselectAll
+     * @description deselect all items
+     */
+    deselectAll: function() {
+        this.attr('selectedItems', []);
+        this.attr('items').map(function (option) {
+            option.attr('selected', false);
         });
     }
 });
