@@ -1073,4 +1073,10 @@ describe('URL List Page', function () {
             expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
         });
     });
+
+    describe('Check for the  deselect button', function () { 
+        it('check for the title of the button', function () {
+             expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
+         });
+    });
 });
