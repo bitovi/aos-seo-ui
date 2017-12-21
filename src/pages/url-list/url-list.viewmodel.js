@@ -110,6 +110,10 @@ module.exports = can.Map.extend({
             type: 'number'
         },
 
+        /**
+         * @property {Array} url-list.viewmodel.selectedItems selectedItems
+         * @description stores selected row items.
+         */
         selectedItems: {
             value: []
         },
