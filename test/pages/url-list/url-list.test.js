@@ -1073,4 +1073,37 @@ describe('URL List Page', function () {
             expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
         });
     });
+
+    describe('deselect button', function () { 
+        it('has proper label', function () {
+             expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
+         });
+    });
+
+    describe('clicking on header checkbox', function () {
+
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+
+        it('select all row items', function () {
+            var selectedItemsCount = component.find('.item input:checked').length;
+            expect(component.find('.item input').length).toEqual(selectedItemsCount);
+        });
+    });
+
+    describe('clicking on deselect button', function () {
+
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+
+        it('will clear all selected item', function () {
+            component.find('.deselect-all-button').click();
+            jasmine.clock().runToLast();
+            expect(component.find('.item input:checked').length).toEqual(0);
+        });
+    });
 });
