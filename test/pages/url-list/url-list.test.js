@@ -1079,4 +1079,20 @@ describe('URL List Page', function () {
              expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
          });
     });
+
+    describe('Select All', function () {
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+        it('has selected', function () {
+            var selectedItemsCount = component.find('.item input:checked').length;
+            expect(component.find('.item input').length).toEqual(selectedItemsCount);
+        });
+        it('has deselected', function () {
+            component.find('.deselect-all-button').click();
+            jasmine.clock().runToLast();
+            expect(component.find('.item input:checked').length).toEqual(0);
+        });
+    });
 });

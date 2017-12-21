@@ -123,12 +123,7 @@ module.exports = can.Map.extend({
             type: 'number',
             get: function () {
                 if (this.attr('items')) {
-                    var selectedOptions = this.attr('items')
-                        .filter(function (option) {
-                            return option.attr('selected');
-                        });
-
-                    return selectedOptions.attr('length');
+                    return this.attr('selectedItems').attr('length');
                 }
             },
             set: function (newVal) {
@@ -334,7 +329,11 @@ module.exports = can.Map.extend({
             type: 'boolean',
             get: function () {
                 if (this.attr('items')) {
-                    return this.attr('items').attr('length') === this.attr('selectUrlCount');
+                    var selectedItemsCount = this.attr('items')
+                        .filter(function (option) {
+                            return option.attr('selected');
+                        }).length;
+                    return this.attr('items').attr('length') === selectedItemsCount;
                 }
             }
         }
@@ -350,12 +349,12 @@ module.exports = can.Map.extend({
         var self = this;
         var toggleState = evt.context.checked;
 
-        this.attr('items').map(function (option, index) {
+        this.attr('items').map(function (option) {
             option.attr('selected', toggleState);
             if (toggleState) {
                 self.attr('selectedItems').push(option);
             } else {
-                self.attr('selectedItems').splice(index, 1);
+                self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
             }
         });
     },
@@ -369,14 +368,14 @@ module.exports = can.Map.extend({
         var self = this;
         var toggleState = evt.currentTarget.checked;
 
-        this.attr('items').map(function (option, index) {
+        this.attr('items').map(function (option) {
             if (option.url === url) {
                 option.attr('selected', toggleState);
 
                 if (toggleState) {
                     self.attr('selectedItems').push(option);
                 } else {
-                    self.attr('selectedItems').splice(index, 1);
+                    self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
                 }
             }
         });
