@@ -1081,22 +1081,26 @@ describe('URL List Page', function () {
     });
 
     describe('clicking on header checkbox', function () {
+
         beforeEach(function () {
             component.find('pui-grid-list .toggleSelect').click();
             jasmine.clock().runToLast();
         });
-        it('it select all row items', function () {
+
+        it('select all row items', function () {
             var selectedItemsCount = component.find('.item input:checked').length;
             expect(component.find('.item input').length).toEqual(selectedItemsCount);
         });
     });
 
     describe('clicking on deselect button', function () {
+
         beforeEach(function () {
             component.find('pui-grid-list .toggleSelect').click();
             jasmine.clock().runToLast();
         });
-        it('it will clear all selected item', function () {
+
+        it('will clear all selected item', function () {
             component.find('.deselect-all-button').click();
             jasmine.clock().runToLast();
             expect(component.find('.item input:checked').length).toEqual(0);

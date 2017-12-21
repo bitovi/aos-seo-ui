@@ -367,6 +367,7 @@ module.exports = can.Map.extend({
      * @function url-list.viewModel.selectRowUrl
      * @description Toggles the selected rows.
      * @param {evt} Determines if the checkbox will be selected or deselected
+     * @param {url} fetch the Url data form row.
      */
     selectRowUrl: function(url, evt) {
         var self = this;
