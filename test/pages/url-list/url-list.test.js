@@ -1074,22 +1074,29 @@ describe('URL List Page', function () {
         });
     });
 
-    describe('Check for the  deselect button', function () { 
-        it('check for the title of the button', function () {
+    describe('deselect button', function () { 
+        it('has proper label', function () {
              expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
          });
     });
 
-    describe('Select All', function () {
+    describe('clicking on header checkbox', function () {
         beforeEach(function () {
             component.find('pui-grid-list .toggleSelect').click();
             jasmine.clock().runToLast();
         });
-        it('has selected', function () {
+        it('it select all row items', function () {
             var selectedItemsCount = component.find('.item input:checked').length;
             expect(component.find('.item input').length).toEqual(selectedItemsCount);
         });
-        it('has deselected', function () {
+    });
+
+    describe('clicking on deselect button', function () {
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+        it('it will clear all selected item', function () {
             component.find('.deselect-all-button').click();
             jasmine.clock().runToLast();
             expect(component.find('.item input:checked').length).toEqual(0);

@@ -295,7 +295,7 @@ module.exports = can.Map.extend({
 
         /**
          * @property {Array<can.Map>} url-list.viewModel.items
-         * @description selects/deselects if the items were previously selected.
+         * @description selects the items if it is previously selected.
          */
         items: {
             set: function (newVal) {
@@ -305,8 +305,8 @@ module.exports = can.Map.extend({
                 if (self.attr('selectedItems').length > 0) {
                     newVal.map(function (item) {
                         searchTerm = item.attr('url');
-                        itemIndex = _.findIndex(self.attr('selectedItems'), function(o) {
-                            return o.url == searchTerm;
+                        itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
+                            return checkeditem.url == searchTerm;
                         });
 
                         if (itemIndex  > -1) {
