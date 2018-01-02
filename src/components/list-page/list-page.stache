@@ -76,10 +76,12 @@
         <div class="request-selection-option">
             <button
                 type="button"
+                {{#is selectUrlCount 0}}disabled{{/is}}
                 class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
            </button>
            <button
                 type="button"
+                {{#is selectUrlCount 0}}disabled{{/is}}
                 class="btn btn-secondary btn-xs deselect-all-button" ($click)="deselectAll()">Deselect
            </button>
         </div>
