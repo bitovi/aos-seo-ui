@@ -9,6 +9,7 @@ require('seo-ui/pages/generate-page/generate-page.js');
 require('seo-ui/pages/home/home.js');
 require('seo-ui/pages/review-page/review-page.js');
 require('seo-ui/pages/url-list/url-list.js');
+require('seo-ui/pages/edit-title-description-list/edit-title-description-list.js');
 
 var routes = require('./route-list.json');
 

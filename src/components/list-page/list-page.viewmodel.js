@@ -772,5 +772,17 @@ module.exports = can.Map.extend({
                 }
             });
         }
+    },
+
+    /**
+     * @function editTitleDescription
+     * @description returns url for edit title description.
+     */
+    editTitleDescription : function() {
+        var appState = this.attr('state');
+        appState .attr('storage',  this.attr('selectedItems'));
+        return can.route.url({
+            page: 'edit-title-description-list'
+        });
     }
 });
