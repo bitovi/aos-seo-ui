@@ -344,6 +344,23 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function url-list.viewModel.isSelectedItemExist
+     * @description it checks weather item alredy exists in the selected items collections.
+     * @param {object} item that need to be check exist or not.
+     */
+    isSelectedItemExist: function (item) {
+        if (this.attr('selectedItems').length > 0) {
+            var existedItemCount = this.attr('selectedItems').filter(function (selectedItem) {
+                return item.attr('url') === selectedItem.attr('url');
+            }).length;
+
+            return existedItemCount > 0;
+        } else {
+            return false;
+        }
+    },
+
+    /**
      * @function url-list.viewModel.selectAllUrl
      * @description Toggles the selected state of all table rows.
      * @param {$el} retuns element
@@ -353,11 +370,12 @@ module.exports = can.Map.extend({
         var self = this;
         var toggleState = evt.context.checked;
 
-        this.attr('items').map(function (option) {
+        self.attr('items').map(function (option) {
             option.attr('selected', toggleState);
-            if (toggleState) {
+
+            if (!self.isSelectedItemExist(option) && toggleState) {
                 self.attr('selectedItems').push(option);
-            } else {
+            } else if (!toggleState) {
                 self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
             }
         });
