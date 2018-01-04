@@ -45,8 +45,50 @@ describe('edit-title-description-list', function () {
         beforeEach(function () {
             vm = new ViewModel();
         });
+
         it('has an initial anatomyItem value', function () {
             expect(typeof vm.attr('anatomyItem')).toEqual('function');
+        });
+
+        it('has an initial columns value', function () {
+            expect(vm.attr('columns').attr()).toEqual([
+                {
+                    cssClass: 'col-md-1',
+                    key: 'partNumber',
+                    label: 'Part #',
+                    sorting: false
+                },
+                {
+                    cssClass: 'col-md-1',
+                    key: 'url',
+                    label: 'URL',
+                    sorting: false
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'pageTitle',
+                    label: 'Page Title',
+                    sorting: false
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'editablepagetitle',
+                    label: 'Editable Titles',
+                    sorting: false
+                },
+                {
+                    cssClass: 'col-md-2',
+                    key: 'description',
+                    label: 'Description',
+                    sorting: false
+                },
+                {
+                    cssClass: 'col-md-4',
+                    key: 'editabledescription',
+                    label: 'Editable Description',
+                    sorting: false
+                }
+            ]);
         });
     });
 
@@ -75,33 +117,6 @@ describe('edit-title-description-list', function () {
         it('Add More', function () {
             var menuOptionText = $component.find('pui-action-bar-item[action="addMore"]').text().trim();
             expect(menuOptionText).toEqual('Add More');
-        });
-    });
-
-    describe('header', function () {
-
-        it('has part column', function () {
-            expect($component.find('thead .table-header-main th:eq(0)').text().trim()).toEqual('Part #');
-        });
-
-        it('has url column', function () {
-            expect($component.find('thead .table-header-main th:eq(1)').text().trim()).toEqual('URL');
-        });
-
-        it('has Page Title column', function () {
-            expect($component.find('thead .table-header-main th:eq(2)').text().trim()).toEqual('Page Title');
-        });
-
-        it('has editable titles column', function () {
-            expect($component.find('thead .table-header-main th:eq(3)').text().trim()).toEqual('Editable Titles');
-        });
-
-        it('has description titles column', function () {
-            expect($component.find('thead .table-header-main th:eq(4)').text().trim()).toEqual('Description');
-        });
-
-        it('has editable description titles column', function () {
-            expect($component.find('thead .table-header-main th:eq(5)').text().trim()).toEqual('Editable Description');
         });
     });
 });
