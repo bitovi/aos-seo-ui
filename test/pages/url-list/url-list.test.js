@@ -1053,6 +1053,33 @@ describe('URL List Page', function () {
         });
     });
 
+    describe('On intial load', function () {
+        it('create request button is disabled', function () {
+            expect(component.find('.create-request-button').attr('disabled')).toBe('disabled');
+        });
+
+        it('Deselect button is disabled', function () {
+            expect(component.find('.deselect-all-button').attr('disabled')).toBe('disabled');
+        });
+    });
+
+    describe('On selecting Url ', function () {
+
+        beforeEach(function () {
+            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
+            $row.trigger("click");
+            jasmine.clock().runToLast();
+        });
+
+        it('create request button is enabled', function () {
+            expect(component.find('.create-request-button').attr('disabled')).not.toBe('disabled');
+        });
+
+        it('Deselect button is enabled', function () {
+            expect(component.find('.deselect-all-button').attr('disabled')).not.toBe('disabled');
+        });
+    });
+
     describe('Create Request button', function () {
         it('renders', function () {
             expect(component.find('.create-request-button')).toExist();
