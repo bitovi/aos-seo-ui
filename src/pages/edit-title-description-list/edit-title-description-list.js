@@ -1,6 +1,7 @@
 require('can/map/define/define');
 require('can/view/stache/stache');
 require('@apple/pui/components/popover/popover');
+require('@apple/pui/components/grid-list/grid-list');
 
 var can = require('can');
 var template = require('./edit-title-description-list.stache!');
