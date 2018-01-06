@@ -73,7 +73,77 @@
                 ($click)="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
+        <div class="request-selection-option">
+            <button
+                type="button"
+                {{#is selectUrlCount 0}}disabled{{/is}}
+                class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
+           </button>
+           <button
+                type="button"
+                {{#is selectUrlCount 0}}disabled{{/is}}
+                class="btn btn-secondary btn-xs deselect-all-button" ($click)="deselectAll()">Deselect
+           </button>
+        </div>
     </div>
+
+    <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">
+        <pui-modal-header>
+            <h4 class="modal-title">Select the Segment and Region</h4>
+        </pui-modal-header>
+        <pui-modal-body>
+            <div class="clearfix">
+                {{#each createRequestMarketContextOptions}}
+                    <div class="filter-groups">
+                        {{#each getFilterOptions(filterGroups)}}
+                            <div class="filter-group {{groupClassName}}" {{data 'filterGroup'}}>
+                                {{#if groupTitle}}
+                                    <strong class="group-title">{{groupTitle}}</strong>
+                                {{/if}}
+                                {{#if selected}}
+                                    <button
+                                        class="select-all btn btn-link btn-sm"
+                                        ($click)="createRequestToggleAll(filterGroups, parameter, false)"
+                                        type="button">Deselect All</button>
+                                {{/else}}
+                                    <button
+                                        class="select-all btn btn-link btn-sm"
+                                        ($click)="createRequestToggleAll(filterGroups, parameter, true)"
+                                        type="button">Select All</button>
+                                {{/if}}
+
+                                {{#if filterOptions.length}}
+                                    <ul class="list-group">
+                                        {{#each filterOptions}}
+                                            <li class="list-group-item" {{data 'filterOption'}}>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input
+                                                            {($checked)}="selected"
+                                                            class="{{value}}-toggle"
+                                                            type="checkbox"
+                                                            ($click)="createRequestToggle(filterGroups, parameter, @index, %event)"
+                                                        />
+                                                        <span class="{{value}}-label">{{label}}</span>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                       </div>
+                {{/each}}
+            </div>
+        </pui-modal-body>
+        <pui-modal-footer>
+             <button
+                class="btn btn-primary btn-block"
+                type="button">Edit Title and description
+             </button>
+        <pui-modal-footer>
+    </pui-modal>
 
     <div class="row">
         {{! Basic Search }}
@@ -126,6 +196,7 @@
     limit="{limit}"
     model="{model}"
     row-template="{rowTemplate}"
+    primary-header-template="{primaryHeaderTemplate}"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
     sort-by="{state.sort}"

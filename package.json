@@ -1,6 +1,6 @@
 {
   "name": "seo-ui",
-  "version": "1.0.0",
+  "version": "18.3.0",
   "description": "SEO UI code.",
   "author": "AOS Publishing Systems <AOS_Content_Engineering@group.apple.com>",
   "repository": {
@@ -22,7 +22,7 @@
   "devDependencies": {
     "browser-sync": "2.18.8",
     "del": "2.2.2",
-    "documentjs": "0.4.4",
+    "documentjs": "0.5.1",
     "es5-shim": "4.5.9",
     "glob": "7.1.1",
     "glob-all": "3.1.0",

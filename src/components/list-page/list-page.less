@@ -4,6 +4,25 @@ seo-list-page {
         margin-bottom: @line-height-computed;
     }
 
+    .modal-body {
+        max-height: 600px;
+        overflow-y: auto;
+        
+        .filter-groups {
+            float: left;
+
+            .filter-group {
+                float: left;
+                margin-right: 10px;
+                width: 178px;
+            }
+        }
+
+        .filter-groups:last-child .filter-group:last-child {
+            margin-right: 0;
+        }
+    }
+
     pui-grid-column-toggle {
         margin-top: .4rem;
 
@@ -27,5 +46,10 @@ seo-list-page {
         .table-responsive {
             min-height: 300px;
         }
+    }
+
+    .request-selection-option {
+        float: right;
+        margin-top: 5px;
     }
 }

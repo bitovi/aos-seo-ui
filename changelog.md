@@ -1,5 +1,29 @@
 # Change Log for module: seo-ui
 
+##release-3.2.0
+From Sat Mar 25 13:13:01 2017 -0700 to Fri Apr 21 14:53:02 2017 -0700
+================================================================================
+	feature/node-6-upgrade
+##release-3.1.1
+From Wed Apr 5 14:11:43 2017 -0700 to Mon Apr 10 15:39:52 2017 -0700
+================================================================================
+	bugfix/ST-659-fix-sorting-on-Nemo-column
+	bugfix/ST-673-R06-fix-typo-in-export-progress-message
+	bugfix/ST-681-sherlock-show-default-error-message-for-export-progress-api
+	bugfix/ST-674-R06-UI-does-not-stop-querying-export-progress-api-when-it-fails
+	bugfix/ST-672,ST-678-R06-fix-notification-message-type-and-content
+##release-3.1.0
+From Tue Feb 28 10:36:06 2017 -0800 to Fri Mar 31 15:58:33 2017 -0700
+================================================================================
+	feature/ST-604-sherlock-integration-generate-page-3-15-17
+	feature/ST-597-add-storeFrontAlias-column
+	feature/ST-603-sherlock-migration-add-reveiw-page
+	feature/ST-641-export-progress-for-sherlock-pages
+	bugfix/ST-650-fix-generate-tab-header-text
+	bugfix/ST-635-title-search-does-not-work-for-some-strings
+	feature/ST-608-change-export-button-labels
+	feature/ST-605-sherlock-ui-review-page-integration
+	feature/ST-446-sherlock-ui-migration-generate-page
 ##release-2.2.2
 From Thu Mar 9 18:30:14 2017 -0800 to Thu Mar 9 20:12:45 2017 -0800
 ================================================================================

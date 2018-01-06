@@ -1,7 +1,9 @@
 var can = require('can');
 
+var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
+var primaryHeaderTemplate = require('./primary-header.stache!');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
 
@@ -23,6 +25,11 @@ module.exports = can.Map.extend({
          */
         columns: {
             value: [
+                {
+                    cssClass: 'col-md-1',
+                    key: 'selectUrl',
+                    label: 'select'
+                },
                 {
                     cssClass: 'col-md-1',
                     key: 'partNumber',
@@ -101,6 +108,31 @@ module.exports = can.Map.extend({
         count: {
             value: 0,
             type: 'number'
+        },
+
+        /**
+         * @property {Array} url-list.viewmodel.selectedItems selectedItems
+         * @description stores selected row items.
+         */
+        selectedItems: {
+            value: []
+        },
+
+        /**
+         * @property {Number} url-list.viewmodel.selectUrlCount selectUrlCount
+         * @description The number of rows is selected.
+         */
+        selectUrlCount: {
+            value: 0,
+            type: 'number',
+            get: function () {
+                if (this.attr('items')) {
+                    return this.attr('selectedItems').attr('length');
+                }
+            },
+            set: function (newVal) {
+                return newVal < 0 ? 0 : newVal;
+            }
         },
 
         /**
@@ -235,6 +267,18 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {function} url-list.viewModel.primaryHeaderTemplate primaryHeaderTemplate
+         * @description Stores the template renderer function reference.
+         */
+        primaryHeaderTemplate: {
+            value: function () {
+                return function () {
+                    return primaryHeaderTemplate;
+                };
+            }
+        },
+
+        /**
          * @property {String} url-list.viewModel.searchField searchField
          * @description The initial search key.
          */
@@ -251,6 +295,105 @@ module.exports = can.Map.extend({
             get: function () {
                 return UrlModel;
             }
+        },
+
+        /**
+         * @property {Array<can.Map>} url-list.viewModel.items
+         * @description selects the items if it is previously selected.
+         */
+        items: {
+            set: function (newVal) {
+                var self = this;
+                var searchTerm;
+                var itemIndex;
+                if (self.attr('selectedItems').length > 0) {
+                    newVal.map(function (item) {
+                        searchTerm = item.attr('url');
+                        itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
+                            return checkeditem.url == searchTerm;
+                        });
+
+                        if (itemIndex  > -1) {
+                            item.attr('selected', true);
+                        }
+                    });
+                    return newVal;
+                } else {
+                    return newVal;
+                }
+            }
+        },
+
+        /**
+         * @property {Boolean} url-list.viewModel.isAllSelected
+         * @description Indicates if all options are selected.
+         * @option Default `false`
+         */
+        isAllSelected: {
+            type: 'boolean',
+            get: function () {
+                if (this.attr('items')) {
+                    var selectedItemsCount = this.attr('items')
+                        .filter(function (option) {
+                            return option.attr('selected');
+                        }).length;
+                    return this.attr('items').attr('length') === selectedItemsCount;
+                }
+            }
         }
+    },
+
+    /**
+     * @function url-list.viewModel.selectAllUrl
+     * @description Toggles the selected state of all table rows.
+     * @param {$el} retuns element
+     * @param {evt} Determines if the checkbox will be selected or deselected
+     */
+    selectAllUrl: function ($el, evt) {
+        var self = this;
+        var toggleState = evt.context.checked;
+
+        this.attr('items').map(function (option) {
+            option.attr('selected', toggleState);
+            if (toggleState) {
+                self.attr('selectedItems').push(option);
+            } else {
+                self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
+            }
+        });
+    },
+
+    /**
+     * @function url-list.viewModel.selectRowUrl
+     * @description Toggles the selected rows.
+     * @param {evt} Determines if the checkbox will be selected or deselected
+     * @param {url} fetch the Url data form row.
+     */
+    selectRowUrl: function(url, evt) {
+        var self = this;
+        var toggleState = evt.currentTarget.checked;
+
+        this.attr('items').map(function (option) {
+            if (option.url === url) {
+                option.attr('selected', toggleState);
+
+                if (toggleState) {
+                    self.attr('selectedItems').push(option);
+                } else {
+                    self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
+                }
+            }
+        });
+    },
+
+    /**
+     * @function url-list.viewModel.deselectAll
+     * @description deselect all items
+     */
+    deselectAll: function() {
+        this.attr('selectedItems', []);
+        this.attr('items').map(function (option) {
+            option.attr('selected', false);
+        });
     }
 });

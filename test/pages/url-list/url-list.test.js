@@ -96,6 +96,11 @@ describe('URL List Page', function () {
             expect(vm.attr('columns').attr()).toEqual([
                 {
                     cssClass: 'col-md-1',
+                    key: 'selectUrl',
+                    label: 'select'
+                },
+                {
+                    cssClass: 'col-md-1',
                     key: 'partNumber',
                     label: 'Part #'
                 },
@@ -474,6 +479,26 @@ describe('URL List Page', function () {
         });
     });
 
+    describe('on clicking of checkbox',function () {
+        beforeEach(function () {
+            $allRow  = component.find('pui-grid-list tbody > tr').find("td input");
+            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
+            $header = component.find('pui-grid-list thead > tr').eq(0).find("input");
+        });
+
+        it('all row checkbox  is selected.', function () {
+            $header.trigger("click");
+            $allRow.each(function(index,row){
+                expect($(row).is(':checked')).toEqual(true);
+            });
+        });
+
+        it('header checkbox is unselected when any row checkbox is unselected.', function () {
+            $row.trigger("click");
+            expect($header.is(':checked')).toEqual(false);
+        });
+    });
+
     describe('status badge', function () {
         var $badge;
 
@@ -501,7 +526,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(4).find('.pageTitle');
+                $resultTitle = $results.eq(4).find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -743,7 +768,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.last().find('.pageTitle');
+                $resultTitle = $results.last().find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -763,7 +788,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(13).find('.description');
+                $resultDesc = $results.eq(13).find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
@@ -994,7 +1019,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.last().find('.description');
+                $resultDesc = $results.last().find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
@@ -1025,6 +1050,87 @@ describe('URL List Page', function () {
         it('does not collapse the whitespace', function () {
             // The innerText property is the only way to test what the UI displays.
             expect($result.find('.url-page-title').get(0).innerText).toEqual('iPod Touch  -    Apple');
+        });
+    });
+
+    describe('On intial load', function () {
+        it('create request button is disabled', function () {
+            expect(component.find('.create-request-button').attr('disabled')).toBe('disabled');
+        });
+
+        it('Deselect button is disabled', function () {
+            expect(component.find('.deselect-all-button').attr('disabled')).toBe('disabled');
+        });
+    });
+
+    describe('On selecting Url ', function () {
+
+        beforeEach(function () {
+            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
+            $row.trigger("click");
+            jasmine.clock().runToLast();
+        });
+
+        it('create request button is enabled', function () {
+            expect(component.find('.create-request-button').attr('disabled')).not.toBe('disabled');
+        });
+
+        it('Deselect button is enabled', function () {
+            expect(component.find('.deselect-all-button').attr('disabled')).not.toBe('disabled');
+        });
+    });
+
+    describe('Create Request button', function () {
+        it('renders', function () {
+            expect(component.find('.create-request-button')).toExist();
+        });
+
+        it('has proper label', function () {
+            expect(component.find('.create-request-button').text().trim()).toEqual('Create Request | 0');
+        });
+    });
+
+    describe('create request select url count', function () {
+        it('on load the count will be zero', function () {
+            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('0');
+        });
+
+        it('selecting a row item increases the count ', function () {
+            component.find('pui-grid-list tbody > tr').eq(1).find("input").trigger("click");
+            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
+        });
+    });
+
+    describe('deselect button', function () { 
+        it('has proper label', function () {
+             expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
+         });
+    });
+
+    describe('clicking on header checkbox', function () {
+
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+
+        it('select all row items', function () {
+            var selectedItemsCount = component.find('.item input:checked').length;
+            expect(component.find('.item input').length).toEqual(selectedItemsCount);
+        });
+    });
+
+    describe('clicking on deselect button', function () {
+
+        beforeEach(function () {
+            component.find('pui-grid-list .toggleSelect').click();
+            jasmine.clock().runToLast();
+        });
+
+        it('will clear all selected item', function () {
+            component.find('.deselect-all-button').click();
+            jasmine.clock().runToLast();
+            expect(component.find('.item input:checked').length).toEqual(0);
         });
     });
 });

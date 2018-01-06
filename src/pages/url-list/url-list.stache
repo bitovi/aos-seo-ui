@@ -21,6 +21,7 @@
     model="{urlModel}"
     page-title="{pageTitle}"
     row-template="{rowTemplate}"
+    primary-header-template="{primaryHeaderTemplate}"
     search-field="{searchField}"
     {(search-fields)}="searchFields"
     state="{state}"
