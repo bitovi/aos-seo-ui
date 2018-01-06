@@ -2,7 +2,7 @@ var glob = require('glob');
 var path = require('path');
 var fs = require('fs');
 
-var dest = './target';
+var dest = './build';
 var src = './src';
 
 var config = {
@@ -127,7 +127,7 @@ var config = {
         siteConfig: {
             glob: {
                 ignore: [
-                    '{node_modules,target,test,coverage}/**/*',
+                    '{node_modules,target,build,test,coverage}/**/*',
                     'docs/{seo-ui,theme}/*',
                     '**/{demo,fixture}/*',
                     '**/*.bundle.js'

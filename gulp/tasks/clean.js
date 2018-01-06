@@ -20,5 +20,5 @@ gulp.task('clean:docs', function () {
 });
 
 gulp.task('clean:build', function () {
-    return del(['target']);
+    return del(['build']);
 });
