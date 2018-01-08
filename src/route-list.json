@@ -31,18 +31,18 @@
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "SEO Metadata"
     },
-    "edit-title-description-list":  {
+    "edit-metadata-list":  {
         "layout": {
             "hideFooter": false,
             "hideHeader": false,
             "hideSubHeader": true
         },  
         "params" : {
-            "page" : "edit-title-description-list",
+            "page" : "edit-metadata-list",
             "selectedItems": ""
         },
-        "template" : "<seo-edit-title-description-list state=\"{.}\" selected-items=\"{selectedItems}\"><seo-edit-title-description-list>",
-        "title" : "Edit title description"
+        "template" : "<seo-edit-metadata-list state=\"{.}\" selected-items=\"{selectedItems}\"><seo-edit-metadata-list>",
+        "title" : "Edit Metadata List"
     },
     "generate": {
         "params": {

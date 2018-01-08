@@ -1,5 +1,5 @@
 <div class="page-header clearfix">
-    <h1 class="pull-left">Edit Title Description</h1>    
+    <h1 class="pull-left">Edit Metadata List</h1>    
     <div class="pull-right">
         <div class="action-bar-menu">
             <pui-action-bar-menu action-scope="{actionBarMenuActions}">

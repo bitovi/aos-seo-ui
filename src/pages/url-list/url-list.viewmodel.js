@@ -306,6 +306,18 @@ module.exports = can.Map.extend({
                 var self = this;
                 var searchTerm;
                 var itemIndex;
+                var storage = JSON.parse(localStorage.getItem('editMetadata'));
+                var appState = this.attr('state');
+
+                if (appState.attr('addMore') && storage && storage.length > 0) {
+                    self.attr('selectedItems', storage);
+                    localStorage.removeItem('editMetadata');
+                }
+
+                if (!appState.attr('addMore')) {
+                    localStorage.removeItem('editMetadata');
+                }
+
                 if (self.attr('selectedItems').length > 0) {
                     newVal.map(function (item) {
                         searchTerm = item.attr('url');

@@ -775,14 +775,20 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function editTitleDescription
+     * @function setSelectedMetadataToLocalStorage
+     * @description set selected items in localstorage
+     */
+    setSelectedMetadataToLocalStorage: function () {
+        localStorage.setItem('editMetadata', JSON.stringify(this.attr('selectedItems').attr()));
+    },
+
+    /**
+     * @function editMetadata
      * @description returns url for edit title description.
      */
-    editTitleDescription : function() {
-        var appState = this.attr('state');
-        appState .attr('storage',  this.attr('selectedItems'));
+    getMetadataURl : function() {
         return can.route.url({
-            page: 'edit-title-description-list'
+            page: 'edit-metadata-list'
         });
     }
 });

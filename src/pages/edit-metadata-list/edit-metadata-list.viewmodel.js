@@ -57,7 +57,7 @@ module.exports = can.Map.extend({
          */
         items: {
             get: function () {
-                return this.attr('state.storage')
+                return JSON.parse(localStorage.getItem('editMetadata'));
             }
         },
 
@@ -102,16 +102,20 @@ module.exports = can.Map.extend({
      * @description cancles edit title description request.
      */
     cancelRequest: function () {
+        localStorage.removeItem('editMetadata');
         this.attr('state').setRouteAttrs({
             page: 'urls'
         });
     },
 
-    addMore: function () {
-        var appState = this.attr('state');
-        appState.attr('storage',  this.attr('items'));
+    /**
+     * @function edit-title-description.viewModel.addMore
+     * @description navigate to url page.
+     */
+    addMore: function () {        
         this.attr('state').setRouteAttrs({
-            page: 'urls'
+            page: 'urls',
+            addMore: true
         });
     }
 

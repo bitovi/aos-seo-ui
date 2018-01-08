@@ -41,18 +41,20 @@
                         <table class="anotomyTable">
                             {{#each titleAnatomy}}
                                 {{#if editable}}
-                                    <tr>
-                                        <td>
-                                            <dl class="anatomy-list">                                    
-                                                {{> anatomyItem}}
-                                            </dl>                                
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="form-control">{{{value}}}</textarea>
-                                        </td>
-                                    </tr>
+                                    {{#is type 'text_asset'}}
+                                        <tr>
+                                            <td>
+                                                <dl class="anatomy-list">                                    
+                                                    {{> anatomyItem}}
+                                                </dl>                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <textarea class="form-control">{{{value}}}</textarea>
+                                            </td>
+                                        </tr>
+                                    {{/is}}
                                 {{/if}}
                             {{/each}}
                         </table>
@@ -92,18 +94,20 @@
                         <table class="anotomyTable">
                             {{#each descriptionAnatomy}}
                                 {{#if editable}}
-                                    <tr>
-                                        <td>
-                                            <dl class="anatomy-list">                                    
-                                                {{> anatomyItem}}
-                                            </dl>                                
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <textarea class="form-control">{{{value}}}</textarea>
-                                        </td>
-                                    </tr>
+                                    {{#is type 'text_asset'}}
+                                        <tr>
+                                            <td>
+                                                <dl class="anatomy-list">                                    
+                                                    {{> anatomyItem}}
+                                                </dl>                                
+                                            </td>                                        
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <textarea class="form-control">{{{value}}}</textarea>
+                                            </td>
+                                        </tr>
+                                    {{/is}}
                                 {{/if}}
                             {{/each}}
                         </table>

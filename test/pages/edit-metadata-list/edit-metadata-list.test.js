@@ -1,4 +1,4 @@
-require('seo-ui/pages/edit-title-description-list/edit-title-description-list');
+require('seo-ui/pages/edit-metadata-list/edit-metadata-list');
 require('can/util/fixture/fixture');
 
 var $ = require('jquery');
@@ -13,8 +13,8 @@ var stateObj = {
     urlPath: ''
 };
 
-var testTemplate = require('./edit-title-description-list.test.stache!');
-var ViewModel = require('seo-ui/pages/edit-title-description-list/edit-title-description-list.viewmodel');
+var testTemplate = require('./edit-metadata-list.test.stache!');
+var ViewModel = require('seo-ui/pages/edit-metadata-list/edit-metadata-list.viewmodel');
 var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 var $component;
@@ -28,10 +28,10 @@ var renderPage = function(newState) {
     }));
 
     jasmine.clock().runToLast();
-    $component = $('#sandbox seo-edit-title-description-list');
+    $component = $('#sandbox seo-edit-metadata-list');
 };
 
-describe('edit-title-description-list', function () {
+describe('edit-metadata-list', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig();
         renderPage();
@@ -94,7 +94,7 @@ describe('edit-title-description-list', function () {
 
     describe('On load', function () {
         it('has page title', function () {
-            expect($component.find('.page-header .pull-left').text().trim()).toEqual('Edit Title Description');
+            expect($component.find('.page-header .pull-left').text().trim()).toEqual('Edit Metadata List');
         });
     });
 
