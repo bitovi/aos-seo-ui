@@ -51,6 +51,7 @@ module.exports = can.Map.extend({
                 }
             ]
         },
+        
         /**
          * @property {Function} url-list.viewModel.items
          * @description gets items from the state.storage.

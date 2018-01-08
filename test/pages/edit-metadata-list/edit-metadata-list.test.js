@@ -114,7 +114,7 @@ describe('edit-metadata-list', function () {
             expect(menuOptionText).toEqual('Cancel Request');
         });
 
-        it('Add More', function () {
+        it('has Add More', function () {
             var menuOptionText = $component.find('pui-action-bar-item[action="addMore"]').text().trim();
             expect(menuOptionText).toEqual('Add More');
         });
