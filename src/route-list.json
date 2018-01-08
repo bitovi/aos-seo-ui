@@ -41,7 +41,7 @@
             "page" : "edit-metadata-list",
             "selectedItems": ""
         },
-        "template" : "<seo-edit-metadata-list state=\"{.}\" selected-items=\"{selectedItems}\"><seo-edit-metadata-list>",
+        "template" : "<seo-edit-metadata-list state=\"{.}\"><seo-edit-metadata-list>",
         "title" : "Edit Metadata List"
     },
     "generate": {
