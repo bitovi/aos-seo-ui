@@ -1,0 +1,31 @@
+<div class="page-header clearfix">
+    <h1 class="pull-left">Edit Metadata List</h1>    
+    <div class="pull-right">
+        <div class="action-bar-menu">
+            <pui-action-bar-menu action-scope="{actionBarMenuActions}">
+                <pui-action-bar-dropdown icon="more" tooltip-title="More">
+                    <pui-action-bar-item action="cancelRequest">
+                        Cancel Request
+                    </pui-action-bar-item>
+                    <pui-action-bar-item action="addMore">
+                        Add More
+                    </pui-action-bar-item>
+                </pui-action-bar-dropdown>
+            </pui-action-bar-menu> 
+        </div>
+        <div class="total-count">
+            Total Selected Count: {{items.length}}
+        </div>                       
+    </div>
+</div>
+
+<div>
+    <pui-grid-list
+        class="main-item-list"
+        columns="{columns}"
+        auto-load="false"
+        items="{items}"
+        row-template="{rowTemplate}"
+        state="{state}"
+    ></pui-grid-list>
+</div>

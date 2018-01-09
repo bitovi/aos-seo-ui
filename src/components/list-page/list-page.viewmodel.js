@@ -772,5 +772,23 @@ module.exports = can.Map.extend({
                 }
             });
         }
+    },
+
+    /**
+     * @function setSelectedMetadataToLocalStorage
+     * @description set selected items in localstorage
+     */
+    setSelectedMetadataToLocalStorage: function () {
+        localStorage.setItem('editMetadata', JSON.stringify(this.attr('selectedItems').attr()));
+    },
+
+    /**
+     * @function editMetadata
+     * @description returns url for edit title description.
+     */
+    getMetadataURl : function() {
+        return can.route.url({
+            page: 'edit-metadata-list'
+        });
     }
 });

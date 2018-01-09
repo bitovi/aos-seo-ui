@@ -26,4 +26,5 @@
     {(search-fields)}="searchFields"
     state="{state}"
     type="url"
+    selected-items="{selectedItems}"
 ></seo-list-page>

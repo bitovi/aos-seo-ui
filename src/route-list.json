@@ -31,6 +31,19 @@
         "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
         "title": "SEO Metadata"
     },
+    "edit-metadata-list":  {
+        "layout": {
+            "hideFooter": false,
+            "hideHeader": false,
+            "hideSubHeader": true
+        },  
+        "params" : {
+            "page" : "edit-metadata-list",
+            "selectedItems": ""
+        },
+        "template" : "<seo-edit-metadata-list state=\"{.}\"><seo-edit-metadata-list>",
+        "title" : "Edit Metadata List"
+    },
     "generate": {
         "params": {
             "page": "generate-page"
