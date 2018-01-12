@@ -3,6 +3,7 @@ var can = require('can');
 var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var rowTemplate = require('./row.stache');
+var moment = require('moment');
 
 module.exports = can.Map.extend({
     define: {
@@ -70,7 +71,8 @@ module.exports = can.Map.extend({
             value: function() {
                 return {
                     cancelRequest: can.proxy(this.cancelRequest, this),
-                    addMore: can.proxy(this.addMore, this)
+                    addMore: can.proxy(this.addMore, this),
+                    raiseRequest: can.proxy(this.raiseRequest, this)
                 };
             }
         },
@@ -83,6 +85,24 @@ module.exports = can.Map.extend({
             value: function () {
                 return anatomyItemTemplate;
             }
+        },
+
+        /**
+         * @property {string} now
+         * @description Shows current date
+         */
+        now: {
+            value: moment().format('MM/DD/YYYY'),
+            type: 'string'
+        },
+
+        /**
+         * @property {string} min
+         * @description set's minimum date
+         */
+        min: {
+            value: moment().format('MM/DD/YYYY'),
+            type: 'string'
         },
 
         /**
@@ -118,6 +138,13 @@ module.exports = can.Map.extend({
             page: 'urls',
             addMore: true
         });
-    }
+    },
 
+    /**
+     * @function showActivity
+     * @description Shows activity modal of the slot
+     */
+    raiseRequest: function() {
+        this.attr('isActive', !this.attr('isActive'));
+    },
 });

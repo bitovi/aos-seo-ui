@@ -118,5 +118,38 @@ describe('edit-metadata-list', function () {
             var menuOptionText = $component.find('pui-action-bar-item[action="addMore"]').text().trim();
             expect(menuOptionText).toEqual('Add More');
         });
+
+        it('has raiserequest', function () {
+            var menuOptionText = $component.find('pui-action-bar-item[action="raiseRequest"]').text().trim();
+            expect(menuOptionText).toEqual('Raise Request');
+        });
+    });
+
+    describe('when the raise request is clicked', function () {
+        beforeEach(function () {
+            $component.find('.action.dropdown-toggle').trigger('click');
+            jasmine.clock().runToLast();
+            $component.find('pui-action-bar-item[action="raiseRequest"]').trigger('click');
+        });
+
+        it('opens the raise request modal', function () {
+            expect($component.find('pui-modal')).toBeVisible();
+        });
+    });
+
+    describe('when raise request modal as clicked', function () {
+        beforeEach(function () {
+            $component.find('.action.dropdown-toggle').trigger('click');
+            jasmine.clock().runToLast();
+            $component.find('pui-action-bar-item[action="raiseRequest"]').trigger('click');
+        });
+
+        it('has title', function () {
+            expect($component.find('.modal-title').text().trim()).toEqual('Raise Reqest');
+        });
+
+        it('has submit request button', function () { 
+            expect($component.find('.btn-block').text().trim()).toEqual('Submit Request');
+        });
     });
 });
