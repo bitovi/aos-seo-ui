@@ -22,7 +22,7 @@ pipeline {
                 script {
                     def branch_name = "${env.BRANCH_NAME}"
                     version_no = sh(script: 'cat ${WORKSPACE}/gradle.properties | grep ^version=',returnStdout: true).trim()
-                    if (!branch.contains('master') && !version.contains('SNAPSHOT')|| pr.contains('PR-') || branch.contains('feature/') || branch.contains('bugfix/')){
+                    if (!branch_name.contains('master') && !version_no.contains('SNAPSHOT')|| branch_name.contains('PR-') || branch_name.contains('feature/') || branch_name.contains('bugfix/')){
                         sh 'gradle createJar -x test -x javadoc -Dorg.gradle.daemon=false'
                     }
                     else {
