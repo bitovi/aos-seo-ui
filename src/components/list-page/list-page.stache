@@ -138,10 +138,7 @@
             </div>
         </pui-modal-body>
         <pui-modal-footer>
-             <button
-                class="btn btn-primary btn-block"
-                type="button">Edit Title and description
-             </button>
+            <a type="button" ($click)="setSelectedMetadataToLocalStorage()" class="btn btn-primary btn-block" href="{{getMetadataURl}}">Edit Metadata</a>
         <pui-modal-footer>
     </pui-modal>
 

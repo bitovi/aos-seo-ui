@@ -39,7 +39,7 @@
             </div>
         </div>
     </nav>
-
+    {{^if layoutState.hideSubHeader}}
     {{! App Navigation }}
     <nav
         aria-label="Site Navigation"
@@ -73,4 +73,5 @@
             </li>
         </ul>
     </nav>
+    {{/if}}
 </header>
