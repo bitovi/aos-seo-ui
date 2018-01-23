@@ -1,4 +1,5 @@
 # General
+build
 target
 target-docs
 node_modules
@@ -21,6 +22,3 @@ docs/pui
 
 # Linux Build
 /target-production
-/build/node_modules
-/build/nodejs
-/build/build.log
