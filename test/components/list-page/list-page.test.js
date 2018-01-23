@@ -754,58 +754,5 @@ describe('List Page', function () {
                 expect($component.find('.date-picker-overlay')).not.toBeVisible();
             });
         });
-
-        describe('when the create request button is clicked', function () {
-            beforeEach(function () {
-                $createRequestButton  = $component.find('.create-request-button');
-                $createRequestButton.trigger('click');
-            });
-
-            it('opens the create request modal', function () {
-                expect($component.find('pui-modal')).toBeVisible();
-            });
-        });
-
-        describe('when the create request modal  is opened', function () {
-            beforeEach(function () {
-                $createRequestButton  = $component.find('.create-request-button');
-                $createRequestButton.trigger('click');
-            });
-
-            it('check for the title name', function () {
-                expect($component.find('.modal-title').text()).toEqual('Select the Segment and Region');
-            });
-            it('check for the title for the filter Segment', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".group-title").text()).toEqual('Segment:');
-            });
-            it('check for the Segment options', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".list-group-item").length).toBeGreaterThan(0);
-            });
-            it('check for the title for the  filter Region', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(0).find(".group-title").text()).toEqual('Region:');
-            });
-            it('check for the Region options', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(0).find(".list-group-item").length).toBeGreaterThan(0);
-            });
-            it('check for the title for the filter Country', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(1).find(".group-title").text()).toEqual('Country:');
-            });
-            it('check for the Country options', function () {
-                expect($component.find('.modal-body').find(".filter-groups").eq(1).find(".filter-group").eq(1).find(".list-group-item").length).toBeGreaterThan(0);
-            });
-        });
-
-        describe('when select all link is clicked', function () {
-            beforeEach(function () {
-                $createRequestButton  = $component.find('.create-request-button');
-                $createRequestButton.trigger('click');
-            });
-
-            it('will select all options for Segment', function () {
-                $component.find('.select-all').eq(0).trigger('click');
-                expect($component.find('.modal-body').find(".filter-groups").eq(0).find(".list-group-item").length)
-                    .toEqual($component.find('.modal-body').find(".filter-groups").eq(0).find(".list-group-item input:checked").length);
-            });
-        });
     });
 });
