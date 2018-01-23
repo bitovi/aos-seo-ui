@@ -31,28 +31,32 @@
             <form>
                 <div class="form-group">
                     <label>Title</label>
-                    <input type="text" class="form-control" placeholder="Title for Request">
+                    <input type="text" can-value="{createRequest.title}" class="form-control" placeholder="Title for Request">
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" placeholder="Description"></textarea>
+                    <textarea class="form-control" can-value="{createRequest.description}" placeholder="Description"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Priority:</label>
                     <div class="form-radio">
-                        <input type="radio" name="priority" class="form-radio-input">
+                        <input type="radio" name="priority" can-value="{createRequest.priority}" value="1" class="form-radio-input">
                         <label>P1</label>
                     </div>
                     <div class="form-radio">
-                        <input type="radio" name="priority" class="form-radio-input">
+                        <input type="radio" can-value="{createRequest.priority}" value="2" name="priority" class="form-radio-input">
                         <label>P2</label>
                     </div>
                     <div class="form-radio">
-                        <input type="radio" name="priority" class="form-radio-input">
+                        <input type="radio" can-value="{createRequest.priority}" value="3" name="priority" class="form-radio-input">
                         <label>P3</label>
                     </div>
                     <div class="form-radio">
-                        <input type="radio" name="priority" class="form-radio-input" checked>
+                        <input type="radio"
+                                can-value="{createRequest.priority}"                        
+                                name="priority"
+                                value="None"
+                                class="form-radio-input" checked>
                         <label>None</label>
                     </div>
                 </div>

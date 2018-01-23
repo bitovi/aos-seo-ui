@@ -5,6 +5,8 @@ var anatomyItemTemplate = require('./anatomy-item.stache');
 var rowTemplate = require('./row.stache');
 var moment = require('moment');
 
+var CreateRequest = require('seo-ui/models/edit-metadata/create-request');
+
 module.exports = can.Map.extend({
     define: {
 
@@ -51,6 +53,11 @@ module.exports = can.Map.extend({
                     sorting: false
                 }
             ]
+        },
+
+        createRequest: {
+            Type: CreateRequest,
+            value: {}
         },
         
         /**
@@ -142,9 +149,61 @@ module.exports = can.Map.extend({
 
     /**
      * @function showActivity
-     * @description Shows activity modal of the slot
+     * @description Shows activity modal of the raise request.
      */
     raiseRequest: function() {
         this.attr('isActive', !this.attr('isActive'));
     },
+
+    submitRequest: function () {
+        //$('td.editablepagetitle').eq(0).find('textarea').val()
+
+        var parts = [];
+        var selectedUrls = [];
+        var selectedPageTypes = [];
+        var contents = [];
+
+        this.attr('items').forEach(function (item) {
+            parts.push(item.partNumber);
+            selectedUrls.push(item.url);
+            selectedPageTypes.push(pageType);
+
+            if (item.attr('titleAnatomy')) {
+                item.attr('titleAnatomy').forEach(function (contentItem) {
+                    if (contentItem.attr('type') === 'text_asset') {
+                        contents.push({
+                            "assetType" : contentItem.attr('type'),
+                            "assetUri" : contentItem.attr('name'),
+                            "oldContent" : contentItem.attr('value'),
+                            "newContent" : "new value"
+                        })
+                    }
+                });
+            }
+
+            if (item.attr('descriptionAnatomy')) {
+                item.attr('descriptionAnatomy').forEach(function (contentItem) {
+                    if (contentItem.attr('type') === 'text_asset') {
+                        contents.push({
+                            "assetType" : contentItem.attr('type'),
+                            "assetUri" : contentItem.attr('name'),
+                            "oldContent" : contentItem.attr('value'),
+                            "newContent" : "new value"
+                        })
+                    }
+                });
+            }
+        });
+        
+        this.attr('createRequest.selectedPartNumbers', _.uniq(parts));
+        this.attr('createRequest.selectedUrls', selectedUrls);
+        this.attr('createRequest.selectedPageTypes', selectedPageTypes);
+        this.attr('createRequest.contents', contents);
+
+        var requestBody = this.attr('createRequest').attr();
+
+        this.attr('createRequest').create(requestBody).then(function(response){
+            console.log('Response Data', response);
+        });
+    }
 });

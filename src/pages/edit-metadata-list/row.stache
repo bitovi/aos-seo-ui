@@ -51,7 +51,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <textarea class="form-control">{{{value}}}</textarea>
+                                                <textarea class="form-control" can-value="{value}">{{{value}}}</textarea>
                                             </td>
                                         </tr>
                                     {{/is}}
@@ -104,7 +104,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <textarea class="form-control">{{{value}}}</textarea>
+                                                <textarea class="form-control" can-value="{value}">{{{value}}}</textarea>
                                             </td>
                                         </tr>
                                     {{/is}}
