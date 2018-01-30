@@ -21,3 +21,7 @@ publishing-ui
         pages
         third-party
 ```
+
+### gradle npm update dependencies
+
+    gradle npm_update

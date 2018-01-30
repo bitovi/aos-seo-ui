@@ -96,7 +96,7 @@
       "run-sequence",
       "testee"
     ],
-    "bundlesPath": "./target",
+    "bundlesPath": "./build",
     "main": "app",
     "directories": {
       "lib": "src"
