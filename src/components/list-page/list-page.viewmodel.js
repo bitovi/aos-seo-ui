@@ -20,34 +20,6 @@ module.exports = can.Map.extend({
             Type: can.List
         },
 
-        /**
-         * @property {Array<Object>} createRequestMarketContextOptions
-         * @description Configuration for create request market context filters.
-         */
-        createRequestMarketContextOptions: {
-            value: [
-                {
-                    filterGroups: [
-                        {
-                            groupTitle: 'Segment:',
-                            parameter: 'segments'
-                        }
-                    ]
-                },
-                {
-                    filterGroups: [
-                        {
-                            groupTitle: 'Region:',
-                            parameter: 'regions'
-                        },
-                        {
-                            groupTitle: 'Country:',
-                            parameter: 'countries'
-                        }
-                    ]
-                }
-            ]
-        },
 
         /**
          * @property {Number} currentPage
@@ -515,67 +487,6 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function list-page.viewModel.createRequestToggleAll
-     * @description Toggles the selected state of all rows.
-     * @param {object} filterGroup data
-     * @param {string} groupType parameter
-     * @param {boolean} toggleState selected state for checkbox
-     */
-    createRequestToggleAll: function (filterGroup, groupType, toggleState) {
-        var matchedGroup;
-        filterGroup.forEach(function (group) {
-            if (group.attr('parameter') === groupType) {
-                group.attr('selected', toggleState);
-                matchedGroup = group;
-            }
-        });
-
-        matchedGroup.filterOptions.map(function (option) {
-            option.attr('selected', toggleState);
-        });
-    },
-
-    /**
-     * @function list-page.viewModel.createRequestToggle
-     * @description Toggles select All/Deselect All option with respect to checkbox selection and it also select the countries with selected region.
-     * @param {object} filterGroup data
-     * @param {string} groupType parameter
-     * @param {number} optionIndex option index.
-     * @param {event} evt click event of checkbox
-     */
-    createRequestToggle: function (filterGroup, groupType, optionIndex, evt) {
-        setTimeout(function () {
-            var selectedOption;
-
-            filterGroup.forEach(function (group) {
-                if (group.attr('parameter') === groupType) {
-                    selectedOption = group.attr('filterOptions')[optionIndex]
-                    group.attr('selected', group.attr('filterOptions').length === _.filter(group.attr('filterOptions'), { selected: true }).length);
-                }
-            });
-
-            var selectedState = evt.currentTarget.checked;
-            var secondaryValues = selectedOption.attr('secondaryValues');
-            var secondaryParameter = selectedOption.attr('secondaryParameter');
-            var secondaryFilterGroup = _.find(filterGroup, function (group) {
-                return group.attr('parameter') === secondaryParameter;
-            });
-
-            // Select Secondary Values based on the Secondary Parameter
-            if (secondaryParameter) {
-                secondaryValues.forEach(function (value) {
-                    var filterOption = _.find(secondaryFilterGroup.attr('filterOptions'), function (option) {
-                        return option.attr('value').toLowerCase() === value.toLowerCase();
-                    });
-
-                    filterOption.attr('selected', selectedState);
-                });
-            }
-
-        }, 0);
-    },
-
-    /**
      * @function enableNewItemModal
      * @description Shows the new item modal
      */
@@ -681,14 +592,6 @@ module.exports = can.Map.extend({
 
             this.attr('datesOpen', false);
         }
-    },
-
-    /**
-     * @function toggleModal
-     * @description Enabled the overlay model when we click on create button.
-     */
-    toggleModal: function () {
-        this.attr('isActive', !this.attr('isActive'));
     },
 
     /**

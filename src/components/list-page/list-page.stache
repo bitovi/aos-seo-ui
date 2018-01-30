@@ -74,11 +74,11 @@
             >Reset Filters</button>
         {{/if}}
         <div class="request-selection-option">
-            <button
+            <a
                 type="button"
                 {{#is selectUrlCount 0}}disabled{{/is}}
-                class="btn btn-secondary btn-xs create-request-button" ($click)="toggleModal()" >Create Request | {{selectUrlCount |}}
-           </button>
+                class="btn btn-secondary btn-xs create-request-button"  ($click)="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl}}">Create Request | {{selectUrlCount |}}
+           </a>
            <button
                 type="button"
                 {{#is selectUrlCount 0}}disabled{{/is}}
@@ -86,61 +86,6 @@
            </button>
         </div>
     </div>
-
-    <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">
-        <pui-modal-header>
-            <h4 class="modal-title">Select the Segment and Region</h4>
-        </pui-modal-header>
-        <pui-modal-body>
-            <div class="clearfix">
-                {{#each createRequestMarketContextOptions}}
-                    <div class="filter-groups">
-                        {{#each getFilterOptions(filterGroups)}}
-                            <div class="filter-group {{groupClassName}}" {{data 'filterGroup'}}>
-                                {{#if groupTitle}}
-                                    <strong class="group-title">{{groupTitle}}</strong>
-                                {{/if}}
-                                {{#if selected}}
-                                    <button
-                                        class="select-all btn btn-link btn-sm"
-                                        ($click)="createRequestToggleAll(filterGroups, parameter, false)"
-                                        type="button">Deselect All</button>
-                                {{/else}}
-                                    <button
-                                        class="select-all btn btn-link btn-sm"
-                                        ($click)="createRequestToggleAll(filterGroups, parameter, true)"
-                                        type="button">Select All</button>
-                                {{/if}}
-
-                                {{#if filterOptions.length}}
-                                    <ul class="list-group">
-                                        {{#each filterOptions}}
-                                            <li class="list-group-item" {{data 'filterOption'}}>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input
-                                                            {($checked)}="selected"
-                                                            class="{{value}}-toggle"
-                                                            type="checkbox"
-                                                            ($click)="createRequestToggle(filterGroups, parameter, @index, %event)"
-                                                        />
-                                                        <span class="{{value}}-label">{{label}}</span>
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        {{/each}}
-                                    </ul>
-                                {{/if}}
-                            </div>
-                        {{/each}}
-                       </div>
-                {{/each}}
-            </div>
-        </pui-modal-body>
-        <pui-modal-footer>
-            <a type="button" ($click)="setSelectedMetadataToLocalStorage()" class="btn btn-primary btn-block" href="{{getMetadataURl}}">Edit Metadata</a>
-        <pui-modal-footer>
-    </pui-modal>
 
     <div class="row">
         {{! Basic Search }}
