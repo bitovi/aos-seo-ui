@@ -55,6 +55,11 @@ module.exports = can.Map.extend({
             ]
         },
 
+        /**
+         * @property {can.Model} createRequest
+         * @description The createRequest modal.
+         */
+
         createRequest: {
             Type: CreateRequest,
             value: {}
@@ -95,19 +100,19 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {string} now
+         * @property {string} currentDate
          * @description Shows current date
          */
-        now: {
+        currentDate: {
             value: moment().format('MM/DD/YYYY'),
             type: 'string'
         },
 
         /**
-         * @property {string} min
+         * @property {string} minDate
          * @description set's minimum date
          */
-        min: {
+        minDate: {
             value: moment().format('MM/DD/YYYY'),
             type: 'string'
         },
@@ -148,6 +153,15 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function edit-title-description.viewModel.generateUniqueId
+     * @description genarates a unique id from url.
+     * @param url {string} row url.
+     */
+    generateUniqueId: function (url) {
+        return url.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+    },
+
+    /**
      * @function showActivity
      * @description Shows activity modal of the raise request.
      */
@@ -155,55 +169,76 @@ module.exports = can.Map.extend({
         this.attr('isActive', !this.attr('isActive'));
     },
 
-    submitRequest: function () {
-        //$('td.editablepagetitle').eq(0).find('textarea').val()
-
-        var parts = [];
-        var selectedUrls = [];
-        var selectedPageTypes = [];
-        var contents = [];
-
+    /**
+     * @function updateItems
+     * @description update new content to the field.
+     */
+    updateItems: function (newVal, url, type, index) {
         this.attr('items').forEach(function (item) {
-            parts.push(item.partNumber);
-            selectedUrls.push(item.url);
-            selectedPageTypes.push(pageType);
-
-            if (item.attr('titleAnatomy')) {
-                item.attr('titleAnatomy').forEach(function (contentItem) {
-                    if (contentItem.attr('type') === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.attr('type'),
-                            "assetUri" : contentItem.attr('name'),
-                            "oldContent" : contentItem.attr('value'),
-                            "newContent" : "new value"
-                        })
-                    }
-                });
-            }
-
-            if (item.attr('descriptionAnatomy')) {
-                item.attr('descriptionAnatomy').forEach(function (contentItem) {
-                    if (contentItem.attr('type') === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.attr('type'),
-                            "assetUri" : contentItem.attr('name'),
-                            "oldContent" : contentItem.attr('value'),
-                            "newContent" : "new value"
-                        })
-                    }
-                });
+            if(item.url === url) {
+                if (type === 'titleAnatomy') {
+                    item.titleAnatomy[index].newContent = newVal;
+                } else {
+                    item.descriptionAnatomy[index].newContent = newVal;
+                }
             }
         });
-        
-        this.attr('createRequest.selectedPartNumbers', _.uniq(parts));
-        this.attr('createRequest.selectedUrls', selectedUrls);
-        this.attr('createRequest.selectedPageTypes', selectedPageTypes);
-        this.attr('createRequest.contents', contents);
+    },
 
-        var requestBody = this.attr('createRequest').attr();
+    /**
+     * @function submitRequest
+     * @description submits request with updated titles and descriptions.
+     */
+    submitRequest: function () {
+        var urls = [];        
+        var self = this;
 
-        this.attr('createRequest').create(requestBody).then(function(response){
-            console.log('Response Data', response);
+        this.attr('items').forEach(function (item) {
+            var urlItem = {};
+            var contents = [];
+
+            if (item.titleAnatomy) {
+                item.titleAnatomy.forEach(function (contentItem) {
+                    if (contentItem.editable && contentItem.type === 'text_asset') {
+                        contents.push({
+                            "assetType" : contentItem.type,
+                            "assetUri" : contentItem.name,
+                            "oldContent" : contentItem.value,
+                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                        });
+                    }
+                });
+            }
+
+            if (item.descriptionAnatomy) {
+                item.descriptionAnatomy.forEach(function (contentItem) {
+                    if (contentItem.editable && contentItem.type === 'text_asset') {
+                        contents.push({
+                            "assetType" : contentItem.type,
+                            "assetUri" : contentItem.name,
+                            "oldContent" : contentItem.value,
+                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                        });
+                    }
+                });
+            }
+            
+            urlItem.url = item.url;
+            urlItem.partNumber = item.partNumber;
+            urlItem.pageType = item.pageType;
+            urlItem.segment = item.segment;
+            urlItem.geo = item.region;
+            urlItem.contents = contents;
+            urls.push(urlItem);
+        });
+
+        this.attr('createRequest.dueDate', this.attr('now'));
+        this.attr('createRequest.urls', urls);        
+
+        var createRequestData = this.attr('createRequest').attr();
+
+        this.attr('createRequest').create(createRequestData).then(function(response){
+            self.cancelRequest();
         });
     }
 });

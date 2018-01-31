@@ -13,7 +13,7 @@
                         {{! Title Anatomy }}
                         {{#if titleAnatomy.length}}
                             <button
-                                class="btn btn-link title-anatomy-{{../guid}} toggle-anatomy"
+                                class="btn btn-link title-{{generateUniqueId(url)}} toggle-anatomy"
                                 type="button"
                             >
                                 <span class="icon-lg icon-info"></span>
@@ -24,7 +24,7 @@
 
                             <pui-popover
                                 content-type="html"
-                                trigger=".title-anatomy-{{../guid}}"
+                                trigger=".title-{{generateUniqueId(url)}}"
                             >
                                 <div>
                                     <dl class="anatomy-list">
@@ -51,7 +51,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <textarea class="form-control" can-value="{value}">{{{value}}}</textarea>
+                                                <textarea ($change)="updateItems(@element.val, url, 'titleAnatomy', @index)" class="form-control">{{{value}}}</textarea>
                                             </td>
                                         </tr>
                                     {{/is}}
@@ -66,7 +66,7 @@
                         {{! Description Anatomy }}
                         {{#if descriptionAnatomy.length}}
                             <button
-                                class="btn btn-link desc-anatomy-{{../guid}} toggle-anatomy"
+                                class="btn btn-link desc-{{generateUniqueId(url)}} toggle-anatomy"
                                 type="button"
                             >
                                 <span class="icon-lg icon-info"></span>
@@ -77,7 +77,7 @@
 
                             <pui-popover
                                 content-type="html"
-                                trigger=".desc-anatomy-{{../guid}}"
+                                trigger=".desc-{{generateUniqueId(url)}}"
                             >
                                 <div>
                                     <dl class="anatomy-list">
@@ -104,7 +104,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <textarea class="form-control" can-value="{value}">{{{value}}}</textarea>
+                                                <textarea class="form-control" ($change)="updateItems(@element.val, url, 'titleADescription', @index)">{{{value}}}</textarea>
                                             </td>
                                         </tr>
                                     {{/is}}
