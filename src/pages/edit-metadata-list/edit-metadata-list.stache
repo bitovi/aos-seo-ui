@@ -10,6 +10,9 @@
                     <pui-action-bar-item action="addMore">
                         Add More
                     </pui-action-bar-item>
+                    <pui-action-bar-item action="raiseRequest">
+                        Raise Request
+                    </pui-action-bar-item>
                 </pui-action-bar-dropdown>
             </pui-action-bar-menu> 
         </div>
@@ -18,6 +21,35 @@
         </div>                       
     </div>
 </div>
+
+<pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">
+    <pui-modal-header>
+        <h4 class="modal-title">Raise Reqest</h4>
+    </pui-modal-header>
+    <pui-modal-body>
+        <div class="clearfix">
+            <form>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" can-value="{createRequest.title}" class="form-control" placeholder="Title for Request">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" can-value="{createRequest.description}" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="requestpriority">Due Date:</label>
+                    <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
+                        <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
+                    </pui-date-picker>
+                </div>
+            </form>
+        </div>
+    </pui-modal-body>
+    <pui-modal-footer>
+        <a type="button" ($click)="submitRequest()" class="btn btn-primary btn-block">Submit Request</a>
+    <pui-modal-footer>
+</pui-modal>
 
 <div>
     <pui-grid-list
