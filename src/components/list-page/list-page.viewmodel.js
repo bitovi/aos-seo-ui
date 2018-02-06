@@ -238,7 +238,7 @@ module.exports = can.Map.extend({
                 // field is not in searchQuery
                 if (searchFields && searchFields.length && searchValue) {
                     searchFields.forEach(function (fieldName) {
-                        if (fieldName !== searchField && state.attr(fieldName)) {
+                        if (fieldName !== searchField) {
                             state.attr(fieldName, '');
                         }
                     });
