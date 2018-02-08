@@ -64,7 +64,39 @@ module.exports = can.Map.extend({
             Type: CreateRequest,
             value: {}
         },
-        
+
+        /**
+         * @property {String} create-revision.viewModel.title title
+         * @description title of the request
+         * @option {String} Defaults to ''
+         */
+        title: {
+            value: '',
+            type: 'string',
+            set: function (newVal, oldVal) {
+                if (typeof oldVal === 'undefined') {
+                    return newVal;
+                }
+                return newVal;
+            }
+        },
+
+        /**
+         * @property {String} create-revision.viewModel.description description
+         * @description description of the request
+         * @option {String} Defaults to ''
+         */
+        description: {
+            value: '',
+            type: 'string',
+            set: function (newVal, oldVal) {
+                if (typeof oldVal === 'undefined') {
+                    return newVal;
+                }
+                return newVal;
+            }
+        },
+
         /**
          * @property {Function} url-list.viewModel.items
          * @description gets items from the state.storage.
@@ -73,6 +105,43 @@ module.exports = can.Map.extend({
             get: function () {
                 return JSON.parse(localStorage.getItem('editMetadata'));
             }
+        },
+
+        /**
+         * @property {can.Map} create-revision.viewModel.errors errors
+         * @description errors is an observable map of the views current validation state
+         */
+        errors: {
+            value: can.Map.extend({
+                define: {
+                    /**
+                     * @property {String} create-revision.viewModel.errors.title errors.title
+                     * @description if valid value is false otherwise value is the validation error
+                     * @option {String} Defaults to false
+                     */
+                    title: {
+                        value: false
+                    },
+                    /**
+                     * @property {String} create-revision.viewModel.errors.description errors.description
+                     * @description if valid value is false otherwise value is the validation error
+                     * @option {String} Defaults to false
+                     */
+                    description: {
+                        value: false
+                    },
+                    /**
+                     * @property {Boolean} create-revision.viewModel.errors.isValid errors.isValid
+                     * @description returns true if all the attrs are valid, false is there is one
+                     * or more errors
+                     */
+                    isValid: {
+                        get: function () {
+                            return !this.attr('title') && !this.attr('description');
+                        }
+                    }
+                }
+            })
         },
 
         /**
@@ -186,6 +255,58 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function create-revision.viewModel.validateName validateName
+     * @description runs validation on [create-revision.viewModel.name] or the passed value
+     * @param {Boolean} hasVal if the function is being called with a specific value to validate
+     * @param {String} val the value being validated
+     */
+    validateTitle: function (hasVal, val) {
+        var title;
+        if (val instanceof $) {
+            title = val.val();
+        } else {
+            title = hasVal === true ? val : this.attr('title');
+        }
+        if (!title) {
+            this.attr('errors.title', 'Title is required.');
+        } else {
+            this.attr('errors.title', false);
+        }
+    },
+ 
+    /**
+     * @function create-revision.viewModel.validateName validateName
+     * @description runs validation on [create-revision.viewModel.name] or the passed value
+     * @param {Boolean} hasVal if the function is being called with a specific value to validate
+     * @param {String} val the value being validated
+     */
+    validateDescription: function (hasVal, val) {
+        var description;
+        if (val instanceof $) {
+            description = val.val();
+        } else {
+            description = hasVal === true ? val : this.attr('description');
+        }
+        if (!description) {
+            this.attr('errors.description', 'Description is required.');
+        } else {
+            this.attr('errors.description', false);
+        }
+    },
+
+    /**
+     * @function create-revision.viewModel.validate validate
+     * @description runs validation on all fields being validated
+     */
+    validate: function () {
+        can.batch.start();
+        this.validateTitle();
+        this.validateDescription();
+        can.batch.stop();
+        return this.attr('errors.isValid');
+    },
+
+    /**
      * @function submitRequest
      * @description submits request with updated titles and descriptions.
      */
@@ -193,52 +314,57 @@ module.exports = can.Map.extend({
         var urls = [];        
         var self = this;
 
-        this.attr('items').forEach(function (item) {
-            var urlItem = {};
-            var contents = [];
+        if (self.validate()) {
 
-            if (item.titleAnatomy) {
-                item.titleAnatomy.forEach(function (contentItem) {
-                    if (contentItem.editable && contentItem.type === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.type,
-                            "assetUri" : contentItem.name,
-                            "oldContent" : contentItem.value,
-                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
-                        });
-                    }
-                });
-            }
+            this.attr('items').forEach(function (item) {
+                var urlItem = {};
+                var contents = [];
 
-            if (item.descriptionAnatomy) {
-                item.descriptionAnatomy.forEach(function (contentItem) {
-                    if (contentItem.editable && contentItem.type === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.type,
-                            "assetUri" : contentItem.name,
-                            "oldContent" : contentItem.value,
-                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
-                        });
-                    }
-                });
-            }
+                if (item.titleAnatomy) {
+                    item.titleAnatomy.forEach(function (contentItem) {
+                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                            contents.push({
+                                "assetType" : contentItem.type,
+                                "assetUri" : contentItem.name,
+                                "oldContent" : contentItem.value,
+                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                            });
+                        }
+                    });
+                }
+
+                if (item.descriptionAnatomy) {
+                    item.descriptionAnatomy.forEach(function (contentItem) {
+                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                            contents.push({
+                                "assetType" : contentItem.type,
+                                "assetUri" : contentItem.name,
+                                "oldContent" : contentItem.value,
+                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                            });
+                        }
+                    });
+                }
+
+                urlItem.url = item.url;
+                urlItem.partNumber = item.partNumber;
+                urlItem.pageType = item.pageType;
+                urlItem.segment = item.segment;
+                urlItem.geo = item.region;
+                urlItem.contents = contents;
+                urls.push(urlItem);
+            });
+
+            this.attr('createRequest.dueDate', this.attr('currentDate'));
+            this.attr('createRequest.title', this.attr('title'));
+            this.attr('createRequest.description', this.attr('description'));
+            this.attr('createRequest.urls', urls);
             
-            urlItem.url = item.url;
-            urlItem.partNumber = item.partNumber;
-            urlItem.pageType = item.pageType;
-            urlItem.segment = item.segment;
-            urlItem.geo = item.region;
-            urlItem.contents = contents;
-            urls.push(urlItem);
-        });
+            var createRequestData = this.attr('createRequest').attr();
 
-        this.attr('createRequest.dueDate', this.attr('now'));
-        this.attr('createRequest.urls', urls);        
-
-        var createRequestData = this.attr('createRequest').attr();
-
-        this.attr('createRequest').create(createRequestData).then(function(response){
-            self.cancelRequest();
-        });
+            this.attr('createRequest').create(createRequestData).then(function(response){
+                self.cancelRequest();
+            });
+        }
     }
 });

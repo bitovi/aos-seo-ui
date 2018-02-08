@@ -1,6 +1,6 @@
 require('can/map/define/define');
 require('can/view/stache/stache');
-require('@apple/pui/components/popover/popover');
+require('@apple/pui/components/tooltip/tooltip');
 require('@apple/pui/components/grid-list/grid-list');
 require('@apple/pui/components/modal/modal');
 require('@apple/pui/components/date-picker/date-picker');

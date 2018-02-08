@@ -26,26 +26,43 @@
     <pui-modal-header>
         <h4 class="modal-title">Raise Reqest</h4>
     </pui-modal-header>
-    <pui-modal-body>
-        <div class="clearfix">
-            <form>
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" can-value="{createRequest.title}" class="form-control" placeholder="Title for Request">
+    <form role="form">
+        <pui-modal-body>
+                <div class="form-group {{#errors.title}} has-error{{/errors.title}}">
+                    <label class="control-label" for="title">
+                        <strong>Title:</strong>
+                        {{#if errors.title}}
+                            <pui-tool-tip icon-class="icon-error"
+                            alignment="right"
+                            title="{{#errors.title}}{{.}} {{/errors.title}}"
+                            is-visible="true"></pui-tool-tip>
+                        {{/if}}
+                    </label>
+                    <input class="form-control" can-value="title"
+                    can-blur="{validateTitle}" placeholder="Title for Request">
                 </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" can-value="{createRequest.description}" placeholder="Description"></textarea>
-                </div>
+                <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
+                        <label class="control-label" for="description">
+                            <strong>Description:</strong>
+                            {{#if errors.description}}
+                                <pui-tool-tip icon-class="icon-error"
+                                    alignment="right"
+                                    title="{{#errors.description}}{{.}} {{/errors.description}}"
+                                    is-visible="true"></pui-tool-tip>
+                            {{/if}}
+                        </label>
+                        <textarea class="form-control" id="notificationMessage" can-blur="{validateDescription}" can-value="description"></textarea>
+                 </div>
                 <div class="form-group">
                     <label for="requestpriority">Due Date:</label>
                     <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
                         <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
                     </pui-date-picker>
                 </div>
-            </form>
-        </div>
-    </pui-modal-body>
+            </div>
+        </pui-modal-body>
+    </form>
+
     <pui-modal-footer>
         <a type="button" ($click)="submitRequest()" class="btn btn-primary btn-block">Submit Request</a>
     <pui-modal-footer>
