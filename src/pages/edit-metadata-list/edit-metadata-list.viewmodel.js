@@ -6,6 +6,7 @@ var rowTemplate = require('./row.stache');
 var moment = require('moment');
 
 var CreateRequest = require('seo-ui/models/edit-metadata/create-request');
+var formatUtils = require('seo-ui/utils/format-utils');
 
 module.exports = can.Map.extend({
     define: {
@@ -77,6 +78,7 @@ module.exports = can.Map.extend({
                 if (typeof oldVal === 'undefined') {
                     return newVal;
                 }
+                newVal = formatUtils.trimString(newVal);
                 return newVal;
             }
         },
@@ -93,6 +95,7 @@ module.exports = can.Map.extend({
                 if (typeof oldVal === 'undefined') {
                     return newVal;
                 }
+                newVal = formatUtils.trimString(newVal);
                 return newVal;
             }
         },
@@ -307,6 +310,16 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function create-notification.viewModel.resetDefault
+     * @description resets all the fields to their default values.
+     */
+    resetToDefaults: function () {
+        this.attr('title', '');
+        this.attr('description', '');
+    },
+
+
+    /**
      * @function submitRequest
      * @description submits request with updated titles and descriptions.
      */
@@ -359,7 +372,7 @@ module.exports = can.Map.extend({
             this.attr('createRequest.title', this.attr('title'));
             this.attr('createRequest.description', this.attr('description'));
             this.attr('createRequest.urls', urls);
-            
+
             var createRequestData = this.attr('createRequest').attr();
 
             this.attr('createRequest').create(createRequestData).then(function(response){
