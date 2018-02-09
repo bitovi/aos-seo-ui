@@ -12,7 +12,7 @@ module.exports = can.Map.extend({
     define: {
 
         /**
-         * @property {Array<can.Map>} edit-metadat-list.viewModel.columns columns
+         * @property {Array<can.Map>} edit-metadata-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -67,7 +67,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} edit-metadat-list.viewModel.title title
+         * @property {String} edit-metadata-list.viewModel.title title
          * @description title of the request
          * @option {String} Defaults to ''
          */
@@ -84,7 +84,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {String} edit-metadat-list.viewModel.description description
+         * @property {String} edit-metadata-list.viewModel.description description
          * @description description of the request
          * @option {String} Defaults to ''
          */
@@ -101,7 +101,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Function} edit-metadat-list.viewModel.items
+         * @property {Function} edit-metadata-list.viewModel.items
          * @description gets items from the state.storage.
          */
         items: {
@@ -111,7 +111,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Map} edit-metadat-list.viewModel.errors errors
+         * @property {can.Map} edit-metadata-list.viewModel.errors errors
          * @description errors is an observable map of the views current validation state
          */
         errors: {
@@ -161,7 +161,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Function} edit-metadat-list.viewModel.anatomyItem anatomyItem
+         * @property {Function} edit-metadata-list.viewModel.anatomyItem anatomyItem
          * @description Stores the template that renders an anatomy item.
          */
         anatomyItem: {
@@ -189,7 +189,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {function} edit-metadat-list.viewModel.rowTemplate rowTemplate
+         * @property {function} edit-metadata-list.viewModel.rowTemplate rowTemplate
          * @description Stores the template renderer function reference.
          */
         rowTemplate: {
@@ -202,7 +202,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function eedit-metadat-list.viewModel.cancelRequest
+     * @function eedit-metadata-list.viewModel.cancelRequest
      * @description cancles edit title description request.
      */
     cancelRequest: function () {
@@ -213,7 +213,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-metadat-list.viewModel.addMore
+     * @function edit-metadata-list.viewModel.addMore
      * @description navigate to url page.
      */
     addMore: function () {        
@@ -224,7 +224,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-metadat-list.viewModel.generateUniqueId
+     * @function edit-metadata-list.viewModel.generateUniqueId
      * @description genarates a unique id from url.
      * @param url {string} row url.
      */
@@ -257,7 +257,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-metadat-list.viewModel.validateTitle validateTitle
+     * @function edit-metadata-list.viewModel.validateTitle validateTitle
      * @description runs validation on [create-revision.viewModel.name] or the passed value
      * @param {String} title the value being validated
      */
@@ -267,7 +267,7 @@ module.exports = can.Map.extend({
     },
  
     /**
-     * @function edit-metadat-list.viewModel.validateDescription validateDescription
+     * @function edit-metadata-list.viewModel.validateDescription validateDescription
      * @description runs validation on [create-revision.viewModel.name] or the passed value
      * @param {String} description the value being validated
      */
@@ -277,7 +277,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-metadat-list.viewModel.validate validate
+     * @function edit-metadata-list.viewModel.validate validate
      * @description runs validation on all fields being validated
      */
     validate: function () {
