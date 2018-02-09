@@ -17,7 +17,7 @@ module.exports = {
      * ## Use
      *
      * ```js
-     * var formatUtils = require('sheriff-ui/utils/format-utils');
+     * var formatUtils = require('seo-ui/utils/format-utils');
      *
      * formatUtils.formatServerDateParams(' hello '});
      * ```
