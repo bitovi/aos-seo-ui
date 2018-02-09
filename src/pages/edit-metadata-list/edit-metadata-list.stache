@@ -33,13 +33,13 @@
                         <strong>Title:</strong>
                         {{#if errors.title}}
                             <pui-tool-tip icon-class="icon-error"
-                            alignment="right"
-                            title="{{#errors.title}}{{.}} {{/errors.title}}"
-                            is-visible="true"></pui-tool-tip>
+                                alignment="right"
+                                title="{{#errors.title}}{{.}} {{/errors.title}}"
+                                is-visible="true">
+                            </pui-tool-tip>
                         {{/if}}
                     </label>
-                    <input class="form-control" can-value="title"
-                    can-blur="{validateTitle}" placeholder="Title for Request">
+                    <input class="form-control" can-value="title" can-blur="{validateTitle}" placeholder="Title for Request">
                 </div>
                 <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
                         <label class="control-label" for="description">
@@ -48,10 +48,15 @@
                                 <pui-tool-tip icon-class="icon-error"
                                     alignment="right"
                                     title="{{#errors.description}}{{.}} {{/errors.description}}"
-                                    is-visible="true"></pui-tool-tip>
+                                    is-visible="true">
+                                </pui-tool-tip>
                             {{/if}}
                         </label>
-                        <textarea class="form-control" id="notificationMessage" can-blur="{validateDescription}" can-value="description"></textarea>
+                        <textarea class="form-control" 
+                            id="notificationMessage" 
+                            can-blur="{validateDescription}"
+                            can-value="description">
+                        </textarea>
                  </div>
                 <div class="form-group">
                     <label for="requestpriority">Due Date:</label>

@@ -135,8 +135,7 @@ module.exports = can.Map.extend({
                     },
                     /**
                      * @property {Boolean} create-revision.viewModel.errors.isValid errors.isValid
-                     * @description returns true if all the attrs are valid, false is there is one
-                     * or more errors
+                     * @description Returns: true, if all the attrs are valid and false, if there is one or more errors.
                      */
                     isValid: {
                         get: function () {
@@ -258,43 +257,23 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function create-revision.viewModel.validateName validateName
+     * @function create-revision.viewModel.validateTitle validateTitle
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {Boolean} hasVal if the function is being called with a specific value to validate
-     * @param {String} val the value being validated
+     * @param {String} title the value being validated
      */
-    validateTitle: function (hasVal, val) {
-        var title;
-        if (val instanceof $) {
-            title = val.val();
-        } else {
-            title = hasVal === true ? val : this.attr('title');
-        }
-        if (!title) {
-            this.attr('errors.title', 'Title is required.');
-        } else {
-            this.attr('errors.title', false);
-        }
+    validateTitle: function (title) {
+        var errorTile = title ? false : 'Title is required';
+        this.attr('errors.title', errorTile);
     },
  
     /**
-     * @function create-revision.viewModel.validateName validateName
+     * @function create-revision.viewModel.validateDescription validateDescription
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {Boolean} hasVal if the function is being called with a specific value to validate
-     * @param {String} val the value being validated
+     * @param {String} description the value being validated
      */
-    validateDescription: function (hasVal, val) {
-        var description;
-        if (val instanceof $) {
-            description = val.val();
-        } else {
-            description = hasVal === true ? val : this.attr('description');
-        }
-        if (!description) {
-            this.attr('errors.description', 'Description is required.');
-        } else {
-            this.attr('errors.description', false);
-        }
+    validateDescription: function (description) {
+        var errorDescription = description ? false : 'Description is required';
+        this.attr('errors.description', errorDescription);
     },
 
     /**
