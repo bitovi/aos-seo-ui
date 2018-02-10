@@ -259,7 +259,7 @@ module.exports = can.Map.extend({
         if (val instanceof $) {
             title = val.val();
         } else {
-            title = hasVal === true ? val : this.attr('title');
+            title = val ? val : this.attr('title');
         }
         
         var errorTitle = title ? false : 'Title is required';
@@ -277,7 +277,7 @@ module.exports = can.Map.extend({
         if (val instanceof $) {
             description = val.val();
         } else {
-            description = hasVal === true ? val : this.attr('description');
+            description =  val ? val : this.attr('description');
         }
 
         var errorDescription = description ? false : 'Description is required';
