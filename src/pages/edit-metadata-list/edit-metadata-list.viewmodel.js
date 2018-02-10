@@ -74,12 +74,8 @@ module.exports = can.Map.extend({
         title: {
             value: '',
             type: 'string',
-            set: function (newVal, oldVal) {
-                if (typeof oldVal === 'undefined') {
-                    return newVal;
-                }
-                newVal = formatUtils.trimString(newVal);
-                return newVal;
+            set: function (newVal) {
+                return newVal ? formatUtils.trimString(newVal) : '';
             }
         },
 
@@ -91,12 +87,8 @@ module.exports = can.Map.extend({
         description: {
             value: '',
             type: 'string',
-            set: function (newVal, oldVal) {
-                if (typeof oldVal === 'undefined') {
-                    return newVal;
-                }
-                newVal = formatUtils.trimString(newVal);
-                return newVal;
+            set: function (newVal) {
+                return newVal ? formatUtils.trimString(newVal) : '';
             }
         },
 
@@ -259,19 +251,35 @@ module.exports = can.Map.extend({
     /**
      * @function edit-metadata-list.viewModel.validateTitle validateTitle
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {String} title the value being validated
+     * @param {Boolean} hasVal if the function is being called with a specific value to validate
+     * @param {String} val the value being validated
      */
-    validateTitle: function (title) {
-        var errorTile = title ? false : 'Title is required';
-        this.attr('errors.title', errorTile);
+    validateTitle: function (hasVal, val) {
+        var title;
+        if (val instanceof $) {
+            title = val.val();
+        } else {
+            title = hasVal === true ? val : this.attr('title');
+        }
+        
+        var errorTitle = title ? false : 'Title is required';
+        this.attr('errors.title', errorTitle);
     },
  
     /**
-     * @function edit-metadata-list.viewModel.validateDescription validateDescription
+     * @function create-revision.viewModel.validateName validateName
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {String} description the value being validated
+     * @param {Boolean} hasVal if the function is being called with a specific value to validate
+     * @param {String} val the value being validated
      */
-    validateDescription: function (description) {
+    validateDescription: function (hasVal, val) {
+        var description;
+        if (val instanceof $) {
+            description = val.val();
+        } else {
+            description = hasVal === true ? val : this.attr('description');
+        }
+
         var errorDescription = description ? false : 'Description is required';
         this.attr('errors.description', errorDescription);
     },

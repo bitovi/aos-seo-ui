@@ -52,8 +52,7 @@
                                 </pui-tool-tip>
                             {{/if}}
                         </label>
-                        <textarea class="form-control" 
-                            id="notificationMessage" 
+                        <textarea class="form-control"
                             can-blur="{validateDescription}"
                             can-value="description">
                         </textarea>
