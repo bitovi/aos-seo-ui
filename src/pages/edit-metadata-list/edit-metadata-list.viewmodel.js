@@ -6,12 +6,13 @@ var rowTemplate = require('./row.stache');
 var moment = require('moment');
 
 var CreateRequest = require('seo-ui/models/edit-metadata/create-request');
+var formatUtils = require('seo-ui/utils/format-utils');
 
 module.exports = can.Map.extend({
     define: {
 
         /**
-         * @property {Array<can.Map>} url-list.viewModel.columns columns
+         * @property {Array<can.Map>} edit-metadata-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -64,15 +65,77 @@ module.exports = can.Map.extend({
             Type: CreateRequest,
             value: {}
         },
-        
+
         /**
-         * @property {Function} url-list.viewModel.items
+         * @property {String} edit-metadata-list.viewModel.title title
+         * @description title of the request
+         * @option {String} Defaults to ''
+         */
+        title: {
+            value: '',
+            type: 'string',
+            set: function (newVal) {
+                return newVal ? formatUtils.trimString(newVal) : '';
+            }
+        },
+
+        /**
+         * @property {String} edit-metadata-list.viewModel.description description
+         * @description description of the request
+         * @option {String} Defaults to ''
+         */
+        description: {
+            value: '',
+            type: 'string',
+            set: function (newVal) {
+                return newVal ? formatUtils.trimString(newVal) : '';
+            }
+        },
+
+        /**
+         * @property {Function} edit-metadata-list.viewModel.items
          * @description gets items from the state.storage.
          */
         items: {
             get: function () {
                 return JSON.parse(localStorage.getItem('editMetadata'));
             }
+        },
+
+        /**
+         * @property {can.Map} edit-metadata-list.viewModel.errors errors
+         * @description errors is an observable map of the views current validation state
+         */
+        errors: {
+            value: can.Map.extend({
+                define: {
+                    /**
+                     * @property {String} create-revision.viewModel.errors.title errors.title
+                     * @description if valid value is false otherwise value is the validation error
+                     * @option {String} Defaults to false
+                     */
+                    title: {
+                        value: false
+                    },
+                    /**
+                     * @property {String} create-revision.viewModel.errors.description errors.description
+                     * @description if valid value is false otherwise value is the validation error
+                     * @option {String} Defaults to false
+                     */
+                    description: {
+                        value: false
+                    },
+                    /**
+                     * @property {Boolean} create-revision.viewModel.errors.isValid errors.isValid
+                     * @description Returns: true, if all the attrs are valid and false, if there is one or more errors.
+                     */
+                    isValid: {
+                        get: function () {
+                            return !this.attr('title') && !this.attr('description');
+                        }
+                    }
+                }
+            })
         },
 
         /**
@@ -90,7 +153,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Function} url-list.viewModel.anatomyItem anatomyItem
+         * @property {Function} edit-metadata-list.viewModel.anatomyItem anatomyItem
          * @description Stores the template that renders an anatomy item.
          */
         anatomyItem: {
@@ -118,7 +181,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {function} url-list.viewModel.rowTemplate rowTemplate
+         * @property {function} edit-metadata-list.viewModel.rowTemplate rowTemplate
          * @description Stores the template renderer function reference.
          */
         rowTemplate: {
@@ -131,7 +194,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-title-description.viewModel.cancelRequest
+     * @function eedit-metadata-list.viewModel.cancelRequest
      * @description cancles edit title description request.
      */
     cancelRequest: function () {
@@ -142,7 +205,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-title-description.viewModel.addMore
+     * @function edit-metadata-list.viewModel.addMore
      * @description navigate to url page.
      */
     addMore: function () {        
@@ -153,7 +216,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function edit-title-description.viewModel.generateUniqueId
+     * @function edit-metadata-list.viewModel.generateUniqueId
      * @description genarates a unique id from url.
      * @param url {string} row url.
      */
@@ -186,6 +249,63 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function edit-metadata-list.viewModel.validateTitle validateTitle
+     * @description runs validation on [create-revision.viewModel.name] or the passed value
+     * @param {String} val the value being validated
+     */
+    validateTitle: function (val) {
+        var title;
+        if (val instanceof $) {
+            title = val.val();
+        } else {
+            title = val ? val : this.attr('title');
+        }
+        
+        var errorTitle = title ? false : 'Title is required';
+        this.attr('errors.title', errorTitle);
+    },
+ 
+    /**
+     * @function create-revision.viewModel.validateName validateName
+     * @description runs validation on [create-revision.viewModel.name] or the passed value
+     * @param {String} val the value being validated
+     */
+    validateDescription: function (val) {
+        var description;
+        if (val instanceof $) {
+            description = val.val();
+        } else {
+            description =  val ? val : this.attr('description');
+        }
+
+        var errorDescription = description ? false : 'Description is required';
+        this.attr('errors.description', errorDescription);
+    },
+
+    /**
+     * @function edit-metadata-list.viewModel.validate validate
+     * @description runs validation on all fields being validated
+     */
+    validate: function () {
+        can.batch.start();
+        this.validateTitle();
+        this.validateDescription();
+        can.batch.stop();
+        return this.attr('errors.isValid');
+    },
+
+    /**
+     * @function edit-metadata-list.viewModel.resetDefault
+     * @description resets all the fields to their default values.
+     */
+    resetDefaults: function () {
+        this.attr('title', '');
+        this.attr('description', '');
+        this.attr('errors.title', false);
+        this.attr('errors.description', false);
+    },
+
+    /**
      * @function submitRequest
      * @description submits request with updated titles and descriptions.
      */
@@ -193,52 +313,57 @@ module.exports = can.Map.extend({
         var urls = [];        
         var self = this;
 
-        this.attr('items').forEach(function (item) {
-            var urlItem = {};
-            var contents = [];
+        if (self.validate()) {
 
-            if (item.titleAnatomy) {
-                item.titleAnatomy.forEach(function (contentItem) {
-                    if (contentItem.editable && contentItem.type === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.type,
-                            "assetUri" : contentItem.name,
-                            "oldContent" : contentItem.value,
-                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
-                        });
-                    }
-                });
-            }
+            this.attr('items').forEach(function (item) {
+                var urlItem = {};
+                var contents = [];
 
-            if (item.descriptionAnatomy) {
-                item.descriptionAnatomy.forEach(function (contentItem) {
-                    if (contentItem.editable && contentItem.type === 'text_asset') {
-                        contents.push({
-                            "assetType" : contentItem.type,
-                            "assetUri" : contentItem.name,
-                            "oldContent" : contentItem.value,
-                            "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
-                        });
-                    }
-                });
-            }
-            
-            urlItem.url = item.url;
-            urlItem.partNumber = item.partNumber;
-            urlItem.pageType = item.pageType;
-            urlItem.segment = item.segment;
-            urlItem.geo = item.region;
-            urlItem.contents = contents;
-            urls.push(urlItem);
-        });
+                if (item.titleAnatomy) {
+                    item.titleAnatomy.forEach(function (contentItem) {
+                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                            contents.push({
+                                "assetType" : contentItem.type,
+                                "assetUri" : contentItem.name,
+                                "oldContent" : contentItem.value,
+                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                            });
+                        }
+                    });
+                }
 
-        this.attr('createRequest.dueDate', this.attr('now'));
-        this.attr('createRequest.urls', urls);        
+                if (item.descriptionAnatomy) {
+                    item.descriptionAnatomy.forEach(function (contentItem) {
+                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                            contents.push({
+                                "assetType" : contentItem.type,
+                                "assetUri" : contentItem.name,
+                                "oldContent" : contentItem.value,
+                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                            });
+                        }
+                    });
+                }
 
-        var createRequestData = this.attr('createRequest').attr();
+                urlItem.url = item.url;
+                urlItem.partNumber = item.partNumber;
+                urlItem.pageType = item.pageType;
+                urlItem.segment = item.segment;
+                urlItem.geo = item.region;
+                urlItem.contents = contents;
+                urls.push(urlItem);
+            });
 
-        this.attr('createRequest').create(createRequestData).then(function(response){
-            self.cancelRequest();
-        });
+            this.attr('createRequest.dueDate', this.attr('currentDate'));
+            this.attr('createRequest.title', this.attr('title'));
+            this.attr('createRequest.description', this.attr('description'));
+            this.attr('createRequest.urls', urls);
+
+            var createRequestData = this.attr('createRequest').attr();
+
+            this.attr('createRequest').create(createRequestData).then(function(response){
+                self.cancelRequest();
+            });
+        }
     }
 });
