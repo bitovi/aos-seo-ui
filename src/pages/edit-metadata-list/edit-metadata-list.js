@@ -12,5 +12,15 @@ var ViewModel = require('./edit-metadata-list.viewmodel');
 module.exports = can.Component.extend({
     tag: 'seo-edit-metadata-list',
     template: template,
-    viewModel: ViewModel
+    viewModel: ViewModel,
+    events: {
+
+    	/**
+         * @description Handles close click event and clear all selected item.
+         */
+        'pui-modal-header .modal-header .close click' : function () {
+            var vm = this.viewModel;
+            vm.resetDefaults();
+        }
+    }
 });

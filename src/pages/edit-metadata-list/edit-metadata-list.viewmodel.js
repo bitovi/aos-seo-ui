@@ -297,6 +297,17 @@ module.exports = can.Map.extend({
     },
 
     /**
+     * @function create-notification.viewModel.resetDefault
+     * @description resets all the fields to their default values.
+     */
+    resetDefaults: function () {
+        this.attr('title', '');
+        this.attr('description', '');
+        this.attr('errors.title', false);
+        this.attr('errors.description', false);
+    },
+
+    /**
      * @function submitRequest
      * @description submits request with updated titles and descriptions.
      */
