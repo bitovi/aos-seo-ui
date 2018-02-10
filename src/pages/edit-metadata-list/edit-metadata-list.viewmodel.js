@@ -297,7 +297,7 @@ module.exports = can.Map.extend({
     },
 
     /**
-     * @function create-notification.viewModel.resetDefault
+     * @function edit-metadata-list.viewModel.resetDefault
      * @description resets all the fields to their default values.
      */
     resetDefaults: function () {
