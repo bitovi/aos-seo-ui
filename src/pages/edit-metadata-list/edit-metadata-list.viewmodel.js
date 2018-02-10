@@ -251,10 +251,9 @@ module.exports = can.Map.extend({
     /**
      * @function edit-metadata-list.viewModel.validateTitle validateTitle
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {Boolean} hasVal if the function is being called with a specific value to validate
      * @param {String} val the value being validated
      */
-    validateTitle: function (hasVal, val) {
+    validateTitle: function (val) {
         var title;
         if (val instanceof $) {
             title = val.val();
@@ -269,10 +268,9 @@ module.exports = can.Map.extend({
     /**
      * @function create-revision.viewModel.validateName validateName
      * @description runs validation on [create-revision.viewModel.name] or the passed value
-     * @param {Boolean} hasVal if the function is being called with a specific value to validate
      * @param {String} val the value being validated
      */
-    validateDescription: function (hasVal, val) {
+    validateDescription: function (val) {
         var description;
         if (val instanceof $) {
             description = val.val();
