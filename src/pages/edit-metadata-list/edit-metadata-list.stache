@@ -39,7 +39,7 @@
                             </pui-tool-tip>
                         {{/if}}
                     </label>
-                    <input class="form-control" can-value="title" can-blur="{validateTitle}" placeholder="Title for Request">
+                    <input class="form-control" {($value)}="title" can-blur="{validateTitle}" placeholder="Title for Request">
                 </div>
                 <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
                         <label class="control-label" for="description">
@@ -54,7 +54,7 @@
                         </label>
                         <textarea class="form-control"
                             can-blur="{validateDescription}"
-                            can-value="description">
+                            {($value)}="description">
                         </textarea>
                  </div>
                 <div class="form-group">
