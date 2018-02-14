@@ -312,7 +312,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().runToLast();
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(4);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(5);
                 });
 
                 it('within a value', function () {
@@ -355,7 +355,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().runToLast();
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(7);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
                 it('within a value', function () {
@@ -526,7 +526,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(4).find('.url-page-title');
+                $resultTitle = $results.eq(5).find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -542,7 +542,7 @@ describe('URL List Page', function () {
             });
 
             it('displays the page title value as a single string', function () {
-                expect($resultTitle.text().trim()).toEqual('iPod Nano - Apple');
+                expect($resultTitle.text().trim()).toEqual('iPad Mini - Apple');
             });
         });
 
@@ -788,7 +788,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(13).find('.url-desc');
+                $resultDesc = $results.eq(14).find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
@@ -800,7 +800,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(4).find('.description > .grid-item-value');
+                $resultDesc = $results.eq(5).find('.description > .grid-item-value');
             });
 
             it('displays the description value as a single string', function () {
@@ -1044,7 +1044,7 @@ describe('URL List Page', function () {
         var $result;
 
         beforeEach(function () {
-            $result = component.find('pui-grid-list .item').eq(5);
+            $result = component.find('pui-grid-list .item').eq(6);
         });
 
         it('does not collapse the whitespace', function () {

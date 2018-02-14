@@ -463,6 +463,51 @@
         },
         {
             "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url" : "/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automation",
+            "urlAspenLink" : "http://wwwdev1.corp.apple.com/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automation",
+            "partNumber" : "shop_ipad",
+            "pageTitle" : "Home Automation - iPad Accessories - Business - Apple (AU)",
+            "pageType" : "category",
+            "description" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shipping.",
+            "segment" : "smb-discounted",
+            "region" : "apac",
+            "country" : "AU",
+            "storeFrontId" : 10126,
+            "storeFrontAlias" : "au_smb-discounted_10126",
+            "createDate" : "2017-08-07T10:22:11Z",
+            "modifyDate" : "2017-08-07T10:22:11Z",
+            "status" : "unchanged",
+            "titleAnatomy" : [ {
+                "name" : "pub.category.title.home_automation",
+                "value" : "Home Automation",
+                "type" : "text_asset",
+                "editable" : true
+            }, {
+                "name" : "store.seo.hyphen",
+                "value" : "-",
+                "type" : "text_asset",
+                "editable" : false
+            }, {
+                "name" : "node data",
+                "value" : "iPad Accessories",
+                "type" : "node_data",
+                "editable" : true
+            }, {
+                "name" : "store.base_title",
+                "value" : "Business - Apple (AU)",
+                "type" : "text_asset",
+                "editable" : false
+            } ],
+                "descriptionAnatomy" : [ {
+                "name" : "pub.meta.shop_ipad.ipad_acc.home_automation",
+                "value" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shipping.",
+                "type" : "text_asset",
+                "editable" : true
+            } ],
+            "nemoReadyRecord" : true
+        },
+        {
+            "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
             "url" : "/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
             "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
             "partNumber" : "HG5J2ZM/B",

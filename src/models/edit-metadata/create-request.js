@@ -24,7 +24,16 @@ module.exports = can.Model.extend({
                 data: JSON.stringify(entity),
                 contentType: 'application/json'
             });
-        }
+        },
+        findOne: function(req){
+            var url = envVars.apiUrl() + '/notifications/' + req.id + '.json';
+            return can.ajax({
+                url: url,
+                method: 'get',
+                dataType: 'json',
+                contentType: 'application/json'
+            });
+        },
     }
 );
 

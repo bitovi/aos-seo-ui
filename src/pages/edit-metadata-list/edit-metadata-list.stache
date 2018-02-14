@@ -24,51 +24,89 @@
 
 <pui-modal {(modal-active)}="isActive" {modal-id}="modalId" modal-size="md">
     <pui-modal-header>
-        <h4 class="modal-title">Raise Reqest</h4>
+        <h4 class="modal-title">
+            {{#if showRadarDetails}}
+                Radar Details
+            {{else}}
+                Raise Reqest
+            {{/if}}
+        </h4>
     </pui-modal-header>
     <form role="form">
         <pui-modal-body>
-                <div class="form-group {{#errors.title}} has-error{{/errors.title}}">
-                    <label class="control-label" for="title">
-                        <strong>Title:</strong>
-                        {{#if errors.title}}
-                            <pui-tool-tip icon-class="icon-error"
-                                alignment="right"
-                                title="{{#errors.title}}{{.}} {{/errors.title}}"
-                                is-visible="true">
-                            </pui-tool-tip>
-                        {{/if}}
-                    </label>
-                    <input class="form-control" {($value)}="title" can-blur="{validateTitle}" placeholder="Title for Request">
-                </div>
-                <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
-                        <label class="control-label" for="description">
-                            <strong>Description:</strong>
-                            {{#if errors.description}}
+                {{#if showModalLoader}}
+                    <div class="loading-indicator-container">
+                        <div class="icon-spinner spin-icon"></div>
+                        <p class="content">
+                            Creating Request
+                        </p>
+                    </div>
+                {{/if}}
+
+                {{#if showRadarDetails}}
+                    <table class="table radarTable">
+                        <tr>
+                            <td>Title:</td>
+                            <td>{{radarDetails.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>Radar No:</td>
+                            <td>{{radarDetails.radarNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>Radar Link:</td>
+                            <td>{{radarDetails.radarLink}}</td>
+                        </tr>
+                    </table>
+                {{else}}
+                    {{^if showModalLoader}}
+                    <div class="form-group {{#errors.title}} has-error{{/errors.title}}">
+                        <label class="control-label" for="title">
+                            <strong>Title:</strong>
+                            {{#if errors.title}}
                                 <pui-tool-tip icon-class="icon-error"
                                     alignment="right"
-                                    title="{{#errors.description}}{{.}} {{/errors.description}}"
+                                    title="{{#errors.title}}{{.}} {{/errors.title}}"
                                     is-visible="true">
                                 </pui-tool-tip>
                             {{/if}}
                         </label>
-                        <textarea class="form-control"
-                            can-blur="{validateDescription}"
-                            {($value)}="description">
-                        </textarea>
-                 </div>
-                <div class="form-group">
-                    <label for="requestpriority">Due Date:</label>
-                    <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
-                        <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
-                    </pui-date-picker>
-                </div>
+                        <input class="form-control" {($value)}="title" can-blur="{validateTitle}" placeholder="Title for Request">
+                    </div>
+                    <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
+                            <label class="control-label" for="description">
+                                <strong>Description:</strong>
+                                {{#if errors.description}}
+                                    <pui-tool-tip icon-class="icon-error"
+                                        alignment="right"
+                                        title="{{#errors.description}}{{.}} {{/errors.description}}"
+                                        is-visible="true">
+                                    </pui-tool-tip>
+                                {{/if}}
+                            </label>
+                            <textarea class="form-control"
+                                can-blur="{validateDescription}"
+                                {($value)}="description">
+                            </textarea>
+                     </div>
+                    <div class="form-group">
+                        <label for="requestpriority">Due Date:</label>
+                        <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
+                            <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
+                        </pui-date-picker>
+                    </div>
+                    {{/if}}
+                {{/if}}
             </div>
         </pui-modal-body>
     </form>
 
     <pui-modal-footer>
-        <a type="button" ($click)="submitRequest()" class="btn btn-primary btn-block">Submit Request</a>
+        {{#if showRadarDetails}}
+            <a type="button" ($click)="cancelRequest()" class="btn btn-primary btn-block">Close</a>
+        {{else}}
+            <a type="button" ($click)="submitRequest()" class="btn btn-primary btn-block">Submit Request</a>
+        {{/if}}
     <pui-modal-footer>
 </pui-modal>
 

@@ -162,13 +162,26 @@ module.exports = can.Map.extend({
             }
         },
 
+         /**
+         * @property {String} dateMask
+         * @description Date mask to use on user visible dates.
+         * @option {String} Default is MM/DD/YYYY.
+         */
+        dateMask: {
+            value: 'MM/DD/YYYY',
+            type: 'string'
+        },
+
         /**
          * @property {string} currentDate
          * @description Shows current date
          */
         currentDate: {
             value: moment().format('MM/DD/YYYY'),
-            type: 'string'
+            type: 'string',
+            set: function (val) {
+                return moment.utc(val).format(this.attr('dateMask'));
+            }
         },
 
         /**
@@ -191,6 +204,24 @@ module.exports = can.Map.extend({
                 };
             }
         },
+
+        /**
+         * @property {Function} edit-metadata-list.viewModel.showModalLoader
+         * @description show loader on pui modal while creating request.
+         */
+        showModalLoader: {
+            value: false,
+            type: 'boolean'
+        },
+
+        /**
+         * @property {Function} edit-metadata-list.viewModel.showRadarDetails
+         * @description show radar details.
+         */
+        showRadarDetails: {
+            value: false,
+            type: 'boolean'
+        }
     },
 
     /**
@@ -199,6 +230,7 @@ module.exports = can.Map.extend({
      */
     cancelRequest: function () {
         localStorage.removeItem('editMetadata');
+        this.attr('showRadarDetails', false);
         this.attr('state').setRouteAttrs({
             page: 'urls'
         });
@@ -301,6 +333,7 @@ module.exports = can.Map.extend({
     resetDefaults: function () {
         this.attr('title', '');
         this.attr('description', '');
+        this.attr('currentDate', this.attr('minDate'))
         this.attr('errors.title', false);
         this.attr('errors.description', false);
     },
@@ -360,9 +393,13 @@ module.exports = can.Map.extend({
             this.attr('createRequest.urls', urls);
 
             var createRequestData = this.attr('createRequest').attr();
-
+            this.attr('showModalLoader', true);
             this.attr('createRequest').create(createRequestData).then(function(response){
-                self.cancelRequest();
+                self.attr('createRequest').findOne({id: response.id}).then(function (resp) {
+                    self.attr('showModalLoader', false);
+                    self.attr('showRadarDetails', true);
+                    self.attr('radarDetails', resp.detail);
+                });
             });
         }
     }
