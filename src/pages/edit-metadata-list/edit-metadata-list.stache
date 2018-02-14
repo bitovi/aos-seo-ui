@@ -46,15 +46,15 @@
                 {{#if showRadarDetails}}
                     <table class="table radarTable">
                         <tr>
-                            <td>Title:</td>
+                            <td><b>Title: </b></td>
                             <td>{{radarDetails.title}}</td>
                         </tr>
                         <tr>
-                            <td>Radar No:</td>
+                            <td><b>Radar No: </b></td>
                             <td>{{radarDetails.radarNumber}}</td>
                         </tr>
                         <tr>
-                            <td>Radar Link:</td>
+                            <td><b>Radar Link: </b></td>
                             <td>{{radarDetails.radarLink}}</td>
                         </tr>
                     </table>

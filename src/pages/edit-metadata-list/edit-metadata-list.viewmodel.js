@@ -336,6 +336,9 @@ module.exports = can.Map.extend({
         this.attr('currentDate', this.attr('minDate'))
         this.attr('errors.title', false);
         this.attr('errors.description', false);
+        if (this.attr('showRadarDetails')) {
+            this.cancelRequest();
+        }
     },
 
     /**
