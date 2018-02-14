@@ -74,11 +74,18 @@
             >Reset Filters</button>
         {{/if}}
         <div class="request-selection-option">
-            <a
-                type="button"
-                {{#is selectUrlCount 0}}disabled{{/is}}
-                class="btn btn-secondary btn-xs create-request-button"  ($click)="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl}}">Create Request | {{selectUrlCount |}}
-           </a>
+            {{#is selectUrlCount 0}}
+                <a
+                    type="button" disabled
+                    class="btn btn-secondary btn-xs create-request-button" href="javascript:;">Create Request | {{selectUrlCount |}}
+               </a>
+            {{/is}}
+            {{^is selectUrlCount 0}}
+                <a
+                    type="button" class="btn btn-secondary btn-xs create-request-button"
+                    ($click)="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl}}">Create Request | {{selectUrlCount |}}
+               </a>
+           {{/is}}
            <button
                 type="button"
                 {{#is selectUrlCount 0}}disabled{{/is}}
