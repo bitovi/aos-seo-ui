@@ -405,5 +405,19 @@ module.exports = can.Map.extend({
                 });
             });
         }
+    },
+
+    /**
+     * @function edit-metadata-list.viewModel.setLinkToRadar
+     * @description add href link to radar string.
+     * @param {string} string radar link as string.
+     */
+    setLinkToRadar: function (string) {
+        if (string) {
+            var link = string.substring(string.lastIndexOf("<")+1,string.lastIndexOf(">"));
+            var displayString = string.split(link);
+            displayString.splice(1, 0, '<a href="'+ link +'">'+ link +'</a>');
+            return displayString.join("");
+        }
     }
 });
