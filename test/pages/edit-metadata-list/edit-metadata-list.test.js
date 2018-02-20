@@ -145,7 +145,7 @@ describe('edit-metadata-list', function () {
         });
 
         it('has title', function () {
-            expect($component.find('.modal-title').text().trim()).toEqual('Raise Reqest');
+            expect($component.find('.modal-title').text().trim()).toEqual('Raise Request');
         });
 
         it('has submit request button', function () { 
