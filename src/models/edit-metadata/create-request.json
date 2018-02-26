@@ -14,16 +14,16 @@
               "geo": "us-edu",
               "contents": [
                 {
-                  "assetType": "TextAsset",
-                  "assetUri": "pub.category.title.cases_protection",
-                  "oldContent": "case protection",
-                  "newContent": "new case protection"
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.category.title.cases_protection",
+                    "oldContent": "case protection",
+                    "newContent": "new case protection"
                 },
                 {
-                  "assetType": "TextAsset",
-                  "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
-                  "oldContent": "case protection description",
-                  "newContent": "new case protection description"
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
+                    "oldContent": "case protection description",
+                    "newContent": "new case protection description"
                 }
               ]
             },
@@ -35,16 +35,16 @@
               "geo": "TR",
               "contents": [
                 {
-                  "assetType": "TextAsset",
-                  "assetUri": "pub.category.title.cases_protection",
-                  "oldContent": "case protection",
-                  "newContent": "new case protection"
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.category.title.cases_protection",
+                    "oldContent": "case protection",
+                    "newContent": "new case protection"
                 },
                 {
-                  "assetType": "TextAsset",
-                  "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
-                  "oldContent": "case protection description",
-                  "newContent": "new case protection description"
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
+                    "oldContent": "case protection description",
+                    "newContent": "new case protection description"
                 }
               ]
             }
