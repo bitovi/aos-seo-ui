@@ -1,51 +1,53 @@
-{
-  "id": "195374b7-c9bc-4216-a35c-b159c8e86c0c",
-  "title": "test title",
-  "description": "test description",
-  "priority": 1,
-  "dueDate": "2017-08-07T22:20:15.691Z",
-  "urls": [
-    {
-      "url": "/us-edu/shop/mac/mac-accessories/cases-protection?fh=4592%2B2feb",
-      "partNumber": "shop_mac",
-      "pageType": "pdp",
-      "segment": "consumer",
-      "geo": "us-edu",
-      "contents": [
-        {
-          "assetType": "TextAsset",
-          "assetUri": "pub.category.title.cases_protection",
-          "oldContent": "case protection",
-          "newContent": "new case protection"
-        },
-        {
-          "assetType": "TextAsset",
-          "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
-          "oldContent": "case protection description",
-          "newContent": "new case protection description"
-        }
-      ]
-    },
-    {
-      "url": "/tr/shop/mac/mac-accessories/cases-protection?fh=4592%2B2feb",
-      "partNumber": "shop_mac",
-      "pageType": "pdp",
-      "segment": "consumer",
-      "geo": "TR",
-      "contents": [
-        {
-          "assetType": "TextAsset",
-          "assetUri": "pub.category.title.cases_protection",
-          "oldContent": "case protection",
-          "newContent": "new case protection"
-        },
-        {
-          "assetType": "TextAsset",
-          "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
-          "oldContent": "case protection description",
-          "newContent": "new case protection description"
-        }
-      ]
+{ 
+   "detail":{
+        "id": "195374b7-c9bc-4216-a35c-b159c8e86c0c",
+        "title": "test title",
+        "description": "test description",
+        "priority": 1,
+        "dueDate": "2017-08-07T22:20:15.691Z",
+        "urls": [
+            {
+              "url": "/us-edu/shop/mac/mac-accessories/cases-protection?fh=4592%2B2feb",
+              "partNumber": "shop_mac",
+              "pageType": "pdp",
+              "segment": "consumer",
+              "geo": "us-edu",
+              "contents": [
+                {
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.category.title.cases_protection",
+                    "oldContent": "case protection",
+                    "newContent": "new case protection"
+                },
+                {
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
+                    "oldContent": "case protection description",
+                    "newContent": "new case protection description"
+                }
+              ]
+            },
+            {
+              "url": "/tr/shop/mac/mac-accessories/cases-protection?fh=4592%2B2feb",
+              "partNumber": "shop_mac",
+              "pageType": "pdp",
+              "segment": "consumer",
+              "geo": "TR",
+              "contents": [
+                {
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.category.title.cases_protection",
+                    "oldContent": "case protection",
+                    "newContent": "new case protection"
+                },
+                {
+                    "assetType": "TextAsset",
+                    "assetUri": "pub.meta.shop_mac.mac_acc.cases_protection",
+                    "oldContent": "case protection description",
+                    "newContent": "new case protection description"
+                }
+              ]
+            }
+        ]
     }
-  ]
 }
