@@ -10,6 +10,7 @@ require('seo-ui/pages/home/home.js');
 require('seo-ui/pages/review-page/review-page.js');
 require('seo-ui/pages/url-list/url-list.js');
 require('seo-ui/pages/edit-metadata-list/edit-metadata-list.js');
+require('seo-ui/pages/request-list/request-list.js');
 
 var routes = require('./route-list.json');
 
