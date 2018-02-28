@@ -28,7 +28,7 @@
             {{#if showRadarDetails}}
                 Radar Details
             {{else}}
-                Raise Reqest
+                Raise Request
             {{/if}}
         </h4>
     </pui-modal-header>

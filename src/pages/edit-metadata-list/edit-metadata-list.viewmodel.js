@@ -398,7 +398,7 @@ module.exports = can.Map.extend({
             var createRequestData = this.attr('createRequest').attr();
             this.attr('showModalLoader', true);
             this.attr('createRequest').create(createRequestData).then(function(response){
-                self.attr('createRequest').findOne({id: response.id}).then(function (resp) {
+                self.attr('createRequest').findOne({id: response.detail.id}).then(function (resp) {
                     self.attr('showModalLoader', false);
                     self.attr('showRadarDetails', true);
                     self.attr('radarDetails', resp.detail);
