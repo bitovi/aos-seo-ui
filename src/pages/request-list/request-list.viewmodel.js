@@ -31,28 +31,56 @@ module.exports = can.Map.extend({
             value: 1
         },
 
+        /**
+         * @property {Array<Object>} items
+         * @description table data that is used by the Grid List.
+         */
         items: {},
 
+        /**
+         * @property {Boolean} searchStateEnabled
+         * @description enables search options for Grid List.
+         */
         searchStateEnabled: {
             value: true
         },
 
+        /**
+         * @property {Boolean} multiSearchEnabled
+         * @description enables multi search for Grid List.
+         */
         multiSearchEnabled: {
             value: false
         },
 
+        /**
+         * @property {Boolean} multiSearchEnabled
+         * @description activates multi search options.
+         */
         multiSearchActive: {
             value: false
         },
 
+        /**
+         * @property {String} searchValue
+         * @description holds basic search value.
+         */
         searchValue: {
             value: ''
         },
 
+        /**
+         * @property {String} searchField
+         * @description holds search property.
+         */
         searchField: {
             value: 'radarNumber'
         },
 
+        /**
+         * @property {Array<Object>} advanceSearchDataOptions
+         * @description advanced search properties.
+         */
         advanceSearchDataOptions: {
             value: [
                 {
@@ -161,10 +189,9 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<Object>} items
-         * @description Array of item objects to display in the Grid List.
+         * @property {Model} model
+         * @description Model used in the Grid List.
          */
-        //items: {},
 
         model: {
             get: function () {
@@ -188,6 +215,10 @@ module.exports = can.Map.extend({
             }
         },
 
+        /**
+        * @property {String} sortOrder
+        * @description Sort order state
+        */
         sortOrder: {
             type: 'string',
             value: function () {
@@ -195,22 +226,6 @@ module.exports = can.Map.extend({
             },
             set: function (newVal) {
                 return newVal;
-            }
-        },
-
-        contentSearch: {
-            get: function () {
-                var value,
-                    basicSearch = this.attr('searchQuery'),
-                    multiSearch = this.attr('searchFilter');
-
-                if (this.attr('searchStateEnabled') && basicSearch && basicSearch.attr('field') === 'content') {
-                    value = basicSearch.attr('value');
-                } else if (this.attr('multiSearchActive') && multiSearch && multiSearch.attr('content')) {
-                    value = multiSearch.attr('content');
-                }
-
-                return value;
             }
         },
 
@@ -225,6 +240,11 @@ module.exports = can.Map.extend({
             }
         }
     },
+
+    /**
+     * @function enableBasicSearch
+     * Hides advanced search and shows basic search
+     */
     enableBasicSearch: function () {
         if (!this.attr('searchStateEnabled')) {
             this.attr('searchStateEnabled', true);
@@ -233,8 +253,12 @@ module.exports = can.Map.extend({
 
             $('#multi-search').collapse('hide');
         }
-    }, 
+    },
 
+    /**
+     * @function toggleAdvSearchTab
+     * Toggles the advanced search tab
+     */
     toggleAdvSearchTab: function () {
         var searchEnabled = this.attr('searchStateEnabled');
         var multiSearchEnabled = this.attr('multiSearchEnabled');

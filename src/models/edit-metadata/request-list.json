@@ -17,7 +17,7 @@
       "radarNumber": "11112",
       "radarTitle": "test2",
       "radarDescription": "test description 2",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill2",
       "createDate": "2018-02-01T19:29:59Z"
@@ -67,7 +67,7 @@
       "radarNumber": "11117",
       "radarTitle": "test7",
       "radarDescription": "test description 7",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill7",
       "createDate": "2018-02-01T19:29:59Z"
@@ -87,7 +87,7 @@
       "radarNumber": "11119",
       "radarTitle": "test9",
       "radarDescription": "test description 9",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill",
       "createDate": "2018-02-01T19:29:59Z"
@@ -97,7 +97,7 @@
       "radarNumber": "11110",
       "radarTitle": "test10",
       "radarDescription": "test description 10",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill9",
       "createDate": "2018-02-01T19:29:59Z"
@@ -157,7 +157,7 @@
       "radarNumber": "11106",
       "radarTitle": "test17",
       "radarDescription": "test description 15",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill15",
       "createDate": "2018-02-01T19:29:59Z"
@@ -167,7 +167,7 @@
       "radarNumber": "11107",
       "radarTitle": "test18",
       "radarDescription": "test description 16",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill16",
       "createDate": "2018-02-01T19:29:59Z"
@@ -187,7 +187,7 @@
       "radarNumber": "11011",
       "radarTitle": "test20",
       "radarDescription": "test description 18",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill18",
       "createDate": "2018-02-01T19:29:59Z"
@@ -247,7 +247,7 @@
       "radarNumber": "11017",
       "radarTitle": "test26",
       "radarDescription": "test description 24",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill24",
       "createDate": "2018-02-01T19:29:59Z"
@@ -257,7 +257,7 @@
       "radarNumber": "11018",
       "radarTitle": "test27",
       "radarDescription": "test description 26",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill25",
       "createDate": "2018-02-01T19:29:59Z"
@@ -307,7 +307,7 @@
       "radarNumber": "10115",
       "radarTitle": "test34",
       "radarDescription": "test description 30",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill30",
       "createDate": "2018-02-01T19:29:59Z"
@@ -337,7 +337,7 @@
       "radarNumber": "19898",
       "radarTitle": "test36",
       "radarDescription": "test description 33",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill33",
       "createDate": "2018-02-01T19:29:59Z"
@@ -357,7 +357,7 @@
       "radarNumber": "115891",
       "radarTitle": "test38",
       "radarDescription": "test description 35",
-      "state": "Analyze",
+      "state": "Verify",
       "subState": "Screen",
       "createUser": "bill35",
       "createDate": "2018-02-01T19:29:59Z"
@@ -387,7 +387,7 @@
       "radarNumber": "11989",
       "radarTitle": "test41",
       "radarDescription": "test description 38",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill38",
       "createDate": "2018-02-01T19:29:59Z"
@@ -437,7 +437,7 @@
       "radarNumber": "101897",
       "radarTitle": "test",
       "radarDescription": "test description 43",
-      "state": "Analyze",
+      "state": "Integrate",
       "subState": "Screen",
       "createUser": "bill42",
       "createDate": "2018-02-01T19:29:59Z"

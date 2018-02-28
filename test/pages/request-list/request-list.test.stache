@@ -1,1 +1,3 @@
-<seo-request-list></seo-request-list>
+<seo-request-list
+    state="{state}"
+></seo-request-list>

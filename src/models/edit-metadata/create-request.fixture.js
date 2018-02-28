@@ -53,8 +53,11 @@ can.fixture('GET ' + envVars.apiUrl() + '/request-list.json', function (request,
             results.reverse();
         }
     }
-    
-	return results;
+
+    response({
+        count: results.length,
+        data: results
+    });
 });
 
 can.fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function (req, res) {
