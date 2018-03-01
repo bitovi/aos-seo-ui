@@ -419,5 +419,18 @@ module.exports = can.Map.extend({
             displayString.splice(1, 0, '<a href="'+ link +'">'+ link +'</a>');
             return displayString.join("");
         }
+    },
+
+    /**
+     * @function edit-metadata-list.viewModel.hasEditableKey
+     * @description checks editable key in the items.
+     * @param {Array} items that need to be check for editable key.
+     */
+    hasEditableKey: function (items) {
+        var editableItems = _.filter(items, function (item) {
+            return item.editable && item.type === 'text_asset';
+        });
+
+        return editableItems.length > 0;
     }
 });
