@@ -40,7 +40,7 @@
                     {{#case 'editablepagetitle'}}
                         {{^if hasEditableKey(titleAnatomy)}}
                             <span class="icon-lg icon-info btn-link"></span>
-                                This URL does not have editable keys.
+                                This URL does not have editable title keys.
                         {{/if}}
 
                         <table class="anotomyTable">
@@ -99,7 +99,7 @@
 
                         {{^if hasEditableKey(descriptionAnatomy)}}
                             <span class="icon-lg icon-info btn-link"></span>
-                            This URL does not have editable keys.
+                            This URL does not have editable description keys.
                         {{/if}}
 
                         <table class="anotomyTable">
