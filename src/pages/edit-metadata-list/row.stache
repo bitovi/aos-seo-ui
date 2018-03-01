@@ -38,6 +38,11 @@
                     {{/case}}
 
                     {{#case 'editablepagetitle'}}
+                        {{^if hasEditableKey(titleAnatomy)}}
+                            <span class="icon-lg icon-info btn-link"></span>
+                                This URL does not have editable keys.
+                        {{/if}}
+
                         <table class="anotomyTable">
                             {{#each titleAnatomy}}
                                 {{#if editable}}
@@ -91,6 +96,12 @@
                     {{/case}}
 
                     {{#case 'editabledescription'}}
+
+                        {{^if hasEditableKey(descriptionAnatomy)}}
+                            <span class="icon-lg icon-info btn-link"></span>
+                            This URL does not have editable keys.
+                        {{/if}}
+
                         <table class="anotomyTable">
                             {{#each descriptionAnatomy}}
                                 {{#if editable}}
