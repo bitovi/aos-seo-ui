@@ -20,8 +20,7 @@ module.exports = can.Map.extend({
         columns: {
             Type: can.List
         },
-
-
+        
         /**
          * @property {Number} currentPage
          * @description The current page number.
