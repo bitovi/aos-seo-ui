@@ -260,4 +260,26 @@ describe('Request List Page', function () {
             jasmine.clock().runToLast();
         });
     });
+    
+    describe('search is made on', function(){
+        beforeEach(function() {
+            scope.attr('searchField', 'radarNumber');
+            // reset search results
+            var searchValue = component.find('pui-grid-search .search-text').val();
+            if (searchValue) {
+                component.find('pui-grid-search .input-reset').trigger('click');
+            }
+        });
+
+        it('radarNumber', function() {
+            updateSearchTerm({
+                value: '101897'
+            });
+
+            jasmine.clock().runToLast();
+
+            expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+        });
+    });
 });
+
