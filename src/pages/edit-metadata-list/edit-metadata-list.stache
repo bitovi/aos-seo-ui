@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td><b>Radar Link: </b></td>
-                            <td>{{{setLinkToRadar(radarDetails.radarLink)}}}</td>
+                            <td><a href="{{radarDetails.radarLink}}">{{radarDetails.radarLink}}</a></td>
                         </tr>
                     </table>
                 {{else}}

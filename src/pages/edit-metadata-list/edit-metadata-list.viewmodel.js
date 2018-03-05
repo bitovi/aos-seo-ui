@@ -168,7 +168,7 @@ module.exports = can.Map.extend({
          * @option {String} Default is MM/DD/YYYY.
          */
         dateMask: {
-            value: 'MM/DD/YYYY',
+            value: 'YYYY-MM-DD HH:mm',
             type: 'string'
         },
 
@@ -178,10 +178,7 @@ module.exports = can.Map.extend({
          */
         currentDate: {
             value: moment().format('MM/DD/YYYY'),
-            type: 'string',
-            set: function (val) {
-                return moment.utc(val).format(this.attr('dateMask'));
-            }
+            type: 'string'            
         },
 
         /**
@@ -390,7 +387,7 @@ module.exports = can.Map.extend({
                 urls.push(urlItem);
             });
 
-            this.attr('createRequest.dueDate', this.attr('currentDate'));
+            this.attr('createRequest.dueDate', moment.utc(this.attr('currentDate')).format(this.attr('dateMask')));
             this.attr('createRequest.title', this.attr('title'));
             this.attr('createRequest.description', this.attr('description'));
             this.attr('createRequest.urls', urls);
@@ -404,20 +401,6 @@ module.exports = can.Map.extend({
                     self.attr('radarDetails', resp.detail);
                 });
             });
-        }
-    },
-
-    /**
-     * @function edit-metadata-list.viewModel.setLinkToRadar
-     * @description add href link to radar string.
-     * @param {string} string radar link as string.
-     */
-    setLinkToRadar: function (string) {
-        if (string) {
-            var link = string.substring(string.lastIndexOf("<")+1,string.lastIndexOf(">"));
-            var displayString = string.split(link);
-            displayString.splice(1, 0, '<a href="'+ link +'">'+ link +'</a>');
-            return displayString.join("");
         }
     },
 
