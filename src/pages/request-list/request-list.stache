@@ -21,7 +21,7 @@
                     class="btn btn-link btn-adv-search {{#if multiSearchEnabled}}enabled{{/if}} {{#if multiSearchActive}}on{{/if}}"
                     data-toggle="collapse"
                     data-target="#multi-search"
-                    aria-expanded="{{#if multiSearchEnabled}}true{{/if}}{{^if multiSearchEnabled}}false{{/if}}"
+                    aria-expanded="{multiSearchEnabled}"
                     aria-controls="multi-search"
                     can-click="toggleAdvSearchTab">Advanced Search
                 </button>

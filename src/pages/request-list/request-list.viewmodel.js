@@ -1,6 +1,7 @@
 require('can/map/define/define');
 var can = require('can');
-var Model = require('seo-ui/models/edit-metadata/create-request');
+var Model = require('seo-ui/models/request-list/request-list');
+var unsortableColumns = require('seo-ui/utils/unsortableColumns');
 
 module.exports = can.Map.extend({
     define: {

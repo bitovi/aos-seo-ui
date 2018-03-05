@@ -16,7 +16,6 @@ module.exports = can.Model.extend({
                 type: 'string'
             }           
         },
-        findAll: 'GET ' + envVars.apiUrl() + '/request-list.json',
         create: function (entity, params) {
             var url = envVars.apiUrl()+'/notifications/create.json';
             return can.ajax({

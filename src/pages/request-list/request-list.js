@@ -1,3 +1,10 @@
+/**
+ * @module  {can.Component} request-list  Request-list
+ * @parent pages
+ *
+ * @description request list page displays all thre created request.
+ */
+
 require('can/map/define/define');
 require('can/view/stache/stache');
 require('bootstrap/js/collapse');
