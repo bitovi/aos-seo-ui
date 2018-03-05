@@ -168,7 +168,7 @@ module.exports = can.Map.extend({
          * @option {String} Default is MM/DD/YYYY.
          */
         dateMask: {
-            value: 'YYYY-MM-DD HH:mm',
+            value: 'YYYY-MM-DD',
             type: 'string'
         },
 
