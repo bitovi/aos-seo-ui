@@ -89,8 +89,15 @@
                                 {($value)}="description">
                             </textarea>
                      </div>
-                    <div class="form-group">
+                    <div class="form-group {{#errors.date}} has-error{{/errors.date}}">
                         <label for="requestpriority">Due Date:</label>
+                        {{#if errors.date}}
+                            <pui-tool-tip icon-class="icon-error"
+                                alignment="right"
+                                title="{{#errors.date}}{{.}} {{/errors.date}}"
+                                is-visible="true">
+                            </pui-tool-tip>
+                        {{/if}}
                         <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
                             <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
                         </pui-date-picker>
