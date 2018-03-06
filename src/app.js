@@ -79,6 +79,29 @@ function initApp(isDeployed, fixturesOn) {
     $('#app').html(indexView(appState));
 
     setupRoutes(appState, $('#content'));
+
+    var template = require('./nav.stache!');
+    var vm = new can.Map({
+        menuItems: [
+            {
+                iconClass:"icon-project-home",
+                label: "SEO Metadata",
+                pageUrl: "/"
+            },
+            {
+                iconClass:"icon-loop",
+                label: "Generate",
+                pageUrl: "/generate"
+            },
+            {
+                iconClass:"icon-eye",
+                label: "Review",
+                pageUrl: "/review"
+            }
+        ]
+    });
+
+    $('.container-fluid').append(template(vm));
 }
 
 $(function () {

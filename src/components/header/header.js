@@ -5,6 +5,7 @@ require('can/view/stache/stache');
 require('seo-ui/components/user-menu/user-menu');
 require('seo-ui/components/fixture-toggle/fixture-toggle');
 require('bootstrap/js/dropdown');
+require('@apple/pui/components/nav-bar/nav-bar');
 
 var template = require('./header.stache!');
 var ViewModel = require('./header.viewmodel');
