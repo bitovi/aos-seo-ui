@@ -89,12 +89,12 @@
                                 {($value)}="description">
                             </textarea>
                      </div>
-                    <div class="form-group {{#errors.date}} has-error{{/errors.date}}">
+                    <div class="form-group {{#errors.dueDate}} has-error{{/errors.dueDate}}">
                         <label for="requestpriority">Due Date:</label>
-                        {{#if errors.date}}
+                        {{#if errors.dueDate}}
                             <pui-tool-tip icon-class="icon-error"
                                 alignment="right"
-                                title="{{#errors.date}}{{.}} {{/errors.date}}"
+                                title="{{#errors.dueDate}}{{.}} {{/errors.dueDate}}"
                                 is-visible="true">
                             </pui-tool-tip>
                         {{/if}}

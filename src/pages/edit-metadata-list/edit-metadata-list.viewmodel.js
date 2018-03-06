@@ -110,7 +110,7 @@ module.exports = can.Map.extend({
             value: can.Map.extend({
                 define: {
                     /**
-                     * @property {String} create-revision.viewModel.errors.title errors.title
+                     * @property {String} edit-metadata-list.viewModel.errors.title errors.title
                      * @description if valid value is false otherwise value is the validation error
                      * @option {String} Defaults to false
                      */
@@ -118,7 +118,7 @@ module.exports = can.Map.extend({
                         value: false
                     },
                     /**
-                     * @property {String} create-revision.viewModel.errors.description errors.description
+                     * @property {String} edit-metadata-list.viewModel.errors.description errors.description
                      * @description if valid value is false otherwise value is the validation error
                      * @option {String} Defaults to false
                      */
@@ -126,20 +126,20 @@ module.exports = can.Map.extend({
                         value: false
                     },
                     /**
-                     * @property {String} create-revision.viewModel.errors.date errors.date
+                     * @property {String} edit-metadata-list.viewModel.errors.dueDate errors.dueDate
                      * @description if valid value is false otherwise value is the validation error
                      * @option {String} Defaults to false
                      */
-                    date: {
+                    dueDate: {
                         value: false
                     },
                     /**
-                     * @property {Boolean} create-revision.viewModel.errors.isValid errors.isValid
+                     * @property {Boolean} edit-metadata-list.viewModel.errors.isValid errors.isValid
                      * @description Returns: true, if all the attrs are valid and false, if there is one or more errors.
                      */
                     isValid: {
                         get: function () {
-                            return !this.attr('date') && !this.attr('title') && !this.attr('description');
+                            return !this.attr('dueDate') && !this.attr('title') && !this.attr('description');
                         }
                     }
                 }
@@ -179,7 +179,7 @@ module.exports = can.Map.extend({
             value: 'YYYY-MM-DD',
             type: 'string'
         },
-        
+
         /**
          * @property {string} currentDate
          * @description Shows current date
@@ -303,8 +303,8 @@ module.exports = can.Map.extend({
     },
  
     /**
-     * @function create-revision.viewModel.validateName validateName
-     * @description runs validation on [create-revision.viewModel.name] or the passed value
+     * @function edit-metadata-list.viewModel.validateDescription validateDescription
+     * @description runs validation on [create-revision.viewModel.validateDescription] or the passed value
      * @param {String} val the value being validated
      */
     validateDescription: function (val) {
@@ -321,7 +321,7 @@ module.exports = can.Map.extend({
 
     /**
      * @function create-revision.viewModel.validateDate validateDate
-     * @description runs validation on [create-revision.viewModel.date] or the passed value
+     * @description runs validation on [edit-metadata-list.viewModel.validateDate] or the passed value
      * @param {Boolean} hasVal if the function is being called with a specific value to validate
      * @param {String} val the value being validated
      */
@@ -331,13 +331,13 @@ module.exports = can.Map.extend({
         var scheduledPushDate = moment(date, 'MM/DD/YYYY').endOf('day');
 
         if (!date) {
-            this.attr('errors.date', 'Date is required.');
+            this.attr('errors.dueDate', 'Date is required.');
         } else if (!moment(date, 'MM/DD/YYYY').isValid()) {
-            this.attr('errors.date', 'Date is invalid.');
+            this.attr('errors.dueDate', 'Date is invalid.');
         } else if (scheduledPushDate.isBefore(today)) {
-            this.attr('errors.date', 'Date in the past.');
+            this.attr('errors.dueDate', 'Date in the past.');
         } else {
-            this.attr('errors.date', false);
+            this.attr('errors.dueDate', false);
         }
     },
 
@@ -364,7 +364,7 @@ module.exports = can.Map.extend({
         this.attr('currentDate', this.attr('minDate'));
         this.attr('errors.title', false);
         this.attr('errors.description', false);
-        this.attr('errors.date', false);
+        this.attr('errors.dueDate', false);
         if (this.attr('showRadarDetails')) {
             this.cancelRequest();
         }
