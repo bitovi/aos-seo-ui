@@ -71,6 +71,14 @@
                     Review
                 </a>
             </li>
+            <li class="{{activeTab requestList}}">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link requestList}}"
+                >
+                    Request List
+                </a>
+            </li>
         </ul>
     </nav>
     {{/if}}

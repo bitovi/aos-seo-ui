@@ -32,6 +32,10 @@ var ViewModel = can.Map.extend({
         reviewUrl: {
             value: 'review',
             type: 'string'
+        },
+        requestList: {
+            value: 'request-list',
+            type: 'string'
         }
     },
 
