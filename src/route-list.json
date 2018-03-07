@@ -9,8 +9,7 @@
     "urls": {
         "layout": {
             "hideFooter": false,
-            "hideHeader": false,
-            "hideSubHeader": false
+            "hideHeader": false
         },
         "params": {
             "countries": "",
@@ -36,7 +35,7 @@
             "hideFooter": false,
             "hideHeader": false,
             "hideSubHeader": true
-        },  
+        },
         "params" : {
             "page" : "edit-metadata-list",
             "selectedItems": ""

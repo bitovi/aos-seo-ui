@@ -39,6 +39,4 @@
             </div>
         </div>
     </nav>
-    {{^if layoutState.hideSubHeader}}
-    {{/if}}
 </header>
