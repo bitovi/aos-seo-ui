@@ -18,6 +18,7 @@ var logger = require('seo-ui/utils/log');
 var ServerVars = require('seo-ui/models/server-vars/');
 var setupRoutes = require('seo-ui/routes');
 var User = require('seo-ui/models/user/');
+var template = require('./nav.stache!');
 
 if (envVars.isDeployedBuild() === 'false') {
     window._environment = {
@@ -80,7 +81,6 @@ function initApp(isDeployed, fixturesOn) {
 
     setupRoutes(appState, $('#content'));
 
-    var template = require('./nav.stache!');
     var vm = new can.Map({
         menuItems: [
             {
