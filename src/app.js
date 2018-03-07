@@ -84,7 +84,7 @@ function initApp(isDeployed, fixturesOn) {
     var vm = new can.Map({
         menuItems: [
             {
-                iconClass:"icon-project-home",
+                iconClass:"icon-home",
                 label: "SEO Metadata",
                 pageUrl: "/"
             },
