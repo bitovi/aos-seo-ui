@@ -48,7 +48,7 @@
     "testee": "0.3.1"
   },
   "dependencies": {
-    "@apple/pui": "file:../publishing-ui",
+    "@apple/pui": "1.0.0",
     "bootstrap": "3.3.7",
     "can": "2.3.26",
     "jquery": "2.2.4",
