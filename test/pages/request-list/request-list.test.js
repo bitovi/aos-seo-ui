@@ -7,7 +7,6 @@ var AppState = require('seo-ui/models/appstate/appstate');
 var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
-var scope;
 var state;
 var stateObj = {
     page: 'request-list',
@@ -32,7 +31,7 @@ var renderPage = function (newState) {
     jasmine.clock().runToLast();
 
     component = $('#sandbox seo-request-list');
-    scope = component.data('scope');
+    vm = component.data('scope');
 };
 
 var testSort = function (name) {
@@ -263,7 +262,7 @@ describe('Request List Page', function () {
     
     describe('search is made on', function(){
         beforeEach(function() {
-            scope.attr('searchField', 'radarNumber');
+            vm.attr('searchField', 'radarNumber');
             // reset search results
             var searchValue = component.find('pui-grid-search .search-text').val();
             if (searchValue) {
