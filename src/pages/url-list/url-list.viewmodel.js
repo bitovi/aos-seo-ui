@@ -385,7 +385,7 @@ module.exports = can.Map.extend({
         self.attr('items').map(function (option) {
             option.attr('selected', toggleState);
 
-            if (!self.isSelectedItemExist(option) && toggleState) {
+            if (!self.isSelectedItemExist(option) && toggleState && !self.hideCheckbox(option.url)) {
                 self.attr('selectedItems').push(option);
             } else if (!toggleState) {
                 self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
@@ -425,5 +425,29 @@ module.exports = can.Map.extend({
         this.attr('items').map(function (option) {
             option.attr('selected', false);
         });
+    },
+    
+    /**
+     * @function url-list.viewModel.hideCheckbox
+     * @description hide checkBox if URl does not have any editable keys and if page type is PDP
+     */
+    hideCheckbox: function (url) {
+        var item;
+        this.attr('items').map(function (option) {
+            if (option.url === url) {
+                item = option;
+            }
+        });
+
+        if (item) {
+            var isTitleEditable = item.titleAnatomy.filter(function (title) {
+                return title.editable;
+            }).length;
+            var isDescriptionEditable = item.titleAnatomy.filter(function (description) {
+                return description.editable;
+            }).length;
+
+            return item.pageType === 'pdp' || (isTitleEditable === 0 || isDescriptionEditable === 0);
+        }
     }
 });
