@@ -19,8 +19,8 @@
 
 <div class="container-fluid">
     <pui-nav-bar
-    menu-items="{navMenuItems}"
-    {^is-expanded}="navIsExpanded"
+        menu-items="{navMenuItems}"
+        {^is-expanded}="navIsExpanded"
     ></pui-nav-bar>
     <div id="content" {{^if navIsExpanded}}class="content-nav-side-bar-collapsed"{{/if}}></div>
 </div>

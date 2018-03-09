@@ -9,7 +9,8 @@
     "urls": {
         "layout": {
             "hideFooter": false,
-            "hideHeader": false
+            "hideHeader": false,
+            "hideSubHeader": false
         },
         "params": {
             "countries": "",

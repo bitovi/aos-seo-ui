@@ -27,7 +27,8 @@ module.exports = function (appState, content) {
         var oldData = routes[oldRoute];
 
         if (newRoute !== undefined && data && (!oldData || (oldData.template !== data.template))) {
-            
+            appState.attr('layoutState', data.layout);
+
             // Allow an alert to persist through a route change (but only once)
             // Useful for sub-page navigation where the sub-page displays an alert before returning to their parent.
             if (alert) {

@@ -80,7 +80,6 @@ function initApp(isDeployed, fixturesOn) {
     $('#app').html(indexView(appState));
 
     setupRoutes(appState, $('#content'));
-
 }
 
 $(function () {
