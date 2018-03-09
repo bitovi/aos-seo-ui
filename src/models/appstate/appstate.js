@@ -94,7 +94,7 @@ module.exports = can.Map.extend({
              serialize: false,
              value: [
                  {
-                     iconClass: 'icon-project-home',
+                     iconClass: 'icon-home',
                      label: 'SEO Metadata',
                      pageName: 'url-list'
                  },
