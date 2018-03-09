@@ -318,21 +318,22 @@ module.exports = can.Map.extend({
                     localStorage.removeItem('editMetadata');
                 }
 
-                if (self.attr('selectedItems').length > 0) {
-                    newVal.map(function (item) {
-                        searchTerm = item.attr('url');
-                        itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
-                            return checkeditem.url == searchTerm;
-                        });
-
-                        if (itemIndex  > -1) {
-                            item.attr('selected', true);
-                        }
+                newVal.map(function (item) {
+                    searchTerm = item.attr('url');
+                    itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
+                        return checkeditem.url == searchTerm;
                     });
-                    return newVal;
-                } else {
-                    return newVal;
-                }
+
+                    if (self.hasEditableKeys(item)) {
+                        item.attr('isUrlEditable', true);
+                    }
+
+                    if (itemIndex  > -1) {
+                        item.attr('selected', true);
+                    }
+                });
+                return newVal;
+                
             }
         },
 
@@ -349,7 +350,11 @@ module.exports = can.Map.extend({
                         .filter(function (option) {
                             return option.attr('selected');
                         }).length;
-                    return this.attr('items').attr('length') === selectedItemsCount;
+                    var editableItemsCount = this.attr('items')
+                        .filter(function (option) {
+                            return option.attr('isUrlEditable');
+                        }).length;
+                    return editableItemsCount === selectedItemsCount;
                 }
             }
         }
@@ -383,11 +388,11 @@ module.exports = can.Map.extend({
         var toggleState = evt.context.checked;
 
         self.attr('items').map(function (option) {
-            option.attr('selected', toggleState);
-
-            if (!self.isSelectedItemExist(option) && toggleState && !self.hideCheckbox(option.url)) {
+            if (!self.isSelectedItemExist(option) && toggleState && option.attr('isUrlEditable')) {
+                option.attr('selected', toggleState);
                 self.attr('selectedItems').push(option);
             } else if (!toggleState) {
+                option.attr('selected', toggleState);
                 self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
             }
         });
@@ -428,26 +433,22 @@ module.exports = can.Map.extend({
     },
     
     /**
-     * @function url-list.viewModel.hideCheckbox
-     * @description hide checkBox if URl does not have any editable keys and if page type is PDP
+     * @function url-list.viewModel.hasEditableKeys
+     * @description check whether it has editable keys or not and return if has editable keys.
      */
-    hideCheckbox: function (url) {
-        var item;
-        this.attr('items').map(function (option) {
-            if (option.url === url) {
-                item = option;
-            }
-        });
-
+    hasEditableKeys: function (item) {
         if (item) {
-            var isTitleEditable = item.titleAnatomy.filter(function (title) {
-                return title.editable;
-            }).length;
-            var isDescriptionEditable = item.titleAnatomy.filter(function (description) {
-                return description.editable;
-            }).length;
+            var itemValues = _.valuesIn(item.attr());
+            var arrayValues = _.filter(itemValues, function (item) { return _.isArray(item)});
+            var hasEditable = false;
 
-            return item.pageType === 'pdp' || (isTitleEditable === 0 || isDescriptionEditable === 0);
+            arrayValues.forEach(function (arrayItem) {
+                if(_.filter(arrayItem, { editable: true, type: 'text_asset' }).length > 0) {
+                    hasEditable = true;
+                }
+            });
+
+            return hasEditable;
         }
     }
 });
