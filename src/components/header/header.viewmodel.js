@@ -5,6 +5,10 @@ require('can/map/define/define');
 
 var ViewModel = can.Map.extend({
     define: {
+        homeUrl: {
+            value: 'urls',
+            type: 'string'
+        },
         rulesUrl: {
             value: 'rules',
             type: 'string'

@@ -83,6 +83,41 @@ module.exports = can.Map.extend({
         version: {
             type: 'string',
             serialize: false
+        },
+
+        /**
+         * @property {Array} appstate.viewModel.navMenuItems
+         * @description The navigation bar links
+         */
+         navMenuItems: {
+             Type: can.List,
+             serialize: false,
+             value: [
+                 {
+                     iconClass: 'icon-project-home',
+                     label: 'SEO Metadata',
+                     pageName: 'url-list'
+                 },
+                 {
+                     iconClass: 'icon-loop',
+                     label: 'Generate',
+                     pageName: 'generate-page'
+                 },
+                 {
+                     iconClass: 'icon-eye',
+                     label: 'Review',
+                     pageName: 'review-page'
+                 }
+             ]
+         },
+
+        /**
+         * @property {Boolean} appstate.viewModel.navIsExpanded
+         * @description Indicates if the navigation bar is expanded or collapsed
+         */
+        navIsExpanded: {
+            type: 'boolean',
+            serialize: false
         }
     },
 

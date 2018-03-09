@@ -1,5 +1,6 @@
 require('@apple/pui/components/alert/alert');
 require('@apple/pui/components/confirm/confirm');
+require('@apple/pui/components/nav-bar/nav-bar');
 require('seo-ui/app.less!');
 require('seo-ui/components/header/');
 require('seo-ui/utils/viewHelpers');
@@ -18,7 +19,7 @@ var logger = require('seo-ui/utils/log');
 var ServerVars = require('seo-ui/models/server-vars/');
 var setupRoutes = require('seo-ui/routes');
 var User = require('seo-ui/models/user/');
-var template = require('./nav.stache!');
+//var template = require('./nav.stache!');
 
 if (envVars.isDeployedBuild() === 'false') {
     window._environment = {
@@ -81,27 +82,6 @@ function initApp(isDeployed, fixturesOn) {
 
     setupRoutes(appState, $('#content'));
 
-    var vm = new can.Map({
-        menuItems: [
-            {
-                iconClass:"icon-home",
-                label: "SEO Metadata",
-                pageUrl: "/"
-            },
-            {
-                iconClass:"icon-loop",
-                label: "Generate",
-                pageUrl: "/generate"
-            },
-            {
-                iconClass:"icon-eye",
-                label: "Review",
-                pageUrl: "/review"
-            }
-        ]
-    });
-
-    $('.container-fluid').append(template(vm));
 }
 
 $(function () {
