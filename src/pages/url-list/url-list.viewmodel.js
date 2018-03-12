@@ -324,7 +324,7 @@ module.exports = can.Map.extend({
                         return checkeditem.url == searchTerm;
                     });
 
-                    if (self.hasEditableKeys(item)) {
+                    if (UrlModel.hasEditableKeys(item)) {
                         item.attr('isUrlEditable', true);
                     }
 
@@ -430,25 +430,5 @@ module.exports = can.Map.extend({
         this.attr('items').map(function (option) {
             option.attr('selected', false);
         });
-    },
-    
-    /**
-     * @function url-list.viewModel.hasEditableKeys
-     * @description check whether it has editable keys or not and return if has editable keys.
-     */
-    hasEditableKeys: function (item) {
-        if (item) {
-            var itemValues = _.valuesIn(item.attr());
-            var arrayValues = _.filter(itemValues, function (item) { return _.isArray(item)});
-            var hasEditable = false;
-
-            arrayValues.forEach(function (arrayItem) {
-                if(_.filter(arrayItem, { editable: true, type: 'text_asset' }).length > 0) {
-                    hasEditable = true;
-                }
-            });
-
-            return hasEditable;
-        }
     }
 });
