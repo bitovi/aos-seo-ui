@@ -5,7 +5,7 @@
                 <div class="grid-item-value">
                     {{#switch key}}
                         {{#case 'selectUrl'}}
-                            {{#if isUrlEditable}}
+                            {{#if hasEditableKeys}}
                                 <input type="checkbox" {{#if selected}}checked{{/if}} ($click)="selectRowUrl(url, %event)" />
                             {{/if}}
                         {{/case}}

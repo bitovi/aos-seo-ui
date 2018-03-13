@@ -324,10 +324,6 @@ module.exports = can.Map.extend({
                         return checkeditem.url == searchTerm;
                     });
 
-                    if (UrlModel.hasEditableKeys(item)) {
-                        item.attr('isUrlEditable', true);
-                    }
-
                     if (itemIndex  > -1) {
                         item.attr('selected', true);
                     }
@@ -352,7 +348,7 @@ module.exports = can.Map.extend({
                         }).length;
                     var editableItemsCount = this.attr('items')
                         .filter(function (option) {
-                            return option.attr('isUrlEditable');
+                            return option.attr('hasEditableKeys');
                         }).length;
                     return editableItemsCount === selectedItemsCount;
                 }
@@ -388,7 +384,7 @@ module.exports = can.Map.extend({
         var toggleState = evt.context.checked;
 
         self.attr('items').map(function (option) {
-            if (!self.isSelectedItemExist(option) && toggleState && option.attr('isUrlEditable')) {
+            if (!self.isSelectedItemExist(option) && toggleState && option.attr('hasEditableKeys')) {
                 option.attr('selected', toggleState);
                 self.attr('selectedItems').push(option);
             } else if (!toggleState) {

@@ -19,20 +19,6 @@ module.exports = can.Model.extend(
                 dataType: 'json',
                 contentType: 'application/json'
             });
-        },
-
-        hasEditableKeys: function (item) {
-            if (item) {
-                var urlVals = Object.values(item.attr());
-                var keyIsEditable = function (key) {
-                    return key.editable && key.type === 'text_asset';
-                };
-
-                // Searches URL property values for arrays with editable keys
-                return urlVals.some(function (val) {
-                    return Array.isArray(val) && val.some(keyIsEditable);
-                });
-            }
         }
     },
     {
@@ -53,6 +39,20 @@ module.exports = can.Model.extend(
 
             descriptionAnatomy: {
                 value: []
+            },
+
+            hasEditableKeys: {
+                get: function (newVal) {
+                    var urlVals = Object.values(this.attr());
+                    var keyIsEditable = function (key) {
+                        return key.editable && key.type === 'text_asset';
+                    };
+
+                    // Searches URL property values for arrays with editable keys
+                    return urlVals.some(function (val) {
+                        return Array.isArray(val) && val.some(keyIsEditable);
+                    });
+                }
             },
 
             guid: {
