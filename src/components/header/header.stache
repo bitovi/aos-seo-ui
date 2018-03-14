@@ -7,7 +7,7 @@
         <div class="navbar-header">
             <a
                 class="check-saved-state-js navbar-brand"
-                href="{{link homeUrl}}"
+                href="{{link('urls')}}"
             >
                 <span class="apple-logo"></span>
                 SEO Manager
@@ -30,7 +30,7 @@
                 <seo-user-menu user-data="{user}">
                     <li>
                         <a
-                            href="{{logoutUrl}}"
+                            href="{{link('logout')}}"
                         >
                             Logout
                         </a>

@@ -52,12 +52,6 @@ describe('Header', function () {
             });
         });
 
-        describe('global-secondary-nav', function () {
-            it('exists', function () {
-                expect($component.find('.global-secondary-nav')).not.toExist();
-            });
-        });
-
         describe('version number', function () {
             beforeEach(function () {
                 vm.attr('version', '1.0');

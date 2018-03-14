@@ -27,23 +27,15 @@ var ViewModel = can.Map.extend({
     },
 
     /**
-     * @function header.viewModel.homeUrl homeUrl
-     * @description Generates a URL to the home page.
+     * @function header.viewModel.link
+     * @description Generates a URL according to the passed in variables.
      * @return {String} The home page URL
      */
-    link: function (url) {
-        url = url && url.isComputed ? url() : '';
-        return envVars.rootApp() + '/' + url;
-    },
+     link: function (page) {
+         var url = page || '';
 
-    /**
-     * @function header.viewmodel.logoutUrl
-     * @description The URL that we need to use to logout of the system
-     * @return {String} The logout URL
-     */
-    logoutUrl: function () {
-        return envVars.rootApp() + '/logout';
-    }
+         return envVars.rootApp() + '/' + url;
+     }
 });
 
 module.exports = ViewModel;
