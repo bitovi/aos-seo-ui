@@ -13,12 +13,12 @@ var ViewModel = can.Map.extend({
         var seo = window.seo;
 
         return seo !== undefined ? seo : {};
-    },      
+    },
 
     /**
      * @function header.viewModel.link
      * @description Generates a URL according to the passed in variables.
-     * @return {String} it returns a URL string.
+     * @return {String} A URL string
      */
     link: function (page) {
         var url = page || '';
