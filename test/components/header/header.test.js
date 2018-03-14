@@ -52,12 +52,6 @@ describe('Header', function () {
             });
         });
 
-        describe('global-secondary-nav', function () {
-            it('exists', function () {
-                expect($component.find('.global-secondary-nav')).toExist();
-            });
-        });
-
         describe('version number', function () {
             beforeEach(function () {
                 vm.attr('version', '1.0');
@@ -81,7 +75,7 @@ describe('Header', function () {
                 $component = $('#sandbox seo-header');
             });
 
-            it('renders', function () {    
+            it('renders', function () {
                 expect($component.find('.read-only-label')).toExist();
             });
         });

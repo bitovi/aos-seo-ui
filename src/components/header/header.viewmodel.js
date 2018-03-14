@@ -4,41 +4,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 require('can/map/define/define');
 
 var ViewModel = can.Map.extend({
-    define: {
-        homeUrl: {
-            value: 'urls',
-            type: 'string'
-        },
-        generateUrl: {
-            value: 'generate',
-            type: 'string'
-        },
-        rulesUrl: {
-            value: 'rules',
-            type: 'string'
-        },
-        logoutUrl: {
-            value: 'logout',
-            type: 'string'
-        },
-        importUrl: {
-            value: 'utilities',
-            type: 'string'
-        },
-        reportsUrl: {
-            value: 'reports',
-            type: 'string'
-        },
-        reviewUrl: {
-            value: 'review',
-            type: 'string'
-        },
-        requestList: {
-            value: 'request-list',
-            type: 'string'
-        }
-    },
-
     /**
      * @function header.viewmodel.appInfo
      * @description This will return the super global "seo" that is defined on the window object on the page
@@ -51,22 +16,14 @@ var ViewModel = can.Map.extend({
     },
 
     /**
-     * @function header.viewModel.homeUrl homeUrl
-     * @description Generates a URL to the home page.
-     * @return {String} The home page URL
+     * @function header.viewModel.link
+     * @description Generates a URL according to the passed in variables.
+     * @return {String} A URL string
      */
-    link: function (url) {
-        url = url && url.isComputed ? url() : '';
-        return envVars.rootApp() + '/' + url;
-    },
+    link: function (page) {
+        var url = page || '';
 
-    /**
-     * @function header.viewmodel.logoutUrl
-     * @description The URL that we need to use to logout of the system
-     * @return {String} The logout URL
-     */
-    logoutUrl: function () {
-        return envVars.rootApp() + '/logout';
+        return envVars.rootApp() + '/' + url;
     }
 });
 

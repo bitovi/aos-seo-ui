@@ -36,7 +36,7 @@
             "hideFooter": false,
             "hideHeader": false,
             "hideSubHeader": true
-        },  
+        },
         "params" : {
             "page" : "edit-metadata-list",
             "selectedItems": ""
