@@ -41,6 +41,20 @@ module.exports = can.Model.extend(
                 value: []
             },
 
+            hasEditableKeys: {
+                get: function () {
+                    var urlVals = Object.values(this.attr());
+                    var keyIsEditable = function (key) {
+                        return key.editable && key.type === 'text_asset';
+                    };
+
+                    // Searches URL property values for arrays with editable keys
+                    return urlVals.some(function (val) {
+                        return Array.isArray(val) && val.some(keyIsEditable);
+                    });
+                }
+            },
+
             guid: {
                 get: function () {
                     return guid();

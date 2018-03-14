@@ -318,21 +318,18 @@ module.exports = can.Map.extend({
                     localStorage.removeItem('editMetadata');
                 }
 
-                if (self.attr('selectedItems').length > 0) {
-                    newVal.map(function (item) {
-                        searchTerm = item.attr('url');
-                        itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
-                            return checkeditem.url == searchTerm;
-                        });
-
-                        if (itemIndex  > -1) {
-                            item.attr('selected', true);
-                        }
+                newVal.map(function (item) {
+                    searchTerm = item.attr('url');
+                    itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
+                        return checkeditem.url == searchTerm;
                     });
-                    return newVal;
-                } else {
-                    return newVal;
-                }
+
+                    if (itemIndex  > -1) {
+                        item.attr('selected', true);
+                    }
+                });
+                return newVal;
+                
             }
         },
 
@@ -349,7 +346,11 @@ module.exports = can.Map.extend({
                         .filter(function (option) {
                             return option.attr('selected');
                         }).length;
-                    return this.attr('items').attr('length') === selectedItemsCount;
+                    var editableItemsCount = this.attr('items')
+                        .filter(function (option) {
+                            return option.attr('hasEditableKeys');
+                        }).length;
+                    return editableItemsCount === selectedItemsCount;
                 }
             }
         }
@@ -383,11 +384,11 @@ module.exports = can.Map.extend({
         var toggleState = evt.context.checked;
 
         self.attr('items').map(function (option) {
-            option.attr('selected', toggleState);
-
-            if (!self.isSelectedItemExist(option) && toggleState) {
+            if (!self.isSelectedItemExist(option) && toggleState && option.attr('hasEditableKeys')) {
+                option.attr('selected', toggleState);
                 self.attr('selectedItems').push(option);
             } else if (!toggleState) {
+                option.attr('selected', toggleState);
                 self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
             }
         });

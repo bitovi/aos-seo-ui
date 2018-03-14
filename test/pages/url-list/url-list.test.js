@@ -312,7 +312,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().runToLast();
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(5);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
                 });
 
                 it('within a value', function () {
@@ -355,7 +355,7 @@ describe('URL List Page', function () {
 
                     jasmine.clock().runToLast();
 
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
+                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
 
                 it('within a value', function () {
@@ -526,7 +526,7 @@ describe('URL List Page', function () {
             var $resultTitle;
 
             beforeEach(function () {
-                $resultTitle = $results.eq(5).find('.url-page-title');
+                $resultTitle = $results.eq(6).find('.url-page-title');
             });
 
             it('does not display any content in the Page Title column', function () {
@@ -542,7 +542,7 @@ describe('URL List Page', function () {
             });
 
             it('displays the page title value as a single string', function () {
-                expect($resultTitle.text().trim()).toEqual('iPad Mini - Apple');
+                expect($resultTitle.text().trim()).toEqual('iPod Touch  -    Apple');
             });
         });
 
@@ -788,7 +788,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(14).find('.url-desc');
+                $resultDesc = $results.eq(15).find('.url-desc');
             });
 
             it('does not display any content in the Description column', function () {
@@ -800,7 +800,7 @@ describe('URL List Page', function () {
             var $resultDesc;
 
             beforeEach(function () {
-                $resultDesc = $results.eq(5).find('.description > .grid-item-value');
+                $resultDesc = $results.eq(6).find('.description > .grid-item-value');
             });
 
             it('displays the description value as a single string', function () {
@@ -1044,7 +1044,7 @@ describe('URL List Page', function () {
         var $result;
 
         beforeEach(function () {
-            $result = component.find('pui-grid-list .item').eq(6);
+            $result = component.find('pui-grid-list .item').eq(7);
         });
 
         it('does not collapse the whitespace', function () {
@@ -1066,7 +1066,7 @@ describe('URL List Page', function () {
     describe('On selecting Url ', function () {
 
         beforeEach(function () {
-            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
+            $row  = component.find('pui-grid-list tbody > tr').eq(2).find("input");
             $row.trigger("click");
             jasmine.clock().runToLast();
         });
@@ -1096,7 +1096,7 @@ describe('URL List Page', function () {
         });
 
         it('selecting a row item increases the count ', function () {
-            component.find('pui-grid-list tbody > tr').eq(1).find("input").trigger("click");
+            component.find('pui-grid-list tbody > tr').eq(2).find("input").trigger("click");
             expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
         });
     });

@@ -401,7 +401,7 @@
             "urlAspenLink": "http://wwwqa1.corp.apple.com/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-이어폰-사이렌-레드",
             "partNumber": "MNLY2ZP/A",
             "pageTitle": "Powerbeats3 Wireless 이어폰 - 사이렌 레드 - Apple (KR)",
-            "pageType": "pdp",
+            "pageType": "category",
             "description": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
             "segment": "epp-discounted",
             "region": "apac",
@@ -429,7 +429,8 @@
                 {
                     "name": "store.seo.full.pagetitle",
                     "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드  - Apple  (KR)",
-                    "type": "text_asset"
+                    "type": "text_asset",
+                    "editable" : true
                 },
                 {
                     "name": "productPageTitle",
@@ -508,6 +509,51 @@
         },
         {
             "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url" : "/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automations",
+            "urlAspenLink" : "http://wwwdev1.corp.apple.com/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automation",
+            "partNumber" : "shop_ipad",
+            "pageTitle" : "Home Automation - iPad Accessories - Business - Apple (AU)1",
+            "pageType" : "category",
+            "description" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shipping.",
+            "segment" : "smb-discounted",
+            "region" : "apac",
+            "country" : "AU",
+            "storeFrontId" : 10126,
+            "storeFrontAlias" : "au_smb-discounted_10126",
+            "createDate" : "2017-08-07T10:22:11Z",
+            "modifyDate" : "2017-08-07T10:22:11Z",
+            "status" : "unchanged",
+            "titleAnatomy" : [ {
+                "name" : "pub.category.title.home_automation",
+                "value" : "Home Automation",
+                "type" : "text_asset",
+                "editable" : false
+            }, {
+                "name" : "store.seo.hyphen",
+                "value" : "-",
+                "type" : "text_asset",
+                "editable" : false
+            }, {
+                "name" : "node data",
+                "value" : "iPad Accessories",
+                "type" : "node_data",
+                "editable" : false
+            }, {
+                "name" : "store.base_title",
+                "value" : "Business - Apple (AU)1",
+                "type" : "text_asset",
+                "editable" : false
+            } ],
+                "descriptionAnatomy" : [ {
+                "name" : "pub.meta.shop_ipad.ipad_acc.home_automation",
+                "value" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shippings.",
+                "type" : "text_asset",
+                "editable" : false
+            } ],
+            "nemoReadyRecord" : true
+        },
+        {
+            "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
             "url" : "/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
             "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
             "partNumber" : "HG5J2ZM/B",
@@ -558,7 +604,8 @@
                     "name" : "productMetaDescription",
                     "value" : "store.seo.full.description",
                     "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
-                    "type" : "text_asset"
+                    "type" : "text_asset",
+                    "editable" : true
                 },
                 {
                     "name": "productMetaDescription1",
