@@ -51,6 +51,23 @@
         "template": "<seo-generate-page state=\"{.}\"></seo-generate-page>",
         "title": "Generate Publishing-Ready File"
     },
+    "request-list": {
+        "params": {
+            "page": "request-list",
+            "limit": 25,
+            "order": "desc",
+            "pageNumber": 1,
+            "radarNumber": "",
+            "radarTitle": "",
+            "radarDescription": "",
+            "state": "",
+            "subState": "",
+            "createUser": "",
+            "sort": "createDate"
+        },
+        "template": "<seo-request-list state=\"{.}\"></seo-request-list>",
+        "title": "Request List"
+    },
     "review": {
         "params": {
             "page": "review-page"

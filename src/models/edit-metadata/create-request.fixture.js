@@ -5,7 +5,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 var createRequestResponse = require('./create-request.json');
 var notificationDetails = require('./notification-details.json');
 
-
 can.fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function (req, res) {
     var notification = req.data;
 
