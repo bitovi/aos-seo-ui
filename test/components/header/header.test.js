@@ -54,7 +54,7 @@ describe('Header', function () {
 
         describe('global-secondary-nav', function () {
             it('exists', function () {
-                expect($component.find('.global-secondary-nav')).toExist();
+                expect($component.find('.global-secondary-nav')).not.toExist();
             });
         });
 
@@ -81,7 +81,7 @@ describe('Header', function () {
                 $component = $('#sandbox seo-header');
             });
 
-            it('renders', function () {    
+            it('renders', function () {
                 expect($component.find('.read-only-label')).toExist();
             });
         });

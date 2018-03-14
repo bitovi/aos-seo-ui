@@ -9,28 +9,8 @@ var ViewModel = can.Map.extend({
             value: 'urls',
             type: 'string'
         },
-        generateUrl: {
-            value: 'generate',
-            type: 'string'
-        },
-        rulesUrl: {
-            value: 'rules',
-            type: 'string'
-        },
         logoutUrl: {
             value: 'logout',
-            type: 'string'
-        },
-        importUrl: {
-            value: 'utilities',
-            type: 'string'
-        },
-        reportsUrl: {
-            value: 'reports',
-            type: 'string'
-        },
-        reviewUrl: {
-            value: 'review',
             type: 'string'
         }
     },
