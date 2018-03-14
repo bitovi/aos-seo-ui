@@ -4,17 +4,6 @@ var envVars = require('seo-ui/utils/environmentVars');
 require('can/map/define/define');
 
 var ViewModel = can.Map.extend({
-    define: {
-        homeUrl: {
-            value: 'urls',
-            type: 'string'
-        },
-        logoutUrl: {
-            value: 'logout',
-            type: 'string'
-        }
-    },
-
     /**
      * @function header.viewmodel.appInfo
      * @description This will return the super global "seo" that is defined on the window object on the page
@@ -24,18 +13,18 @@ var ViewModel = can.Map.extend({
         var seo = window.seo;
 
         return seo !== undefined ? seo : {};
-    },
+    },      
 
     /**
      * @function header.viewModel.link
      * @description Generates a URL according to the passed in variables.
-     * @return {String} The home page URL
+     * @return {String} it returns a URL string.
      */
-     link: function (page) {
-         var url = page || '';
+    link: function (page) {
+        var url = page || '';
 
-         return envVars.rootApp() + '/' + url;
-     }
+        return envVars.rootApp() + '/' + url;
+    }
 });
 
 module.exports = ViewModel;
