@@ -43,7 +43,10 @@ module.exports = can.Model.extend(
 
             hasEditableKeys: {
                 get: function () {
-                    var urlVals = Object.values(this.attr());
+                    var editableKeys = this.attr();
+                    var urlVals = Object.keys(editableKeys).map(function(key) {
+                        return editableKeys[key];
+                    });
                     var keyIsEditable = function (key) {
                         return key.editable && key.type === 'text_asset';
                     };
