@@ -350,7 +350,7 @@ module.exports = can.Map.extend({
                         .filter(function (option) {
                             return option.attr('hasEditableKeys');
                         }).length;
-                    return editableItemsCount === selectedItemsCount;
+                    return editableItemsCount > 0 && editableItemsCount === selectedItemsCount;
                 }
             }
         }
@@ -387,7 +387,7 @@ module.exports = can.Map.extend({
             if (!self.isSelectedItemExist(option) && toggleState && option.attr('hasEditableKeys')) {
                 option.attr('selected', toggleState);
                 self.attr('selectedItems').push(option);
-            } else if (!toggleState) {
+            } else if (!toggleState && option.attr('hasEditableKeys')) {
                 option.attr('selected', toggleState);
                 self.attr('selectedItems').splice(_.findIndex(self.attr('selectedItems'), option), 1);
             }
