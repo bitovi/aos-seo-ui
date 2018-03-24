@@ -15,10 +15,10 @@ module.exports = can.Component.extend({
     viewModel: ViewModel,
     events: {
 
-    	/**
+        /**
          * @description Handles close click event and clear all selected item.
          */
-        'pui-modal-header .modal-header .close click' : function () {
+        'pui-modal-header .modal-header .close click': function () {
             var vm = this.viewModel;
             vm.resetDefaults();
         }

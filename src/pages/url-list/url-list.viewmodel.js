@@ -1,5 +1,4 @@
 var can = require('can');
-
 var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
@@ -321,15 +320,15 @@ module.exports = can.Map.extend({
                 newVal.map(function (item) {
                     searchTerm = item.attr('url');
                     itemIndex = _.findIndex(self.attr('selectedItems'), function(checkeditem) {
-                        return checkeditem.url == searchTerm;
+                        return checkeditem.url === searchTerm;
                     });
 
-                    if (itemIndex  > -1) {
+                    if (itemIndex > -1) {
                         item.attr('selected', true);
                     }
                 });
+
                 return newVal;
-                
             }
         },
 
@@ -362,15 +361,17 @@ module.exports = can.Map.extend({
      * @param {object} item that need to be check exist or not.
      */
     isSelectedItemExist: function (item) {
+        var itemExists = false;
+
         if (this.attr('selectedItems').length > 0) {
             var existedItemCount = this.attr('selectedItems').filter(function (selectedItem) {
                 return item.attr('url') === selectedItem.attr('url');
             }).length;
 
-            return existedItemCount > 0;
-        } else {
-            return false;
+            itemExists = existedItemCount > 0;
         }
+
+        return itemExists;
     },
 
     /**

@@ -1,5 +1,6 @@
 require('can/util/fixture/fixture');
 
+var _ = require('lodash');
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
 var requestList = require('./request-list.json').data;
