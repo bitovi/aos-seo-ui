@@ -89,32 +89,36 @@ module.exports = can.Map.extend({
          * @property {Array} appstate.viewModel.navMenuItems
          * @description The navigation bar links
          */
-         navMenuItems: {
-             Type: can.List,
-             serialize: false,
-             value: [
-                 {
-                     iconClass: 'icon-home',
-                     label: 'SEO Metadata',
-                     pageName: 'url-list'
-                 },
-                 {
-                     iconClass: 'icon-loop',
-                     label: 'Generate',
-                     pageName: 'generate-page'
-                 },
-                 {
-                     iconClass: 'icon-eye',
-                     label: 'Review',
-                     pageName: 'review-page'
-                 },
-                 {
-                     iconClass: 'icon-list',
-                     label: 'Request List',
-                     pageName: 'request-list'
-                 }
-             ]
-         },
+        navMenuItems: {
+            Type: can.List,
+            serialize: false,
+            get: function () {
+                var links = [
+                    {
+                        iconClass: 'icon-home',
+                        label: 'SEO Metadata',
+                        pageName: 'url-list'
+                    },
+                    {
+                        iconClass: 'icon-loop',
+                        label: 'Generate',
+                        pageName: 'generate-page'
+                    },
+                    {
+                        iconClass: 'icon-eye',
+                        label: 'Review',
+                        pageName: 'review-page'
+                    },
+                    {
+                        iconClass: 'icon-list',
+                        label: 'Request List',
+                        pageName: 'request-list'
+                    }
+                ];
+
+                return links;
+            }
+        },
 
         /**
          * @property {Boolean} appstate.viewModel.navIsExpanded

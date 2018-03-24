@@ -5,10 +5,8 @@
  * @description Utils to format content for display.
  *
  */
-var $ = require('jquery');
 
 module.exports = {
-
     /**
      * @signature 'formatUtils.trimString()'
      * @param string
@@ -26,6 +24,7 @@ module.exports = {
         if (string && string.trim) {
             string = string.trim();
         }
+
         return string;
     }
 };

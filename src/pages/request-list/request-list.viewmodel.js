@@ -15,14 +15,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<Object>} columns
-         * @description The list of columns (key name, header label, column width) used by the Grid List.
-         */
-        columns: {
-            Type: can.List
-        },
-        
-        /**
          * @property {Number} currentPage
          * @description The current page number.
          */
@@ -94,13 +86,16 @@ module.exports = can.Map.extend({
                 {
                     key: 'radarDescription',
                     label: 'Radar Description'
-                },{
+                },
+                {
                     key: 'state',
                     label: 'State'
-                },{
+                },
+                {
                     key: 'subState',
                     label: 'Sub State'
-                },{
+                },
+                {
                     key: 'createUser',
                     label: 'Create User'
                 }
@@ -124,13 +119,16 @@ module.exports = can.Map.extend({
                 {
                     key: 'radarDescription',
                     label: 'Radar Description'
-                },{
+                },
+                {
                     key: 'state',
                     label: 'State'
-                },{
+                },
+                {
                     key: 'subState',
                     label: 'Sub State'
-                },{
+                },
+                {
                     key: 'createUser',
                     label: 'Create User'
                 }
@@ -142,6 +140,7 @@ module.exports = can.Map.extend({
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
+            Type: can.List,
             value: [
                 {
                     cssClass: 'col-md-2',

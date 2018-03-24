@@ -21,5 +21,5 @@ var ViewModel = require('./request-list.viewmodel');
 module.exports = can.Component.extend({
     tag: 'seo-request-list',
     template: template,
-    viewModel: ViewModel,
+    viewModel: ViewModel
 });

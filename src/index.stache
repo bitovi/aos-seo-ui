@@ -1,32 +1,39 @@
 <div class="pui-alerts">
-    <pui-confirm class="global-alert global-confirm"></pui-confirm>
-        {{#isAlertVisible}}
-            <pui-alert
-                class="global-alert"
-                title="{alert.title}"
-                message="{alert.message}"
-                dismissable="{alert.dismissable}"
-                type="{alert.type}"
-                visible="{isAlertVisible}"
-                display-interval="{alert.displayInterval}"
-            ></pui-alert>
-        {{/isAlertVisible}}
+    <pui-confirm
+        class="global-alert global-confirm"
+    ></pui-confirm>
+
+    {{#isAlertVisible}}
+        <pui-alert
+            class="global-alert"
+            title="{alert.title}"
+            message="{alert.message}"
+            dismissable="{alert.dismissable}"
+            type="{alert.type}"
+            visible="{isAlertVisible}"
+            display-interval="{alert.displayInterval}"
+        ></pui-alert>
+    {{/isAlertVisible}}
 </div>
 
 {{^if layoutState.hideHeader}}
-<seo-header state="{.}"></seo-header>
+    <seo-header state="{.}"></seo-header>
 {{/if}}
 
 <div class="container-fluid">
     {{^if layoutState.hideSubHeader}}
         <pui-nav-bar
-            menu-items="{navMenuItems}"
+            {menu-items}="navMenuItems"
             {^is-expanded}="navIsExpanded"
         ></pui-nav-bar>
     {{/if}}
-    <div id="content" {{^if navIsExpanded}}class="content-nav-side-bar-collapsed"{{/if}}></div>
+
+    <div
+        id="content"
+        class="{{^if navIsExpanded}}content-nav-side-bar-collapsed{{/if}} {{#if layoutState.hideSubHeader}}content-nav-side-bar-hidden{{/if}}"
+    ></div>
 </div>
 
 {{^if layoutState.hideFooter}}
-<app-footer></app-footer>
+    <app-footer></app-footer>
 {{/if}}

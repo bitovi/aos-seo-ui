@@ -10,7 +10,6 @@ var formatUtils = require('seo-ui/utils/format-utils');
 
 module.exports = can.Map.extend({
     define: {
-
         /**
          * @property {Array<can.Map>} edit-metadata-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
@@ -245,7 +244,7 @@ module.exports = can.Map.extend({
      * @function edit-metadata-list.viewModel.addMore
      * @description navigate to url page.
      */
-    addMore: function () {        
+    addMore: function () {
         this.attr('state').setRouteAttrs({
             page: 'urls',
             addMore: true
@@ -275,7 +274,7 @@ module.exports = can.Map.extend({
      */
     updateItems: function (newVal, url, type, index) {
         this.attr('items').forEach(function (item) {
-            if(item.url === url) {
+            if (item.url === url) {
                 if (type === 'titleAnatomy') {
                     item.titleAnatomy[index].newContent = newVal;
                 } else {
@@ -297,11 +296,11 @@ module.exports = can.Map.extend({
         } else {
             title = val ? val : this.attr('title');
         }
-        
+
         var errorTitle = title ? false : 'Title is required';
         this.attr('errors.title', errorTitle);
     },
- 
+
     /**
      * @function edit-metadata-list.viewModel.validateDescription validateDescription
      * @description runs validation on [create-revision.viewModel.validateDescription] or the passed value
@@ -312,7 +311,7 @@ module.exports = can.Map.extend({
         if (val instanceof $) {
             description = val.val();
         } else {
-            description =  val ? val : this.attr('description');
+            description = val ? val : this.attr('description');
         }
 
         var errorDescription = description ? false : 'Description is required';
@@ -375,11 +374,10 @@ module.exports = can.Map.extend({
      * @description submits request with updated titles and descriptions.
      */
     submitRequest: function () {
-        var urls = [];        
+        var urls = [];
         var self = this;
 
         if (self.validate()) {
-
             this.attr('items').forEach(function (item) {
                 var urlItem = {};
                 var contents = [];
@@ -388,10 +386,10 @@ module.exports = can.Map.extend({
                     item.titleAnatomy.forEach(function (contentItem) {
                         if (contentItem.editable && contentItem.type === 'text_asset') {
                             contents.push({
-                                "assetType" : contentItem.type,
-                                "assetUri" : contentItem.name,
-                                "oldContent" : contentItem.value,
-                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                                assetType: contentItem.type,
+                                assetUri: contentItem.name,
+                                oldContent: contentItem.value,
+                                newContent: typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
                             });
                         }
                     });
@@ -401,10 +399,10 @@ module.exports = can.Map.extend({
                     item.descriptionAnatomy.forEach(function (contentItem) {
                         if (contentItem.editable && contentItem.type === 'text_asset') {
                             contents.push({
-                                "assetType" : contentItem.type,
-                                "assetUri" : contentItem.name,
-                                "oldContent" : contentItem.value,
-                                "newContent" : typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
+                                assetType: contentItem.type,
+                                assetUri: contentItem.name,
+                                oldContent: contentItem.value,
+                                newContent: typeof contentItem.newContent === 'undefined' ? contentItem.value : contentItem.newContent
                             });
                         }
                     });
@@ -426,7 +424,7 @@ module.exports = can.Map.extend({
 
             var createRequestData = this.attr('createRequest').attr();
             this.attr('showModalLoader', true);
-            this.attr('createRequest').create(createRequestData).then(function(response){
+            this.attr('createRequest').create(createRequestData).then(function (response) {
                 self.attr('createRequest').findOne({id: response.detail.id}).then(function (resp) {
                     self.attr('showModalLoader', false);
                     self.attr('showRadarDetails', true);
