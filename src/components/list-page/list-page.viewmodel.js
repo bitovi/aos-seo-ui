@@ -20,7 +20,6 @@ module.exports = can.Map.extend({
             Type: can.List
         },
 
-
         /**
          * @property {Number} currentPage
          * @description The current page number.
@@ -692,7 +691,7 @@ module.exports = can.Map.extend({
      * @function editMetadata
      * @description returns url for edit title description.
      */
-    getMetadataURl : function() {
+    getMetadataURl: function () {
         return can.route.url({
             page: 'edit-metadata-list'
         });

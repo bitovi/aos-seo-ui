@@ -14,6 +14,6 @@ can.fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function 
     return createRequestResponse;
 });
 
-can.fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function (req, res) {
+can.fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
     return notificationDetails;
 });
