@@ -112,7 +112,7 @@ module.exports = can.Map.extend({
                      iconClass: 'icon-list',
                      label: 'Request-List',
                      pageName: 'request-list'
-                 },
+                 }
              ]
          },
 
