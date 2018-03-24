@@ -107,7 +107,12 @@ module.exports = can.Map.extend({
                      iconClass: 'icon-eye',
                      label: 'Review',
                      pageName: 'review-page'
-                 }
+                 },
+                 {
+                     iconClass: 'icon-list',
+                     label: 'Request-List',
+                     pageName: 'request-list'
+                 },
              ]
          },
 
