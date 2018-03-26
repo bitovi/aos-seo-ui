@@ -251,7 +251,7 @@ module.exports = can.Map.extend({
      */
     exportNemoReadyFile: function () {
         this.buildParams({
-            exportAll: true,
+            exportAll: false,
             nemoReadyExport: true
         });
 
