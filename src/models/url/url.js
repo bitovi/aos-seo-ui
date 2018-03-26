@@ -43,6 +43,7 @@ module.exports = can.Model.extend(
 
             hasEditableKeys: {
                 type: 'boolean',
+                serialize: false,
                 get: function () {
                     var url = this.attr();
                     var urlVals = Object.keys(url).map(function(key) {
