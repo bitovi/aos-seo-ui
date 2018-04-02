@@ -236,7 +236,7 @@ module.exports = can.Map.extend({
         localStorage.removeItem('editMetadata');
         this.attr('showRadarDetails', false);
         this.attr('state').setRouteAttrs({
-            page: 'urls'
+            page: 'request-list'
         });
     },
 
