@@ -1,0 +1,17 @@
+@import '../../../node_modules/@apple/pui/dist/less/components/alert/alert.less';
+
+div#app > div.pui-alerts {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 9999;
+    width: 400px;
+
+    pui-confirm, pui-alert {
+        position: relative;
+        top: 0px;
+        right: 0px;
+        margin-top: 10px;
+        margin-right: 0px;
+    }
+}

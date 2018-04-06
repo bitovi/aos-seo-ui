@@ -1,0 +1,61 @@
+<pui-action-bar-menu action-scope="{.}">
+    <pui-action-bar-dropdown
+        {{^if items.length}}disabled="true"{{/if}}
+        icon="download"
+        tooltip-title="Export"
+    >
+        <pui-action-bar-item
+            menu-heading="Export URLs:"
+        ></pui-action-bar-item>
+
+        <pui-action-bar-item
+            action="exportCsv"
+        >
+            Current Page
+        </pui-action-bar-item>
+
+        {{#if filterSearchApplied}}
+            <pui-action-bar-item
+                action="exportAllCsv"
+            >
+                Export All Results (.csv)
+            </pui-action-bar-item>
+        {{/if}}
+
+        <pui-action-bar-item
+            action="exportNemoReadyFile"
+        >
+            Nemo-Ready File
+        </pui-action-bar-item>
+    </pui-action-bar-dropdown>
+
+    {{#isLoading}}
+        <div class="loading-indicator-container">
+            <div class="icon-spinner spin-icon"></div>
+            <span class="content">Exporting the URLs…</span>
+        </div>
+    {{/isLoading}}
+</pui-action-bar-menu>
+
+{{#exportClicked}}
+    <pui-file-downloader
+        action-url="{exportFilePath}"
+        enc-type="multipart/form-data"
+        frameName="export-file-downloader"
+        json-string="{exportRequest}"
+        method="POST"
+        param-key="exportRequest"
+        submit-form="{doDownloadExport}"
+    ></pui-file-downloader>
+{{/exportClicked}}
+
+{{#notifications}}
+    <pui-alert
+        dismissable="true"
+        display-interval="{timeout}"
+        message="{message}"
+        title="{title}"
+        type="{type}"
+        visible="true"
+    ></pui-alert>
+{{/notifications}}

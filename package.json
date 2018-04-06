@@ -1,0 +1,118 @@
+{
+  "name": "seo-ui",
+  "version": "18.3.0",
+  "description": "SEO UI code.",
+  "author": "AOS Publishing Systems <AOS_Content_Engineering@group.apple.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://storegit.apple.com:4443/cs/seo-ui.git"
+  },
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "steal-tools",
+    "coverage": "gulp test:coverage",
+    "debug": "steal-tools --watch",
+    "docs": "gulp docs",
+    "docs:serve": "gulp docs:serve",
+    "lint": "gulp xo",
+    "start": "gulp watch",
+    "test": "gulp test",
+    "test:debug": "DEBUG=testee:runner gulp test"
+  },
+  "devDependencies": {
+    "browser-sync": "2.18.8",
+    "del": "2.2.2",
+    "documentjs": "0.5.1",
+    "glob-all": "3.1.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "3.1.1",
+    "gulp-concat": "2.6.1",
+    "gulp-connect": "5.0.0",
+    "gulp-less": "3.3.0",
+    "gulp-sourcemaps": "2.4.1",
+    "gulp-util": "3.0.8",
+    "gulp-xo": "0.4.0",
+    "jasmine-jquery": "2.1.1",
+    "lolex": "1.6.0",
+    "merge-stream": "1.0.1",
+    "minimist": "1.2.0",
+    "phantomjs-prebuilt": "2.1.14",
+    "pretty-hrtime": "1.0.3",
+    "proxy-middleware": "0.15.0",
+    "require-dir": "0.3.1",
+    "run-sequence": "1.2.2",
+    "steal-jasmine": "0.0.3",
+    "steal-tools": "0.16.8",
+    "testee": "0.3.1"
+  },
+  "dependencies": {
+    "@apple/pui": "../publishing-ui",
+    "bootstrap": "3.3.7",
+    "can-component": "3.3.10",
+    "can-event": "3.7.6",
+    "can-fixture": "1.2.2",
+    "can-list": "3.2.2",
+    "can-map": "3.4.2",
+    "can-map-define": "3.1.2",
+    "can-model": "3.0.3",
+    "can-route": "3.3.4",
+    "can-route-pushstate": "3.2.3",
+    "can-stache": "3.14.11",
+    "can-util": "3.11.2",
+    "can-view-model": "3.5.2",
+    "jquery": "^3.2.1",
+    "lodash": "4.17.4",
+    "moment": "2.17.1",
+    "steal": "0.16.35",
+    "steal-stache": "^3.1.1"
+  },
+  "xo": {
+    "envs": [
+      "browser",
+      "jasmine",
+      "jquery",
+      "phantomjs",
+      "commonjs"
+    ],
+    "space": 4,
+    "rules": {
+      "max-nested-callbacks": 0,
+      "guard-for-in": 0
+    }
+  },
+  "system": {
+    "npmAlgorithm": "flat",
+    "npmIgnore": [
+      "browser-sync",
+      "del",
+      "documentjs",
+      "glob",
+      "gulp",
+      "gulp-autoprefixer",
+      "gulp-less",
+      "gulp-sourcemaps",
+      "gulp-util",
+      "phantomjs-prebuilt",
+      "pretty-hrtime",
+      "require-dir",
+      "run-sequence",
+      "testee"
+    ],
+    "bundlesPath": "./build",
+    "main": "app",
+    "ext": {
+      "stache": "steal-stache"
+    },
+    "directories": {
+      "lib": "src"
+    },
+    "meta": {
+      "jasmine-jquery/lib/jasmine-jquery": {
+        "deps": [
+          "jquery",
+          "steal-jasmine"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+seo-list-page {
+
+    .list-tools {
+        margin-bottom: @line-height-computed;
+    }
+    
+    pui-grid-column-toggle {
+        margin-top: .4rem;
+
+        // Vertical divider
+        &:before {
+            color: @thunderCloud;
+            content: '\00a0|\00a0';
+            font-size: @font-size-small;
+        }
+
+        .dropdown {
+            padding: 0;
+        }
+    }
+
+    // This ensures the bottom
+    // grid-column-toggle is still visible on the screen
+    // when there are no records on the page, or when all
+    // columns are unselected
+    .main-item-list {
+        .table-responsive {
+            min-height: 300px;
+        }
+    }
+
+    .request-selection-option {
+        float: right;
+        margin-top: 5px;
+    }
+}

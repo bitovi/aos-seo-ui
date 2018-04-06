@@ -1,0 +1,61 @@
+{
+    "": {
+        "params": {
+            "page": "home"
+        },
+        "template": "<seo-home state=\"{.}\"></seo-home>",
+        "title": "Home"
+    },
+    "urls": {
+        "layout": {
+            "hideFooter": false,
+            "hideHeader": false,
+            "hideSubHeader": false
+        },
+        "params": {
+            "countries": "",
+            "dateRanges": "",
+            "description": "",
+            "limit": 25,
+            "order": "desc",
+            "page": "url-list",
+            "pageNumber": 1,
+            "pageTitle": "",
+            "partNumber": "",
+            "regions": "",
+            "segments": "",
+            "sort": "modifyDate",
+            "statuses": "",
+            "url": ""
+        },
+        "template": "<seo-url-list state=\"{.}\"></seo-url-list>",
+        "title": "SEO Metadata"
+    },
+    "edit-metadata-list":  {
+        "layout": {
+            "hideFooter": false,
+            "hideHeader": false,
+            "hideSubHeader": true
+        },  
+        "params" : {
+            "page" : "edit-metadata-list",
+            "selectedItems": ""
+        },
+        "template" : "<seo-edit-metadata-list state=\"{.}\"><seo-edit-metadata-list>",
+        "title" : "Edit Metadata List"
+    },
+    "generate": {
+        "params": {
+            "page": "generate-page"
+        },
+        "template": "<seo-generate-page state=\"{.}\"></seo-generate-page>",
+        "title": "Generate Publishing-Ready File"
+    },
+    "review": {
+        "params": {
+            "page": "review-page"
+        },
+        "template": "<seo-review-page state=\"{.}\"></seo-review-page>",
+        "title": "Review Publishing-Ready File"
+    }
+}

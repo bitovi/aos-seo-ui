@@ -1,0 +1,73 @@
+<header>
+    {{! App Info }}
+    <nav
+        class="global-top-nav navbar navbar-inverse"
+        role="navigation"
+    >
+        <div class="navbar-header">
+            <a
+                class="check-saved-state-js navbar-brand"
+                href="{{link(homeUrl)}}"
+            >
+                <span class="apple-logo"></span>
+                SEO Manager
+                {{#if version}}
+                    <span class="version">{{version}}</span>
+                {{/if}}
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-inverse-collapse">
+            <div class="navbar-right">
+                {{#if appInfo.debug}}
+                    <seo-fixture-toggle></seo-fixture-toggle>
+                {{/if}}
+
+                {{^userHasAction 'edit'}}
+                    <span class="read-only-label">Read Only</span>
+                {{/userHasAction}}
+
+                <seo-user-menu userData="{user}">
+                    <li>
+                        <a href="{{../logoutUrl}}">Logout</a>
+                    </li>
+                </seo-user-menu>
+            </div>
+        </div>
+    </nav>
+    {{^if layoutState.hideSubHeader}}
+    {{! App Navigation }}
+    <nav
+        aria-label="Site Navigation"
+        class="global-secondary-nav navbar navbar-default"
+        role="navigation"
+    >
+        <ul class="nav navbar-nav">
+            <li class="{{activeTab(homeUrl)}}">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link(homeUrl)}}"
+                >
+                    SEO Metadata
+                </a>
+            </li>
+            <li class="{{activeTab(generateUrl)}}">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link(generateUrl)}}"
+                >
+                    Generate
+                </a>
+            </li>
+            <li class="{{activeTab(reviewUrl)}}">
+                <a
+                    class="check-saved-state-js"
+                    href="{{link(reviewUrl)}}"
+                >
+                    Review
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {{/if}}
+</header>

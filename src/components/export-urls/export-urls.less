@@ -1,0 +1,35 @@
+@import '../base/base';
+@import '../../../node_modules/@apple/pui/dist/less/components/file-downloader/file-downloader.less';
+
+seo-export-urls {
+    pui-action-bar-menu > ul.nav-icons.nav-icons-right > pui-action-bar-dropdown:last-child .dropdown-menu.bottom > .arrow {
+        left: 80%;
+    }
+
+    .dropdown-menu {
+        min-width: 190px;
+        float: right;
+    }
+
+    pui-alert {
+        .global-alert();
+    }
+
+    .loading-indicator-container {
+        text-align: center;
+        padding-top: 10%;
+        float: left;
+        font-size: @font-size-small;
+
+        .icon-spinner {
+            font-size: @font-size-small;
+            line-height: initial; //corrects spinning getting offcentered
+        }
+
+        .content {
+            color: @coral;
+            font-size: @font-size-small;
+            padding-top: @padding-base-vertical;
+        }
+    }
+}

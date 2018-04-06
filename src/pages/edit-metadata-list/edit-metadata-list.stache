@@ -1,0 +1,122 @@
+<div class="page-header clearfix">
+    <h1 class="pull-left">Edit Metadata List</h1>
+    <div class="pull-right">
+        <div class="action-bar-menu">
+            <pui-action-bar-menu action-scope="{actionBarMenuActions}">
+                <pui-action-bar-dropdown icon="more" tooltip-title="More">
+                    <pui-action-bar-item action="cancelRequest">
+                        Cancel Request
+                    </pui-action-bar-item>
+                    <pui-action-bar-item action="addMore">
+                        Add More
+                    </pui-action-bar-item>
+                    <pui-action-bar-item action="raiseRequest">
+                        Raise Request
+                    </pui-action-bar-item>
+                </pui-action-bar-dropdown>
+            </pui-action-bar-menu>
+        </div>
+        <div class="total-count">
+            Total Selected Count: {{items.length}}
+        </div>
+    </div>
+</div>
+
+<pui-modal vm:modalActive:bind="isActive" vm:modalId:from="modalId" modal-size="md">
+    <pui-modal-header>
+        <h4 class="modal-title">
+            {{#if showRadarDetails}}
+                Radar Details
+            {{else}}
+                Raise Request
+            {{/if}}
+        </h4>
+    </pui-modal-header>
+
+    <form role="form">
+        <pui-modal-body>
+            {{#if showModalLoader}}
+                <div class="loading-indicator-container">
+                    <div class="icon-spinner spin-icon"></div>
+                    <p class="content">
+                        Creating Request
+                    </p>
+                </div>
+            {{/if}}
+
+            {{#if showRadarDetails}}
+                <table class="table radarTable">
+                    <tr>
+                        <td><b>Title: </b></td>
+                        <td>{{radarDetails.title}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Radar No: </b></td>
+                        <td>{{radarDetails.radarNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Radar Link: </b></td>
+                        <td>{{{setLinkToRadar(radarDetails.radarLink)}}}</td>
+                    </tr>
+                </table>
+            {{else}}
+                {{^if showModalLoader}}
+                    <div class="form-group {{#errors.title}} has-error{{/errors.title}}">
+                        <label class="control-label" for="title">
+                            <strong>Title:</strong>
+                            {{#if errors.title}}
+                                <pui-tool-tip icon-class="icon-error"
+                                    alignment="right"
+                                    title="{{#errors.title}}{{.}} {{/errors.title}}"
+                                    is-visible="true">
+                                </pui-tool-tip>
+                            {{/if}}
+                        </label>
+                        <input class="form-control" el:value:bind="title" can-blur="{validateTitle}" placeholder="Title for Request">
+                    </div>
+                    <div class="form-group {{#errors.description}} has-error{{/errors.description}}">
+                        <label class="control-label" for="description">
+                            <strong>Description:</strong>
+                            {{#if errors.description}}
+                                <pui-tool-tip icon-class="icon-error"
+                                    alignment="right"
+                                    title="{{#errors.description}}{{.}} {{/errors.description}}"
+                                    is-visible="true">
+                                </pui-tool-tip>
+                            {{/if}}
+                        </label>
+                        <textarea class="form-control"
+                            can-blur="{validateDescription}"
+                            el:value:bind="description">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                    <label for="requestpriority">Due Date:</label>
+                    <pui-date-picker date-string="{currentDate}" min-date="{{minDate}}">
+                        <input class="form-control" id="myDate" type="text" name="myDate" can-value="{currentDate}">
+                    </pui-date-picker>
+                </div>
+                {{/if}}
+            {{/if}}
+        </pui-modal-body>
+    </form>
+
+    <pui-modal-footer>
+        {{#if showRadarDetails}}
+            <a type="button" on:el:click="cancelRequest()" class="btn btn-primary btn-block">Close</a>
+        {{else}}
+            <a type="button" on:el:click="submitRequest()" class="btn btn-primary btn-block">Submit Request</a>
+        {{/if}}
+    </pui-modal-footer>
+</pui-modal>
+
+<div>
+    <pui-grid-list
+        class="main-item-list"
+        columns="{columns}"
+        auto-load="false"
+        items="{items}"
+        rowTemplate="@rowTemplate"
+        state="{state}"
+    ></pui-grid-list>
+</div>

@@ -1,0 +1,30 @@
+<seo-export-urls
+    vm:columns:bind="columns"
+    export-id="{items.id}"
+    vm:filterFields:bind="filterFields"
+    vm:items:bind="items"
+    vm:searchFields:bind="searchFields"
+    state="{state}"
+></seo-export-urls>
+
+<seo-list-page
+    columns="{columns}"
+    current-page="{state.pageNumber}"
+    data-options="{dataOptions}"
+    disable-advanced-search="true"
+    disable-new-item-button="true"
+    filter-config="{filterConfig}"
+    vm:filterFields:bind="filterFields"
+    filter-search-applied="{filterSearchApplied}"
+    item-link-enabled="false"
+    vm:items:bind="items"
+    model="{urlModel}"
+    page-title="{pageTitle}"
+    rowTemplate="@rowTemplate"
+    primaryHeaderTemplate="@primaryHeaderTemplate"
+    search-field="{searchField}"
+    vm:searchFields:bind="searchFields"
+    state="{state}"
+    type="url"
+    selected-items="{selectedItems}"
+></seo-list-page>

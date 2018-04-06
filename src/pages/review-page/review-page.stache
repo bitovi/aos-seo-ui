@@ -1,0 +1,133 @@
+<h1>Review Meta Content &amp; Key Paths</h1>
+<p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
+<pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
+    <div id="enter-urls" class="tab-pane">
+        <textarea
+            el:value:bind="urlTexts"
+            class="form-control"
+            cols="80"
+            id="url-texts"
+            on:el:keyup="updateUrlText($element.val())"
+            name="url-texts"
+            placeholder="Please enter URLs in a valid format, separated by commas"
+            rows="8"></textarea>
+        <pui-file-downloader
+            action-url="{reviewFileFromInputPath}"
+            method="POST"
+            enc-type="multipart/form-data"
+            json-string="{exportRequest}"
+            param-key="exportRequest"
+            frameName="review-file-downloader"
+            submit-form="{doDownloadExport}">
+        </pui-file-downloader>
+        <button
+            class="btn btn-primary"
+            {{^if downloadBtnEnabled}}disabled="disabled"{{/if}}
+            id="review-file-from-input-btn"
+            type="button"
+        >
+            Generate File
+        </button>
+        <button
+            class="btn btn-secondary"
+            on:el:click="updateUrlText('')"
+            id="clear-textarea"
+            type="button"
+        >
+            Clear Field
+        </button>
+    </div>
+
+    <div id="upload-file" class="tab-pane">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form
+                    el:action:bind="reviewFilePath"
+                    enctype="multipart/form-data"
+                    id="review-file-form"
+                    method="POST"
+                >
+                    <input
+                        accept=".csv"
+                        class="file-upload"
+                        name="file-upload"
+                        type="file"
+                        el:value:bind="fileToUpload"/>
+                    <ul class="content">
+                        <li>
+                            Only <b>.csv</b> files are supported
+                        </li>
+                        <li>
+                            Make sure the file follows the 
+                            <button 
+                                class="btn btn-link modal-trigger"
+                                on:el:click="toggleModal"
+                            >
+                                formatting requirements.
+                            </button>
+                        </li>
+                    </ul>
+                    <input
+                        id="export-id"
+                        name="exportId"
+                        type="hidden"
+                        el:value:bind="exportId"/>
+                    <button
+                        class="btn btn-primary"
+                        id="review-file-btn"
+                        type="button"
+                        {{#unless fileToUpload}}disabled="disabled"{{/unless}}
+                    >Generate File</button>
+                </form>
+            </div>
+        </div>
+
+        <pui-modal
+            vm:modalActive:bind="modalOpen"
+            modal-id="formatting-requirements-modal-review-url"
+            modal-size="lg"
+        >
+            <pui-modal-header>
+                <h4 class="modal-title">
+                    File Formatting Requirements
+                </h4>
+            </pui-modal-header>
+
+            <pui-modal-body>
+                <h5>The format of the input csv file should be as follows:</h5>
+
+                <dl class="dl-horizontal">
+                    <dt>URL:</dt>
+                    <dd>Enter the actual Unique/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content for. The URL should be encoded.</dd>
+                </dl>
+
+                <h5>Example (include table headers as shown below):</h5>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </pui-modal-body>
+        </pui-modal>
+    </div>
+</pui-tabs>
+
+{{#each notifications}}
+    <pui-alert
+        class="global-alert"
+        title="{title}"
+        message="{message}"
+        type="{type}"
+        display-interval="{timeout}"
+        dismissable="true"
+        visible="true">
+    </pui-alert>
+{{/each}}

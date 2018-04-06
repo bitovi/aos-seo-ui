@@ -1,0 +1,102 @@
+<h1>Generate Publishing-Ready File</h1>
+<p>Use this tool to generate a publishing-ready file that can be uploaded to Nemo. This file will contain the key paths found on the provided URLs.</p>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form
+            el:action:bind="generateFilePath"
+            enctype="multipart/form-data"
+            id="generate-form"
+            method="POST"
+        >
+            <input
+                accept=".csv"
+                class="file-upload"
+                name="file-upload-publish"
+                type="file"
+                el:value:bind="fileToUpload"/>
+            <ul class="content">
+                <li>
+                    Only <b>.csv</b> files are supported
+                </li>
+                <li>
+                    Make sure the file follows the 
+                    <button 
+                        class="btn btn-link modal-trigger"
+                        on:el:click="toggleModal"
+                        type="button"
+                    >
+                        formatting requirements.
+                    </button>
+                </li>
+            </ul>
+            <input
+                name="exportId"
+                type="hidden"
+                el:value:bind="exportId"/>
+            <button
+                class="btn btn-primary"
+                id="generate-file-btn"
+                type="button"
+                {{#unless fileToUpload}}disabled="disabled"{{/unless}}
+            >Generate File</button>
+        </form>
+    </div>
+</div>
+
+<pui-modal
+    vm:modalActive:bind="modalOpen"
+    modal-id="formatting-requirements-modal-generate-url"
+    modal-size="lg"
+>
+    <pui-modal-header>
+        <h4 class="modal-title">
+            File Formatting Requirements
+        </h4>
+    </pui-modal-header>
+
+    <pui-modal-body>
+        <h5>The format of the input csv file should be as follows:</h5>
+
+        <dl class="dl-horizontal">
+            <dt>URL:</dt>
+            <dd>Enter the actual Unique URL/Filtered Category page URL for which the SEO product owner wants to overwrite the meta content. The URL should be encoded.</dd>
+
+            <dt>type:</dt>
+            <dd>Enter the value "title" if it's the page title, and "meta" if its the meta description of the URL in column 1 that needs to be overridden.</dd>
+
+            <dt>value:</dt>
+            <dd>Enter the actual localized value of the page title or meta description that needs to appear on the respective AOS pages. (Unencoded)</dd>
+        </dl>
+
+        <h5>Example (include table headers as shown below):</h5>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>type</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>http://storeqa1.corp.apple.com/jp/mac/mac-accessories/power#!&f=battery&fh=36e0%2B29f8</td>
+                    <td>title</td>
+                    <td>_______ - Mac</td>
+                </tr>
+            </tbody>
+        </table>
+    </pui-modal-body>
+</pui-modal>
+
+{{#each notifications}}
+    <pui-alert
+        class="global-alert"
+        title="{title}"
+        message="{message}"
+        type="{type}"
+        display-interval="{timeout}"
+        dismissable="true"
+        visible="true">
+    </pui-alert>
+{{/each}}

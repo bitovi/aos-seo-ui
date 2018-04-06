@@ -1,0 +1,578 @@
+{
+    "count": 12,
+    "id": "c56ac62c-9f74-4c25-a1b4-ab0e9cea2ed0",
+    "data": [
+        {
+            "country": "United States of America",
+            "createDate": "2016-10-09T22:47:57Z",
+            "description": "Bacon ipsum dolor amet spare ribs duis strip steak ut. Spare ribs irure duis shank ad lorem filet mignon ipsum non chicken corned beef.",
+            "descriptionKeyPath": "pub.description.something",
+            "descriptionUrl": "http://nemo/text-assets/pub.description.something?version=some-version",
+            "modifyDate": "2016-10-10T17:25:46Z",
+            "pageTitle": "",
+            "pageTitleKeyPath": "pub.title",
+            "pageType": "PDP",
+            "partNumber": "D6106ZM/A",
+            "region": "AMR",
+            "segment": "All",
+            "status": "modified",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "name": "store.seo.hyphen",
+                    "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "name": "pub.seo.promotiontext",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (CA)"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "type": "text_asset",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)"
+                },
+                {
+                    "name": "displayName",
+                    "type": "product_attribute",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "url": "/ipod-classic/",
+            "urlAspenLink": "http://apsen/ipod-classic/"
+        },
+        {
+            "@class": "com.apple.store.content.seo.data.URLProperties",
+            "country": "US",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "Get the IT department-level support you need when deploying iOS, Mac OS X, or Mac OS X Server in your organization. AppleCare OS Support delivers phone and email support for advanced integration, migration, and server operation issues. AppleCare OS Support - Preferred covers an unlimited number of enterprise-level support incidents for two technical contacts from your organization, provides two-hour response for priority 1 (server down) issues 12 x 7, and assigns a technical account manager to your organization for one year.",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": " ",
+            "pageType": "PDP",
+            "partNumber": "D5690ZM/A",
+            "region": "amr",
+            "segment": "smb",
+            "status": "modified",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "name": "store.seo.hyphen",
+                    "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "name": "pub.seo.promotiontext",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (CA)"
+                },
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "name": "store.seo.full.pagetitle",
+                    "type": "text_asset",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold  - Apple  (CA)"
+                },
+                {
+                    "name": "displayName",
+                    "type": "product_attribute",
+                    "value": "iPad Air 2 Wi-Fi 128GB - Gold"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "url": "/us_smb_78313/shop/product/D5690ZM/A",
+            "urlAspenLink": "http://wwwdev1.corp.apple.com/us_smb_78313/shop/product/D5690ZM/A",
+            "nemoReadyRecord": true
+        },
+        {
+            "country": "United States of America",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "descriptionAnatomy": [
+                {
+                    "name": "testDescription",
+                    "type": "product_attribute",
+                    "value": "Some attribute"
+                }
+            ],
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "MacBook - Apple",
+            "pageType": "PDP",
+            "partNumber": "MG482LL/A",
+            "region": "AMR",
+            "segment": "All",
+            "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/macbook/"
+        },
+        {
+            "country": "France",
+            "createDate": "1979-11-06T23:28:56.782Z",
+            "modifyDate": "1979-11-06T23:28:56.782Z",
+            "pageTitle": "",
+            "pageType": "buyflow",
+            "partNumber": "xy",
+            "region": "FR",
+            "segment": "All",
+            "status": "unchanged",
+            "titleAnatomy": [],
+            "url": "/pippin/"
+        },
+        {
+            "country": "United Kingdom",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "MacBook Air - Apple",
+            "pageType": "PDP",
+            "partNumber": "D6377ZM/A",
+            "region": "EMEA",
+            "segment": "Internal EPP",
+            "status": "end-of-life",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/macbook-air/",
+            "nemoReadyRecord": true
+        },
+        {
+            "country": "Hong Kong",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad WiFi - Apple",
+            "pageType": "buyflow",
+            "partNumber": "H1783ZM/A",
+            "region": "APAC",
+            "segment": "Direct",
+            "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipad-wifi/"
+        },
+        {
+            "country": "Japan",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad 3G - Apple",
+            "pageType": "buyflow",
+            "partNumber": "H1786ZM/A",
+            "region": "JAPAN",
+            "segment": "All",
+            "status": "modified",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipad-3g/"
+        },
+        {
+            "country": "Turkey",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad 2 WiFi - Apple",
+            "pageType": "buyflow",
+            "partNumber": "H3443ZM/A",
+            "region": "EMEA",
+            "segment": "Small Business",
+            "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipad-2-wifi/",
+            "nemoReadyRecord": true
+        },
+        {
+            "country": "New Zealand",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad 2 3G - Apple",
+            "pageType": "buyflow",
+            "partNumber": "H4825ZM/B",
+            "region": "APAC",
+            "segment": "Apple",
+            "status": "new-to-store",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipad-2-3g/"
+        },
+        {
+            "country": "Mexico",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPod Nano - Apple",
+            "pageType": "buyflow",
+            "partNumber": "S4728Z/A",
+            "region": "AMR",
+            "segment": "Edu Individual",
+            "status": "modified",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipod-nano/",
+            "nemoReadyRecord": true
+        },
+        {
+            "country": "America",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPad Mini - Apple",
+            "pageType": "buyflow",
+            "partNumber": "S9728Z/A",
+            "region": "AMR",
+            "segment": "Edu Individual",
+            "status": "unchanged",
+            "storeFrontAlias": "cn-smb",
+            "titleAnatomy": [],
+            "url": "/ipod-mini/"
+        },
+        {
+            "country": "Canada",
+            "createDate": "2014-01-01T23:28:56.782Z",
+            "description": "",
+            "modifyDate": "2014-01-01T23:28:56.782Z",
+            "pageTitle": "iPod Touch  -    Apple",
+            "pageType": "buyflow",
+            "partNumber": "Z0S9",
+            "region": "AMR",
+            "segment": "Direct",
+            "status": "end-of-life",
+            "storeFrontAlias": "cn-smb",
+            "url": "/ipod-touch/",
+            "nemoReadyRecord": true
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "country": "FR",
+            "createDate": "2011-07-13T07:00:00Z",
+            "description": "Achetez le Clavier USB officiel d’Apple avec pavé numérique sur l’Apple Store en ligne. Envoi sous 24 heures.",
+            "descriptionAnatomy": [
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.seo.hyphen",
+                    "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (FR)"
+                },
+                {
+                    "link": "",
+                    "name": "store.seo.full.pagetitle",
+                    "type": "product_attribute",
+                    "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "modifyDate": "2099-12-01T20:46:35Z",
+            "pageTitle": "Achetez le Clavier USB Apple avec pavé numérique - Apple (FR)",
+            "pageType": "pdp",
+            "partNumber": "MB110F/B",
+            "region": "emea",
+            "segment": "consumer",
+            "status": "modified",
+            "storeFrontAlias": "ru",
+            "titleAnatomy": [
+                {
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.seo.hyphen",
+                    "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "name": "pub.meta.shop_ipad.family.ipad.ipad_9_7.title",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (FR)"
+                },
+                {
+                    "link": "",
+                    "name": "store.seo.full.pagetitle",
+                    "type": "product_attribute",
+                    "value": "Achetez le Clavier USB Apple avec pavé numérique  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "url": "/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/MB110F/B/clavier-apple-avec-pavé-numérique-français",
+            "nemoReadyRecord": true
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "country": "FR",
+            "createDate": "2016-05-11T07:00:00Z",
+            "description": "Profitez de tous vos contenus multimédias lors de vos déplacements grâce à la clé USB sans fil Connect Wireless Stick de SanDisk et votre iPhone, iPad ou iPod touch. Achetez-la en ligne dès maintenant sur apple.com.",
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "type": "product_attribute",
+                    "value": "Profitez de tous vos contenus multimédias lors de vos déplacements grâce à la clé USB sans fil Connect Wireless Stick de SanDisk et votre iPhone, iPad ou iPod touch. Achetez-la en ligne dès maintenant sur apple.com."
+                }
+            ],
+            "modifyDate": "2016-12-01T20:46:35Z",
+            "pageTitle": "Clé USB sans fil Connect Wireless Stick de SanDisk - Apple (FR)",
+            "pageType": "pdp",
+            "partNumber": "HJY72ZM/A",
+            "region": "emea",
+            "segment": "consumer",
+            "status": "modified",
+            "storeFrontAlias": "ru",
+            "titleAnatomy": [
+                {
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "name": "store.seo.hyphen",
+                    "type": "text_asset",
+                    "value": "-"
+                },
+                {
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/pub.seo.promotiontext?version=integration",
+                    "name": "pub.seo.promotiontext",
+                    "type": "text_asset",
+                    "value": ""
+                },
+                {
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.base_title?version=integration",
+                    "name": "store.base_title",
+                    "type": "text_asset",
+                    "value": "Apple  (FR)"
+                },
+                {
+                    "link": "https://storeqa-pubsys.corp.apple.com/nemo/text-assets/store.seo.full.pagetitle?version=integration",
+                    "name": "store.seo.full.pagetitle",
+                    "type": "text_asset",
+                    "value": "Clé USB sans fil Connect Wireless Stick de SanDisk  - Apple  (FR)"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "url": "/fr/shop/product/HJY72ZM/A/clé-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk",
+            "urlAspenLink": "http://wwwqa4.corp.apple.com/fr/shop/product/HJY72ZM/A/clé-usb-sans-fil-connect-wireless-stick-200-go-de-sandisk"
+        },
+        {
+            "@class": "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url": "/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-이어폰-사이렌-레드",
+            "urlAspenLink": "http://wwwqa1.corp.apple.com/kr/shop/product/MNLY2ZP/A/powerbeats3-wireless-이어폰-사이렌-레드",
+            "partNumber": "MNLY2ZP/A",
+            "pageTitle": "Powerbeats3 Wireless 이어폰 - 사이렌 레드 - Apple (KR)",
+            "pageType": "pdp",
+            "description": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+            "segment": "epp-discounted",
+            "region": "apac",
+            "country": "KR",
+            "createDate": "2016-10-18T07:00:00Z",
+            "modifyDate": "2016-12-19T21:45:42Z",
+            "status": "unchanged",
+            "storeFrontAlias": "uk-business",
+            "titleAnatomy": [
+                {
+                    "name": "store.seo.hyphen",
+                    "value": "-",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "pub.seo.promotiontext",
+                    "value": "",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.base_title",
+                    "value": "Apple  (KR)",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "store.seo.full.pagetitle",
+                    "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드  - Apple  (KR)",
+                    "type": "text_asset"
+                },
+                {
+                    "name": "productPageTitle",
+                    "value": "Powerbeats3 Wireless 이어폰 - 사이렌 레드",
+                    "type": "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "descriptionAnatomy": [
+                {
+                    "name": "productMetaDescription",
+                    "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+                    "type": "product_attribute"
+                },
+                {
+                    "name" : "productMetaDescription_temp",
+                    "value" : "store.seo.full.description",
+                    "type" : "text_asset"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "nemoReadyRecord": true
+        },
+        {
+            "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url" : "/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automation",
+            "urlAspenLink" : "http://wwwdev1.corp.apple.com/au_smb-discounted_10126/shop/ipad/ipad-accessories/home-automation",
+            "partNumber" : "shop_ipad",
+            "pageTitle" : "Home Automation - iPad Accessories - Business - Apple (AU)",
+            "pageType" : "category",
+            "description" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shipping.",
+            "segment" : "smb-discounted",
+            "region" : "apac",
+            "country" : "AU",
+            "storeFrontId" : 10126,
+            "storeFrontAlias" : "au_smb-discounted_10126",
+            "createDate" : "2017-08-07T10:22:11Z",
+            "modifyDate" : "2017-08-07T10:22:11Z",
+            "status" : "unchanged",
+            "titleAnatomy" : [ {
+                "name" : "pub.category.title.home_automation",
+                "value" : "Home Automation",
+                "type" : "text_asset",
+                "editable" : true
+            }, {
+                "name" : "store.seo.hyphen",
+                "value" : "-",
+                "type" : "text_asset",
+                "editable" : false
+            }, {
+                "name" : "node data",
+                "value" : "iPad Accessories",
+                "type" : "node_data",
+                "editable" : true
+            }, {
+                "name" : "store.base_title",
+                "value" : "Business - Apple (AU)",
+                "type" : "text_asset",
+                "editable" : false
+            } ],
+                "descriptionAnatomy" : [ {
+                "name" : "pub.meta.shop_ipad.ipad_acc.home_automation",
+                "value" : "Buy sensors, remotes, switches and security systems for home automation. Build a smart home with your iPad today. Buy online with fast, free shipping.",
+                "type" : "text_asset",
+                "editable" : true
+            } ],
+            "nemoReadyRecord" : true
+        },
+        {
+            "@class" : "com.apple.store.content.seo.webapp.data.URLProperties",
+            "url" : "/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
+            "urlAspenLink" : "http://wwwqa1.corp.apple.com/kr/shop/product/HG5J2ZM/B/incase-13형-icon-sleeve-with-tensaerlite-macbook-pro-retina-디스플레이",
+            "partNumber" : "HG5J2ZM/B",
+            "pageTitle" : "Incase 13형 ICON Sleeve with Tensaerlite - Apple (KR)",
+            "pageType" : "pdp",
+            "description" : "Incase ICON Sleeve (MacBook )에는 충격을 흡수하기 위한 첨단 Tensaerlite 기술이 사용되었습니다. 지금 Apple Online Store에서 구입하세요.",
+            "segment" : "epp-discounted",
+            "region" : "apac",
+            "country" : "KR",
+            "createDate" : "2015-08-11T07:00:00Z",
+            "modifyDate" : "2016-12-19T21:45:34Z",
+            "status" : "unchanged",
+            "storeFrontAlias": "uk-business",
+            "titleAnatomy" : [
+                {
+                    "name" : "store.seo.hyphen",
+                    "value" : "-",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "pub.seo.promotiontext",
+                    "value" : "",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "store.base_title",
+                    "value" : "Apple  (KR)",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "store.seo.full.pagetitle",
+                    "value" : "Incase 13형 ICON Sleeve with Tensaerlite  - Apple  (KR)",
+                    "type" : "text_asset"
+                },
+                {
+                    "name" : "productPageTitle",
+                    "value" : "Incase 13형 ICON Sleeve with Tensaerlite",
+                    "type" : "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "descriptionAnatomy" : [
+                {
+                    "name" : "productMetaDescription",
+                    "value" : "store.seo.full.description",
+                    "link": "https://storedev-pubsys.corp.apple.com/nemo/text-assets/store.seo.hyphen?version=integration",
+                    "type" : "text_asset"
+                },
+                {
+                    "name": "productMetaDescription1",
+                    "value": "Beats Powerbeats3 Wireless 인 이어 헤드폰은 힘든 운동을 끝까지 해내도록 도와줍니다. 지금 구입하고 빠른 무료 배송 혜택을 받아보세요.",
+                    "type": "product_attribute"
+                },
+                {
+                    "name": "node data",
+                    "type" : "node_data",
+                    "value": "iMac – Yerleşik VESA Montaj Adaptörlü iMac satın alın - Kurumsal Müşteriler için Apple - Apple (TR)"
+                }
+            ],
+            "nemoReadyRecord": true
+        }
+    ],
+    "hasMoreRecords": false
+}

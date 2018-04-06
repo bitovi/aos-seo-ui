@@ -1,0 +1,99 @@
+<tr class="item" {{data 'item'}} {{eleAttrs}}>
+    {{#columns}}
+        {{^if isHidden}}
+            <td class="{{key}}">
+                <div class="grid-item-value">
+                    {{#switch key}}
+                        {{#case 'selectUrl'}}
+                            <input type="checkbox" {{#if selected}}checked{{/if}} on:el:click="selectRowUrl(url, %event)" />
+                        {{/case}}
+                        {{#case 'url'}}
+                            {{#if urlAspenLink}}
+                                <a
+                                    href="{{urlAspenLink}}"
+                                    target="_blank"
+                                >
+                                    {{itemValue}}
+                                </a>
+                            {{else}}
+                                {{itemValue}}
+                            {{/if}}
+                        {{/case}}
+
+                        {{#case 'status'}}
+                            <span class="{{status}}-label">{{status}}</span>
+                        {{/case}}
+
+                        {{#case 'nemoReadyRecord'}}
+                            <span class="icon-lg icon-selected"></span>
+                        {{/case}}
+
+                        {{#case 'pageTitle'}}
+                            <span class="url-page-title">{{pageTitle}}</span>
+
+                            {{! Title Anatomy }}
+                            {{#if titleAnatomy.length}}
+                                <button
+                                    class="btn btn-link title-anatomy-{{../guid}} toggle-anatomy"
+                                    type="button"
+                                >
+                                    <span class="icon-lg icon-info"></span>
+                                    <span class="sr-only">
+                                        View {{pageTitle}} title anatomy
+                                    </span>
+                                </button>
+
+                                <pui-popover
+                                    content-type="html"
+                                    trigger=".title-anatomy-{{../guid}}"
+                                >
+                                    <div>
+                                        <dl class="anatomy-list">
+                                            {{#each titleAnatomy}}
+                                                {{> anatomyItem}}
+                                            {{/each}}
+                                        </dl>
+                                    </div>
+                                </pui-popover>
+                            {{/if}}
+                        {{/case}}
+
+                        {{#case 'description'}}
+                            <span class="url-desc">{{{description}}}</span>
+
+                            {{! Description Anatomy }}
+                            {{#if descriptionAnatomy.length}}
+                                <button
+                                    class="btn btn-link desc-anatomy-{{../guid}} toggle-anatomy"
+                                    type="button"
+                                >
+                                    <span class="icon-lg icon-info"></span>
+                                    <span class="sr-only">
+                                        View {{pageTitle}} description anatomy
+                                    </span>
+                                </button>
+
+                                <pui-popover
+                                    content-type="html"
+                                    trigger=".desc-anatomy-{{../guid}}"
+                                >
+                                    <div>
+                                        <dl class="anatomy-list">
+                                            {{#each descriptionAnatomy}}
+                                                {{> anatomyItem}}
+                                            {{/each}}
+                                        </dl>
+                                    </div>
+                                </pui-popover>
+                            {{/if}}
+                        {{/case}}
+
+                        {{#default}}
+                            {{itemValue}}
+                        {{/default}}
+                    {{/switch}}
+                </div>
+            </td>
+        {{/if}}
+    {{/columns}}
+</tr>

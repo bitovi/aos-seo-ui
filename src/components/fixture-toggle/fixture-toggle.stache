@@ -1,0 +1,2 @@
+<span class="label label-default fixtures-badge" can-click="toggle">Fixtures: <span class="{{#fixturesOn}}on{{/fixturesOn}}">{{status}}</span></span>
+

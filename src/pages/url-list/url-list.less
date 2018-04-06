@@ -1,0 +1,102 @@
+seo-url-list {
+    // Status Badges
+    .status-badge {
+        .label;
+        .label-alt;
+        display: inline-block;
+        min-width: 10.3rem;
+        padding-left: .4rem;
+        padding-right: .4rem;
+    }
+
+    .added-label,
+    .new-to-store-label {
+        .status-badge;
+        .label-success;
+    }
+
+    .end-of-life-label {
+        .status-badge;
+        .label-danger;
+    }
+
+    .modified-label {
+        .status-badge;
+        .label-info;
+    }
+
+    .unchanged-label {
+        .status-badge;
+        .label-default;
+    }
+
+    // Filters
+    .filters {
+        border-bottom: .1rem solid @page-header-border-color;
+        margin: -@line-height-computed 0 @form-group-margin-bottom;
+        padding: @padding-small-vertical 0;
+    }
+
+    .country-group .list-group-item {
+        font-size: @font-size-small;
+        padding-bottom: @padding-base-vertical;
+        padding-top: @padding-base-vertical;
+    }
+
+    .url-page-title {
+        white-space: pre-wrap;
+    }
+
+    // Anatomy
+    .toggle-anatomy {
+        font-size: @font-size-small;
+        padding: 0;
+
+        &:hover {
+            color: @text-color;
+        }
+    }
+
+    .anatomy-list {
+        font-size: @font-size-small;
+        margin-bottom: 0;
+        word-wrap: break-word;
+
+        dd {
+            margin-left: 1.7rem;
+
+            + dt {
+                margin-top: @padding-large-vertical;
+            }
+        }
+    }
+
+    .type-indicator {
+        border-radius: @font-size-small;
+        display: inline-block;
+        font-size: @font-size-small - 1;
+        font-weight: normal;
+        height: @font-size-small;
+        line-height: @font-size-small - 1;
+        text-align: center;
+        width: @font-size-small;
+
+        &.product-attribute {
+            background: @thunderCloud;
+            color: @whiteTip;
+
+            &:before {
+                content: 'a';
+            }
+        }
+
+        &.node-data {
+            background: @pacific;
+            color: @thunderCloud;
+
+            &:before {
+                content: 'n';
+            }
+        }
+    }
+}

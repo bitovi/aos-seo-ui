@@ -1,0 +1,11 @@
+require('../src/app.less!');
+require('seo-ui/components/cancel-export-modal/cancel-export-modal.test');
+require('seo-ui/components/export-urls/export-urls.test');
+require('seo-ui/components/fixture-toggle/fixture-toggle.test');
+require('seo-ui/components/header/header.test');
+require('seo-ui/components/list-page/list-page.test');
+require('seo-ui/components/user-menu/user-menu.test');
+require('seo-ui/pages/generate-page/generate-page.test');
+require('seo-ui/pages/review-page/review-page.test');
+require('seo-ui/pages/url-list/url-list.test');
+require('seo-ui/pages/edit-metadata-list/edit-metadata-list.test');

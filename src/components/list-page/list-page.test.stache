@@ -1,0 +1,10 @@
+<seo-list-page
+    columns="{columns}"
+    data-options="{dataOptions}"
+    details-key="{detailsKey}"
+    filter-config="{filterConfig}"
+    model="{model}"
+    rowTemplate="@rowTemplate"
+    search-field="{searchField}"
+    state="{state}"
+></seo-list-page>

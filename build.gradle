@@ -1,0 +1,144 @@
+buildscript {
+    // If nexusUsername and nexusPassword are not defined, assume they are
+    // declared in environment variables by the build system
+    if (!project.hasProperty("nexusUsername")) {
+        ext.nexusUsername = System.getenv("NEXUS_USR");
+    }
+    if (!project.hasProperty("nexusPassword")) {
+        ext.nexusPassword = System.getenv("NEXUS_PSW");
+    }
+    if (!project.hasProperty("nexusBase")) {
+        ext.nexusBase = System.getenv("NEXUS_BASE");
+    }
+
+    if (!project.hasProperty("artifactory_username")) {
+        ext.artifactory_username = System.getenv("ARTIFACTORY_USR");
+    }
+    if (!project.hasProperty("artifactory_apikey")) {
+        ext.artifactory_apikey = System.getenv("ARTIFACTORY_PSW");
+    }
+    if (!project.hasProperty("artifactory_url")) {
+        ext.artifactory_url = System.getenv("ARTIFACTORY_URL");
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url artifactory_url
+            credentials {
+                username = artifactory_username
+                password = artifactory_apikey
+            }
+        }
+    }
+
+    dependencies {
+        classpath 'com.gradle:build-scan-plugin:1.10'
+        // classpath 'io.github.robwin:jgitflow-gradle-plugin:0.5.0'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5'
+        classpath 'com.moowork.gradle:gradle-node-plugin:1.1.1'
+    }
+}
+
+apply plugin: 'com.gradle.build-scan'
+apply plugin: 'java-library'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'org.sonarqube'
+// apply plugin: 'io.github.robwin.jgitflow'
+apply plugin: 'com.moowork.gulp'
+
+
+group = 'com.apple.store.content'
+
+description = 'seo-ui'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+jar.enabled = false
+
+
+
+
+task gulpBuild(type: GulpTask) {
+  args = ["build:skip"]
+}
+
+
+task anotherCopy(type: Copy) {
+    from "${buildDir}/seo-ui/"
+    from "${buildDir}/"
+    into "${buildDir}/target-production"
+    include('app.css','app.js','index.production.html','*.json')
+    // inputs.sourceFiles.stopExecutionIfEmpty()
+    rename { String fileName ->
+      fileName.replace("app.css", "app.min.css")
+    }
+    rename { String fileName ->
+      fileName.replace("app.js", "app.min.js")
+    }
+    rename { String fileName ->
+      fileName.replace("index.production.html", "index.html")
+    }
+  }
+
+task copyTask(type: Copy) {
+    from "${buildDir}/seo-ui/"
+    from "${buildDir}/"
+    into "${buildDir}/target-production/"
+    include('app.css','app.js','index.production.html')
+  }
+
+
+task createJar(type: Jar) {
+  baseName = project.property('name')
+  version = project.property('version')
+  // compression = Compression.GZIP
+  from "${buildDir}/target-production/"
+  extension "jar"
+  destinationDir file("${buildDir}")
+}
+
+clean.dependsOn 'npm_cache_clean'
+gulpBuild.dependsOn 'npmInstall'
+copyTask.dependsOn 'gulpBuild'
+anotherCopy.dependsOn 'copyTask'
+build.dependsOn 'anotherCopy'
+createJar.dependsOn 'build'
+publish.dependsOn 'createJar'
+
+
+repositories {
+    mavenLocal()
+    maven {
+        url artifactory_url
+        credentials {
+            username = artifactory_username
+            password = artifactory_apikey
+        }
+    }
+}
+
+publishing {
+    publications {
+
+      maven(MavenPublication) {
+        // from components.java
+        artifact createJar
+      }
+    }
+    repositories {
+    maven {
+      credentials {
+        username "${nexusUsername}"
+        password "${nexusPassword}"
+      }
+      url "${nexusBase}/repositories/${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases' }"
+    }
+  }
+}

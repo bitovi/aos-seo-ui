@@ -1,0 +1,72 @@
+seo-edit-metadata-list {
+    .toggle-anatomy {
+        font-size: @font-size-small;
+        padding: 0;
+
+        &:hover {
+            color: @text-color;
+        }
+    }
+
+    label .icon-error {
+        display: none;
+    }
+
+    .has-error {
+        label {
+            .icon-error {
+                display: inline;
+            }
+        }
+    }
+    
+    .anatomy-list {
+        font-size: @font-size-small;
+        margin-bottom: 0;
+        word-wrap: break-word;
+
+        dd {
+            margin-left: 1.7rem;
+
+            + dt {
+                margin-top: @padding-large-vertical;
+            }
+        }
+    }
+
+    .total-count {
+        float: left;
+        width: 250px;
+        margin-top: 3rem;
+        text-align: right;
+    }
+
+    .action-bar-menu {
+        float: right;
+    }
+
+    .anotomyTable {
+        td {
+            padding: 5px;
+        }
+    }
+
+    .loading-indicator-container {
+        text-align: center;
+        padding-top: 10%;
+        .icon-spinner {
+            font-size: 3.5em;
+            line-height: initial; //corrects spinning getting offcentered
+        }
+
+        .content {
+            color: @coral;
+            font-size: @font-size-large;
+            padding-top: @padding-base-vertical;
+        }
+    }
+
+    .radarTable tr td:first-child{
+         width: 108px;
+    }
+}

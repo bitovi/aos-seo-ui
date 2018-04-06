@@ -1,0 +1,80 @@
+require('can-fixture');
+
+var _ = require('lodash');
+var fixture = require('can-fixture');
+
+var envVars = require('seo-ui/utils/environmentVars');
+var urlFilters = require('./url-filters.json');
+var urls = require('./urls.json').data;
+
+// Find All
+fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
+    var data = request.data;
+
+    var results = urls;
+    var searchField;
+    var sort = data.sort;
+    var sortArray;
+    var sortField;
+    var sortOrder;
+
+    if (data.url) {
+        searchField = 'url';
+    } else if (data.pageTitle) {
+        searchField = 'pageTitle';
+    } else if (data.partNumber) {
+        searchField = 'partNumber';
+    } else if (data.description) {
+        searchField = 'description';
+    } else {
+        searchField = '';
+    }
+
+    // Search
+    if (searchField) {
+        results = urls.filter(function (item) {
+            if (item[searchField] && data[searchField]) {
+                return item[searchField].toLowerCase().indexOf(data[searchField].toLowerCase()) !== -1;
+            }
+        });
+    }
+
+    // Sort
+    if (sort) {
+        sortArray = sort.split(' ');
+        sortField = sortArray[0];
+        sortOrder = sortArray[1];
+
+        results = _.sortBy(results, sortField);
+
+        if (sortOrder === 'desc') {
+            results.reverse();
+        }
+    }
+
+    response({
+        count: results.length,
+        id: 'c56ac62c-9f74-4c25-a1b4-ab0e9cea2ed0',
+        data: results
+    });
+});
+
+// Find One
+fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, response) {
+    var urlIndex = _.findIndex(urls.data, {
+        url: request.data.url
+    });
+
+    if (urlIndex !== -1) {
+        response(urls.data[urlIndex]);
+    } else {
+        response(404, 'error', {
+            message: 'URL ' + request.data.url + ' not found.'
+        });
+    }
+});
+
+// Get Filters
+fixture('GET ' + envVars.apiUrl() + '/url-filters.json', function (request, response) {
+    response(urlFilters);
+});

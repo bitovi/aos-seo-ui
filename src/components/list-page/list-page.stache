@@ -1,0 +1,174 @@
+<div class="page-header clearfix">
+    <h1>{{pageTitle}}</h1>
+
+    {{! New Item Button }}
+    {{^if disableNewItemButton}}
+        {{^if user.isReadOnly}}
+            <pui-action-bar-menu action-scope="{.}">
+                <pui-action-bar-item
+                    action="enableNewItemModal"
+                    icon="new"
+                    tooltip-title="Create {{casing 'proper' type true}}"
+                ></pui-action-bar-item>
+            </pui-action-bar-menu>
+        {{/if}}
+    {{/if}}
+</div>
+
+<div class="list-tools">
+    {{! Filter Menus }}
+    <div class="filters">
+        {{#each filterConfig}}
+            <pui-filter-menu
+                vm:buttonLabel:from="btnLabel"
+                on:vm:appliedFilterBtnLabel="updateFilterUrl(%viewModel)"
+                vm:filterGroups:from="../getFilterOptions(./filterGroups)"
+            >
+                {{#is btnLabel 'All Dates'}}
+                    <div class="custom-range-selector {{^if datesOpen}}hide{{/if}}">
+                        <div class="form-group">
+                            <label for="start-date">From:</label>
+                            <pui-date-picker
+                                date-string="{startDate}"
+                                max-date="{maxDate}"
+                                vm:pickerOpen:bind="fromDatePickerOpen"
+                                placement="bottom"
+                            >
+                                <input
+                                    can-value="{startDate}"
+                                    class="form-control"
+                                    id="start-date"
+                                    name="start-date"
+                                    type="text"
+                                />
+                            </pui-date-picker>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">To:</label>
+                            <pui-date-picker
+                                date-string="{endDate}"
+                                max-date="{today}"
+                                vm:pickerOpen:bind="toDatePickerOpen"
+                                min-date="{startDate}"
+                                placement="bottom"
+                            >
+                                <input
+                                    can-value="{endDate}"
+                                    class="form-control"
+                                    id="end-date"
+                                    name="end-date"
+                                    type="text"
+                                />
+                            </pui-date-picker>
+                        </div>
+                    </div>
+                {{/is}}
+            </pui-filter-menu>
+        {{/each}}
+
+        {{#if filterConfig.length}}
+            <button
+                type="button"
+                class="btn btn-secondary btn-xs reset-all-filters"
+                on:el:click="resetAllFilters"
+            >Reset Filters</button>
+        {{/if}}
+        <div class="request-selection-option">
+            {{#is selectUrlCount 0}}
+                <a
+                    type="button" disabled
+                    class="btn btn-secondary btn-xs create-request-button" href="javascript:;">Create Request | {{selectUrlCount |}}
+               </a>
+            {{/is}}
+            {{^is selectUrlCount 0}}
+                <a
+                    type="button" class="btn btn-secondary btn-xs create-request-button"
+                    on:el:click="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl()}}">Create Request | {{selectUrlCount |}}
+               </a>
+           {{/is}}
+           <button
+                type="button"
+                {{#is selectUrlCount 0}}disabled{{/is}}
+                class="btn btn-secondary btn-xs deselect-all-button" on:el:click="deselectAll()">Deselect
+           </button>
+        </div>
+    </div>
+
+    <div class="row">
+        {{! Basic Search }}
+        <div class="col-md-5">
+            <pui-grid-search
+                on:el:click="enableBasicSearch"
+                data-options="{dataOptions}"
+                search-field="{searchField}"
+                search-query="{searchQuery}"
+                search-state-enabled="{searchStateEnabled}"
+                search-value="{searchValue}"
+            ></pui-grid-search>
+        </div>
+
+        <div class="col-md-7">
+            {{! Column Toggle }}
+            <pui-grid-column-toggle
+                class="pull-right"
+                vm:columns:bind="columns"
+                menu-align="right"
+                vm:isMenuOpen:bind="topGridColumnToggleOpen"
+            ></pui-grid-column-toggle>
+
+            {{! Pagination }}
+            <pui-pagination
+                class="pull-right"
+                count="{count}"
+                current-page="{currentPage}"
+                has-more-records="{hasMoreRecords}"
+                limit="{limit}"
+            ></pui-pagination>
+        </div>
+    </div>
+
+</div>
+
+{{! Grid List }}
+<pui-grid-list
+    class="main-item-list"
+    vm:columns:bind="columns"
+    count="{count}"
+    current-page="{currentPage}"
+    expandable-rows="{expandableRows}"
+    expandedTemplate="@expandedTemplate"
+    vm:filtersEnabled:from="filtersEnabled"
+    has-more-records="{hasMoreRecords}"
+    is-loading="{isLoading}"
+    item-link-enabled="{itemLinkEnabled}"
+    items:bind="items"
+    limit="{limit}"
+    model="{model}"
+    rowTemplate:from="@rowTemplate"
+    primaryHeaderTemplate="@primaryHeaderTemplate"
+    search-filter="{searchFilter}"
+    search-query="{searchQuery}"
+    sort-by="{state.sort}"
+    sort-order="{state.order}"
+    state="{state}"
+></pui-grid-list>
+
+<div>
+    {{! Column Toggle }}
+    <pui-grid-column-toggle
+        class="pull-right"
+        vm:columns:bind="columns"
+        menu-align="right"
+        placement="top"
+        vm:isMenuOpen:bind="bottomGridColumnToggleOpen"
+    ></pui-grid-column-toggle>
+
+    {{! Pagination }}
+    <pui-pagination
+        class="pull-right"
+        count="{count}"
+        current-page="{currentPage}"
+        has-more-records="{hasMoreRecords}"
+        limit="{limit}"
+    ></pui-pagination>
+</div>

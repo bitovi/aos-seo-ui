@@ -1,0 +1,56 @@
+<dt>
+    {{#switch type}}
+        {{#case 'product_attribute'}}
+            <span class="product-attribute type-indicator">
+                <span class="sr-only">
+                    Product Attribute:
+                </span>
+            </span>
+
+            <span class="anatomy-name">
+                {{name}}
+            </span>
+        {{/case}}
+
+        {{#case 'node_data'}}
+            <span class="node-data type-indicator">
+                <span class="sr-only">
+                    Node Data:
+                </span>
+            </span>
+
+            <span class="anatomy-name">
+                {{name}}
+            </span>
+        {{/case}}
+
+        {{#default}}
+            <span class="icon-key type-indicator">
+                <span class="sr-only">
+                    Key Path:
+                </span>
+            </span>
+
+            {{#if link}}
+                <a
+                    href="{{link}}"
+                    target="_blank"
+                >
+                    <span class="anatomy-name">
+                        {{name}}
+                    </span>
+                </a>
+            {{else}}
+                <span class="anatomy-name">
+                    {{name}}
+                </span>
+            {{/if}}
+        {{/default}}
+    {{/switch}}
+</dt>
+
+<dd>
+    <span class="anatomy-value">
+        {{{value}}}
+    </span>
+</dd>

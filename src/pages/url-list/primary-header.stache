@@ -1,0 +1,24 @@
+{{#columns}}
+    {{^if isHidden}}
+        {{#switch key}}
+            {{#case 'selectUrl'}}
+                <th class="{{key}} {{cssClass}}">
+                    <span class="col-name">
+                       <input class="toggleSelect" type="checkbox" {{#if isAllSelected}}checked{{/if}} on:el:click="selectAllUrl">
+                    </span>
+                </th>
+            {{/case}}
+            {{#default}}
+                <th can-click="setSort"
+                    class="{{key}}{{#if useSorting}} sortable{{/if}} {{cssClass}}"
+                    {{#if useSorting}} tabindex="0"{{/if}}
+                    can-enter="setSort">
+                    <span class="col-name">{{label}}</span>
+                    <button class="order-toggle" type="button">
+                        Sort list by {{label}}, in <span class="next-order">ascending</span> order
+                    </button>
+                </th>
+            {{/default}}
+        {{/switch}}
+    {{/if}}
+{{/columns}}
