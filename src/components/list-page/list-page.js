@@ -271,7 +271,8 @@ module.exports = Component.extend({
          * @description Event listener to select corresponding countries when Region is selected
          * @param {jQuery object} $el the clicked element
          */
-        'pui-filter-menu .filter-group input click': function ($input) {
+        'pui-filter-menu .filter-group input click': function (el) {
+            var $input = $(el);
             var filterVm = canViewModel($input.closest('pui-filter-menu'));
             var filterGroups = filterVm.attr('filterGroups');
             var $thisGroup = $input.closest('.filter-group');
