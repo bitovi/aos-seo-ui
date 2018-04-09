@@ -1,0 +1,40 @@
+<tr class="item" {{data 'item'}} {{eleAttrs}}>
+    {{#columns}}
+        <td class="{{key}}">
+            <div class="grid-item-value">
+                {{#switch key}}       
+                    
+                    {{#case 'contents'}}
+                        {{! Contents }}
+                        {{#if contents.length}}
+                            {{#each contents}}
+                                <table class="contents-table">
+                                    <tr>
+                                        <td><strong>Asset type</strong></td>
+                                        <td>{{assetType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Asset Uri</strong></td>
+                                        <td>{{assetUri}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Old Value</strong></td>
+                                        <td>{{oldContent}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>New Value</strong></td>
+                                        <td>{{newContent}}</td>
+                                    </tr>
+                                </table>
+                            {{/each}}                         
+                        {{/if}}
+                    {{/case}}
+
+                    {{#default}}
+                        {{itemValue}}
+                    {{/default}}
+                {{/switch}}
+            </div>
+        </td>
+    {{/columns}}
+</tr>

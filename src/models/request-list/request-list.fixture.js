@@ -4,6 +4,7 @@ var _ = require('lodash');
 var can = require('can');
 var envVars = require('seo-ui/utils/environmentVars');
 var requestList = require('./request-list.json').data;
+var requestDetail = require('./request-detail.json');
 
 can.fixture('GET ' + envVars.apiUrl() + '/request-list.json', function (request, response) {
     var data = request.data;
@@ -57,4 +58,8 @@ can.fixture('GET ' + envVars.apiUrl() + '/request-list.json', function (request,
         count: results.length,
         data: results
     });
+});
+
+can.fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
+    return requestDetail;
 });

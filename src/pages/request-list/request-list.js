@@ -21,5 +21,18 @@ var ViewModel = require('./request-list.viewmodel');
 module.exports = can.Component.extend({
     tag: 'seo-request-list',
     template: template,
-    viewModel: ViewModel
+    viewModel: ViewModel,
+    events: {
+        'pui-grid-list .item click': function ($row, evnt) {
+            var appState = this.viewModel.attr('state');
+            var itemData = $row.data('item');
+            var key = itemData.attr('id');
+            
+            appState.setRouteAttrs({
+                page: 'request-detail',
+                route: 'request-list/:requestPath',
+                requestPath: key
+            });
+        }
+    }
 });

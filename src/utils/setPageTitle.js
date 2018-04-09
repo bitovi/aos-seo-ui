@@ -28,12 +28,9 @@ module.exports = function setPageTitle(titleTemplate, appState) {
     var pathElementValue = {};
 
     if (newRoute.indexOf(':') > -1) {
-        match = keyExpression.exec(newRoute);
-
-        while (match !== null) {
+        while ((match = keyExpression.exec(newRoute)) !== null) {
             pathElementValue[match[1]] = appState.attr(match[1]);
         }
-
         parsedTitle = can.sub(titleTemplate, pathElementValue);
     }
 

@@ -10,3 +10,4 @@ require('test/pages/review-page/review-page.test');
 require('test/pages/url-list/url-list.test');
 require('test/pages/edit-metadata-list/edit-metadata-list.test');
 require('test/pages/request-list/request-list.test');
+require('test/pages/request-detail/request-detail.test');

@@ -68,6 +68,13 @@
         "template": "<seo-request-list state=\"{.}\"></seo-request-list>",
         "title": "Request List"
     },
+    "request-list/:requestPath": {
+        "params": {
+            "page": "request-detail"
+        },
+        "template": "<seo-request-detail state=\"{.}\"></seo-request-detail>",
+        "title": "Request Detail {requestPath}"
+    },
     "review": {
         "params": {
             "page": "review-page"
