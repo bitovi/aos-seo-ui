@@ -1,13 +1,13 @@
 <h1>Review Meta Content &amp; Key Paths</h1>
 <p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
 <pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
-    <div id="enter-urls" class="tab-pane">
+    <div id="enter-urls" class="tab-pane active">
         <textarea
             el:value:bind="urlTexts"
             class="form-control"
             cols="80"
             id="url-texts"
-            on:el:keyup="updateUrlText($element.val())"
+            on:el:keyup="updateUrlText($element.value)"
             name="url-texts"
             placeholder="Please enter URLs in a valid format, separated by commas"
             rows="8"></textarea>

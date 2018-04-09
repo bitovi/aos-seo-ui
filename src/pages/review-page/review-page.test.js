@@ -1,5 +1,8 @@
+require('../../app.less!');
 require('./review-page');
 require('can-fixture');
+
+var domEvents = require("can-util/dom/events/events");
 
 var $ = require('jquery');
 var assign = require('can-util/js/deep-assign/deep-assign');
@@ -200,9 +203,9 @@ describe('Review Page', function () {
 
             describe('When Clear Field button clicked', function () {
                 beforeEach(function () {
-                    $component.find('#url-texts').val('abc').trigger('change');
-                    $component.find('#clear-textarea').trigger('click');
-                    jasmine.clock().runToLast();
+                    $component.find('#url-texts').val('abc')
+                    domEvents.dispatch.call($component.find('#url-texts')[0], 'change')
+                    domEvents.dispatch.call($component.find('#clear-textarea')[0], 'click')
                 });
 
                 it('clears textarea', function () {
@@ -215,8 +218,7 @@ describe('Review Page', function () {
                     var evt = new $.Event('keyup');
                     $component.find('#url-texts').val('abcd');
                     evt.which = 27;
-                    $component.find('#url-texts').trigger(evt);
-                    jasmine.clock().runToLast();
+                    domEvents.dispatch.call($component.find('#url-texts')[0], 'keyup');
                 });
 
                 it('sets urlTexts property to the same value as what the textarea has', function () {
