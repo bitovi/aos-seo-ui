@@ -2,7 +2,7 @@ require('./generate-page');
 require('can-fixture');
 
 var $ = require('jquery');
-var assign = require('can-util/js/assign/assign');
+var assign = require('can-util/js/deep-assign/deep-assign');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var jasmineConfig = require('test/jasmine-configure');

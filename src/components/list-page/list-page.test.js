@@ -4,7 +4,7 @@ require('seo-ui/models/url/url.fixture');
 var AppState = require('seo-ui/models/appstate/appstate');
 var $ = require('jquery');
 var each = require('can-util/js/each/each');
-var assign = require('can-util/js/assign/assign');
+var assign = require('can-util/js/deep-assign/deep-assign');
 var canViewModel = require('can-view-model');
 var fixture = require('can-fixture');
 var jasmineConfig = require('test/jasmine-configure');

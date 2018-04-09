@@ -2,7 +2,7 @@ require('seo-ui/models/url/url.fixture');
 
 var $ = require('jquery');
 var _ = require('lodash');
-var assign = require('can-util/js/assign/assign');
+var assign = require('can-util/js/deep-assign/deep-assign');
 var canViewModel = require('can-view-model');
 
 var AppState = require('seo-ui/models/appstate/appstate');

@@ -1,4 +1,4 @@
-var assign = require('can-util/js/assign/assign');
+var assign = require('can-util/js/deep-assign/deep-assign');
 var CanMap = require('can-map');
 /* eslint camelcase: 0 */
 
