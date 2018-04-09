@@ -36,7 +36,6 @@ var vm;
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
 var renderPage = function (newState, done) {
-    console.log('Begin rendering page...')
 
     state = new AppState(assign({}, stateObj, newState || {}));
 
@@ -133,7 +132,6 @@ var renderPage = function (newState, done) {
             vm = canViewModel($component);
             $filterMenus = vm.attr('filterMenus');
 
-            console.log('Done inserting/rendering page!')
 
             done();
         })
@@ -422,14 +420,12 @@ describe('List Page', function () {
             var regionVm;
 
             beforeEach(function () {
-                debugger;
                 // Data setup
                 regionVm = canViewModel($filterMenus.eq(0));
 
                 regionsGroup = regionVm.attr('filterGroups.0');
                 countriesGroup = regionVm.attr('filterGroups.1');
                 dateGroup = canViewModel($filterMenus.eq(1)).attr('filterGroups.0');
-                debugger;
                 // Selects filterOptions
                 regionsGroup.toggleAllFilters(true);
                 countriesGroup.toggleAllFilters(true);
@@ -443,11 +439,6 @@ describe('List Page', function () {
                 vm.resetAllFilters();
 
             });
-
-            afterEach(function () {
-              jasmine.clock().timers
-              debugger;
-            })
 
             it('deselects all check box filter options', function () {
                 regionsGroup.attr('filterOptions').forEach(function (option) {

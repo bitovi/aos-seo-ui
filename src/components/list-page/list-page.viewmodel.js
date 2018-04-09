@@ -506,7 +506,6 @@ module.exports = CanMap.extend({
         if (model && model.getFilters) {
             model.getFilters()
                 .then(function (filters) {
-                    console.log('Setting filterData on:', self._cid)
                     self.attr('filterData', filters);
                 })
                 .catch(function (error) {
@@ -526,7 +525,6 @@ module.exports = CanMap.extend({
     getFilterOptions: function (filterGroups) {
         var filterData = this.attr('filterData');
         var match;
-        console.log('Getting filterData on:', this._cid, filterData)
         if (filterData && filterGroups) {
             filterGroups.forEach(function (group) {
                 match = _.find(filterData.filters, {
