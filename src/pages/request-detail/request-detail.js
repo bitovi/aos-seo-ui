@@ -1,3 +1,9 @@
+/**
+ * @module  {can.Component} request-detail  Request-Detail
+ * @parent pages
+ *
+ * @description request detail page displays all the detail of the request and radar.
+ */
 require('can/map/define/define');
 require('can/view/stache/stache');
 require('@apple/pui/components/grid-list/grid-list');
