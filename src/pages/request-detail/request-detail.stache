@@ -1,12 +1,22 @@
 <div class="page-header clearfix">
-    <h1 ($click)="navigateToRequestList()">{{detailData.title}}</h1>
+    <h1 class="pull-left">{{detailData.title}}</h1>
+    <div class="pull-right">
+        <div class="action-bar-menu">
+            <pui-action-bar-menu action-scope="{actionBarMenuActions}">
+                <pui-action-bar-dropdown icon="more" tooltip-title="More">
+                    <pui-action-bar-item action="navigateToRequestList">
+                        Back to List page
+                    </pui-action-bar-item>
+                </pui-action-bar-dropdown>
+            </pui-action-bar-menu> 
+        </div>                
+    </div>
 </div>
 
 <div class="row request-details">
-	<h2 class="col-md-12"> Request Details:</h2>
+	<h2 class="col-md-12 request-details"> Request Details:</h2>
 	<div class="col-md-4 title-description">
 		<div class="row">
-			<strong>Title & Description:</strong>
 			<div>
 				Title : {{detailData.title}}
 			</div>
@@ -25,7 +35,6 @@
 
 	<div class="col-md-3">
 		<div class="row">
-			<strong>Component & Version:</strong>
 			<div>
 				Component : {{detailData.radar.component}}
 			</div>
@@ -38,18 +47,19 @@
 	</div>
 	<div class="col-md-3">
 		<div class="row">
-			<strong>Radar State:</strong>
 			<div>
-				State : {{detailData.radar.state}}
+				Radar State : {{detailData.radar.state}}
 			</div>
 		</div>
 		<div class="row">
 			<div>
-				SubState : {{detailData.radar.subState}}
+				Radar SubState : {{detailData.radar.subState}}
 			</div>
 			</div>
 	</div>
-	<h2 class="col-md-12 request-content"> Request Content:</h2>
+	<div class="col-md-12 request-content">
+		<h2> Request Content:</h2>
+	</div>
 </div>
 
 <div>

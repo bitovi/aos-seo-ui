@@ -69,6 +69,18 @@ module.exports = can.Map.extend({
         },
 
         /**
+         * @property {Object} actionBarMenuActions
+         * @description Actions used for action-bar-menu items
+         */
+        actionBarMenuActions: {
+            value: function() {
+                return {
+                    navigateToRequestList: can.proxy(this.navigateToRequestList, this)
+                };
+            }
+        },
+
+        /**
          * @property {function} edit-metadata-list.viewModel.rowTemplate rowTemplate
          * @description Stores the template renderer function reference.
          */
@@ -86,10 +98,12 @@ module.exports = can.Map.extend({
      * @description Get the request id of the click item and json of it's.
      * @param requestId iD of the selected request.
      */
-    getRequestDetails: function (requestId) {
+    getRequestDetails: function () {
         var self = this;
+        var appState = this.attr('state');           
+        var requestPath = appState.attr('requestPath');
 
-        self.attr('model').findOne({id: requestId}).then(function (resp) {
+        self.attr('model').findOne({id: requestPath}).then(function (resp) {
             self.attr('detailData',resp.detail);
             self.attr('items',resp.detail.urls);
         });  

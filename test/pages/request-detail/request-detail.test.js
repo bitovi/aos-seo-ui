@@ -1,3 +1,4 @@
+
 require('seo-ui/pages/request-detail/request-detail');
 require('can/util/fixture/fixture');
 
@@ -10,7 +11,7 @@ var jasmineConfigClean;
 var state;
 var stateObj = {
     page: 'request-detail',
-    urlPath: ''
+    requestPath: 'abb679fe-e016-44ad-bac5-33f86a71e775'
 };
 
 var testTemplate = require('./request-detail.test.stache!');
@@ -31,7 +32,7 @@ var renderPage = function(newState) {
     $component = $('#sandbox seo-request-detail');
 };
 
-describe('Request-detail', function () {
+describe('Request Detail', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig();
         renderPage();
@@ -90,7 +91,37 @@ describe('Request-detail', function () {
 
     describe('On load', function () {
         it('has page title', function () {
-            expect($component.find('.page-header .pull-left').text().trim()).toEqual('Iphone X title');
+            expect($component.find('.page-header h1').text().trim()).toEqual('Iphone X title');
+        });
+    });
+
+    describe('menu option', function () {
+
+        beforeEach(function () {
+            $component.find('.action.dropdown-toggle').trigger('click');
+        });
+
+        it('shows back to list page option', function () {
+                var menuOptionText = $component.find('pui-action-bar-item[action="navigateToRequestList"]').text().trim();
+                expect(menuOptionText).toEqual('Back to List page');
+        });
+
+        describe('Back to list page', function () {
+            describe('on clicking', function () {
+                var spyEvent;
+
+                beforeEach(function () {
+                    vm = $component.viewModel();
+                    $component.find('.action.dropdown-toggle').trigger('click');
+                    var backToListButton = $component.find('pui-action-bar-item[action="navigateToRequestList"]');
+                    spyEvent = spyOnEvent(backToListButton, 'click');
+                    backToListButton.trigger('click');
+                });
+
+                it('trigges the click event', function () {
+                    expect(spyEvent).toHaveBeenTriggered();
+                });
+            });
         });
     });
 });

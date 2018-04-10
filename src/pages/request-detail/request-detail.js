@@ -14,11 +14,8 @@ module.exports = can.Component.extend({
         /**
          * @description Invoked when the component is initialized.
          */
-        init: function () {
-        	var appState = this.viewModel.attr('state');
-        	var vm = this.viewModel;
-        	var requestPath = appState.attr('requestPath');
-        	vm.getRequestDetails(requestPath);
+        'init': function () {        	
+        	this.viewModel.getRequestDetails();
         }
     }
 });
