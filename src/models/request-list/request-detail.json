@@ -1,72 +1,72 @@
 {
-  "status" : "SUCCESS",
-  "detail" : {
-    "modifyDate" : 1522867186123,
-    "modifyUser" : "joe_relentless",
-    "id" : "abb679fe-e016-44ad-bac5-33f86a71e775",
-    "title" : "Iphone X title",
-    "description" : "rrrr",
-    "priority" : -1,
-    "urls" : [ {
-      "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/audio-music",
-      "partNumber" : "shop_mac",
-      "pageType" : "category",
-      "segment" : "smb-discounted",
-      "geo" : "apac",
-      "contents" : [ {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.meta.shop_mac.mac_acc.audio_music",
-        "oldContent" : "Enjoy premium sound quality or create music with ease. Shop headphones and microphones for Mac from Apple. Buy online with fast, free shipping.",
-        "newContent" : "Enjoy premium sound quality or create music with ease. Shop headphones and microphones for Mac from Apple. Buy online with fast, free shipping."
-      }, {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.category.title.audio_music",
-        "oldContent" : "Audio & Music",
-        "newContent" : "Audio & Musicgggg"
-      } ]
-    }, {
-      "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/business",
-      "partNumber" : "shop_mac",
-      "pageType" : "category",
-      "segment" : "smb-discounted",
-      "geo" : "apac",
-      "contents" : [ {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.meta.shop_mac.mac_acc.business",
-        "oldContent" : "Shop Mac accessories for business. Buy Apple Pencil, printers, hard drives and more. Buy online with fast, free shipping.",
-        "newContent" : "Shop Mac accessories for business. Buy Apple Pencil, printers, hard drives and more. Buy online with fast, free shipping."
-      }, {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.category.title.business_acc",
-        "oldContent" : "Business",
-        "newContent" : "Businessggg"
-      } ]
-    }, {
-      "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/point-of-sale",
-      "partNumber" : "shop_mac",
-      "pageType" : "category",
-      "segment" : "smb-discounted",
-      "geo" : "apac",
-      "contents" : [ {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.meta.shop_mac.mac_accessories.pos.desc",
-        "oldContent" : "Enhance your productivity with accessories for Mac. Buy printers, storage solutions and other tools online and get fast, free delivery",
-        "newContent" : "Enhance your productivity with accessories for Mac. Buy printers, storage solutions and other tools online and get fast, free deliveryggg"
-      }, {
-        "assetType" : "text_asset",
-        "assetUri" : "pub.phrase.point_of_sale",
-        "oldContent" : "Point of Sale",
-        "newContent" : "Point of Saleggg"
-      } ]
-    } ],
-    "status" : "Submitted",
-    "radar": {
-      "number": "39181938",
-      "link": "rdar://problem/39181938",
-      "state": "Analyze",
-      "subState": "Screen",
-      "component": "DCM",
-      "version": "Main"
+    "status" : "SUCCESS",
+    "detail" : {
+        "modifyDate" : 1522867186123,
+        "modifyUser" : "joe_relentless",
+        "id" : "abb679fe-e016-44ad-bac5-33f86a71e775",
+        "title" : "Iphone X title",
+        "description" : "rrrr",
+        "priority" : -1,
+        "urls" : [ {
+            "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/audio-music",
+            "partNumber" : "shop_mac",
+            "pageType" : "category",
+            "segment" : "smb-discounted",
+            "geo" : "apac",
+            "contents" : [ {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.meta.shop_mac.mac_acc.audio_music",
+                "oldContent" : "Enjoy premium sound quality or create music with ease. Shop headphones and microphones for Mac from Apple. Buy online with fast, free shipping.",
+                "newContent" : "Enjoy premium sound quality or create music with ease. Shop headphones and microphones for Mac from Apple. Buy online with fast, free shipping."
+            }, {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.category.title.audio_music",
+                "oldContent" : "Audio & Music",
+                "newContent" : "Audio & Musicgggg"
+            } ]
+        }, {
+           "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/business",
+           "partNumber" : "shop_mac",
+           "pageType" : "category",
+           "segment" : "smb-discounted",
+           "geo" : "apac",
+           "contents" : [ {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.meta.shop_mac.mac_acc.business",
+                "oldContent" : "Shop Mac accessories for business. Buy Apple Pencil, printers, hard drives and more. Buy online with fast, free shipping.",
+                "newContent" : "Shop Mac accessories for business. Buy Apple Pencil, printers, hard drives and more. Buy online with fast, free shipping."
+            }, {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.category.title.business_acc",
+                "oldContent" : "Business",
+                "newContent" : "Businessggg"
+            } ]
+        }, {
+           "url" : "/au_smb-discounted_10126/shop/mac/mac-accessories/point-of-sale",
+           "partNumber" : "shop_mac",
+           "pageType" : "category",
+           "segment" : "smb-discounted",
+           "geo" : "apac",
+           "contents" : [ {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.meta.shop_mac.mac_accessories.pos.desc",
+                "oldContent" : "Enhance your productivity with accessories for Mac. Buy printers, storage solutions and other tools online and get fast, free delivery",
+                "newContent" : "Enhance your productivity with accessories for Mac. Buy printers, storage solutions and other tools online and get fast, free deliveryggg"
+            }, {
+                "assetType" : "text_asset",
+                "assetUri" : "pub.phrase.point_of_sale",
+                "oldContent" : "Point of Sale",
+                "newContent" : "Point of Saleggg"
+            } ]
+        } ],
+        "status" : "Submitted",
+        "radar": {
+            "number": "39181938",
+            "link": "rdar://problem/39181938",
+            "state": "Analyze",
+            "subState": "Screen",
+            "component": "DCM",
+            "version": "Main"
+        }
     }
-  }
 }

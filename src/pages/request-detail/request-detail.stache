@@ -1,5 +1,5 @@
 <div class="page-header clearfix">
-    <h1 class="pull-left">{{detailData.title}}</h1>
+    <h1 class="pull-left">{{request.title}}</h1>
     <div class="pull-right">
         <div class="action-bar-menu">
             <pui-action-bar-menu action-scope="{actionBarMenuActions}">
@@ -18,17 +18,17 @@
 	<div class="col-md-4 title-description">
 		<div class="row">
 			<div>
-				Title : {{detailData.title}}
+				Title : {{request.title}}
 			</div>
 		</div>
 		<div class="row">
 			<div>
-				Description : {{detailData.description}}
+				Description : {{request.description}}
 			</div>
 		</div>
 		<div class="row">
 			<div>
-				Radar link : <a href="{{detailData.radar.link}}">{{detailData.radar.link}}</a>
+				Radar link : <a href="{{request.radar.link}}">{{request.radar.link}}</a>
 			</div>
 		</div>
 	</div>	 
@@ -36,24 +36,24 @@
 	<div class="col-md-3">
 		<div class="row">
 			<div>
-				Component : {{detailData.radar.component}}
+				Component : {{request.radar.component}}
 			</div>
 		</div>
 		<div class="row">
 			<div>
-				Version : {{detailData.radar.version}}
+				Version : {{request.radar.version}}
 			</div>
 		</div>
 	</div>
 	<div class="col-md-3">
 		<div class="row">
 			<div>
-				Radar State : {{detailData.radar.state}}
+				Radar State : {{request.radar.state}}
 			</div>
 		</div>
 		<div class="row">
 			<div>
-				Radar SubState : {{detailData.radar.subState}}
+				Radar SubState : {{request.radar.subState}}
 			</div>
 			</div>
 	</div>
@@ -67,7 +67,7 @@
         class="main-item-list"
         columns="{columns}"
         auto-load="false"
-        items="{items}"
+        items="{request.urls}"
         row-template="{rowTemplate}"
         state="{state}"
     ></pui-grid-list>

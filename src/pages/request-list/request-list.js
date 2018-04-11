@@ -28,11 +28,11 @@ module.exports = can.Component.extend({
          * @description Handles click event of an item in the Grid List.
          * @param {jQuery object} $row The table row receiving the click event
          */
-        'pui-grid-list .item click': function ($row, evnt) {
+        'pui-grid-list .item click': function ($row) {
             var appState = this.viewModel.attr('state');
             var itemData = $row.data('item');
             var key = itemData.attr('id');
-            
+
             appState.setRouteAttrs({
                 page: 'request-detail',
                 route: 'request-list/:requestPath',

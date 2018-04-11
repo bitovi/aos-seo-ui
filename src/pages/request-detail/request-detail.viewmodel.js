@@ -6,7 +6,7 @@ var RequestListModel = require('seo-ui/models/request-list/request-list');
 module.exports = can.Map.extend({
     define: {
         /**
-         * @property {Array<can.Map>} edit-metadata-list.viewModel.columns columns
+         * @property {Array<can.Map>} request-detail.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -51,12 +51,6 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<Object>} items
-         * @description table data that is used by the Grid List.
-         */
-        items: {},
-
-        /**
          * @property {Model} model
          * @description Model used in the Grid List.
          */
@@ -81,7 +75,25 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {function} edit-metadata-list.viewModel.rowTemplate rowTemplate
+         * @property {Object} request
+         * @description gets request detail data.
+         */
+        request: {
+            get: function (lastSetValue, setAttrValue) {
+                var appState = this.attr('state');
+                var requestPath = appState.attr('requestPath');
+
+                if (requestPath) {
+                    this.attr('model').findOne({id: requestPath})
+                        .then(function(response){
+                            setAttrValue(response.detail);
+                        });
+                }
+            }
+        },
+
+        /**
+         * @property {function} request-detail.viewModel.rowTemplate rowTemplate
          * @description Stores the template renderer function reference.
          */
         rowTemplate: {
@@ -91,22 +103,6 @@ module.exports = can.Map.extend({
                 };
             }
         },
-    },
-
-    /**
-     * @function getRequestDetails
-     * @description Get the request id of the click item and json of it's.
-     * @param requestId iD of the selected request.
-     */
-    getRequestDetails: function () {
-        var self = this;
-        var appState = this.attr('state');           
-        var requestPath = appState.attr('requestPath');
-
-        self.attr('model').findOne({id: requestPath}).then(function (resp) {
-            self.attr('detailData',resp.detail);
-            self.attr('items',resp.detail.urls);
-        });  
     },
 
     /**

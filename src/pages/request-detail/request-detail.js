@@ -15,13 +15,5 @@ var ViewModel = require('./request-detail.viewmodel');
 module.exports = can.Component.extend({
     tag: 'seo-request-detail',
     template: template,
-    viewModel: ViewModel,
-    events: {
-        /**
-         * @description Invoked when the component is initialized.
-         */
-        'init': function () {        	
-        	this.viewModel.getRequestDetails();
-        }
-    }
+    viewModel: ViewModel
 });
