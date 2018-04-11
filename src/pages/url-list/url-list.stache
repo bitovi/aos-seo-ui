@@ -20,7 +20,7 @@
     vm:items:bind="items"
     model="{urlModel}"
     page-title="{pageTitle}"
-    rowTemplate="@rowTemplate"
+    vm:rowTemplate:from="@rowTemplate"
     primaryHeaderTemplate="@primaryHeaderTemplate"
     search-field="{searchField}"
     vm:searchFields:bind="searchFields"

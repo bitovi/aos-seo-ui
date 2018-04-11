@@ -260,9 +260,7 @@ module.exports = CanMap.extend({
          */
         rowTemplate: {
             value: function () {
-                return function () {
-                    return rowTemplate;
-                };
+                return rowTemplate
             }
         },
 
@@ -272,9 +270,7 @@ module.exports = CanMap.extend({
          */
         primaryHeaderTemplate: {
             value: function () {
-                return function () {
-                    return primaryHeaderTemplate;
-                };
+                return primaryHeaderTemplate;
             }
         },
 

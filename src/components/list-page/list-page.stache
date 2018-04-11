@@ -144,7 +144,7 @@
     items:bind="items"
     limit="{limit}"
     model="{model}"
-    rowTemplate:from="@rowTemplate"
+    vm:rowTemplate:from="@rowTemplate"
     primaryHeaderTemplate="@primaryHeaderTemplate"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
