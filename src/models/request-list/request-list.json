@@ -3,7 +3,7 @@
   "count": 7,
   "data": [
     {
-      "id": "11111-22222-33333-44444-55555",
+      "id": "a3844287-fbe3-4dcb-b639-cd9f87d2e20f",
       "radarNumber": "11111",
       "radarTitle": "test1",
       "radarDescription": "test description 1",
@@ -433,7 +433,7 @@
       "createDate": "2018-02-01T19:29:59Z"
     },
     {
-      "id": "11111-22222-33333-44444-55561",
+      "id": "abb679fe-e016-44ad-bac5-33f86a71e775",
       "radarNumber": "101897",
       "radarTitle": "test678",
       "radarDescription": "test description 43",

@@ -1,0 +1,74 @@
+<div class="page-header clearfix">
+    <h1 class="pull-left">{{request.title}}</h1>
+    <div class="pull-right">
+        <div class="action-bar-menu">
+            <pui-action-bar-menu action-scope="{actionBarMenuActions}">
+                <pui-action-bar-dropdown icon="more" tooltip-title="More">
+                    <pui-action-bar-item action="navigateToRequestList">
+                        Back to List page
+                    </pui-action-bar-item>
+                </pui-action-bar-dropdown>
+            </pui-action-bar-menu> 
+        </div>                
+    </div>
+</div>
+
+<div class="row request-details">
+	<h2 class="col-md-12 request-details"> Request Details:</h2>
+	<div class="col-md-4 title-description">
+		<div class="row">
+			<div>
+				Title : {{request.title}}
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				Description : {{request.description}}
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				Radar link : <a href="{{request.radar.link}}">{{request.radar.link}}</a>
+			</div>
+		</div>
+	</div>	 
+
+	<div class="col-md-3">
+		<div class="row">
+			<div>
+				Component : {{request.radar.component}}
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				Version : {{request.radar.version}}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="row">
+			<div>
+				Radar State : {{request.radar.state}}
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				Radar SubState : {{request.radar.subState}}
+			</div>
+			</div>
+	</div>
+	<div class="col-md-12 request-content">
+		<h2> Request Content:</h2>
+	</div>
+</div>
+
+<div>
+   <pui-grid-list
+        class="main-item-list"
+        columns="{columns}"
+        auto-load="false"
+        items="{request.urls}"
+        row-template="{rowTemplate}"
+        state="{state}"
+    ></pui-grid-list>
+</div>
