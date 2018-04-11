@@ -1,3 +1,4 @@
+require('../../app.less!');
 require('seo-ui/models/url/url.fixture');
 
 var $ = require('jquery');
