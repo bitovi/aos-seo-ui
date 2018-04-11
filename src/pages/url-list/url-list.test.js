@@ -25,7 +25,7 @@ var vm;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
-var renderPage = function (newState) {
+var renderPage = function (done, newState) {
     state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
@@ -35,8 +35,19 @@ var renderPage = function (newState) {
 
     jasmine.clock().runToLast();
 
-    component = $('#sandbox seo-url-list');
-    scope = component.data('scope');
+    // Wait for the `inserted` event to be handled
+    window.nativeSetTimeout(function () {
+
+      jasmine.clock().runToLast();
+
+      // Wait for the fixture to be fetched
+      window.nativeSetTimeout(function () {
+
+        component = $('#sandbox seo-url-list');
+        scope = canViewModel(component);
+        done()
+      })
+    })
 };
 
 var testSort = function (name) {
@@ -78,9 +89,9 @@ var updateSearchTerm = function (opts) {
 };
 
 describe('URL List Page', function () {
-    beforeEach(function () {
+    beforeEach(function (done) {
         jasmineConfigClean = jasmineConfig();
-        renderPage();
+        renderPage(done);
     });
 
     afterEach(function () {
