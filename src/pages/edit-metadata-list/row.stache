@@ -1,4 +1,4 @@
-<tr class="item" {{data 'item'}} {{eleAttrs}}>
+<tr class="item" {{data 'item'}} {{eleAttrs(this)}}>
     {{#columns}}
         <td class="{{key}}">
             <div class="grid-item-value">

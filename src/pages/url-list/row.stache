@@ -1,4 +1,4 @@
-<tr class="item" {{data 'item'}} {{eleAttrs}}>
+<tr class="item" {{data 'item'}} {{eleAttrs(this)}}>
     {{#columns}}
         {{^if isHidden}}
             <td class="{{key}}">

@@ -45,6 +45,11 @@ var renderPage = function (done, newState) {
 
         component = $('#sandbox seo-url-list');
         scope = canViewModel(component);
+
+        // Propagate all the events associated with
+        // the resolved data
+        jasmine.clock().runToLast();
+
         done()
       })
     })
@@ -77,7 +82,7 @@ var testSort = function (name) {
     });
 };
 
-var updateSearchTerm = function (opts) {
+var updateSearchTerm = function (opts, done) {
     var txtField = component.find('pui-grid-search input');
     var doSubmit = opts.submit || true;
 
@@ -86,6 +91,12 @@ var updateSearchTerm = function (opts) {
     if (doSubmit) {
         component.find('pui-grid-search .btn-search').trigger('click');
     }
+
+    jasmine.clock().runToLast();
+
+    window.nativeSetTimeout(function () {
+      done();
+    });
 };
 
 describe('URL List Page', function () {
@@ -320,34 +331,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: '/ipad'
-                    });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(5);
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(5);
+                        done();
+                    })
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'wifi'
-                    });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
+                    })
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: '/ipod-nano/'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
 
@@ -363,34 +371,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'iP'
+                    }, function () {
+                      expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
+                      done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(8);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: '3g'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'MacBook Air - Apple'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
 
@@ -406,34 +411,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'Bacon'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done()
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'IT department-level'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'ipsum dolor'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
             });
 
@@ -449,34 +451,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'h17'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'ZM'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'Z0S9'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
         });

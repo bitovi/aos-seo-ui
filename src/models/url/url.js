@@ -10,15 +10,7 @@ var guid = require('@apple/pui/dist/cjs/utils/guid');
 
 module.exports = Model.extend(
     {
-        findAll: function () {
-          var url = envVars.apiUrl() + '/urls.json'
-          return ajax({
-              url: url,
-              method: 'get',
-              dataType: 'json',
-              contentType: 'application/json'
-          });
-        },
+        findAll: 'GET ' + envVars.apiUrl() + '/urls.json',
         findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json',
 
         getFilters: function () {
