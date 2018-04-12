@@ -70,14 +70,16 @@ var testSort = function (name) {
             jasmine.clock().runToLast();
         });
 
-        it('by clicking on the ' + name + ' sort button', function () {
+        it('by clicking on the ' + name + ' sort button', function (done) {
             var ascVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().runToLast();
 
-            var descVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
-
-            expect(ascVal.attr()).not.toEqual(descVal.attr());
+            window.nativeSetTimeout(function () {
+              var descVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
+              expect(ascVal.attr()).not.toEqual(descVal.attr());
+              done();
+            })
         });
     });
 };

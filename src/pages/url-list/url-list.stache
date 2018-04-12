@@ -21,7 +21,7 @@
     model="{urlModel}"
     page-title="{pageTitle}"
     vm:rowTemplate:from="@rowTemplate"
-    primaryHeaderTemplate="@primaryHeaderTemplate"
+    vm:primaryHeaderTemplate:from="@primaryHeaderTemplate"
     search-field="{searchField}"
     vm:searchFields:bind="searchFields"
     state="{state}"
