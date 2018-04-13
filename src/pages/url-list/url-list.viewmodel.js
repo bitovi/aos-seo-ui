@@ -374,7 +374,7 @@ module.exports = CanMap.extend({
      */
     selectAllUrl: function ($el, evt) {
         var self = this;
-        var toggleState = evt.context.checked;
+        var toggleState = evt.checked;
 
         self.attr('items').map(function (option) {
             option.attr('selected', toggleState);
