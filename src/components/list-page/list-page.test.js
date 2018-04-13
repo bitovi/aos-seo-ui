@@ -13,8 +13,6 @@ var moment = require('moment');
 var testTemplate = require('./list-page.test.stache!');
 // var canDomEvents = require('can-dom-events');
 
-var canDev = require("can-util/js/dev/dev");
-canDev.logLevel = 0;
 
 var $component;
 var $filterMenus;
