@@ -240,8 +240,9 @@ module.exports = Component.extend({
          * @param {jQuery event} evnt The click event
          */
         'pui-grid-list .item click': function ($row, evnt) {
+
             var expandBtnClicked = $(evnt.target).is('.expand-toggle');
-            var itemData = $row.data('item');
+            var itemData = $($row).data('item');
 
             if (itemData && !expandBtnClicked) {
                 this.viewModel.navigateToDetails(itemData);
