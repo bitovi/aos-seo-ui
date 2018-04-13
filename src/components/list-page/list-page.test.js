@@ -111,20 +111,16 @@ var renderPage = function (newState, done) {
         ]
     }));
 
-    // jasmine.clock().tick(fixture.delay + 1);
-    // jasmine.clock().tick(100000);
-    // jasmine.clock().runToLast();
-    jasmine.clock().runAll();
-    // window.nativeSetTimeout(function () {
+    jasmine.clock().runToLast();
 
     // Wait for the `inserted` event
     window.nativeRequestAnimationFrame(function () {
-        jasmine.clock().runAll();
+        jasmine.clock().runToLast();
 
         // Wait for the fixture to load the static files
         window.nativeSetTimeout(function () {
 
-            jasmine.clock().runAll();
+            jasmine.clock().runToLast();
 
             $component = $('#sandbox seo-list-page');
             vm = canViewModel($component);
