@@ -369,12 +369,12 @@ module.exports = CanMap.extend({
     /**
      * @function url-list.viewModel.selectAllUrl
      * @description Toggles the selected state of all table rows.
-     * @param {$el} retuns element
-     * @param {evt} Determines if the checkbox will be selected or deselected
+     * @param {context} CanMap
+     * @param {$el} Event target
      */
-    selectAllUrl: function ($el, evt) {
+    selectAllUrl: function (context, $el) {
         var self = this;
-        var toggleState = evt.checked;
+        var toggleState = $el.checked;
 
         self.attr('items').map(function (option) {
             option.attr('selected', toggleState);
