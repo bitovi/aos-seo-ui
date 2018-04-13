@@ -13,10 +13,10 @@
                                     href="{{urlAspenLink}}"
                                     target="_blank"
                                 >
-                                    {{itemValue}}
+                                    {{itemValue(../, key)}}
                                 </a>
                             {{else}}
-                                {{itemValue}}
+                                {{itemValue(../, key)}}
                             {{/if}}
                         {{/case}}
 
@@ -89,7 +89,7 @@
                         {{/case}}
 
                         {{#default}}
-                            {{itemValue}}
+                            {{itemValue(../, key)}}
                         {{/default}}
                     {{/switch}}
                 </div>
