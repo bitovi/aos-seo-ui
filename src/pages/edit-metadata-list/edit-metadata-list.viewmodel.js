@@ -441,7 +441,7 @@ module.exports = can.Map.extend({
      */
     hasEditableKey: function (items) {
         var editableItems = _.filter(items, function (item) {
-            return item.editable && item.type === 'text_asset';
+            return item.editable;
         });
 
         return editableItems.length > 0;
