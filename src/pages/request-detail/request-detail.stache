@@ -55,7 +55,22 @@
 			<div>
 				Radar SubState : {{request.radar.subState}}
 			</div>
+		</div>
+		<div class="row">
+			<div>
+				Radar Assignee : {{request.radar.assignee.name}}
 			</div>
+		</div>
+		<div class="row">
+			<div>
+				Radar Assignee Email : {{request.radar.assignee.email}}
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				Radar LastUpdated Date : {{request.radar.assignee.lastupdated}}
+			</div>
+		</div>
 	</div>
 	<div class="col-md-12 request-content">
 		<h2> Request Content:</h2>
