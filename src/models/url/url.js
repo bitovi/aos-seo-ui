@@ -50,7 +50,7 @@ module.exports = can.Model.extend(
                         return url[key];
                     });
                     var keyIsEditable = function (key) {
-                        return key.editable && key.type === 'text_asset';
+                        return key.editable;
                     };
 
                     // Searches URL property values for arrays with editable keys
