@@ -265,6 +265,7 @@ module.exports = can.Map.extend({
      * @description Shows activity modal of the raise request.
      */
     raiseRequest: function() {
+        this.attr('showModalLoader', false);
         this.attr('isActive', !this.attr('isActive'));
     },
 
@@ -384,7 +385,7 @@ module.exports = can.Map.extend({
 
                 if (item.titleAnatomy) {
                     item.titleAnatomy.forEach(function (contentItem) {
-                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                        if (contentItem.editable) {
                             contents.push({
                                 assetType: contentItem.type,
                                 assetUri: contentItem.name,
@@ -397,7 +398,7 @@ module.exports = can.Map.extend({
 
                 if (item.descriptionAnatomy) {
                     item.descriptionAnatomy.forEach(function (contentItem) {
-                        if (contentItem.editable && contentItem.type === 'text_asset') {
+                        if (contentItem.editable) {
                             contents.push({
                                 assetType: contentItem.type,
                                 assetUri: contentItem.name,
