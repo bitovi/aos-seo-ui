@@ -6,7 +6,7 @@ var envVars = require('seo-ui/utils/environmentVars');
 var requestList = require('./request-list.json').data;
 var requestDetail = require('./request-detail.json');
 
-can.fixture('GET ' + envVars.apiUrl() + '/request-list.json', function (request, response) {
+can.fixture('GET ' + envVars.apiUrl() + '/notifications.json', function (request, response) {
     var data = request.data;
 
     var results = requestList;
