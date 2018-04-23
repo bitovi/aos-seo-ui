@@ -7,7 +7,7 @@ module.exports = Component.extend({
     events: {
         inserted: function () {
             // Redirects to URL list
-            this.viewModel.state.attr('page', 'url-list');
+            this.viewModel.attr('state').attr('page', 'url-list');
         }
     },
 
