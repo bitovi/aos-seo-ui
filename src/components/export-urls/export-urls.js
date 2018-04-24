@@ -1,15 +1,17 @@
-require('can/map/define/define');
-require('@apple/pui/components/action-bar-menu/action-bar-menu');
-require('@apple/pui/components/alert/alert');
-require('@apple/pui/components/file-downloader/file-downloader');
-require('@apple/pui/components/panel/panel');
+require('can-map-define');
+require('@apple/pui/dist/cjs/components/action-bar-menu/action-bar-menu');
+require('@apple/pui/dist/cjs/components/alert/alert');
+require('@apple/pui/dist/cjs/components/file-downloader/file-downloader');
+require('@apple/pui/dist/cjs/components/panel/panel');
 
-var can = require('can');
+var Component = require('can-component');
+
 var ViewModel = require('./export-urls.viewmodel');
 var template = require('./export-urls.stache!');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-export-urls',
-    template: template,
-    viewModel: ViewModel
+    view: template,
+    ViewModel: ViewModel,
+    leakScope: true
 });

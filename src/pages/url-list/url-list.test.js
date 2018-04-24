@@ -1,7 +1,10 @@
+require('../../app.less!');
 require('seo-ui/models/url/url.fixture');
 
 var $ = require('jquery');
-var can = require('can');
+var _ = require('lodash');
+var assign = require('can-util/js/deep-assign/deep-assign');
+var canViewModel = require('can-view-model');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var component;
@@ -13,16 +16,17 @@ var stateObj = {
     page: 'url-list',
     urlPath: ''
 };
+
+require('./url-list');
 var testTemplate = require('./url-list.test.stache!');
-var urlListPage = require('seo-ui/pages/url-list/url-list');
 var urlModel = require('seo-ui/models/url/url');
-var ViewModel = require('seo-ui/pages/url-list/url-list.viewmodel');
+var ViewModel = require('./url-list.viewmodel');
 var vm;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
-var renderPage = function (newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+var renderPage = function (done, newState) {
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         model: urlModel,
@@ -31,15 +35,31 @@ var renderPage = function (newState) {
 
     jasmine.clock().runToLast();
 
-    component = $('#sandbox seo-url-list');
-    scope = component.data('scope');
+    // Wait for the `inserted` event to be handled
+    window.nativeSetTimeout(function () {
+
+      jasmine.clock().runToLast();
+
+      // Wait for the fixture to be fetched
+      window.nativeSetTimeout(function () {
+
+        component = $('#sandbox seo-url-list');
+        scope = canViewModel(component);
+
+        // Propagate all the events associated with
+        // the resolved data
+        jasmine.clock().runToLast();
+
+        done()
+      })
+    })
 };
 
 var testSort = function (name) {
     describe(name + ' field', function () {
         beforeEach(function () {
             // Ensures columns are visible before attempting to sort
-            vm = can.viewModel(component);
+            vm = canViewModel(component);
             var column = _.find(vm.attr('columns'), {
                 key: name
             });
@@ -50,19 +70,21 @@ var testSort = function (name) {
             jasmine.clock().runToLast();
         });
 
-        it('by clicking on the ' + name + ' sort button', function () {
-            var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+        it('by clicking on the ' + name + ' sort button', function (done) {
+            var ascVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
             jasmine.clock().runToLast();
 
-            var descVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
-
-            expect(ascVal.attr()).not.toEqual(descVal.attr());
+            window.nativeSetTimeout(function () {
+              var descVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
+              expect(ascVal.attr()).not.toEqual(descVal.attr());
+              done();
+            })
         });
     });
 };
 
-var updateSearchTerm = function (opts) {
+var updateSearchTerm = function (opts, done) {
     var txtField = component.find('pui-grid-search input');
     var doSubmit = opts.submit || true;
 
@@ -71,12 +93,18 @@ var updateSearchTerm = function (opts) {
     if (doSubmit) {
         component.find('pui-grid-search .btn-search').trigger('click');
     }
+
+    jasmine.clock().runToLast();
+
+    window.nativeSetTimeout(function () {
+      done();
+    });
 };
 
 describe('URL List Page', function () {
-    beforeEach(function () {
+    beforeEach(function (done) {
         jasmineConfigClean = jasmineConfig();
-        renderPage();
+        renderPage(done);
     });
 
     afterEach(function () {
@@ -305,34 +333,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: '/ipad'
-                    });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(6);
+                        done();
+                    })
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'wifi'
-                    });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
+                    })
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: '/ipod-nano/'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
 
@@ -348,34 +373,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'iP'
+                    }, function () {
+                      expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
+                      done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: '3g'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'MacBook Air - Apple'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
 
@@ -391,34 +413,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'Bacon'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done()
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'IT department-level'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'ipsum dolor'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
             });
 
@@ -434,34 +453,31 @@ describe('URL List Page', function () {
                     }
                 });
 
-                it('from the start of a value', function () {
+                it('from the start of a value', function (done) {
                     updateSearchTerm({
                         value: 'h17'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(2);
                 });
 
-                it('within a value', function () {
+                it('within a value', function (done) {
                     updateSearchTerm({
                         value: 'ZM'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(9);
                 });
 
-                it('for a full value', function () {
+                it('for a full value', function (done) {
                     updateSearchTerm({
                         value: 'Z0S9'
+                    }, function () {
+                        expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
+                        done();
                     });
-
-                    jasmine.clock().runToLast();
-
-                    expect(component.find('pui-grid-list tbody > tr').length).toEqual(1);
                 });
             });
         });
@@ -479,22 +495,26 @@ describe('URL List Page', function () {
         });
     });
 
-    describe('on clicking of checkbox',function () {
+    describe('on clicking of checkbox', function () {
+        var $allRow;
+        var $row;
+        var $header;
+
         beforeEach(function () {
-            $allRow  = component.find('pui-grid-list tbody > tr').find("td input");
-            $row  = component.find('pui-grid-list tbody > tr').eq(1).find("input");
-            $header = component.find('pui-grid-list thead > tr').eq(0).find("input");
+            $allRow = component.find('pui-grid-list tbody > tr').find('td input');
+            $row = component.find('pui-grid-list tbody > tr').eq(1).find('input');
+            $header = component.find('pui-grid-list thead > tr').eq(0).find('input');
         });
 
         it('all row checkbox  is selected.', function () {
-            $header.trigger("click");
-            $allRow.each(function(index,row){
+            $header.trigger('click');
+            $allRow.each(function (index, row) {
                 expect($(row).is(':checked')).toEqual(true);
             });
         });
 
         it('header checkbox is unselected when any row checkbox is unselected.', function () {
-            $row.trigger("click");
+            $row.trigger('click');
             expect($header.is(':checked')).toEqual(false);
         });
     });
@@ -591,7 +611,7 @@ describe('URL List Page', function () {
 
                     it('displays the correlating name for each item', function () {
                         $names.each(function (index) {
-                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('name'))
+                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('name'));
                         });
                     });
                 });
@@ -609,7 +629,7 @@ describe('URL List Page', function () {
 
                     it('displays the correlating value for each item', function () {
                         $values.each(function (index) {
-                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('value'))
+                            expect($(this).text().trim()).toEqual(titleAnatomy[index].attr('value'));
                         });
                     });
                 });
@@ -853,7 +873,7 @@ describe('URL List Page', function () {
 
                     it('displays the correlating name for each item', function () {
                         $names.each(function (index) {
-                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('name'))
+                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('name'));
                         });
                     });
                 });
@@ -871,7 +891,7 @@ describe('URL List Page', function () {
 
                     it('displays the correlating value for each item', function () {
                         $values.each(function (index) {
-                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('value'))
+                            expect($(this).text().trim()).toEqual(descriptionAnatomy[index].attr('value'));
                         });
                     });
                 });
@@ -1064,10 +1084,11 @@ describe('URL List Page', function () {
     });
 
     describe('On selecting Url ', function () {
+        var $row;
 
         beforeEach(function () {
-            $row  = component.find('pui-grid-list tbody > tr').eq(2).find("input");
-            $row.trigger("click");
+            $row  = component.find('pui-grid-list tbody > tr').eq(2).find('input');
+            $row.trigger('click');
             jasmine.clock().runToLast();
         });
 
@@ -1092,23 +1113,22 @@ describe('URL List Page', function () {
 
     describe('create request select url count', function () {
         it('on load the count will be zero', function () {
-            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('0');
+            expect(component.find('.create-request-button').text().split('|')[1].trim()).toEqual('0');
         });
 
         it('selecting a row item increases the count ', function () {
-            component.find('pui-grid-list tbody > tr').eq(2).find("input").trigger("click");
-            expect(component.find('.create-request-button').text().split("|")[1].trim()).toEqual('1');
+            component.find('pui-grid-list tbody > tr').eq(2).find('input').trigger('click');
+            expect(component.find('.create-request-button').text().split('|')[1].trim()).toEqual('1');
         });
     });
 
-    describe('deselect button', function () { 
+    describe('deselect button', function () {
         it('has proper label', function () {
-             expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
-         });
+            expect(component.find('.deselect-all-button').text().trim()).toEqual('Deselect');
+        });
     });
 
     describe('clicking on header checkbox', function () {
-
         beforeEach(function () {
             component.find('pui-grid-list .toggleSelect').click();
             jasmine.clock().runToLast();
@@ -1121,7 +1141,6 @@ describe('URL List Page', function () {
     });
 
     describe('clicking on deselect button', function () {
-
         beforeEach(function () {
             component.find('pui-grid-list .toggleSelect').click();
             jasmine.clock().runToLast();

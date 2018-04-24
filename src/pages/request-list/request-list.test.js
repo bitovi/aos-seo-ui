@@ -1,8 +1,9 @@
+require('../../app.less');
 require('seo-ui/models/request-list/request-list.fixture');
 
 var $ = require('jquery');
-var can = require('can');
-
+var assign = require('can-util/js/deep-assign/deep-assign');
+var canViewModel = require('can-view-model');
 var AppState = require('seo-ui/models/appstate/appstate');
 var component;
 var jasmineConfig = require('test/jasmine-configure');
@@ -21,7 +22,7 @@ var vm;
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
 var renderPage = function (newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         model: requestModel,
@@ -31,14 +32,14 @@ var renderPage = function (newState) {
     jasmine.clock().runToLast();
 
     component = $('#sandbox seo-request-list');
-    vm = component.data('scope');
+    vm = canViewModel(component);
 };
 
 var testSort = function (name) {
     describe(name + ' field', function () {
-        beforeEach(function () {
+        beforeEach(function (done) {
             // Ensures columns are visible before attempting to sort
-            vm = can.viewModel(component);
+            vm = canViewModel(component);
             var column = _.find(vm.attr('columns'), {
                 key: name
             });
@@ -46,17 +47,38 @@ var testSort = function (name) {
             column.attr('isVisible', true);
 
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
+
+            // THEORY: Render
             jasmine.clock().runToLast();
+
+            // Yield to DOM manipulation (big list of items)
+            window.nativeSetTimeout(function () {
+
+              // THEORY: Update bindings influenced by with the render
+              jasmine.clock().runToLast();
+              done()
+            })
         });
 
-        it('by clicking on the ' + name + ' sort button', function () {
-            var ascVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+        it('by clicking on the ' + name + ' sort button', function (done) {
+            var ascVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
+            console.log('Toggle')
             component.find('pui-grid-list .' + name + ' .order-toggle').trigger('click');
+
+            // THEORY: Render
             jasmine.clock().runToLast();
 
-            var descVal = can.viewModel(component.find('pui-grid-list')).attr('items.0');
+            // Yield to DOM manipulation (big list of items)
+            window.nativeSetTimeout(function () {
 
-            expect(ascVal.attr()).not.toEqual(descVal.attr());
+                // THEORY: Update bindings influenced by with the render
+                jasmine.clock().runToLast();
+
+                var descVal = canViewModel(component.find('pui-grid-list')).attr('items.0');
+
+                expect(ascVal.attr('id')).not.toEqual(descVal.attr('id'));
+                done()
+            }, 1)
         });
     });
 };
@@ -259,7 +281,7 @@ describe('Request List Page', function () {
             jasmine.clock().runToLast();
         });
     });
-    
+
     describe('search is made on', function(){
         beforeEach(function() {
             vm.attr('searchField', 'radarNumber');

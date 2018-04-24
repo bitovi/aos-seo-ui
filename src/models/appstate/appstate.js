@@ -1,9 +1,11 @@
-var can = require('can');
+var canBatch = require('can-event/batch/batch');
+var CanMap = require('can-map');
+var CanList = require('can-list');
 var User = require('seo-ui/models/user/user');
 
-require('can/map/define/define');
+require('can-map-define');
 
-var Layout = can.Map.extend({
+var Layout = CanMap.extend({
     define: {
         hideFooter: {
             type: 'boolean',
@@ -17,7 +19,7 @@ var Layout = can.Map.extend({
     }
 });
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         alert: {
             type: '*',
@@ -90,7 +92,7 @@ module.exports = can.Map.extend({
          * @description The navigation bar links
          */
         navMenuItems: {
-            Type: can.List,
+            Type: CanList,
             serialize: false,
             get: function () {
                 var links = [
@@ -143,13 +145,13 @@ module.exports = can.Map.extend({
         var user = this.attr('user');
 
         // Updates the state to the route params, removing all props that are not in `routeParams`
-        can.batch.start();
+        canBatch.start();
         this.attr(routeParams, true);
 
         // Adds required props back in
         this.attr('user', user);
         this.attr('storage', storage);
         this.attr('conflictsEnabled', conflictsEnabled);
-        can.batch.stop();
+        canBatch.stop();
     }
 });

@@ -1,9 +1,9 @@
 <pui-dialog
-    auto-open="true"
+    auto-open:from="'true'"
     buttons="{buttons}"
-    dialog-name="{{dialogName}}"
-    dialog-title="Cancel Export"
-    is-modal="true"
+    dialog-name:from="dialogName"
+    dialog-title:from="'Cancel Export'"
+    is-modal:from="'true'"
     size="md">
     <div>
         <p>Your export is not complete.</p>

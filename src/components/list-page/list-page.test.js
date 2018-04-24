@@ -1,13 +1,19 @@
-require('seo-ui/components/list-page/list-page');
+require('../../app.less');
+require('./list-page');
 require('seo-ui/models/url/url.fixture');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var $ = require('jquery');
-var can = require('can');
+var each = require('can-util/js/each/each');
+var assign = require('can-util/js/deep-assign/deep-assign');
+var canViewModel = require('can-view-model');
+var fixture = require('can-fixture');
 var jasmineConfig = require('test/jasmine-configure');
 var Model = require('seo-ui/models/url/url');
 var moment = require('moment');
 var testTemplate = require('./list-page.test.stache!');
+// var canDomEvents = require('can-dom-events');
+
 
 var $component;
 var $filterMenus;
@@ -28,8 +34,9 @@ var vm;
 
 // Renders the component
 // Default state can be augmented by passing a parameter with the required changes
-var renderPage = function (newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+var renderPage = function (newState, done) {
+
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         model: Model,
@@ -107,9 +114,24 @@ var renderPage = function (newState) {
 
     jasmine.clock().runToLast();
 
-    $component = $('#sandbox seo-list-page');
-    vm = can.viewModel($component);
-    $filterMenus = vm.attr('filterMenus');
+    // Wait for the `inserted` event
+    window.nativeRequestAnimationFrame(function () {
+        jasmine.clock().runToLast();
+
+        // Wait for the fixture to load the static files
+        window.nativeSetTimeout(function () {
+
+            jasmine.clock().runToLast();
+
+            $component = $('#sandbox seo-list-page');
+            vm = canViewModel($component);
+            $filterMenus = vm.attr('filterMenus');
+
+
+            done();
+        })
+    })
+    // }, 1000*10 /*fixture.delay + 1*/);
 };
 
 describe('List Page', function () {
@@ -124,8 +146,8 @@ describe('List Page', function () {
     });
 
     describe('view model', function () {
-        beforeEach(function () {
-            renderPage();
+        beforeEach(function (done) {
+            renderPage(null, done);
         });
 
         describe('columns property', function () {
@@ -394,11 +416,11 @@ describe('List Page', function () {
 
             beforeEach(function () {
                 // Data setup
-                regionVm = can.viewModel($filterMenus.eq(0));
+                regionVm = canViewModel($filterMenus.eq(0));
+
                 regionsGroup = regionVm.attr('filterGroups.0');
                 countriesGroup = regionVm.attr('filterGroups.1');
-                dateGroup = can.viewModel($filterMenus.eq(1)).attr('filterGroups.0');
-
+                dateGroup = canViewModel($filterMenus.eq(1)).attr('filterGroups.0');
                 // Selects filterOptions
                 regionsGroup.toggleAllFilters(true);
                 countriesGroup.toggleAllFilters(true);
@@ -410,6 +432,7 @@ describe('List Page', function () {
                 vm.attr('datesOpen', true);
 
                 vm.resetAllFilters();
+
             });
 
             it('deselects all check box filter options', function () {
@@ -445,7 +468,7 @@ describe('List Page', function () {
             var filterVm;
 
             beforeEach(function () {
-                filterVm = can.viewModel($filterMenus.eq(0));
+                filterVm = canViewModel($filterMenus.eq(0));
 
                 vm.attr('state.countries', 'br');
                 vm.attr('searchFilter', {countries: 'br'});
@@ -458,10 +481,10 @@ describe('List Page', function () {
         });
 
         describe('when the application state limit property exceeds maxResultLimit', function () {
-            beforeEach(function () {
+            beforeEach(function (done) {
                 renderPage({
                     limit: 525600
-                });
+                }, done);
             });
 
             it('sets the state limit to the maxResultLimit', function () {
@@ -471,11 +494,11 @@ describe('List Page', function () {
     });
 
     describe('component', function () {
-        beforeEach(function () {
-            renderPage();
+        beforeEach(function (done) {
+            renderPage(null, done);
         });
 
-        // Not sure why this is failing,but will fix as part of different PR.This will unblock the build
+        // Not sure why this is failing, but will fix as part of different PR. This will unblock the build
         // it('Displays alert if storage delayedAlert set', function () {
         //     var vm = new ViewModel();
         //     var alert = vm.attr('state.alert.type');
@@ -517,7 +540,7 @@ describe('List Page', function () {
 
         describe('routing', function () {
             it('is done by selecting an item in the list', function () {
-                state.bind('page', function (ev, newVal, oldVal) {
+                state.bind('page', function (ev, newVal) {
                     expect(newVal).toBeDefined();
                 });
 
@@ -558,8 +581,12 @@ describe('List Page', function () {
             });
 
             describe('when opening the first menu', function () {
-                beforeEach(function () {
+                beforeEach(function (done) {
                     $firstToggle.find('.popover-trigger').trigger('click');
+
+                    jasmine.clock().tick(fixture.delay + 1);
+                    jasmine.clock().runToLast();
+                    window.nativeSetTimeout(done, 1000);
                 });
 
                 it('displays the first popover', function () {
@@ -707,7 +734,7 @@ describe('List Page', function () {
                 $secondToggle = $component.find('pui-grid-column-toggle').eq(1);
                 $secondToggle.find('.popover-trigger').trigger('click');
 
-                can.each($secondToggle.find('.list-group'), function (item) {
+                each($secondToggle.find('.list-group'), function (item) {
                     var $optionCheckbox = $(item).find('.option-checkbox');
 
                     if ($optionCheckbox.prop('checked') === true) {
@@ -723,7 +750,7 @@ describe('List Page', function () {
             });
         });
 
-        describe('when opening the Date Picker and clicking the ESC key', function(){
+        describe('when opening the Date Picker and clicking the ESC key', function () {
             var $dateMenu;
             var $fromToggler;
             var $firstToggle;
@@ -741,7 +768,7 @@ describe('List Page', function () {
                 $fromToggler = $dateMenu.find('.form-control-feedback').eq(0);
                 $fromToggler.click();
 
-                var evt = $.Event('keyup');
+                var evt = new $.Event('keyup');
 
                 evt.which = 27;
                 $(document).trigger(evt);
@@ -750,7 +777,7 @@ describe('List Page', function () {
                 $firstToggle.find('.popover-trigger').trigger('click');
             });
 
-            it('hides the date-picker-overlay when ESC button is clicked', function(){
+            it('hides the date-picker-overlay when ESC button is clicked', function () {
                 expect($component.find('.date-picker-overlay')).not.toBeVisible();
             });
         });

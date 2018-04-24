@@ -1,13 +1,13 @@
 <h1>Review Meta Content &amp; Key Paths</h1>
 <p>Use this tool to review current meta content and key paths using existing Filtered Category page URLs.</p>
 <pui-tabs tabs='{tabsList}' start-tab='{startTab}'>
-    <div id="enter-urls" class="tab-pane">
+    <div id="enter-urls" class="tab-pane active">
         <textarea
-            {($value)}="urlTexts"
+            el:value:bind="urlTexts"
             class="form-control"
             cols="80"
             id="url-texts"
-            ($keyup)="updateUrlText($element.val())"
+            on:el:keyup="updateUrlText($element.value)"
             name="url-texts"
             placeholder="Please enter URLs in a valid format, separated by commas"
             rows="8"></textarea>
@@ -30,7 +30,7 @@
         </button>
         <button
             class="btn btn-secondary"
-            ($click)="updateUrlText('')"
+            on:el:click="updateUrlText('')"
             id="clear-textarea"
             type="button"
         >
@@ -42,7 +42,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form
-                    {($action)}="reviewFilePath"
+                    el:action:bind="reviewFilePath"
                     enctype="multipart/form-data"
                     id="review-file-form"
                     method="POST"
@@ -52,7 +52,7 @@
                         class="file-upload"
                         name="file-upload"
                         type="file"
-                        {($value)}="fileToUpload"/>
+                        el:value:bind="fileToUpload"/>
                     <ul class="content">
                         <li>
                             Only <b>.csv</b> files are supported
@@ -61,7 +61,7 @@
                             Make sure the file follows the 
                             <button 
                                 class="btn btn-link modal-trigger"
-                                ($click)="toggleModal"
+                                on:el:click="toggleModal"
                             >
                                 formatting requirements.
                             </button>
@@ -71,7 +71,7 @@
                         id="export-id"
                         name="exportId"
                         type="hidden"
-                        {($value)}="exportId"/>
+                        el:value:bind="exportId"/>
                     <button
                         class="btn btn-primary"
                         id="review-file-btn"
@@ -83,7 +83,7 @@
         </div>
 
         <pui-modal
-            {(modal-active)}="modalOpen"
+            vm:modalActive:bind="modalOpen"
             modal-id="formatting-requirements-modal-review-url"
             modal-size="lg"
         >

@@ -1,11 +1,12 @@
-require('can/map/define/define');
+require('can-map-define');
 
-var can = require('can');
+var CanMap = require('can-map');
+
 var envVars = require('seo-ui/utils/environmentVars');
 var ExportProgressModel = require('seo-ui/models/export-progress/export-progress');
 var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {String} generate-page.viewModel.exportId exportId
@@ -17,7 +18,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} generate-page.viewModel.ExportProgressModel ExportProgressModel
+         * @property {CanModel} generate-page.viewModel.ExportProgressModel ExportProgressModel
          * @description The model used to get the export progress for any file export.
          */
         ExportProgressModel: {
@@ -36,7 +37,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} generate-page.viewModel.GenerateExportIdModel GenerateExportIdModel
+         * @property {CanModel} generate-page.viewModel.GenerateExportIdModel GenerateExportIdModel
          * @description The model used to get the exportId for the file export.
          */
         GenerateExportIdModel: {
@@ -158,28 +159,28 @@ module.exports = can.Map.extend({
                     clearTimeout(progressTimerId);
                 }
             })
-            .fail(function (resp) {
-                alertConfig.title = 'Not able to export';
-                alertConfig.type = 'error';
-                alertConfig.message = resp.statusText;
+                .catch(function (resp) {
+                    alertConfig.title = 'Not able to export';
+                    alertConfig.type = 'error';
+                    alertConfig.message = resp.statusText;
 
-                // Stop Export progress API requests
-                clearTimeout(progressTimerId);
-            })
-            .always(function () {
-                // Show alert message
-                self.attr('notifications').push({
-                    title: alertConfig.title,
-                    message: alertConfig.message,
-                    timeout: alertConfig.timeout,
-                    type: alertConfig.type
+                    // Stop Export progress API requests
+                    clearTimeout(progressTimerId);
+                })
+                .then(function () {
+                    // Show alert message
+                    self.attr('notifications').push({
+                        title: alertConfig.title,
+                        message: alertConfig.message,
+                        timeout: alertConfig.timeout,
+                        type: alertConfig.type
+                    });
+
+                    // Remove notification with a delay
+                    setTimeout(function () {
+                        self.attr('notifications').shift();
+                    }, 10000);
                 });
-
-                // Remove notification with a delay
-                setTimeout(function () {
-                    self.attr('notifications').shift();
-                }, 10000);
-            });
         }, 5000);
     },
 

@@ -1,12 +1,15 @@
-var can = require('can');
+var Component = require('can-component');
 
-require('can/view/stache/stache');
-module.exports = can.Component.extend({
+require('can-stache');
+module.exports = Component.extend({
     tag: 'seo-home',
+
     events: {
-        'inserted': function () {
+        inserted: function () {
             // Redirects to URL list
-            this.viewModel.state.attr('page', 'url-list');
+            this.viewModel.attr('state').attr('page', 'url-list');
         }
-    }
+    },
+
+    leakScope: true
 });

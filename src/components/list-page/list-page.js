@@ -1,11 +1,11 @@
 /**
- * @module {can.Component} api.components.list-page List Page
+ * @module {CanComponent} api.components.list-page List Page
  * @parent api.components
  * @group api.components.list-page.components 0 Components
  * @author Jan Jorgensen
  *
  * @param {String} page-title The Title of the page
- * @param {can.Model} model The model the page will use to populate the list
+ * @param {CanModel} model The model the page will use to populate the list
  * @param {template} row-template The template pui-grid-list will use to render rows
  * @param {{}} data-options The options for the data keys and values
  * @param {[]} columns The columns to be rendered
@@ -27,32 +27,36 @@
  *     disable-advanced-search="true"
  *     model="{model}"
  *     page-title="{pageTitle}"
- *     row-template="{rowTemplate}"
+ *     rowTemplate="@rowTemplate"
  *     search-field="{searchField}"
  * ></seo-list-page>
  * ```
  */
 
 require('bootstrap/js/collapse');
-require('@apple/pui/components/action-bar-menu/action-bar-menu');
-require('@apple/pui/components/date-picker/date-picker');
-require('@apple/pui/components/filter-menu/filter-menu');
-require('@apple/pui/components/grid-column-toggle/grid-column-toggle');
-require('@apple/pui/components/grid-list/grid-list');
-require('@apple/pui/components/grid-search/grid-search');
-require('@apple/pui/components/pagination/pagination');
+require('@apple/pui/dist/cjs/components/action-bar-menu/action-bar-menu');
+require('@apple/pui/dist/cjs/components/date-picker/date-picker');
+require('@apple/pui/dist/cjs/components/filter-menu/filter-menu');
+require('@apple/pui/dist/cjs/components/grid-column-toggle/grid-column-toggle');
+require('@apple/pui/dist/cjs/components/grid-list/grid-list');
+require('@apple/pui/dist/cjs/components/grid-search/grid-search');
+require('@apple/pui/dist/cjs/components/pagination/pagination');
 
 var $ = require('jquery');
 var _ = require('lodash');
-var can = require('can');
+var Component = require('can-component');
+var each = require('can-util/js/each/each');
+var CanMap = require('can-map');
+var canViewModel = require('can-view-model');
 
 var template = require('./list-page.stache!');
 var ViewModel = require('./list-page.viewmodel');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-list-page',
-    template: template,
-    viewModel: ViewModel,
+    view: template,
+    ViewModel: ViewModel,
+
     helpers: {
         /**
          * @description Converts a string (which can also be a hyphenated string)
@@ -89,6 +93,7 @@ module.exports = can.Component.extend({
             }
         }
     },
+
     events: {
         /**
          * @description Invoked when the component is initialized.
@@ -97,14 +102,14 @@ module.exports = can.Component.extend({
             var vm = this.viewModel;
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
-            var filterOptions = new can.Map();
+            var filterOptions = new CanMap();
             var maxResultLimit = vm.attr('maxResultLimit');
             var searchFields = vm.attr('searchFields');
             var searchQuery = vm.attr('searchQuery');
 
             if (appState && appState.attr) {
                 // Set up search query from state
-                can.each(appState.attr(), function (val, key) {
+                each(appState.attr(), function (val, key) {
                     if (filterFields && val && filterFields.indexOf(key) > -1) {
                         // Advanced search
                         filterOptions.attr(key, val);
@@ -134,6 +139,7 @@ module.exports = can.Component.extend({
          * Mostly just handles delayed alerts that exist in app state storage
          */
         'inserted': function () {
+
             var vm = this.viewModel;
             var storage = vm.attr('state.storage');
 
@@ -149,7 +155,8 @@ module.exports = can.Component.extend({
 
             vm.getFilterData();
 
-            vm.attr('filterMenus', this.element.find('pui-filter-menu'));
+            vm.attr('filterMenus', $(this.element).find('pui-filter-menu'));
+
         },
 
         '{state} countries': 'searchDidChange',
@@ -176,7 +183,7 @@ module.exports = can.Component.extend({
         '{state} statuses': 'searchDidChange',
         '{state} url': 'searchDidChange',
 
-        searchDidChange: _.debounce(function () {
+        'searchDidChange': _.debounce(function () {
             var vm = this.viewModel;
             var appState = vm.attr('state');
             var filterFields = vm.attr('filterFields');
@@ -233,8 +240,9 @@ module.exports = can.Component.extend({
          * @param {jQuery event} evnt The click event
          */
         'pui-grid-list .item click': function ($row, evnt) {
+
             var expandBtnClicked = $(evnt.target).is('.expand-toggle');
-            var itemData = $row.data('item');
+            var itemData = $($row).data('item');
 
             if (itemData && !expandBtnClicked) {
                 this.viewModel.navigateToDetails(itemData);
@@ -264,8 +272,9 @@ module.exports = can.Component.extend({
          * @description Event listener to select corresponding countries when Region is selected
          * @param {jQuery object} $el the clicked element
          */
-        'pui-filter-menu .filter-group input click': function ($input) {
-            var filterVm = can.viewModel($input.closest('pui-filter-menu'));
+        'pui-filter-menu .filter-group input click': function (el) {
+            var $input = $(el);
+            var filterVm = canViewModel($input.closest('pui-filter-menu'));
             var filterGroups = filterVm.attr('filterGroups');
             var $thisGroup = $input.closest('.filter-group');
             var $listGroups = $input.closest('.filter-groups').find('.filter-group');
@@ -297,7 +306,7 @@ module.exports = can.Component.extend({
          * @param {jQuery object} $applyBtn The button receiving the mouseup event.
          */
         '.custom-range-selector ~ .apply-filters mouseup': function ($applyBtn) {
-            var filterVm = can.viewModel($applyBtn.closest('pui-filter-menu'));
+            var filterVm = canViewModel($applyBtn.closest('pui-filter-menu'));
             var vm = this.viewModel;
 
             // Compares the dateInfo attribute to the dateRanges app state value.
@@ -326,12 +335,12 @@ module.exports = can.Component.extend({
          * @description Register any keyup event in the actual browser window.
          */
         '{window} keyup': function ($el, evt) {
-            var $datepickers = this.element.find('pui-date-picker');
+            var $datepickers = $(this.element).find('pui-date-picker');
 
             // Close popover when the ESC key is hit
             if (evt.which === 27) {
-                can.each($datepickers, function (picker) {
-                    var pickerVm = can.viewModel(picker);
+                each($datepickers, function (picker) {
+                    var pickerVm = canViewModel(picker);
 
                     if (pickerVm.attr('pickerOpen') === true) {
                         pickerVm.attr('pickerOpen', false);
@@ -339,5 +348,7 @@ module.exports = can.Component.extend({
                 });
             }
         }
-    }
+    },
+
+    leakScope: true
 });

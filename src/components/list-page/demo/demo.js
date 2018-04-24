@@ -1,10 +1,12 @@
-require('can/util/fixture/fixture');
-require('can/view/stache/stache');
+require('can-fixture');
+require('can-stache');
 require('../list-page');
 require('./demo.less!');
 
 var $ = require('jquery');
-var can = require('can');
+var fixture = require('can-fixture');
+var BaseModel = require('can-model');
+
 var items = {
     count: 5,
     hasMoreRecords: false,
@@ -36,14 +38,13 @@ var items = {
         }
     ]
 };
-var Model = can.Model.extend({
+var Model = BaseModel.extend({
     findAll: '/items'
 });
 var template = require('./demo.stache!');
 var ViewModel = require('seo-ui/components/list-page/list-page.viewmodel');
 
-
-can.fixture('GET /items', function () {
+fixture('GET /items', function () {
     return items;
 });
 

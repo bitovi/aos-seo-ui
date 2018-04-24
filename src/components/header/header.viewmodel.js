@@ -1,9 +1,9 @@
-var can = require('can');
+var CanMap = require('can-map');
 var envVars = require('seo-ui/utils/environmentVars');
 
-require('can/map/define/define');
+require('can-map-define');
 
-var ViewModel = can.Map.extend({
+var ViewModel = CanMap.extend({
     /**
      * @function header.viewmodel.appInfo
      * @description This will return the super global "seo" that is defined on the window object on the page

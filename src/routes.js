@@ -1,9 +1,11 @@
-var can = require('can');
+var each = require('can-util/js/each/each');
+var route = require('can-route');
+var stache = require('can-stache');
 var setPageTitle = require('seo-ui/utils/setPageTitle');
 var envVars = require('seo-ui/utils/environmentVars');
 
-require('can/view/stache/stache');
-require('can/route/pushstate/pushstate');
+require('can-stache');
+require('can-route-pushstate');
 
 require('seo-ui/pages/generate-page/generate-page.js');
 require('seo-ui/pages/home/home.js');
@@ -18,12 +20,12 @@ var routes = require('./route-list.json');
 module.exports = function (appState, content) {
     window.appState = appState;
     // This @ROUTE_ROOT is replaced by the build to whatever is on config.js file
-    can.route.bindings.pushstate.root = envVars.rootApp() + '/';
-    can.each(routes, function (data, path) {
-        can.route(path, data.params);
+    route.bindings.pushstate.root = envVars.rootApp() + '/';
+    each(routes, function (data, path) {
+        route(path, data.params);
     });
 
-    can.route.bind('route', function (ev, newRoute, oldRoute) {
+    route.matched.on('change', function (ev, newRoute, oldRoute) {
         var alert = appState.attr('alert');
         var data = routes[newRoute || ''];
         var oldData = routes[oldRoute];
@@ -41,7 +43,7 @@ module.exports = function (appState, content) {
                 }
             }
 
-            content.html(can.stache(data.template)(appState));
+            content.html(stache(data.template)(appState));
 
             if (data.title) {
                 setPageTitle(data.title, appState);
@@ -49,5 +51,5 @@ module.exports = function (appState, content) {
         }
     });
 
-    can.route.ready();
+    route.ready();
 };

@@ -1,12 +1,13 @@
-require('@apple/pui/components/alert/alert');
-require('@apple/pui/components/confirm/confirm');
-require('@apple/pui/components/nav-bar/nav-bar');
+require('@apple/pui/dist/cjs/components/alert/alert');
+require('@apple/pui/dist/cjs/components/confirm/confirm');
+require('@apple/pui/dist/cjs/components/nav-bar/nav-bar');
 require('seo-ui/app.less!');
 require('seo-ui/components/header/');
 require('seo-ui/utils/viewHelpers');
 
 var $ = require('jquery');
-var can = require('can');
+var CanMap = require('can-map');
+var route = require('can-route');
 
 var AppState = require('seo-ui/models/appstate/');
 var csrfPrefilter = require('seo-ui/utils/csrfPrefilter');
@@ -22,21 +23,21 @@ var User = require('seo-ui/models/user/');
 
 if (envVars.isDeployedBuild() === 'false') {
     window._environment = {
-        'environment': 'Local Gulp'
+        environment: 'Local Gulp'
     };
     window.seo = {
-        'debug': true,
-        'appVersion': '1.0',
-        'user': {
-            'firstName': 'seo',
-            'lastName': 'user',
-            'email': 'seo_user@apple.com',
-            'initials': 'SU'
+        debug: true,
+        appVersion: '1.0',
+        user: {
+            firstName: 'seo',
+            lastName: 'user',
+            email: 'seo_user@apple.com',
+            initials: 'SU'
         },
-        'roles': ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_USER_READONLY'],
-        'csrfToken': 'n3m0-r0ck5',
-        'csrfHeader': 'X-AOS-CSRF',
-        'csrfParameter': '_aos_csrf'
+        roles: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_USER_READONLY'],
+        csrfToken: 'n3m0-r0ck5',
+        csrfHeader: 'X-AOS-CSRF',
+        csrfParameter: '_aos_csrf'
     };
 }
 
@@ -46,10 +47,13 @@ if (envVars.isDeployedBuild() === 'false') {
  * @param fixturesOn
  */
 function initApp(isDeployed, fixturesOn) {
-    var user, serverVars, appState, environment;
+    var user;
+    var serverVars;
+    var appState;
+    var environment;
 
-    window.seo = new can.Map(window.seo);
-    window._environment = new can.Map(window._environment);
+    window.seo = new CanMap(window.seo);
+    window._environment = new CanMap(window._environment);
 
     environment = new Environment(window._environment);
     window.seo.user.roles = window.seo.roles;
@@ -75,7 +79,7 @@ function initApp(isDeployed, fixturesOn) {
 
     // Adds additional data to all Ajax requests
     $.ajaxPrefilter(csrfPrefilter());
-    can.route.map(appState);
+    route.data = appState;
 
     $('#app').html(indexView(appState));
 

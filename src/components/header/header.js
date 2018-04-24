@@ -1,7 +1,9 @@
-var can = require('can');
+var Component = require('can-component');
+var canRoute = require('can-route');
+var isFunction = require('can-util/js/is-function/is-function');
 var _ = require('lodash');
 
-require('can/view/stache/stache');
+require('can-stache');
 require('seo-ui/components/user-menu/user-menu');
 require('seo-ui/components/fixture-toggle/fixture-toggle');
 require('bootstrap/js/dropdown');
@@ -10,10 +12,11 @@ var template = require('./header.stache!');
 var ViewModel = require('./header.viewmodel');
 var saveChangesModal = require('seo-ui/utils/unsaved-changes-dialog');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-header',
-    template: template,
-    viewModel: ViewModel,
+    view: template,
+    ViewModel: ViewModel,
+
     events: {
         /**
          * @description Invoked when .check-saved-state-js is clicked
@@ -39,7 +42,7 @@ module.exports = can.Component.extend({
          * @return {String} The active tab class
          */
         activeTab: function (url) {
-            var route = can.route.attr('route');
+            var route = this.attr('state.route');
             var activeTabClass;
 
             url = url && url.isComputed ? url() : '';
@@ -71,8 +74,10 @@ module.exports = can.Component.extend({
          */
         userHasAction: function (action, options) {
             var user = this.attr('state.user');
-            user = can.isFunction(user) ? user() : user;
+            user = isFunction(user) ? user() : user;
             return user.hasAction(action) ? options.fn(this) : options.inverse(this);
         }
-    }
+    },
+
+    leakScope: true
 });

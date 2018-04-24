@@ -1,11 +1,12 @@
-require('can/util/fixture/fixture');
+require('can-fixture');
 
-var can = require('can');
+var fixture = require('can-fixture');
+
 var envVars = require('seo-ui/utils/environmentVars');
 var createRequestResponse = require('./create-request.json');
 var notificationDetails = require('./notification-details.json');
 
-can.fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function (req, res) {
+fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function (req, res) {
     var notification = req.data;
 
     if (!notification) {
@@ -14,6 +15,6 @@ can.fixture('POST ' + envVars.apiUrl() + '/notifications/create.json', function 
     return createRequestResponse;
 });
 
-can.fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
+fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
     return notificationDetails;
 });

@@ -15,7 +15,7 @@
 */
 var gulp = require('gulp');
 
-gulp.task('copy', function() {
+gulp.task('copy', function () {
     gulp.src(['./src/index.production.html', './src/route-list.json', './src/bootstrap-theme.html'])
         .pipe(gulp.dest('./build'));
 });

@@ -1,19 +1,21 @@
-require('can/map/define/define');
+require('can-map-define');
 
-var can = require('can');
+var ajax = require('can-util/dom/ajax/ajax');
+
+var Model = require('can-model');
+
 var envVars = require('seo-ui/utils/environmentVars');
-var formatDate = require('@apple/pui/utils/formatDate');
-var guid = require('@apple/pui/utils/guid');
+var formatDate = require('@apple/pui/dist/cjs/utils/formatDate');
+var guid = require('@apple/pui/dist/cjs/utils/guid');
 
-module.exports = can.Model.extend(
+module.exports = Model.extend(
     {
         findAll: 'GET ' + envVars.apiUrl() + '/urls.json',
         findOne: 'GET ' + envVars.apiUrl() + '/urls/{url}.json',
 
         getFilters: function () {
             var url = envVars.apiUrl() + '/url-filters.json';
-
-            return can.ajax({
+            return ajax({
                 url: url,
                 method: 'get',
                 dataType: 'json',

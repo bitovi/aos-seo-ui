@@ -1,4 +1,5 @@
-var can = require('can');
+var CanMap = require('can-map');
+
 var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var PartNumberModel = require('seo-ui/models/part-number/part-number');
@@ -6,7 +7,7 @@ var primaryHeaderTemplate = require('./primary-header.stache!');
 var rowTemplate = require('./row.stache');
 var UrlModel = require('seo-ui/models/url/url');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {Function} url-list.viewModel.anatomyItem anatomyItem
@@ -19,7 +20,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<can.Map>} url-list.viewModel.columns columns
+         * @property {Array<CanMap>} url-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -135,7 +136,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<can.Map>} url-list.viewModel.dataOptions dataOptions
+         * @property {Array<CanMap>} url-list.viewModel.dataOptions dataOptions
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
@@ -244,7 +245,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} url-list.viewModel.partNumberModel partNumberModel
+         * @property {CanModel} url-list.viewModel.partNumberModel partNumberModel
          * @description A model used for search auto-complete.
          */
         partNumberModel: {
@@ -259,9 +260,7 @@ module.exports = can.Map.extend({
          */
         rowTemplate: {
             value: function () {
-                return function () {
-                    return rowTemplate;
-                };
+                return rowTemplate
             }
         },
 
@@ -271,9 +270,7 @@ module.exports = can.Map.extend({
          */
         primaryHeaderTemplate: {
             value: function () {
-                return function () {
-                    return primaryHeaderTemplate;
-                };
+                return primaryHeaderTemplate;
             }
         },
 
@@ -287,7 +284,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} url-list.viewModel.urlModel urlModel
+         * @property {CanModel} url-list.viewModel.urlModel urlModel
          * @description The model used to retrieve and display a list of URLs.
          */
         urlModel: {
@@ -297,7 +294,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {Array<can.Map>} url-list.viewModel.items
+         * @property {Array<CanMap>} url-list.viewModel.items
          * @description selects the items if it is previously selected.
          */
         items: {
@@ -377,12 +374,12 @@ module.exports = can.Map.extend({
     /**
      * @function url-list.viewModel.selectAllUrl
      * @description Toggles the selected state of all table rows.
-     * @param {$el} retuns element
-     * @param {evt} Determines if the checkbox will be selected or deselected
+     * @param {context} CanMap
+     * @param {$el} Event target
      */
-    selectAllUrl: function ($el, evt) {
+    selectAllUrl: function (context, $el) {
         var self = this;
-        var toggleState = evt.context.checked;
+        var toggleState = $el.checked;
 
         self.attr('items').map(function (option) {
             if (!self.isSelectedItemExist(option) && toggleState && option.attr('hasEditableKeys')) {
@@ -401,7 +398,7 @@ module.exports = can.Map.extend({
      * @param {evt} Determines if the checkbox will be selected or deselected
      * @param {url} fetch the Url data form row.
      */
-    selectRowUrl: function(url, evt) {
+    selectRowUrl: function (url, evt) {
         var self = this;
         var toggleState = evt.currentTarget.checked;
 
@@ -422,7 +419,7 @@ module.exports = can.Map.extend({
      * @function url-list.viewModel.deselectAll
      * @description deselect all items
      */
-    deselectAll: function() {
+    deselectAll: function () {
         this.attr('selectedItems', []);
         this.attr('items').map(function (option) {
             option.attr('selected', false);

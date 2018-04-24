@@ -1,10 +1,10 @@
-var can = require('can');
+var Model = require('can-model');
 var $ = require('jquery');
 var envVars = require('seo-ui/utils/environmentVars');
 
-require('can/map/define/');
+require('can-map-define');
 
-module.exports = can.Model.extend({
+module.exports = Model.extend({
     /**
      * @function export-progress.findOne is used to get the progress of a download
      * @description is used to get the progress of a download.

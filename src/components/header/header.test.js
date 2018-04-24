@@ -1,18 +1,16 @@
 var $ = require('jquery');
-var can = require('can');
+var canViewModel = require('can-view-model');
 
 var $component;
 var $sandBox;
-var scope;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./header.test.stache');
 var User = require('seo-ui/models/user/user');
-var ViewModel = require('seo-ui/components/header/header.viewmodel');
 var vm;
 
-require('seo-ui/components/header/header');
-require('can/util/fixture/fixture');
+require('./header');
+require('can-fixture');
 
 describe('Header', function () {
     beforeEach(function () {
@@ -26,20 +24,23 @@ describe('Header', function () {
     });
 
     describe('Component', function () {
-
         beforeEach(function () {
-            setFixtures(sandbox());
+            // these are provided by `jasmine-jquery`
+            window.setFixtures(window.sandbox());
+
             var frag = testTemplate({
                 state: {
                     user: new User({
-                        "roles": ["ROLE_USER", "ROLE_USER_READONLY"]
+                        roles: ['ROLE_USER', 'ROLE_USER_READONLY']
                     })
                 }
             });
+
             $sandBox = $('#sandbox');
             $sandBox.html(frag);
+
             $component = $('#sandbox seo-header');
-            vm = $component.viewModel();
+            vm = canViewModel($component);
         });
 
         it('exists', function () {
@@ -67,7 +68,7 @@ describe('Header', function () {
                 var frag = testTemplate({
                     state: {
                         user: new User({
-                            "roles": ["ROLE_USER_READONLY"]
+                            roles: ['ROLE_USER_READONLY']
                         })
                     }
                 });

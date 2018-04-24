@@ -1,21 +1,22 @@
-var can = require('can');
+var Component = require('can-component');
 
 var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
 var template = require('./review-page.stache!');
 var ViewModel = require('./review-page.viewmodel');
 
-require('can/map/define/define');
-require('can/view/stache/stache');
-require('@apple/pui/components/alert/alert');
-require('@apple/pui/components/file-downloader/file-downloader');
-require('@apple/pui/components/modal/modal');
-require('@apple/pui/components/panel/panel');
-require('@apple/pui/components/tabs/tabs');
+require('can-map-define');
+require('can-stache');
+require('@apple/pui/dist/cjs/components/alert/alert');
+require('@apple/pui/dist/cjs/components/file-downloader/file-downloader');
+require('@apple/pui/dist/cjs/components/modal/modal');
+require('@apple/pui/dist/cjs/components/panel/panel');
+require('@apple/pui/dist/cjs/components/tabs/tabs');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-review-page',
-    template: template,
-    viewModel: ViewModel,
+    view: template,
+    ViewModel: ViewModel,
+
     events: {
         /**
          * @function api.pages.review-page.events.'.btn-primary click'
@@ -49,5 +50,7 @@ module.exports = can.Component.extend({
                 vm.getProgress();
             });
         }
-    }
+    },
+
+    leakScope: true
 });

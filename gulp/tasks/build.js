@@ -14,10 +14,10 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
-gulp.task('build', function(cb){
+gulp.task('build', function (cb) {
     runSequence('xo', 'test', ['setProduction', 'clean:build'], 'copy', 'steal', cb);
 });
 
-gulp.task('build:skip', function(cb){
-    runSequence(['setProduction', 'clean:build'], 'copy', 'steal',  cb);
+gulp.task('build:skip', function (cb) {
+    runSequence(['setProduction', 'clean:build'], 'copy', 'steal', cb);
 });

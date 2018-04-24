@@ -1,9 +1,10 @@
+require('../../app.less');
 
 require('seo-ui/pages/request-detail/request-detail');
-require('can/util/fixture/fixture');
+require('seo-ui/models/request-list/request-list.fixture');
 
 var $ = require('jquery');
-var can = require('can');
+var assign = require('can-util/js/deep-assign/deep-assign');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var jasmineConfig = require('test/jasmine-configure');
@@ -21,21 +22,27 @@ var vm;
 var $component;
 
 // Renders the page
-var renderPage = function(newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+var renderPage = function(newState, done) {
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         state: state
     }));
 
-    jasmine.clock().runToLast();
     $component = $('#sandbox seo-request-detail');
+
+    jasmine.clock().runToLast();
+
+    window.nativeSetTimeout(function (){
+      done()
+    })
+
 };
 
 describe('Request Detail', function () {
-    beforeEach(function () {
+    beforeEach(function (done) {
         jasmineConfigClean = jasmineConfig();
-        renderPage();
+        renderPage(null, done);
     });
 
     afterEach(function () {

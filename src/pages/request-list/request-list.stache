@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-5">
             <pui-grid-search
-                ($click)="enableBasicSearch"
+                on:el:click="enableBasicSearch"
                 data-options="{dataOptions}"
                 search-field="{searchField}"
                 search-query="{searchQuery}"
@@ -52,7 +52,7 @@
     </div>
 </div>
 
-   
+
 <pui-grid-list
     count="{count}"
     has-more-records="{hasMoreRecords}"
@@ -66,7 +66,7 @@
     search-state-enabled="{searchStateEnabled}"
     multi-search-enabled="{multiSearchEnabled}"
     is-loading="{isLoading}"
-    items="{items}"
+    vm:items:bind="items"
     sort-by="{sortBy}"
     sort-order="{sortOrder}"
     state="{state}"

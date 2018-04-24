@@ -1,12 +1,13 @@
 var $ = require('jquery');
-var can = require('can');
+var canViewModel = require('can-view-model');
 
 var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./fixture-toggle.test.stache!');
-var ViewModel = require('seo-ui/components/fixture-toggle/fixture-toggle.viewmodel');
 var vm;
+
+require('./fixture-toggle');
 
 // Renders the component
 var renderPage = function () {
@@ -14,7 +15,7 @@ var renderPage = function () {
 
     jasmine.clock().runToLast();
     component = $('#sandbox seo-fixture-toggle');
-    vm = can.viewModel(component);
+    vm = canViewModel(component);
 };
 
 describe('Fixture Toggle', function () {
@@ -24,9 +25,9 @@ describe('Fixture Toggle', function () {
         });
 
         window.seo = {
-            'csrfToken': 'n3m0-r0ck5',
-            'csrfHeader': 'X-AOS-CSRF',
-            'csrfParameter': '_aos_csrf'
+            csrfToken: 'n3m0-r0ck5',
+            csrfHeader: 'X-AOS-CSRF',
+            csrfParameter: '_aos_csrf'
         };
 
         renderPage();
@@ -57,12 +58,12 @@ describe('Fixture Toggle', function () {
     });
 
     describe('Component', function () {
-    	// Disabling this test to avoid infinite loop. turning the fixtures off 
-    	// reloads the page every time, so this would never end
-    	xdescribe('toggle function', function () {
-    		beforeEach(function () {
-    			$('seo-fixture-toggle .fixtures-badge').trigger('click');
-    		});
+        // Disabling this test to avoid infinite loop. turning the fixtures off
+        // reloads the page every time, so this would never end
+        xdescribe('toggle function', function () {
+            beforeEach(function () {
+                $('seo-fixture-toggle .fixtures-badge').trigger('click');
+            });
 
             it('turns fixtures off', function () {
                 expect(vm.fixturesOn).toBe(false);

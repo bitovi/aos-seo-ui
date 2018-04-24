@@ -20,9 +20,9 @@
     <div class="filters">
         {{#each filterConfig}}
             <pui-filter-menu
-                {button-label}="btnLabel"
-                (applied-filter-btn-label)="updateFilterUrl(%viewModel)"
-                {filter-groups}="getFilterOptions({filterGroups})"
+                vm:buttonLabel:from="btnLabel"
+                on:vm:appliedFilterBtnLabel="updateFilterUrl(%viewModel)"
+                vm:filterGroups:from="../getFilterOptions(./filterGroups)"
             >
                 {{#is btnLabel 'All Dates'}}
                     <div class="custom-range-selector {{^if datesOpen}}hide{{/if}}">
@@ -31,7 +31,7 @@
                             <pui-date-picker
                                 date-string="{startDate}"
                                 max-date="{maxDate}"
-                                {(picker-open)}="fromDatePickerOpen"
+                                vm:pickerOpen:bind="fromDatePickerOpen"
                                 placement="bottom"
                             >
                                 <input
@@ -48,7 +48,7 @@
                             <pui-date-picker
                                 date-string="{endDate}"
                                 max-date="{today}"
-                                {(picker-open)}="toDatePickerOpen"
+                                vm:pickerOpen:bind="toDatePickerOpen"
                                 min-date="{startDate}"
                                 placement="bottom"
                             >
@@ -70,7 +70,7 @@
             <button
                 type="button"
                 class="btn btn-secondary btn-xs reset-all-filters"
-                ($click)="resetAllFilters"
+                on:el:click="resetAllFilters"
             >Reset Filters</button>
         {{/if}}
         <div class="request-selection-option">
@@ -83,13 +83,13 @@
             {{^is selectUrlCount 0}}
                 <a
                     type="button" class="btn btn-secondary btn-xs create-request-button"
-                    ($click)="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl}}">Create Request | {{selectUrlCount |}}
+                    on:el:click="setSelectedMetadataToLocalStorage()" href="{{getMetadataURl()}}">Create Request | {{selectUrlCount |}}
                </a>
            {{/is}}
            <button
                 type="button"
                 {{#is selectUrlCount 0}}disabled{{/is}}
-                class="btn btn-secondary btn-xs deselect-all-button" ($click)="deselectAll()">Deselect
+                class="btn btn-secondary btn-xs deselect-all-button" on:el:click="deselectAll()">Deselect
            </button>
         </div>
     </div>
@@ -98,7 +98,7 @@
         {{! Basic Search }}
         <div class="col-md-5">
             <pui-grid-search
-                ($click)="enableBasicSearch"
+                on:el:click="enableBasicSearch"
                 data-options="{dataOptions}"
                 search-field="{searchField}"
                 search-query="{searchQuery}"
@@ -111,9 +111,9 @@
             {{! Column Toggle }}
             <pui-grid-column-toggle
                 class="pull-right"
-                {(columns)}="columns"
+                vm:columns:bind="columns"
                 menu-align="right"
-                {(is-menu-open)}="topGridColumnToggleOpen"
+                vm:isMenuOpen:bind="topGridColumnToggleOpen"
             ></pui-grid-column-toggle>
 
             {{! Pagination }}
@@ -132,20 +132,20 @@
 {{! Grid List }}
 <pui-grid-list
     class="main-item-list"
-    {(columns)}="columns"
+    vm:columns:bind="columns"
     count="{count}"
     current-page="{currentPage}"
     expandable-rows="{expandableRows}"
-    expanded-template="{expandedTemplate}"
-    {filters-enabled}="filtersEnabled"
+    vm:expandedTemplate:from="@expandedTemplate"
+    vm:filtersEnabled:from="filtersEnabled"
     has-more-records="{hasMoreRecords}"
     is-loading="{isLoading}"
     item-link-enabled="{itemLinkEnabled}"
-    items="{items}"
+    items:bind="items"
     limit="{limit}"
     model="{model}"
-    row-template="{rowTemplate}"
-    primary-header-template="{primaryHeaderTemplate}"
+    vm:rowTemplate:from="@rowTemplate"
+    vm:primaryHeaderTemplate:from="@primaryHeaderTemplate"
     search-filter="{searchFilter}"
     search-query="{searchQuery}"
     sort-by="{state.sort}"
@@ -157,10 +157,10 @@
     {{! Column Toggle }}
     <pui-grid-column-toggle
         class="pull-right"
-        {(columns)}="columns"
+        vm:columns:bind="columns"
         menu-align="right"
         placement="top"
-        {(is-menu-open)}="bottomGridColumnToggleOpen"
+        vm:isMenuOpen:bind="bottomGridColumnToggleOpen"
     ></pui-grid-column-toggle>
 
     {{! Pagination }}

@@ -1,9 +1,9 @@
-var can = require('can');
+var CanMap = require('can-map');
 
-require('can/map/define/define');
-require('can/view/stache/stache');
+require('can-map-define');
+require('can-stache');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {Array} buttons

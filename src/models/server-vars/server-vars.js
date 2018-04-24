@@ -1,9 +1,9 @@
-var can = require('can');
+var CanMap = require('can-map');
 var User = require('seo-ui/models/user/user');
 
-require('can/map/define/define');
+require('can-map-define');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {string} server-vars.clientVersion clientVersion

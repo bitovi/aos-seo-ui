@@ -45,18 +45,17 @@ function createTask(env, proxyOptions) {
     var taskConfig = _.cloneDeep(config.options);
     taskConfig.server.middleware = [historyApiMiddleware, productionMiddleware];
 
-    if(typeof proxyOptions !== 'undefined') {
+    if (typeof proxyOptions !== 'undefined') {
         taskConfig.server.middleware.push(proxy(proxyOptions));
     }
 
-    gulp.task('browserSync' + envName, function() {
+    gulp.task('browserSync' + envName, function () {
         browserSync(taskConfig);
     });
-
 }
 
 // Create a task for each API environment
-for(var env in config.apiProxies) {
+for (var env in config.apiProxies) {
     var proxyOptions = url.parse(config.apiProxies[env]);
     proxyOptions.route = '/apiProxy';
 

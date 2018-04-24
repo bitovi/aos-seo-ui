@@ -1,23 +1,25 @@
-require('can/map/define/define');
+require('can-map-define');
 
 var _ = require('lodash');
-var can = require('can');
+var each = require('can-util/js/each/each');
+var CanList = require('can-list');
+var CanMap = require('can-map');
+var route = require('can-route');
+var canViewModel = require('can-view-model');
 var moment = require('moment');
 
 var templateRenderer = function (newTemplate) {
-    return function () {
-        return newTemplate;
-    };
+    return newTemplate;
 };
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {Array<Object>} columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
-            Type: can.List
+            Type: CanList
         },
 
         /**
@@ -52,7 +54,7 @@ module.exports = can.Map.extend({
          * @description A list of search-able keys/columns, used by the Grid Search component.
          */
         dataOptions: {
-            Type: can.List
+            Type: CanList
         },
 
         /**
@@ -86,12 +88,9 @@ module.exports = can.Map.extend({
          * @description Property to help update the filter menus with filter data when filtering.
          */
         filterData: {
-            set: function () {
-                var self = this;
-
-                setTimeout(function () {
-                    self.updateFilterMenus();
-                });
+            set: function (val) {
+                this.updateFilterMenus();
+                return val;
             }
         },
 
@@ -146,7 +145,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} model
+         * @property {CanModel} model
          * @description The model to be used on the list page.
          */
         model: {
@@ -208,7 +207,7 @@ module.exports = can.Map.extend({
          * @description The current Advanced Search fields and terms.
          */
         searchFilter: {
-            Value: can.Map
+            Value: CanMap
         },
 
         /**
@@ -216,7 +215,7 @@ module.exports = can.Map.extend({
          * @description The current Basic Search field and term.
          */
         searchQuery: {
-            Value: can.Map,
+            Value: CanMap,
             set: function (searchQuery) {
                 // Update AppState/route
                 var searchField = this.attr('searchField');
@@ -509,7 +508,7 @@ module.exports = can.Map.extend({
                 .then(function (filters) {
                     self.attr('filterData', filters);
                 })
-                .fail(function (error) {
+                .catch(function (error) {
                     self.state.attr('alert', {
                         type: 'error',
                         title: 'Not able to load filters',
@@ -526,11 +525,10 @@ module.exports = can.Map.extend({
     getFilterOptions: function (filterGroups) {
         var filterData = this.attr('filterData');
         var match;
-
         if (filterData && filterGroups) {
             filterGroups.forEach(function (group) {
                 match = _.find(filterData.filters, {
-                    'parameter': group.attr('parameter')
+                    parameter: group.attr('parameter')
                 });
 
                 if (match) {
@@ -545,7 +543,7 @@ module.exports = can.Map.extend({
     /**
      * @function navigateToDetails
      * @description Navigates to an asset's detail page
-     * @param {can.Map} itemData The data of the item to navigate to
+     * @param {CanMap} itemData The data of the item to navigate to
      */
     navigateToDetails: function (itemData) {
         var appState = this.attr('state');
@@ -573,10 +571,10 @@ module.exports = can.Map.extend({
         var today = this.attr('today');
 
         if (filterMenus.length) {
-            can.each(filterMenus, function (filterMenu) {
-                filterVm = can.viewModel(filterMenu);
+            each(filterMenus, function (filterMenu) {
+                filterVm = canViewModel(filterMenu);
 
-                can.each(filterVm.attr('filterGroups'), function (group) {
+                each(filterVm.attr('filterGroups'), function (group) {
                     // Deselects all filter options
                     group.toggleAllFilters(false);
                 });
@@ -612,7 +610,7 @@ module.exports = can.Map.extend({
 
                 if (filterGroups) {
                     filterGroups.forEach(function (group, groupIndex) {
-                        var filterVm = can.viewModel(filterMenus[filterIndex]);
+                        var filterVm = canViewModel(filterMenus[filterIndex]);
                         var menuGroups = filterVm.attr('filterGroups');
                         var paramVal = searchFilter[group.attr('parameter')];
                         var paramDates = [];
@@ -652,7 +650,7 @@ module.exports = can.Map.extend({
     /**
      * @function updateFilterUrl
      * @description Updates the application state when filters are applied.
-     * @param {can.Map} menuVm The current filter menu's view model.
+     * @param {CanMap} menuVm The current filter menu's view model.
      */
     updateFilterUrl: function (menuVm) {
         var appState = this.attr('state');
@@ -692,7 +690,7 @@ module.exports = can.Map.extend({
      * @description returns url for edit title description.
      */
     getMetadataURl: function () {
-        return can.route.url({
+        return route.url({
             page: 'edit-metadata-list'
         });
     }

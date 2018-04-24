@@ -1,12 +1,13 @@
-var can = require('can');
+var Component = require('can-component');
 var ViewModel = require('./fixture-toggle.viewmodel');
 
-require('can/view/stache/stache');
+require('can-stache');
 
 var template = require('./fixture-toggle.stache!');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-fixture-toggle',
-    template: template,
-    viewModel: ViewModel
+    view: template,
+    ViewModel: ViewModel,
+    leakScope: true
 });

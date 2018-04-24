@@ -1,5 +1,6 @@
-var can = require('can');
-require('can/map/define/');
+var assign = require('can-util/js/deep-assign/deep-assign');
+var CanMap = require('can-map');
+require('can-map-define');
 
 /**
  * @module {function} models/environment data
@@ -8,16 +9,16 @@ require('can/map/define/');
  * Provides information about a environment and their access rights
  *
  */
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
 
     define: {
         features: {
-            Type: can.Map
+            Type: CanMap
         }
     },
 
     init: function (seo) {
-        can.extend(this, seo);
+        assign(this, seo);
     },
 
     env: function () {

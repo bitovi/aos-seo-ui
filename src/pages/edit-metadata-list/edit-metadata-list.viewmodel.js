@@ -1,5 +1,6 @@
-require('can/map/define/define');
-var can = require('can');
+require('can-map-define');
+var canBatch = require('can-event/batch/batch');
+var CanMap = require('can-map');
 var _ = require('lodash');
 var anatomyItemTemplate = require('./anatomy-item.stache');
 var rowTemplate = require('./row.stache');
@@ -8,10 +9,10 @@ var moment = require('moment');
 var CreateRequest = require('seo-ui/models/edit-metadata/create-request');
 var formatUtils = require('seo-ui/utils/format-utils');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
-         * @property {Array<can.Map>} edit-metadata-list.viewModel.columns columns
+         * @property {Array<CanMap>} edit-metadata-list.viewModel.columns columns
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
@@ -56,7 +57,7 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Model} createRequest
+         * @property {CanModel} createRequest
          * @description The createRequest modal.
          */
 
@@ -102,11 +103,11 @@ module.exports = can.Map.extend({
         },
 
         /**
-         * @property {can.Map} edit-metadata-list.viewModel.errors errors
+         * @property {CanMap} edit-metadata-list.viewModel.errors errors
          * @description errors is an observable map of the views current validation state
          */
         errors: {
-            value: can.Map.extend({
+            value: CanMap.extend({
                 define: {
                     /**
                      * @property {String} edit-metadata-list.viewModel.errors.title errors.title
@@ -150,11 +151,11 @@ module.exports = can.Map.extend({
          * @description Actions used for action-bar-menu items
          */
         actionBarMenuActions: {
-            value: function() {
+            value: function () {
                 return {
-                    cancelRequest: can.proxy(this.cancelRequest, this),
-                    addMore: can.proxy(this.addMore, this),
-                    raiseRequest: can.proxy(this.raiseRequest, this)
+                    cancelRequest: this.cancelRequest.bind(this),
+                    addMore: this.addMore.bind(this),
+                    raiseRequest: this.raiseRequest.bind(this)
                 };
             }
         },
@@ -169,7 +170,7 @@ module.exports = can.Map.extend({
             }
         },
 
-         /**
+        /**
          * @property {String} dateMask
          * @description Date mask to use on user visible dates.
          * @option {String} Default is MM/DD/YYYY.
@@ -264,7 +265,7 @@ module.exports = can.Map.extend({
      * @function showActivity
      * @description Shows activity modal of the raise request.
      */
-    raiseRequest: function() {
+    raiseRequest: function () {
         this.attr('showModalLoader', false);
         this.attr('isActive', !this.attr('isActive'));
     },
@@ -346,11 +347,11 @@ module.exports = can.Map.extend({
      * @description runs validation on all fields being validated
      */
     validate: function () {
-        can.batch.start();
+        canBatch.start();
         this.validateTitle();
         this.validateDate();
         this.validateDescription();
-        can.batch.stop();
+        canBatch.stop();
         return this.attr('errors.isValid');
     },
 

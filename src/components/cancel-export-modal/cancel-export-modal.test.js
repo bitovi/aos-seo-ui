@@ -1,25 +1,24 @@
 var $ = require('jquery');
-var can = require('can');
-
-require('seo-ui/utils/viewHelpers');
+var canViewModel = require('can-view-model');
 
 var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./cancel-export-modal.test.stache');
-var ViewModel = require('seo-ui/components/cancel-export-modal/cancel-export-modal.viewmodel');
-var vm;
+var vm; // eslint-disable-line no-unused-vars
+
+require('seo-ui/utils/viewHelpers');
+require('./cancel-export-modal');
 
 // Renders the component
 var renderPage = function () {
-
     $('#sandbox').html(testTemplate({
         count: 1000
     }));
 
     jasmine.clock().runToLast();
     component = $('#sandbox seo-cancel-export-modal');
-    vm = component.data('scope');
+    vm = canViewModel(component);
 };
 
 describe('Export Modal', function () {
@@ -33,12 +32,11 @@ describe('Export Modal', function () {
         jasmineConfigClean(true);
     });
 
-
     describe('Component', function () {
         beforeEach(function () {
             renderPage();
             component = $('#sandbox seo-cancel-export-modal');
-            vm = component.data('scope');
+            vm = canViewModel(component);
         });
 
         it('Renders', function () {

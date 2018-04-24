@@ -12,11 +12,11 @@
  * Pass the results of this function to $.ajaxPrefilter.
  */
 
-module.exports = function() {
+module.exports = function () {
     return function (options, originalOptions, jqXhr) {
-        var seoObj = window.seo,
-            csrfHeader,
-            csrfToken;
+        var seoObj = window.seo;
+        var csrfHeader;
+        var csrfToken;
 
         // Cross-Site Request Forgery protection
         if (typeof seoObj !== 'undefined' && typeof seoObj.csrfHeader !== 'undefined' && typeof seoObj.csrfToken !== 'undefined') {
