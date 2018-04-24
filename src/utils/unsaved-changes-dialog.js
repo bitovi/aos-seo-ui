@@ -1,8 +1,9 @@
-var can = require('can');
+var $ = require('jquery');
+var canViewModel = require('can-view-model');
 
-module.exports = function($el, ev, leave) {
+module.exports = function ($el, ev, leave) {
     ev.preventDefault();
-    can.$('pui-confirm.global-confirm').viewModel().showDialog({
+    canViewModel($('pui-confirm.global-confirm')).showDialog({
         title: 'Unsaved Changes',
         type: 'warning',
         text: 'Leaving the page will cause you to lose your unsaved changes. Would you like to continue?',
@@ -15,9 +16,9 @@ module.exports = function($el, ev, leave) {
                 text: 'Stay on page',
                 action: 'confirm'
             }]
-    }).then(function(dialog) {
+    }).then(function (dialog) {
         dialog.close();
-    }, function(dialog) {
+    }, function (dialog) {
         leave();
         dialog.close();
     });

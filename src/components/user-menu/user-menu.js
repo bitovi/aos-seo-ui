@@ -1,3 +1,4 @@
+var Component = require('can-component');
 /**
  * @parent components
  * @tag documentation
@@ -18,24 +19,28 @@
  *
  * @param {{}} user-data current user's data.
  */
-var can = require('can');
 var ViewModel = require('./user-menu.viewmodel');
-require('can/view/stache/stache');
+require('can-stache');
 require('bootstrap/js/dropdown');
 var template = require('./user-menu.stache!');
 
-can.Component.extend({
+Component.extend({
     tag: 'seo-user-menu',
-    template: template,
-    viewModel: ViewModel,
+    view: template,
+    ViewModel: ViewModel,
+
     events: {
-        init: function init() {
-            this.viewModel.attr('isLocalInstance', window.seo ? window.seo.configure : false);
+        'init': function init() {
+            this.viewModel.attr('isLocalInstance',
+                window.seo && typeof window.seo.configure !== 'undefined'
+                    ? window.seo.configure : false);
         },
         '.dropdown-menu click': function ($el, ev) {
             ev.stopPropagation();
         }
-    }
+    },
+
+    leakScope: true
 });
 
 module.exports = ViewModel;

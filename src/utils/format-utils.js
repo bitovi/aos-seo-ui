@@ -5,7 +5,6 @@
  * @description Utils to format content for display.
  *
  */
-
 module.exports = {
     /**
      * @signature 'formatUtils.trimString()'

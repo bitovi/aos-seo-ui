@@ -1,4 +1,4 @@
-<tr class="item" {{data 'item'}} {{eleAttrs}}>
+<tr class="item" {{data 'item'}} {{eleAttrs(this)}}>
     {{#columns}}
         {{^if isHidden}}
             <td class="{{key}}">
@@ -6,7 +6,7 @@
                     {{#switch key}}
                         {{#case 'selectUrl'}}
                             {{#if hasEditableKeys}}
-                                <input type="checkbox" {{#if selected}}checked{{/if}} ($click)="selectRowUrl(url, %event)" />
+                                <input type="checkbox" {{#if selected}}checked{{/if}} on:el:click="selectRowUrl(url, %event)" />
                             {{/if}}
                         {{/case}}
                         {{#case 'url'}}
@@ -15,10 +15,10 @@
                                     href="{{urlAspenLink}}"
                                     target="_blank"
                                 >
-                                    {{itemValue}}
+                                    {{itemValue(../, key)}}
                                 </a>
                             {{else}}
-                                {{itemValue}}
+                                {{itemValue(../, key)}}
                             {{/if}}
                         {{/case}}
 
@@ -93,7 +93,7 @@
                         {{/case}}
 
                         {{#default}}
-                            {{itemValue}}
+                            {{itemValue(../, key)}}
                         {{/default}}
                     {{/switch}}
                 </div>

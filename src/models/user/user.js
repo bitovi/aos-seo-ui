@@ -1,7 +1,8 @@
+var assign = require('can-util/js/deep-assign/deep-assign');
+var CanMap = require('can-map');
 /* eslint camelcase: 0 */
 
-var can = require('can');
-require('can/map/define/');
+require('can-map-define');
 
 var roleLevels = {
     no_access: -1,
@@ -11,11 +12,11 @@ var roleLevels = {
 };
 
 /**
- * @module {can.Model} user User
+ * @module {CanModel} user User
  * @parent api.models
  *
  * @description
- * A can.Model that represents a user.
+ * A CanModel that represents a user.
  *
  * Provides access to the user's roles, and what actions they are authorized to
  * perform in the system.
@@ -26,10 +27,10 @@ var roleLevels = {
  * has ACL values of 0, 1, and 100, their effective system access level will be
  * 100.
  */
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         actions: {
-            Type: can.Map.List
+            Type: CanMap.List
         },
         roles: {
             set: function (newRoles) {
@@ -48,7 +49,7 @@ module.exports = can.Map.extend({
         }
     },
     initUser: function initUser(userObj) {
-        can.extend(this, userObj);
+        assign(this, userObj);
         this.attr('roles', this.roles);
     },
     // The guts of this function will soon be replaced when the new ACL actions

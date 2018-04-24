@@ -4,7 +4,7 @@
     details-key="{detailsKey}"
     filter-config="{filterConfig}"
     model="{model}"
-    row-template="{rowTemplate}"
+    rowTemplate="@rowTemplate"
     search-field="{searchField}"
     state="{state}"
 ></seo-list-page>

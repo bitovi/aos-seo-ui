@@ -1,15 +1,17 @@
-require('can/map/define/define');
-require('can/view/stache/stache');
-require('@apple/pui/components/popover/popover');
+require('can-map-define');
+require('can-stache');
+require('@apple/pui/dist/cjs/components/popover/popover');
 require('seo-ui/components/export-urls/export-urls');
 require('seo-ui/components/list-page/list-page');
 
-var can = require('can');
+var Component = require('can-component');
+
 var template = require('./url-list.stache!');
 var ViewModel = require('./url-list.viewmodel');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-url-list',
-    template: template,
-    viewModel: ViewModel
+    view: template,
+    ViewModel: ViewModel,
+    leakScope: true
 });

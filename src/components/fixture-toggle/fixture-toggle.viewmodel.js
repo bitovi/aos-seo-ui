@@ -1,7 +1,8 @@
-var can = require('can');
-require('can/map/define/');
+var fixture = require('can-fixture');
+var CanMap = require('can-map');
+require('can-map-define');
 
-var ViewModel = can.Map.extend({
+var ViewModel = CanMap.extend({
     define: {
         fixturesOn: {
             value: function () {
@@ -15,7 +16,7 @@ var ViewModel = can.Map.extend({
             },
             set: function (newVal) {
                 window.sessionStorage.setItem('seo.fixtures', newVal);
-                can.fixture.on = newVal;
+                fixture.on = newVal;
 
                 if (!this.__inSetup) {
                     window.location.reload();

@@ -1,8 +1,8 @@
-require('seo-ui/pages/generate-page/generate-page');
-require('can/util/fixture/fixture');
+require('./generate-page');
+require('can-fixture');
 
 var $ = require('jquery');
-var can = require('can');
+var assign = require('can-util/js/deep-assign/deep-assign');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var jasmineConfig = require('test/jasmine-configure');
@@ -13,17 +13,15 @@ var stateObj = {
     urlPath: ''
 };
 
-var testTemplate = require('./generate.test.stache!');
-var ViewModel = require('seo-ui/pages/generate-page/generate-page.viewmodel');
-var ExportProgressModel = require('seo-ui/models/export-progress/export-progress');
-var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
+var testTemplate = require('./generate-page.test.stache!');
+var ViewModel = require('./generate-page.viewmodel');
 var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 var $component;
 
 // Renders the page
-var renderPage = function(newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+var renderPage = function (newState) {
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         state: state
@@ -37,10 +35,10 @@ describe('Generate Page', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig();
         window.seo = {
-            csrfHeader:"X-AOS-CSRF",
-            csrfParameter:"_aos_csrf",
-            csrfToken:"n3m0-r0ck5"
-        };
+            csrfHeader: 'X-AOS-CSRF',
+            csrfParameter: '_aos_csrf',
+            csrfToken: 'n3m0-r0ck5'
+        };
         renderPage();
     });
 

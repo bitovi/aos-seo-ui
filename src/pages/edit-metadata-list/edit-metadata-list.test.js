@@ -1,8 +1,8 @@
-require('seo-ui/pages/edit-metadata-list/edit-metadata-list');
-require('can/util/fixture/fixture');
+require('./edit-metadata-list');
+require('can-fixture');
 
 var $ = require('jquery');
-var can = require('can');
+var assign = require('can-util/js/deep-assign/deep-assign');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var jasmineConfig = require('test/jasmine-configure');
@@ -14,14 +14,13 @@ var stateObj = {
 };
 
 var testTemplate = require('./edit-metadata-list.test.stache!');
-var ViewModel = require('seo-ui/pages/edit-metadata-list/edit-metadata-list.viewmodel');
-var envVars = require('seo-ui/utils/environmentVars');
+var ViewModel = require('./edit-metadata-list.viewmodel');
 var vm;
 var $component;
 
 // Renders the page
-var renderPage = function(newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+var renderPage = function (newState) {
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         state: state
@@ -148,7 +147,7 @@ describe('edit-metadata-list', function () {
             expect($component.find('.modal-title').text().trim()).toEqual('Raise Request');
         });
 
-        it('has submit request button', function () { 
+        it('has submit request button', function () {
             expect($component.find('.btn-block').text().trim()).toEqual('Submit Request');
         });
     });

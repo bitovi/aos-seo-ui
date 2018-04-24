@@ -16,15 +16,13 @@
 */
 
 var gulp = require('gulp');
-var glob = require('glob');
-var del = require('del');
 // DocJS does not export configured
 // Issue: https://github.com/bitovi/documentjs/pull/71
 var documentjs = require('documentjs/lib/configured/configured');
 var connect = require('gulp-connect');
 var config = require('../config').documentjs;
 
-gulp.task('docs', ['clean:docs'], function(callback){
+gulp.task('docs', ['clean:docs'], function () {
     return documentjs.generateProject({
         docConfig: {
             sites: {
@@ -37,7 +35,7 @@ gulp.task('docs', ['clean:docs'], function(callback){
     });
 });
 
-gulp.task('docs:serve', ['docs'], function(){
+gulp.task('docs:serve', ['docs'], function () {
     gulp.watch(config.watchFiles, ['docs']);
 
     connect.server({

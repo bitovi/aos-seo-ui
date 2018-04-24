@@ -4,7 +4,7 @@
             {{#case 'selectUrl'}}
                 <th class="{{key}} {{cssClass}}">
                     <span class="col-name">
-                       <input class="toggleSelect" type="checkbox" {{#if isAllSelected}}checked{{/if}} ($click)="selectAllUrl">
+                       <input class="toggleSelect" type="checkbox" {{#if isAllSelected}}checked{{/if}} on:el:click="selectAllUrl">
                     </span>
                 </th>
             {{/case}}

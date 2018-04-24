@@ -1,29 +1,27 @@
 var $ = require('jquery');
-var can = require('can');
+var canViewModel = require('can-view-model');
 
 var component;
-var scope;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./user-menu.test.stache!');
-var ViewModel = require('seo-ui/components/user-menu/user-menu.viewmodel');
 var vm;
 
-require('seo-ui/components/user-menu/user-menu');
-require('can/util/fixture/fixture');
+require('./user-menu');
+require('can-fixture');
 
 // Renders the component
 var renderPage = function () {
     $('#sandbox').html(testTemplate({
         isLocalInstance: false,
         userData: {
-        	initials: "MG"
+            initials: 'MG'
         }
     }));
 
     jasmine.clock().runToLast();
     component = $('#sandbox seo-user-menu');
-    vm = can.viewModel(component);
+    vm = canViewModel(component);
 };
 
 describe('User-menu', function () {
@@ -38,7 +36,7 @@ describe('User-menu', function () {
     });
 
     describe('view model', function () {
-    	beforeEach(function () {
+        beforeEach(function () {
             renderPage();
         });
 
@@ -54,5 +52,4 @@ describe('User-menu', function () {
             });
         });
     });
-
 });

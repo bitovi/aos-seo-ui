@@ -1,12 +1,13 @@
-require('can/map/define/define');
-require('can/view/stache/stache');
+require('can-map-define');
+require('can-stache');
 
 var $ = require('jquery');
-var can = require('can');
+var each = require('can-util/js/each/each');
+var CanMap = require('can-map');
 var envVars = require('seo-ui/utils/environmentVars');
 var ExportProgress = require('seo-ui/models/export-progress/export-progress.js');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {Array} configurableColumns
@@ -108,17 +109,17 @@ module.exports = can.Map.extend({
      */
     buildParams: function (extraParams) {
         var filterFields = this.attr('filterFields');
-        var params = new can.Map();
+        var params = new CanMap();
         var searchFields = this.attr('searchFields');
         var state = this.attr('state');
 
         // tack on search/filter params
         if (state) {
-            can.each(searchFields, function (val) {
+            each(searchFields, function (val) {
                 params.attr(val, state.attr(val));
             });
 
-            can.each(filterFields, function (val) {
+            each(filterFields, function (val) {
                 params.attr(val, state.attr(val));
             });
 
@@ -158,7 +159,7 @@ module.exports = can.Map.extend({
 
         this.attr('doDownloadExport', false);
 
-        return can.Deferred(function (defer) {
+        return new Promise(function (resolve, reject) {
             progressTimerId = setInterval(function () {
                 var progDef = ExportProgress.findOne({
                     exportId: self.attr('exportId')
@@ -179,7 +180,7 @@ module.exports = can.Map.extend({
 
                             if (respState === 'success') {
                                 self.attr('isLoading', false);
-                                defer.resolve(resp);
+                                resolve(resp);
                                 self.attr('notifications').push({
                                     title: 'Export completed without errors.',
                                     message: message,
@@ -189,7 +190,7 @@ module.exports = can.Map.extend({
                             } else if (respState === 'progress') {
                                 self.attr('isLoading', true);
                             } else if (respState === 'alert') {
-                                defer.reject(resp);
+                                reject(resp);
                                 self.attr('isLoading', false);
                                 self.attr('notifications').push({
                                     title: resp.errorMessage,
@@ -197,7 +198,7 @@ module.exports = can.Map.extend({
                                     type: 'info'
                                 });
                             } else if (respState === 'error') {
-                                defer.reject(resp);
+                                reject(resp);
                                 self.attr('isLoading', false);
                                 self.attr('notifications').push({
                                     title: 'Data export has failed.',
@@ -208,8 +209,8 @@ module.exports = can.Map.extend({
                             }
                         }
                     })
-                    .fail(function (resp) {
-                        defer.reject(resp);
+                    .catch(function (resp) {
+                        reject(resp);
                         self.attr('notifications').push({
                             title: 'Not able to export',
                             message: resp.errorMessage,
@@ -218,9 +219,14 @@ module.exports = can.Map.extend({
                         });
                     });
             }, 3000);
-        }).always(function () {
+        }).then(function () {
             self.attr('notifications').pop();
             clearTimeout(progressTimerId);
+        }).catch(function (err) {
+            self.attr('notifications').pop();
+            clearTimeout(progressTimerId);
+
+            throw err;
         });
     },
 

@@ -1,9 +1,9 @@
-require('can/map/define/define');
-var can = require('can');
+var CanMap = require('can-map');
+
 var rowTemplate = require('./row.stache');
 var RequestListModel = require('seo-ui/models/request-list/request-list');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
         /**
          * @property {Array<can.Map>} request-detail.viewModel.columns columns
@@ -69,7 +69,7 @@ module.exports = can.Map.extend({
         actionBarMenuActions: {
             value: function() {
                 return {
-                    navigateToRequestList: can.proxy(this.navigateToRequestList, this)
+                    navigateToRequestList: this.navigateToRequestList.bind(this)
                 };
             }
         },

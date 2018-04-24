@@ -27,7 +27,7 @@
                     <span class="read-only-label">Read Only</span>
                 {{/userHasAction}}
 
-                <seo-user-menu user-data="{user}">
+                <seo-user-menu userData="{user}">
                     <li>
                         <a
                             href="{{link('logout')}}"

@@ -8,7 +8,6 @@ var config = require('../config').testee;
 
 // --> BEGIN: This is currently not being used. Once the issues with hanging tests are resolved
 // then the dynamic test building can be restored
-// TODO: Fix 'test/pages/**/*test.js'
 var buildFiles = [
     {
         files: ['test/utils/**/*.test.js', 'test/models/**/*.test.js', 'test/components/**/*.test.js', 'test/pages/**/*.test.js'],
@@ -19,7 +18,6 @@ var buildFiles = [
 // DYNAMIC BUILDERS
 
 gulp.task('build-tests', function () {
-
     // Get a collection of all the test files
     // For each collection, call ten tests at a time
 
@@ -29,11 +27,9 @@ gulp.task('build-tests', function () {
             output: fileConfig.output
         });
     });
-
 });
 
 // END <--
-
 
 // DEFAULT TASK
 

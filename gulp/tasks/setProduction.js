@@ -8,13 +8,13 @@
 
 var gulp = require('gulp');
 
-gulp.task('setProduction', function() {
+gulp.task('setProduction', function () {
     global.isProduction = true;
     process.env.NODE_ENV = 'production';
 
     // The build hanges in some environments, this helps it along
-    gulp.on('stop', function() {
-        process.nextTick(function() {
+    gulp.on('stop', function () {
+        process.nextTick(function () {
             process.exit(0);
         });
     });

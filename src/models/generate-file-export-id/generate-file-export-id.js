@@ -1,11 +1,11 @@
 var $ = require('jquery');
-var can = require('can');
+var Model = require('can-model');
 var envVars = require('seo-ui/utils/environmentVars');
 
-require('can/map/define/');
+require('can-map-define');
 
-module.exports = can.Model.extend({
-	/**
+module.exports = Model.extend({
+    /**
      * @function generate-file-export-id.findOne
      * @description is used to get the exportId to get the progress of a download later.
      * @param {Object} the request query params.

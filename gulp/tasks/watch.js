@@ -15,9 +15,8 @@
  *  `--apiProxy none`.
 */
 
-var gulp  = require('gulp');
+var gulp = require('gulp');
 var minimist = require('minimist');
-var config = require('../config');
 var args = minimist(process.argv.slice(2));
 var browserSyncAPI = ':' + (typeof args.apiProxy !== 'undefined' ? args.apiProxy : 'dev');
 

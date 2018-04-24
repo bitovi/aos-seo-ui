@@ -1,9 +1,9 @@
-require('can/map/define/define');
-var can = require('can');
+var CanMap = require('can-map');
+var CanList = require('can-list');
 var Model = require('seo-ui/models/request-list/request-list');
 var unsortableColumns = require('seo-ui/utils/unsortableColumns');
 
-module.exports = can.Map.extend({
+module.exports = CanMap.extend({
     define: {
 
         /**
@@ -140,7 +140,7 @@ module.exports = can.Map.extend({
          * @description The list of columns (key name, header label, column width) used by the Grid List.
          */
         columns: {
-            Type: can.List,
+            Type: CanList,
             value: [
                 {
                     cssClass: 'col-md-2',
@@ -202,17 +202,17 @@ module.exports = can.Map.extend({
         * @property {String} sortBy
         * @description returns name of the column on which the list is to be sorted
         */
-        sortBy: {
-            type: 'string',
-            set: function () {
-                var searchField = this.attr('searchField');
-                var state = this.attr('state');
-                var stateValue = state.attr(searchField) || '';
-                var fieldIsSortable = this.attr('unsortableColumns').indexOf(searchField) === -1;
-                this.attr('sortOrder', fieldIsSortable && stateValue ? 'asc' : 'desc');
-                return fieldIsSortable && stateValue ? searchField : 'modifyDate';
-            }
-        },
+        // sortBy: {
+        //     type: 'string',
+        //     set: function () {
+        //         var searchField = this.attr('searchField');
+        //         var state = this.attr('state');
+        //         var stateValue = state.attr(searchField) || '';
+        //         var fieldIsSortable = this.attr('unsortableColumns').indexOf(searchField) === -1;
+        //         this.attr('sortOrder', fieldIsSortable && stateValue ? 'asc' : 'desc');
+        //         return fieldIsSortable && stateValue ? searchField : 'modifyDate';
+        //     }
+        // },
 
         /**
         * @property {String} sortOrder

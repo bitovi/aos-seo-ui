@@ -1,0 +1,8 @@
+<seo-export-urls
+    vm:columns:bind="columns"
+    export-id="{exportId}"
+    vm:filterFields:bind="filterFields"
+    vm:items:bind="items"
+    vm:searchFields:bind="searchFields"
+    state="{state}"
+></seo-export-urls>

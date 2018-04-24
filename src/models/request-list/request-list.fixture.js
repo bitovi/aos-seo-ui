@@ -1,12 +1,12 @@
-require('can/util/fixture/fixture');
+require('can-fixture');
 
 var _ = require('lodash');
-var can = require('can');
+var fixture = require('can-fixture');
 var envVars = require('seo-ui/utils/environmentVars');
 var requestList = require('./request-list.json').data;
 var requestDetail = require('./request-detail.json');
 
-can.fixture('GET ' + envVars.apiUrl() + '/notifications.json', function (request, response) {
+fixture('GET ' + envVars.apiUrl() + '/notifications.json', function (request, response) {
     var data = request.data;
 
     var results = requestList;
@@ -60,6 +60,6 @@ can.fixture('GET ' + envVars.apiUrl() + '/notifications.json', function (request
     });
 });
 
-can.fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
+fixture('GET ' + envVars.apiUrl() + '/notifications/{id}.json', function () {
     return requestDetail;
 });

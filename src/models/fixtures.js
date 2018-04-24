@@ -1,14 +1,15 @@
+var deparam = require('can-util/js/deparam/deparam');
+var fixture = require('can-fixture');
 /* eslint global-require: 0 */
 
-var can = require('can');
-require('can/util/fixture/');
+require('can-fixture');
 
 module.exports = function loadFixtures(isDeployed, fixturesOn, cb) {
-    var queryParams = can.deparam(window.location.search.slice(1));
+    var queryParams = deparam(window.location.search.slice(1));
     var fixturePath = queryParams['fixtures.mock'] === 'bad' ? 'seo-ui/models/bad.fixtures' : 'seo-ui/models/good.fixtures';
 
-    can.fixture.on = fixturesOn;
-    can.fixture.delay = 500;
+    fixture.on = fixturesOn;
+    fixture.delay = 500;
 
     System.import(fixturePath).then(function () {
         cb(isDeployed, fixturesOn);

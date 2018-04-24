@@ -1,3 +1,4 @@
+var string = require('can-util/js/string/string');
 /**
  * @module {Function} utils.setPageTitle setPageTitle
  * @parent utils
@@ -17,9 +18,6 @@
  *
  * ```
  */
-
-var can = require('can');
-
 module.exports = function setPageTitle(titleTemplate, appState) {
     var keyExpression = /:([a-zA-Z]*)/gi;
     var match;
@@ -27,11 +25,12 @@ module.exports = function setPageTitle(titleTemplate, appState) {
     var parsedTitle = '';
     var pathElementValue = {};
 
-    if (newRoute.indexOf(':') > -1) {
+
+    if (newRoute && newRoute.indexOf(':') > -1) {
         while ((match = keyExpression.exec(newRoute)) !== null) {
             pathElementValue[match[1]] = appState.attr(match[1]);
         }
-        parsedTitle = can.sub(titleTemplate, pathElementValue);
+        parsedTitle = string.sub(titleTemplate, pathElementValue);
     }
 
     document.title = (parsedTitle || titleTemplate) + ' | SEO Manager';

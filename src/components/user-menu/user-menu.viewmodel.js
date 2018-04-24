@@ -1,12 +1,12 @@
+var CanMap = require('can-map');
 /**
  * @parent components.seo-user-menu
  * @tag documentation
  * @module {constructor} Seo-User-Menu/ViewModel Seo-User-Menu
  */
-var can = require('can');
-require('can/map/define/define');
+require('can-map-define');
 
-var ViewModel = can.Map.extend({
+var ViewModel = CanMap.extend({
     define: {
         isLocalInstance: {
             type: 'boolean'

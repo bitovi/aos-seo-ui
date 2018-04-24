@@ -1,14 +1,14 @@
-require('can/util/fixture/fixture');
+require('can-fixture');
 
 var _ = require('lodash');
-var can = require('can');
+var fixture = require('can-fixture');
 
 var envVars = require('seo-ui/utils/environmentVars');
 var urlFilters = require('./url-filters.json');
 var urls = require('./urls.json').data;
 
 // Find All
-can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
+fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, response) {
     var data = request.data;
 
     var results = urls;
@@ -60,7 +60,7 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls.json', function (request, respons
 });
 
 // Find One
-can.fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, response) {
+fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, response) {
     var urlIndex = _.findIndex(urls.data, {
         url: request.data.url
     });
@@ -75,6 +75,6 @@ can.fixture('GET ' + envVars.apiUrl() + '/urls/{url}.json', function (request, r
 });
 
 // Get Filters
-can.fixture('GET ' + envVars.apiUrl() + '/url-filters.json', function (request, response) {
+fixture('GET ' + envVars.apiUrl() + '/url-filters.json', function (request, response) {
     response(urlFilters);
 });

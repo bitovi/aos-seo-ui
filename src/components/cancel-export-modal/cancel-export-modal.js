@@ -1,3 +1,4 @@
+var Component = require('can-component');
 /**
  *
  * @description  This component is used to cancel or continue export.
@@ -12,15 +13,14 @@
  * ```
  */
 
-var can = require('can');
-
-require('@apple/pui/components/dialog/dialog');
+require('@apple/pui/dist/cjs/components/dialog/dialog');
 
 var template = require('./cancel-export-modal.stache!');
 var ViewModel = require('./cancel-export-modal.viewmodel');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-cancel-export-modal',
-    template: template,
-    viewModel: ViewModel
+    view: template,
+    ViewModel: ViewModel,
+    leakScope: true
 });

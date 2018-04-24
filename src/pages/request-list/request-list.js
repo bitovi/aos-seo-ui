@@ -5,20 +5,20 @@
  * @description request list page displays all thre created request.
  */
 
-require('can/map/define/define');
-require('can/view/stache/stache');
+require('can-map-define');
+require('can-stache');
 require('bootstrap/js/collapse');
 
-require('@apple/pui/components/grid-list/grid-list');
-require('@apple/pui/components/grid-search/grid-search');
-require('@apple/pui/components/grid-multi-search/grid-multi-search');
-require('@apple/pui/components/pagination/pagination');
+require('@apple/pui/dist/cjs/components/grid-list/grid-list');
+require('@apple/pui/dist/cjs/components/grid-search/grid-search');
+require('@apple/pui/dist/cjs/components/grid-multi-search/grid-multi-search');
+require('@apple/pui/dist/cjs/components/pagination/pagination');
 
-var can = require('can');
+var Component = require('can-component');
 var template = require('./request-list.stache!');
 var ViewModel = require('./request-list.viewmodel');
 
-module.exports = can.Component.extend({
+module.exports = Component.extend({
     tag: 'seo-request-list',
     template: template,
     viewModel: ViewModel,
@@ -39,5 +39,7 @@ module.exports = can.Component.extend({
                 requestPath: key
             });
         }
-    }
+    },
+
+    leakScope: true
 });

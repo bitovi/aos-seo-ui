@@ -1,7 +1,7 @@
-var can = require('can');
+var fixture = require('can-fixture');
 var envVars = require('seo-ui/utils/environmentVars');
-require('can/util/fixture/');
+require('can-fixture');
 
-can.fixture('POST ' + envVars.apiUrl() + '/log.json', function (req, res) {
+fixture('POST ' + envVars.apiUrl() + '/log.json', function (req, res) {
     res(200, 'log entry created');
 });

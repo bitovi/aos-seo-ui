@@ -1,15 +1,16 @@
 var $ = require('jquery');
-var can = require('can');
-
-require('seo-ui/utils/viewHelpers');
+var canViewModel = require('can-view-model');
 
 var component;
 var jasmineConfig = require('test/jasmine-configure');
 var jasmineConfigClean;
 var testTemplate = require('./export-urls.test.stache');
-var ViewModel = require('seo-ui/components/export-urls/export-urls.viewmodel');
 var envVars = require('seo-ui/utils/environmentVars');
 var vm;
+
+require('seo-ui/utils/viewHelpers');
+require('./export-urls');
+require('seo-ui/models/export-progress/export-progress.fixture');
 
 // Renders the component
 var renderPage = function () {
@@ -43,7 +44,7 @@ var renderPage = function () {
 
     jasmine.clock().runToLast();
     component = $('#sandbox seo-export-urls');
-    vm = can.viewModel(component);
+    vm = canViewModel(component);
 };
 
 describe('Export URLs', function () {
@@ -60,9 +61,9 @@ describe('Export URLs', function () {
     describe('view model', function () {
         beforeEach(function () {
             window.seo = {
-                'csrfToken': 'n3m0-r0ck5',
-                'csrfHeader': 'X-AOS-CSRF',
-                'csrfParameter': '_aos_csrf'
+                csrfToken: 'n3m0-r0ck5',
+                csrfHeader: 'X-AOS-CSRF',
+                csrfParameter: '_aos_csrf'
             };
             renderPage();
         });
@@ -174,9 +175,9 @@ describe('Export URLs', function () {
     describe('component', function () {
         beforeEach(function () {
             window.seo = {
-                'csrfToken': 'n3m0-r0ck5',
-                'csrfHeader': 'X-AOS-CSRF',
-                'csrfParameter': '_aos_csrf'
+                csrfToken: 'n3m0-r0ck5',
+                csrfHeader: 'X-AOS-CSRF',
+                csrfParameter: '_aos_csrf'
             };
 
             renderPage();
@@ -247,7 +248,6 @@ describe('Export URLs', function () {
                 it('has an Nemo-Ready option', function () {
                     expect($menuLinks.eq(2).text().trim()).toEqual('Nemo-Ready File');
                 });
-
             });
 
             describe('when no filter or search term is applied', function () {

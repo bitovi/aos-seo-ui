@@ -1,8 +1,12 @@
-require('seo-ui/pages/review-page/review-page');
-require('can/util/fixture/fixture');
+require('../../app.less!');
+require('./review-page');
+require('can-fixture');
+
+var domEvents = require("can-util/dom/events/events");
 
 var $ = require('jquery');
-var can = require('can');
+var assign = require('can-util/js/deep-assign/deep-assign');
+var canViewModel = require('can-view-model');
 
 var AppState = require('seo-ui/models/appstate/appstate');
 var jasmineConfig = require('test/jasmine-configure');
@@ -14,16 +18,14 @@ var stateObj = {
 };
 
 var testTemplate = require('./review-page.test.stache!');
-var ViewModel = require('seo-ui/pages/review-page/review-page.viewmodel');
-var ExportProgressModel = require('seo-ui/models/export-progress/export-progress');
-var GenerateExportIdModel = require('seo-ui/models/generate-file-export-id/generate-file-export-id');
+var ViewModel = require('./review-page.viewmodel');
 var envVars = require('seo-ui/utils/environmentVars');
 var vm;
 var $component;
 
 // Renders the page
 var renderPage = function (newState) {
-    state = new AppState(can.extend({}, stateObj, newState || {}));
+    state = new AppState(assign({}, stateObj, newState || {}));
 
     $('#sandbox').html(testTemplate({
         state: state
@@ -38,9 +40,9 @@ describe('Review Page', function () {
     beforeEach(function () {
         jasmineConfigClean = jasmineConfig();
         window.seo = {
-            csrfHeader:"X-AOS-CSRF",
-            csrfParameter:"_aos_csrf",
-            csrfToken:"n3m0-r0ck5"
+            csrfHeader: 'X-AOS-CSRF',
+            csrfParameter: '_aos_csrf',
+            csrfToken: 'n3m0-r0ck5'
         };
         renderPage();
     });
@@ -107,7 +109,7 @@ describe('Review Page', function () {
         });
 
         it('has a default tabsList value', function () {
-            expect(vm.attr('tabsList').attr()).toEqual([{ name: 'Enter URLs'},{ name: 'Upload File'}]);
+            expect(vm.attr('tabsList').attr()).toEqual([{name: 'Enter URLs'}, {name: 'Upload File'}]);
         });
 
         it('has a default urlTexts value', function () {
@@ -171,7 +173,7 @@ describe('Review Page', function () {
 
     describe('Component', function () {
         beforeEach(function () {
-            vm = can.viewModel($component);
+            vm = canViewModel($component);
         });
 
         describe('When Review Page renders', function () {
@@ -201,9 +203,9 @@ describe('Review Page', function () {
 
             describe('When Clear Field button clicked', function () {
                 beforeEach(function () {
-                    $component.find('#url-texts').val('abc').trigger('change');
-                    $component.find('#clear-textarea').trigger('click');
-                    jasmine.clock().runToLast();
+                    $component.find('#url-texts').val('abc')
+                    domEvents.dispatch.call($component.find('#url-texts')[0], 'change')
+                    domEvents.dispatch.call($component.find('#clear-textarea')[0], 'click')
                 });
 
                 it('clears textarea', function () {
@@ -213,11 +215,10 @@ describe('Review Page', function () {
 
             describe('When keyup event is triggered inside #url-texts textarea', function () {
                 beforeEach(function () {
-                    var evt = $.Event('keyup');
+                    var evt = new $.Event('keyup');
                     $component.find('#url-texts').val('abcd');
                     evt.which = 27;
-                    $component.find('#url-texts').trigger(evt);
-                    jasmine.clock().runToLast();
+                    domEvents.dispatch.call($component.find('#url-texts')[0], 'keyup');
                 });
 
                 it('sets urlTexts property to the same value as what the textarea has', function () {

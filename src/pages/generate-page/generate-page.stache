@@ -3,7 +3,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <form
-            {($action)}="generateFilePath"
+            el:action:bind="generateFilePath"
             enctype="multipart/form-data"
             id="generate-form"
             method="POST"
@@ -13,7 +13,7 @@
                 class="file-upload"
                 name="file-upload-publish"
                 type="file"
-                {($value)}="fileToUpload"/>
+                el:value:bind="fileToUpload"/>
             <ul class="content">
                 <li>
                     Only <b>.csv</b> files are supported
@@ -22,7 +22,7 @@
                     Make sure the file follows the 
                     <button 
                         class="btn btn-link modal-trigger"
-                        ($click)="toggleModal"
+                        on:el:click="toggleModal"
                         type="button"
                     >
                         formatting requirements.
@@ -32,7 +32,7 @@
             <input
                 name="exportId"
                 type="hidden"
-                {($value)}="exportId"/>
+                el:value:bind="exportId"/>
             <button
                 class="btn btn-primary"
                 id="generate-file-btn"
@@ -44,7 +44,7 @@
 </div>
 
 <pui-modal
-    {(modal-active)}="modalOpen"
+    vm:modalActive:bind="modalOpen"
     modal-id="formatting-requirements-modal-generate-url"
     modal-size="lg"
 >

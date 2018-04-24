@@ -1,12 +1,12 @@
-require('can/util/fixture/fixture');
+require('can-fixture');
 
-var can = require('can');
+var fixture = require('can-fixture');
 
 var envVars = require('seo-ui/utils/environmentVars');
 var partNumbers = require('./part-numbers.json').data;
 
 // Find All
-can.fixture('GET ' + envVars.apiUrl() + '/part-numbers.json', function (request, response) {
+fixture('GET ' + envVars.apiUrl() + '/part-numbers.json', function (request, response) {
     var requestData = request.data;
     var results = partNumbers;
 

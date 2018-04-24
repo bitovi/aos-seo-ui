@@ -27,24 +27,23 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var prefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
-var path = require('path');
 var config = require('../config').less;
 var mergeStream = require('merge-stream');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
 var errorHandler = require('@apple/pui/src/gulp/util/handleErrors')({
-    title: "LESS Error",
+    title: 'LESS Error'
 });
 
-function initSourceMap(noop){
+function initSourceMap(noop) {
     return noop ? gutil.noop : sourcemaps.init;
 }
 
-function writeSourceMap(noop){
+function writeSourceMap(noop) {
     return noop ? gutil.noop : sourcemaps.write;
 }
 
-function lessApp(min){
+function lessApp(min) {
     var outputName = 'app' + (min ? '.min' : '') + '.css';
 
     return gulp.src(config.app.src, {base: 'src'})
@@ -60,9 +59,8 @@ function lessApp(min){
 // This is a quick workaround.  We shouldn't be changing the source
 gulp.task('less', ['less:demos', 'less:app']);
 
-gulp.task('less:app', function() {
-
-    if(global.isWatching) {
+gulp.task('less:app', function () {
+    if (global.isWatching) {
         gulp.watch([config.app.watch], ['less:app']);
     }
 
@@ -70,12 +68,10 @@ gulp.task('less:app', function() {
     var app = lessApp(false);
 
     return mergeStream(appMin, app);
-
 });
 
-gulp.task('less:demos', function() {
-
-    if(global.isWatching) {
+gulp.task('less:demos', function () {
+    if (global.isWatching) {
         gulp.watch([config.demo.watch], ['less:demos']);
     }
 
@@ -86,5 +82,4 @@ gulp.task('less:demos', function() {
         .pipe(prefixer(config.autoprefixer))
         .pipe(writeSourceMap()())
         .pipe(gulp.dest(config.demo.dest));
-
 });

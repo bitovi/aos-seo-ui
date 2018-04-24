@@ -1,7 +1,3 @@
-var glob = require('glob');
-var path = require('path');
-var fs = require('fs');
-
 var dest = './build';
 var src = './src';
 
@@ -16,7 +12,7 @@ var config = {
      */
     steal: {
         buildConfig: {
-            config: "package.json!npm"
+            config: 'package.json!npm'
         },
         buildOptions: {
             bundleSteal: true,
@@ -90,8 +86,8 @@ var config = {
         */
         apiProxies: {
             // This is Seo 1.0
-            'dev': 'http://nc1d-dc1-pubdev-1005.corp.apple.com:8091/seo',
-            'qa': 'http://nc1d-dc1-pubqa-1001.corp.apple.com:8091/seo'
+            dev: 'http://nc1d-dc1-pubdev-1005.corp.apple.com:8091/seo',
+            qa: 'http://nc1d-dc1-pubqa-1001.corp.apple.com:8091/seo'
         }
     },
 
@@ -136,7 +132,7 @@ var config = {
             dest: './docs/seo-ui',
             parent: 'seo-ui',
             templates: './docs/theme/templates',
-            'static': './docs/theme/static'
+            static: './docs/theme/static'
         },
         watchFiles: [
             '.gulpfile.js',

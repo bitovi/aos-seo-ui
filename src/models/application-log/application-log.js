@@ -1,12 +1,13 @@
-var can = require('can');
+var ajax = require('can-util/dom/ajax/ajax');
+var Model = require('can-model');
 var envVars = require('seo-ui/utils/environmentVars');
-require('can/map/define/');
+require('can-map-define');
 
-module.exports = can.Model.extend({
+module.exports = Model.extend({
     create: function (params) {
         var url = envVars.apiUrl() + '/log.json';
 
-        return can.ajax({
+        return ajax({
             url: url,
             data: JSON.stringify(params),
             type: 'post',
